@@ -1623,6 +1623,16 @@ class AppLocalizationsPl extends AppLocalizations {
   String get map_showSharedMarkers => 'Pokaż udostępnione znaczniki.';
 
   @override
+  String get map_showGuessedLocations =>
+      'Pokaż przypuszczalne lokalizacje węzłów';
+
+  @override
+  String get map_showDiscoveryContacts => 'Pokaż odkryte kontakty';
+
+  @override
+  String get map_guessedLocation => 'Przypuszczalna lokalizacja';
+
+  @override
   String get map_lastSeenTime => 'Ostatni raz widziany';
 
   @override
