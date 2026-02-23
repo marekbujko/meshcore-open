@@ -1941,5 +1941,6 @@
   "appSettings_maxMessageRetriesSubtitle": "Кількість спроб повторного відправлення повідомлення перед тим, як позначити його як невдале",
   "path_routeWeight": "{weight}/{max}",
   "settings_telemetryModeUpdated": "Режим телеметрії оновлено",
-  "settings_multiAck": "Багатократне підтвердження: {value}"
+  "settings_multiAck": "Багатократне підтвердження: {value}",
+  "map_showOverlaps": "Перекриття ключа повторювача"
 }

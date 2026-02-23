@@ -1676,6 +1676,9 @@ class AppLocalizationsSk extends AppLocalizations {
   String get map_otherNodes => 'Ostatné uzly';
 
   @override
+  String get map_showOverlaps => 'Prekrývanie opakovača kľúča';
+
+  @override
   String get map_keyPrefix => 'Päťciferné predpona';
 
   @override

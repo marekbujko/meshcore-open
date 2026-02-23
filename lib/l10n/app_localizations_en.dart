@@ -1657,6 +1657,9 @@ class AppLocalizationsEn extends AppLocalizations {
   String get map_otherNodes => 'Other Nodes';
 
   @override
+  String get map_showOverlaps => 'Repeater Key Overlaps';
+
+  @override
   String get map_keyPrefix => 'Key Prefix';
 
   @override

@@ -565,6 +565,16 @@ class PathHistoryService extends ChangeNotifier {
       _floodStats.remove(oldest);
     }
   }
+
+  void clearAllHistories() {
+    _cache.clear();
+    _cacheAccessOrder.clear();
+    _autoRotationIndex.clear();
+    _floodStats.clear();
+    _storage.clearAllPathHistories();
+    _version = 0;
+    notifyListeners();
+  }
 }
 
 class _DeferredPathRecord {

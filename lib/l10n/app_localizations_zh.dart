@@ -1583,6 +1583,9 @@ class AppLocalizationsZh extends AppLocalizations {
   String get map_otherNodes => '其他节点';
 
   @override
+  String get map_showOverlaps => '重复键重叠';
+
+  @override
   String get map_keyPrefix => '关键字前缀';
 
   @override

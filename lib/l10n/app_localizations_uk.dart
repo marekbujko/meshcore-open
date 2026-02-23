@@ -1685,6 +1685,9 @@ class AppLocalizationsUk extends AppLocalizations {
   String get map_otherNodes => 'Інші вузли';
 
   @override
+  String get map_showOverlaps => 'Перекриття ключа повторювача';
+
+  @override
   String get map_keyPrefix => 'Префікс ключа';
 
   @override

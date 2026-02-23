@@ -311,10 +311,13 @@ class _SettingsScreenState extends State<SettingsScreen> {
             ),
           ),
           ListTile(
-            leading: const Icon(Icons.cell_tower),
-            title: Text(l10n.settings_sendAdvertisement),
-            subtitle: Text(l10n.settings_sendAdvertisementSubtitle),
-            onTap: () => _sendAdvert(context, connector),
+            leading: const Icon(Icons.delete_outline, color: Colors.red),
+            title: Text("Delete All Paths"),
+            subtitle: Text(
+              "Clear all path data from contacts.",
+              style: TextStyle(color: Colors.red[700]),
+            ),
+            onTap: () => connector.deleteAllPaths(),
           ),
           const Divider(height: 1),
           ListTile(

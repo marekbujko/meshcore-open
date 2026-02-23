@@ -1941,5 +1941,6 @@
   "appSettings_maxMessageRetriesSubtitle": "Število poskusov ponovnega poslanja, preden se sporočilo označuje kot neuspešno",
   "path_routeWeight": "{weight}/{max}",
   "settings_multiAck": "Večkratni potrditvi: {value}",
-  "settings_telemetryModeUpdated": "Način telemetrije posodobljen"
+  "settings_telemetryModeUpdated": "Način telemetrije posodobljen",
+  "map_showOverlaps": "Prekrivanje ključa ponovnega predvajanja"
 }

@@ -1941,5 +1941,6 @@
   "appSettings_maxMessageRetriesSubtitle": "Počet pokusov o odošleť pred označením správy ako neúspešnej",
   "path_routeWeight": "{weight}/{max}",
   "settings_telemetryModeUpdated": "Režim telemetrie bol aktualizovaný",
-  "settings_multiAck": "Viaceré ACK: {value}"
+  "settings_multiAck": "Viaceré ACK: {value}",
+  "map_showOverlaps": "Prekrývanie opakovača kľúča"
 }

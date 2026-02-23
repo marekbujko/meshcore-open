@@ -1918,7 +1918,6 @@
   "tcpConnectionFailed": "Error en la conexión TCP: {error}",
   "map_showDiscoveryContacts": "Mostrar Contactos de Descubrimiento",
   "map_setAsMyLocation": "Establecer mi ubicación",
-<<<<<<< HEAD
   "@path_routeWeight": {
     "placeholders": {
       "weight": {
@@ -1929,8 +1928,6 @@
       }
     }
   },
-=======
->>>>>>> c9e3ceb (feat: Enhance privacy settings and telemetry (#308))
   "settings_privacySubtitle": "Controlar qué información se comparte.",
   "settings_allowByContact": "Permitir por banderas de contacto",
   "settings_denyAll": "Denegar todo",
@@ -1960,7 +1957,6 @@
       }
     }
   },
-<<<<<<< HEAD
   "appSettings_initialRouteWeight": "Peso inicial de la ruta",
   "appSettings_maxRouteWeight": "Peso máximo permitido para la ruta",
   "appSettings_initialRouteWeightSubtitle": "Peso inicial para rutas recién descubiertas",
@@ -1975,8 +1971,3 @@
   "settings_telemetryModeUpdated": "Modo de telemetría actualizado",
   "settings_multiAck": "Multi-ACKs: {value}"
 }
-=======
-  "settings_telemetryModeUpdated": "Modo de telemetría actualizado",
-  "settings_multiAck": "Multi-ACKs: {value}"
-}
->>>>>>> c9e3ceb (feat: Enhance privacy settings and telemetry (#308))

@@ -1941,5 +1941,6 @@
   "appSettings_maxMessageRetriesSubtitle": "Брой опити за повторно изпращане, преди съобщението да бъде маркирано като неуспешно.",
   "path_routeWeight": "{weight}/{max}",
   "settings_multiAck": "Мулти-потвърди: {value}",
-  "settings_telemetryModeUpdated": "Режим на телеметрията е обновен"
+  "settings_telemetryModeUpdated": "Режим на телеметрията е обновен",
+  "map_showOverlaps": "Покриване на ключа на повтаряча"
 }

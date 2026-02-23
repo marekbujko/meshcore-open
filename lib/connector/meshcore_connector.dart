@@ -5196,6 +5196,10 @@ class MeshCoreConnector extends ChangeNotifier {
     markChannelRead(channelIndex);
     notifyListeners();
   }
+
+  void deleteAllPaths() {
+    _pathHistoryService?.clearAllHistories();
+  }
 }
 
 const int _phRouteMask = 0x03;

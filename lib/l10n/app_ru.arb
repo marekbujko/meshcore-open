@@ -1181,5 +1181,6 @@
   "appSettings_maxMessageRetriesSubtitle": "Количество попыток повторной отправки сообщения перед тем, как пометить его как неудачное.",
   "path_routeWeight": "{weight}/{max}",
   "settings_telemetryModeUpdated": "Режим телеметрии обновлен",
-  "settings_multiAck": "Мульти-ACK: {value}"
+  "settings_multiAck": "Мульти-ACK: {value}",
+  "map_showOverlaps": "Перекрытия ключа повтора"
 }

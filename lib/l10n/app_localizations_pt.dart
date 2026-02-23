@@ -1687,6 +1687,9 @@ class AppLocalizationsPt extends AppLocalizations {
   String get map_otherNodes => 'Outros Nós';
 
   @override
+  String get map_showOverlaps => 'Sobreposições da Chave Repeater';
+
+  @override
   String get map_keyPrefix => 'Prefixo Chave';
 
   @override

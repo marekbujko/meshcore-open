@@ -1969,5 +1969,6 @@
   "appSettings_maxMessageRetriesSubtitle": "Anzahl der Versuche, eine Nachricht erneut zu senden, bevor sie als fehlgeschlagen markiert wird.",
   "path_routeWeight": "{weight}/{max}",
   "settings_telemetryModeUpdated": "Telemetriemodus aktualisiert",
-  "settings_multiAck": "Mehrfach-Bestätigungen: {value}"
+  "settings_multiAck": "Mehrfach-Bestätigungen: {value}",
+  "map_showOverlaps": "Überlappungen der Repeater-Taste"
 }

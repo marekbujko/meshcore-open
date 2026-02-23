@@ -1941,5 +1941,6 @@
   "appSettings_maxMessageRetriesSubtitle": "Aantal pogingen om een bericht opnieuw te versturen voordat het als mislukt wordt gemarkeerd",
   "path_routeWeight": "{weight}/{max}",
   "settings_telemetryModeUpdated": "Telemetrie-modus bijgewerkt",
-  "settings_multiAck": "Multi-ACKs: {value}"
+  "settings_multiAck": "Multi-ACKs: {value}",
+  "map_showOverlaps": "Herhalingssleutel overlapt"
 }
