@@ -3139,8 +3139,14 @@ abstract class AppLocalizations {
   /// No description provided for @map_runTrace.
   ///
   /// In en, this message translates to:
-  /// **'Run Path Trace'**
+  /// **'Run path trace'**
   String get map_runTrace;
+
+  /// No description provided for @map_runTraceWithReturnPath.
+  ///
+  /// In en, this message translates to:
+  /// **'Return back on the same path.'**
+  String get map_runTraceWithReturnPath;
 
   /// No description provided for @map_removeLast.
   ///

@@ -1711,6 +1711,9 @@ class AppLocalizationsSv extends AppLocalizations {
   String get map_runTrace => 'Kör spårsökning';
 
   @override
+  String get map_runTraceWithReturnPath => 'Gå tillbaka på samma väg';
+
+  @override
   String get map_removeLast => 'Ta bort sista';
 
   @override

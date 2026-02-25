@@ -1737,6 +1737,9 @@ class AppLocalizationsBg extends AppLocalizations {
   String get map_runTrace => 'Изпълни Път на Следване';
 
   @override
+  String get map_runTraceWithReturnPath => 'Върни се по същия път.';
+
+  @override
   String get map_removeLast => 'Премахни Последно';
 
   @override

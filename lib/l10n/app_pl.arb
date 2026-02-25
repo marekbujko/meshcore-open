@@ -1942,5 +1942,6 @@
   "path_routeWeight": "{weight}/{max}",
   "settings_telemetryModeUpdated": "Tryb telemetryczny zaktualizowany",
   "settings_multiAck": "Wiele potwierdzeń: {value}",
-  "map_showOverlaps": "Nakładające się klucze powtarzalne"
+  "map_showOverlaps": "Nakładające się klucze powtarzalne",
+  "map_runTraceWithReturnPath": "Wróć z powrotem tą samą ścieżką"
 }

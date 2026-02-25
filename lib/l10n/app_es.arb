@@ -1969,5 +1969,7 @@
   "appSettings_maxMessageRetriesSubtitle": "Número de intentos de reintento antes de marcar un mensaje como fallido.",
   "path_routeWeight": "{weight}/{max}",
   "settings_telemetryModeUpdated": "Modo de telemetría actualizado",
-  "settings_multiAck": "Multi-ACKs: {value}"
+  "settings_multiAck": "Multi-ACKs: {value}",
+  "map_showOverlaps": "Superposiciones de tecla repetidora",
+  "map_runTraceWithReturnPath": "Volver atrás por el mismo camino."
 }

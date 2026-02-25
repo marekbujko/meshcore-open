@@ -1733,6 +1733,10 @@ class AppLocalizationsIt extends AppLocalizations {
   String get map_runTrace => 'Esegui Path Trace';
 
   @override
+  String get map_runTraceWithReturnPath =>
+      'Tornare indietro sullo stesso percorso';
+
+  @override
   String get map_removeLast => 'Rimuovi ultimo';
 
   @override

@@ -1699,7 +1699,10 @@ class AppLocalizationsEn extends AppLocalizations {
   String get map_tapToAdd => 'Tap on nodes to add them to the path.';
 
   @override
-  String get map_runTrace => 'Run Path Trace';
+  String get map_runTrace => 'Run path trace';
+
+  @override
+  String get map_runTraceWithReturnPath => 'Return back on the same path.';
 
   @override
   String get map_removeLast => 'Remove Last';

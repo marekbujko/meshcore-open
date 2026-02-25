@@ -1743,6 +1743,9 @@ class AppLocalizationsFr extends AppLocalizations {
   String get map_runTrace => 'Exécuter la traçage de chemin';
 
   @override
+  String get map_runTraceWithReturnPath => 'Revenir sur le même chemin.';
+
+  @override
   String get map_removeLast => 'Supprimer le dernier';
 
   @override

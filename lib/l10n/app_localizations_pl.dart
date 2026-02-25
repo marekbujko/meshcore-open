@@ -1735,6 +1735,9 @@ class AppLocalizationsPl extends AppLocalizations {
   String get map_runTrace => 'Uruchom ślad ścieżki';
 
   @override
+  String get map_runTraceWithReturnPath => 'Wróć z powrotem tą samą ścieżką';
+
+  @override
   String get map_removeLast => 'Usuń ostatni';
 
   @override

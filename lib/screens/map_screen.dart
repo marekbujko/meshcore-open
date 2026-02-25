@@ -480,10 +480,12 @@ class _MapScreenState extends State<MapScreen> {
                             point: highlightPosition,
                             width: 40,
                             height: 40,
-                            child: Icon(
-                              Icons.location_on_outlined,
-                              color: Colors.red[600],
-                              size: 34,
+                            child: IgnorePointer(
+                              child: Icon(
+                                Icons.location_on_outlined,
+                                color: Colors.red[600],
+                                size: 34,
+                              ),
                             ),
                           ),
                         if (!_isBuildingPathTrace)
@@ -506,28 +508,33 @@ class _MapScreenState extends State<MapScreen> {
                             ),
                             width: 40,
                             height: 40,
-                            child: Container(
-                              padding: const EdgeInsets.all(4),
-                              decoration: BoxDecoration(
-                                color: Colors.teal,
-                                shape: BoxShape.circle,
-                                border: Border.all(
-                                  color: Colors.white,
-                                  width: 2,
-                                ),
-                                boxShadow: [
-                                  BoxShadow(
-                                    color: Colors.black.withValues(alpha: 0.3),
-                                    blurRadius: 4,
-                                    offset: const Offset(0, 2),
+                            child: IgnorePointer(
+                              ignoring: true,
+                              child: Container(
+                                padding: const EdgeInsets.all(4),
+                                decoration: BoxDecoration(
+                                  color: Colors.teal,
+                                  shape: BoxShape.circle,
+                                  border: Border.all(
+                                    color: Colors.white,
+                                    width: 2,
                                   ),
-                                ],
-                              ),
-                              alignment: Alignment.center,
-                              child: const Icon(
-                                Icons.person_pin_circle,
-                                color: Colors.white,
-                                size: 20,
+                                  boxShadow: [
+                                    BoxShadow(
+                                      color: Colors.black.withValues(
+                                        alpha: 0.3,
+                                      ),
+                                      blurRadius: 4,
+                                      offset: const Offset(0, 2),
+                                    ),
+                                  ],
+                                ),
+                                alignment: Alignment.center,
+                                child: const Icon(
+                                  Icons.person_pin_circle,
+                                  color: Colors.white,
+                                  size: 20,
+                                ),
                               ),
                             ),
                           ),
@@ -547,6 +554,7 @@ class _MapScreenState extends State<MapScreen> {
                 ),
                 if (!_isBuildingPathTrace)
                   _buildLegend(
+                    contacts,
                     contactsWithLocation,
                     settings,
                     sharedMarkers.length,
@@ -832,13 +840,16 @@ class _MapScreenState extends State<MapScreen> {
 
   List<Contact> _filterContactsBySettings(
     List<Contact> contacts,
-    dynamic settings,
-  ) {
+    dynamic settings, {
+    bool noLocations = false,
+  }) {
     List<Contact> filtered = [];
     bool addContact = false;
     for (final contact in contacts) {
       addContact = false;
-      if (!contact.hasLocation) continue;
+      if (!contact.hasLocation && !noLocations) {
+        continue;
+      }
 
       // Apply node type filters
       if (contact.type == advTypeRepeater &&
@@ -1012,17 +1023,25 @@ class _MapScreenState extends State<MapScreen> {
   }
 
   Widget _buildLegend(
+    List<Contact> contacts,
     List<Contact> contactsWithLocation,
     settings,
     int markerCount,
     int guessedCount,
   ) {
     final filteredContacts = _filterContactsBySettings(
-      contactsWithLocation,
+      contacts,
       settings,
+      noLocations: false,
+    );
+    final filteredContactsAll = _filterContactsBySettings(
+      contacts,
+      settings,
+      noLocations: true,
     );
 
     final nodeCount = filteredContacts.length;
+    final nodeCountAll = filteredContactsAll.length;
 
     return Positioned(
       top: 16,
@@ -1057,6 +1076,54 @@ class _MapScreenState extends State<MapScreen> {
                             fontWeight: FontWeight.bold,
                             fontSize: 14,
                           ),
+                        ),
+                        Row(
+                          children: [
+                            Icon(
+                              Icons.location_on,
+                              size: 16,
+                              color: Colors.grey,
+                            ),
+                            Text(
+                              ": $nodeCount",
+                              style: const TextStyle(
+                                fontWeight: FontWeight.bold,
+                                fontSize: 14,
+                              ),
+                            ),
+                          ],
+                        ),
+                        Row(
+                          children: [
+                            const Icon(
+                              Icons.wrong_location,
+                              size: 16,
+                              color: Colors.grey,
+                            ),
+                            Text(
+                              ": ${nodeCountAll - nodeCount}",
+                              style: const TextStyle(
+                                fontWeight: FontWeight.bold,
+                                fontSize: 14,
+                              ),
+                            ),
+                          ],
+                        ),
+                        Row(
+                          children: [
+                            const Icon(
+                              Icons.add_outlined,
+                              size: 16,
+                              color: Colors.grey,
+                            ),
+                            Text(
+                              ": $nodeCountAll",
+                              style: const TextStyle(
+                                fontWeight: FontWeight.bold,
+                                fontSize: 14,
+                              ),
+                            ),
+                          ],
                         ),
                         Text(
                           context.l10n.map_pinsCount(markerCount),
@@ -2137,7 +2204,7 @@ class _MapScreenState extends State<MapScreen> {
                           _isBuildingPathTrace = false;
                         });
                       },
-                      tooltip: "Path Trace",
+                      tooltip: l10n.map_runTrace,
                       icon: const Icon(Icons.arrow_forward_outlined),
                     ),
                   if (_pathTrace.isNotEmpty)
@@ -2157,14 +2224,14 @@ class _MapScreenState extends State<MapScreen> {
                           _isBuildingPathTrace = false;
                         });
                       },
-                      tooltip: "Build Return Path",
+                      tooltip: l10n.map_runTraceWithReturnPath,
                       icon: const Icon(Icons.replay),
                     ),
                   if (_pathTrace.isNotEmpty)
                     IconButton(
                       onPressed: _removePath,
-                      tooltip: "Remove Last Point",
-                      icon: const Icon(Icons.delete),
+                      tooltip: l10n.map_removeLast,
+                      icon: const Icon(Icons.undo),
                     ),
                   if (_pathTrace.isEmpty)
                     IconButton(
@@ -2179,6 +2246,7 @@ class _MapScreenState extends State<MapScreen> {
                           SnackBar(content: Text(l10n.map_pathTraceCancelled)),
                         );
                       },
+                      tooltip: l10n.common_cancel,
                       icon: const Icon(Icons.close),
                     ),
                 ],

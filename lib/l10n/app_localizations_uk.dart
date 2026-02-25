@@ -1731,6 +1731,9 @@ class AppLocalizationsUk extends AppLocalizations {
   String get map_runTrace => 'Виконати трасування шляху';
 
   @override
+  String get map_runTraceWithReturnPath => 'Повернутися назад тим же шляхом';
+
+  @override
   String get map_removeLast => 'Видалити останній';
 
   @override
