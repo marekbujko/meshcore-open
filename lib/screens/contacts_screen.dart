@@ -26,6 +26,7 @@ import '../widgets/room_login_dialog.dart';
 import '../widgets/unread_badge.dart';
 import 'channels_screen.dart';
 import 'chat_screen.dart';
+import 'discovery_screen.dart';
 import 'map_screen.dart';
 import 'repeater_hub_screen.dart';
 import 'settings_screen.dart';
@@ -317,6 +318,21 @@ class _ContactsScreenState extends State<ContactsScreen>
                     ],
                   ),
                   onTap: () => _disconnect(context, connector),
+                ),
+                PopupMenuItem(
+                  child: Row(
+                    children: [
+                      const Icon(Icons.person_add_rounded),
+                      const SizedBox(width: 8),
+                      Text("Discovered Contacts"),
+                    ],
+                  ),
+                  onTap: () => Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                      builder: (context) => const DiscoveryScreen(),
+                    ),
+                  ),
                 ),
                 PopupMenuItem(
                   child: Row(

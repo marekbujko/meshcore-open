@@ -233,6 +233,13 @@ class AppLocalizationsEn extends AppLocalizations {
   String get settings_longitude => 'Longitude';
 
   @override
+  String get settings_contactSettings => 'Contact Settings';
+
+  @override
+  String get settings_contactSettingsSubtitle =>
+      'Settings for how contacts are added.';
+
+  @override
   String get settings_privacyMode => 'Privacy Mode';
 
   @override
@@ -3065,4 +3072,58 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get snrIndicator_lastSeen => 'Last seen';
+
+  @override
+  String get contactsSettings_title => 'Contacts settings';
+
+  @override
+  String get contactsSettings_autoAddTitle => 'Automatic Discovery';
+
+  @override
+  String get contactsSettings_otherTitle => 'Other contact related settings';
+
+  @override
+  String get contactsSettings_autoAddUsersTitle => 'Auto-add users';
+
+  @override
+  String get contactsSettings_autoAddUsersSubtitle =>
+      'Allow the companion to automatically add discovered users.';
+
+  @override
+  String get contactsSettings_autoAddRepeatersTitle => 'Auto-add repeaters';
+
+  @override
+  String get contactsSettings_autoAddRepeatersSubtitle =>
+      'Allow the companion to automatically add discovered repeaters.';
+
+  @override
+  String get contactsSettings_autoAddRoomServersTitle =>
+      'Auto-add room servers';
+
+  @override
+  String get contactsSettings_autoAddRoomServersSubtitle =>
+      'Allow the companion to automatically add discovered room servers.';
+
+  @override
+  String get contactsSettings_autoAddSensorsTitle => 'Auto-add sensors';
+
+  @override
+  String get contactsSettings_autoAddSensorsSubtitle =>
+      'Allow the companion to automatically add discovered sensors.';
+
+  @override
+  String get contactsSettings_overwriteOldestTitle => 'Overwrite Oldest';
+
+  @override
+  String get contactsSettings_overwriteOldestSubtitle =>
+      'When enabled, the companion will overwrite the oldest contact not favoriteited when the contact list is full.';
+
+  @override
+  String get discoveredContacts_Title => 'Discovered Contacts';
+
+  @override
+  String get discoveredContacts_noMatching => 'No matching contacts';
+
+  @override
+  String get discoveredContacts_searchHint => 'Search discovered contacts';
 }

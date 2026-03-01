@@ -167,6 +167,8 @@ const int cmdGetTelemetryReq = 39;
 const int cmdGetCustomVar = 40;
 const int cmdSetCustomVar = 41;
 const int cmdSendBinaryReq = 50;
+const int cmdSetAutoAddConfig = 58;
+const int cmdGetAutoAddConfig = 59;
 
 // Text message types
 const int txtTypePlain = 0;
@@ -200,8 +202,8 @@ const int respCodeDeviceInfo = 13;
 const int respCodeContactMsgRecvV3 = 16;
 const int respCodeChannelMsgRecvV3 = 17;
 const int respCodeChannelInfo = 18;
-const int respCodeRadioSettings = 25;
 const int respCodeCustomVars = 21;
+const int respCodeAutoAddConfig = 25;
 
 // Push codes (async from device)
 const int pushCodeAdvert = 0x80;
@@ -246,6 +248,18 @@ const int payloadTypeCONTROL = 0x0B; // a control/discovery packet
 //...
 const int payloadTypeRawCustom =
     0x0F; // custom packet as raw bytes, for applications with custom encryption, payloads, etc
+
+//auto-add flags
+const int autoAddOverwriteOldestFlag =
+    1 << 0; // 0x01 - overwrite oldest non-favourite when full
+const int autoAddChatFlag =
+    1 << 1; // 0x02 - auto-add Chat (Companion) (ADV_TYPE_CHAT)
+const int autoAddRepeaterFlag =
+    1 << 2; // 0x04 - auto-add Repeater (ADV_TYPE_REPEATER)
+const int autoAddRoomServerFlag =
+    1 << 3; // 0x08 - auto-add Room Server (ADV_TYPE_ROOM)
+const int autoAddSensorFlag =
+    1 << 4; // 0x10 - auto-add Sensor (ADV_TYPE_SENSOR)
 
 // Sizes
 const int pubKeySize = 32;
@@ -297,7 +311,7 @@ const int contactNameOffset = 100;
 const int contactTimestampOffset = 132;
 const int contactLatOffset = 136;
 const int contactLonOffset = 140;
-const int contactLastmodOffset = 144;
+const int contactLastModOffset = 144;
 const int contactFrameSize = 148;
 
 // Message frame offsets
@@ -685,6 +699,10 @@ Uint8List buildGetCustomVarsFrame() {
   return Uint8List.fromList([cmdGetCustomVar]);
 }
 
+Uint8List buildGetAutoAddFlagsFrame() {
+  return Uint8List.fromList([cmdGetAutoAddConfig]);
+}
+
 // Calculate LoRa airtime for a packet
 // Based on Semtech SX127x datasheet formula
 // Returns airtime in milliseconds
@@ -826,20 +844,40 @@ Uint8List buildZeroHopContact(Uint8List pubKey) {
 }
 
 // Build CMD_SET_OTHER_PARAMS frame
-// Format: [cmd][allowAutoAddContacts][allowTelemetryFlags][advertLocationPolicy][multiAcks]
+// Format: [cmd][allowTelemetryFlags][advertLocationPolicy][multiAcks]
 Uint8List buildSetOtherParamsFrame(
-  bool allowAutoAddContacts,
   int allowTelemetryFlags,
   int advertLocationPolicy,
   int multiAcks,
 ) {
   final writer = BufferWriter();
   writer.writeByte(cmdSetOtherParams);
-  writer.writeByte(
-    allowAutoAddContacts ? 0x00 : 0x01,
-  ); // Allow Auto Add Contacts
+  //Going forward the app will just set Auto Add Contacts to disabled, and use the filter flags
+  //Allow Auto Add Contacts use inverted logic (0x01 = disabled, 0x00 = enabled).
+  writer.writeByte(0x01);
   writer.writeByte(allowTelemetryFlags); // Allow Telemetry Flags
   writer.writeByte(advertLocationPolicy); // Advertisement Location Policy
   writer.writeByte(multiAcks); // Multi Acknowledgements
+  return writer.toBytes();
+}
+
+// Build CMD_SET_AUTO_ADD_CONFIG frame
+// Format: [cmd][flags]
+Uint8List buildSetAutoAddConfigFrame({
+  required bool autoAddChat,
+  required bool autoAddRepeater,
+  required bool autoAddRoomServer,
+  required bool autoAddSensor,
+  required bool overwriteOldest,
+}) {
+  final writer = BufferWriter();
+  writer.writeByte(cmdSetAutoAddConfig);
+  int flags = 0;
+  if (autoAddChat) flags |= autoAddChatFlag;
+  if (autoAddRepeater) flags |= autoAddRepeaterFlag;
+  if (autoAddRoomServer) flags |= autoAddRoomServerFlag;
+  if (autoAddSensor) flags |= autoAddSensorFlag;
+  if (overwriteOldest) flags |= autoAddOverwriteOldestFlag;
+  writer.writeByte(flags);
   return writer.toBytes();
 }

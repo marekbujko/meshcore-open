@@ -224,3 +224,93 @@ class ContactsFilterMenu extends StatelessWidget {
     );
   }
 }
+
+class DiscoveryContactsFilterMenu extends StatelessWidget {
+  final ContactSortOption sortOption;
+  final ContactTypeFilter typeFilter;
+  final ValueChanged<ContactSortOption> onSortChanged;
+  final ValueChanged<ContactTypeFilter> onTypeFilterChanged;
+
+  const DiscoveryContactsFilterMenu({
+    super.key,
+    required this.sortOption,
+    required this.typeFilter,
+    required this.onSortChanged,
+    required this.onTypeFilterChanged,
+  });
+
+  @override
+  Widget build(BuildContext context) {
+    final l10n = context.l10n;
+    return SortFilterMenu(
+      tooltip: l10n.listFilter_tooltip,
+      sections: [
+        SortFilterMenuSection(
+          title: l10n.listFilter_sortBy,
+          options: [
+            SortFilterMenuOption(
+              value: _actionSortLastSeen,
+              label: l10n.listFilter_heardRecently,
+              checked: sortOption == ContactSortOption.lastSeen,
+            ),
+            SortFilterMenuOption(
+              value: _actionSortName,
+              label: l10n.listFilter_az,
+              checked: sortOption == ContactSortOption.name,
+            ),
+          ],
+        ),
+        SortFilterMenuSection(
+          title: l10n.listFilter_filters,
+          options: [
+            SortFilterMenuOption(
+              value: _actionFilterAll,
+              label: l10n.listFilter_all,
+              checked: typeFilter == ContactTypeFilter.all,
+            ),
+            SortFilterMenuOption(
+              value: _actionFilterUsers,
+              label: l10n.listFilter_users,
+              checked: typeFilter == ContactTypeFilter.users,
+            ),
+            SortFilterMenuOption(
+              value: _actionFilterRepeaters,
+              label: l10n.listFilter_repeaters,
+              checked: typeFilter == ContactTypeFilter.repeaters,
+            ),
+            SortFilterMenuOption(
+              value: _actionFilterRooms,
+              label: l10n.listFilter_roomServers,
+              checked: typeFilter == ContactTypeFilter.rooms,
+            ),
+          ],
+        ),
+      ],
+      onSelected: (action) {
+        switch (action) {
+          case _actionSortName:
+            onSortChanged(ContactSortOption.name);
+            break;
+          case _actionSortLastSeen:
+            onSortChanged(ContactSortOption.lastSeen);
+            break;
+          case _actionFilterAll:
+            onTypeFilterChanged(ContactTypeFilter.all);
+            break;
+          case _actionFilterUsers:
+            onTypeFilterChanged(ContactTypeFilter.users);
+            break;
+          case _actionFilterFavorites:
+            onTypeFilterChanged(ContactTypeFilter.favorites);
+            break;
+          case _actionFilterRepeaters:
+            onTypeFilterChanged(ContactTypeFilter.repeaters);
+            break;
+          case _actionFilterRooms:
+            onTypeFilterChanged(ContactTypeFilter.rooms);
+            break;
+        }
+      },
+    );
+  }
+}

@@ -9,6 +9,7 @@ import '../connector/meshcore_protocol.dart';
 import '../l10n/l10n.dart';
 import '../models/radio_settings.dart';
 import '../widgets/adaptive_app_bar_title.dart';
+import '../widgets/app_bar.dart';
 import 'app_settings_screen.dart';
 import 'app_debug_log_screen.dart';
 import 'ble_debug_log_screen.dart';
@@ -43,8 +44,11 @@ class _SettingsScreenState extends State<SettingsScreen> {
     final l10n = context.l10n;
     return Scaffold(
       appBar: AppBar(
-        title: AdaptiveAppBarTitle(l10n.settings_title),
-        centerTitle: true,
+        title: AppBarTitle(
+          l10n.settings_title,
+          indicators: false,
+          subtitle: false,
+        ),
       ),
       body: SafeArea(
         top: false,
@@ -272,6 +276,14 @@ class _SettingsScreenState extends State<SettingsScreen> {
             subtitle: Text(l10n.settings_locationSubtitle),
             trailing: const Icon(Icons.chevron_right),
             onTap: () => _editLocation(context, connector),
+          ),
+          const Divider(height: 1),
+          ListTile(
+            leading: const Icon(Icons.group_add_outlined),
+            title: Text(l10n.settings_contactSettings),
+            subtitle: Text(l10n.settings_contactSettingsSubtitle),
+            trailing: const Icon(Icons.chevron_right),
+            onTap: () => _editAutoAddConfig(context, connector),
           ),
           const Divider(height: 1),
           ListTile(
@@ -846,6 +858,103 @@ class _SettingsScreenState extends State<SettingsScreen> {
             },
           ),
         ],
+      ),
+    );
+  }
+
+  void _editAutoAddConfig(BuildContext context, MeshCoreConnector connector) {
+    final l10n = context.l10n;
+    bool autoAddChat = false;
+    bool autoAddRepeater = false;
+    bool autoAddRoomServer = false;
+    bool autoAddSensor = false;
+    bool overwriteOldest = false;
+
+    final connector = context.read<MeshCoreConnector>();
+    autoAddChat = connector.autoAddUsers ?? false;
+    autoAddRepeater = connector.autoAddRepeaters ?? false;
+    autoAddRoomServer = connector.autoAddRoomServers ?? false;
+    autoAddSensor = connector.autoAddSensors ?? false;
+    overwriteOldest = connector.autoAddOverwriteOldest ?? false;
+
+    showDialog(
+      context: context,
+      builder: (dialogContext) => StatefulBuilder(
+        builder: (context, setDialogState) => AlertDialog(
+          title: Text(l10n.contactsSettings_autoAddTitle),
+          content: SingleChildScrollView(
+            child: Column(
+              mainAxisSize: MainAxisSize.min,
+              children: [
+                FeatureToggleRow(
+                  title: l10n.contactsSettings_autoAddUsersTitle,
+                  subtitle: l10n.contactsSettings_autoAddUsersSubtitle,
+                  value: autoAddChat,
+                  onChanged: (value) {
+                    setDialogState(() => autoAddChat = value);
+                  },
+                ),
+                SizedBox(height: 8),
+                FeatureToggleRow(
+                  title: l10n.contactsSettings_autoAddRepeatersTitle,
+                  subtitle: l10n.contactsSettings_autoAddRepeatersSubtitle,
+                  value: autoAddRepeater,
+                  onChanged: (value) {
+                    setDialogState(() => autoAddRepeater = value);
+                  },
+                ),
+                SizedBox(height: 8),
+                FeatureToggleRow(
+                  title: l10n.contactsSettings_autoAddRoomServersTitle,
+                  subtitle: l10n.contactsSettings_autoAddRoomServersSubtitle,
+                  value: autoAddRoomServer,
+                  onChanged: (value) {
+                    setDialogState(() => autoAddRoomServer = value);
+                  },
+                ),
+                SizedBox(height: 8),
+                FeatureToggleRow(
+                  title: l10n.contactsSettings_autoAddSensorsTitle,
+                  subtitle: l10n.contactsSettings_autoAddSensorsSubtitle,
+                  value: autoAddSensor,
+                  onChanged: (value) {
+                    setDialogState(() => autoAddSensor = value);
+                  },
+                ),
+                Divider(height: 4),
+                FeatureToggleRow(
+                  title: l10n.contactsSettings_overwriteOldestTitle,
+                  subtitle: l10n.contactsSettings_overwriteOldestSubtitle,
+                  value: overwriteOldest,
+                  onChanged: (value) {
+                    setDialogState(() => overwriteOldest = value);
+                  },
+                ),
+              ],
+            ),
+          ),
+          actions: [
+            TextButton(
+              onPressed: () => Navigator.pop(context),
+              child: Text(l10n.common_cancel),
+            ),
+            TextButton(
+              onPressed: () async {
+                final frame = buildSetAutoAddConfigFrame(
+                  autoAddChat: autoAddChat,
+                  autoAddRepeater: autoAddRepeater,
+                  autoAddRoomServer: autoAddRoomServer,
+                  autoAddSensor: autoAddSensor,
+                  overwriteOldest: overwriteOldest,
+                );
+                await connector.sendFrame(frame);
+                await connector.sendFrame(buildGetAutoAddFlagsFrame());
+                Navigator.pop(context);
+              },
+              child: Text(l10n.common_save),
+            ),
+          ],
+        ),
       ),
     );
   }

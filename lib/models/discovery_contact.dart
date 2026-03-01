@@ -1,35 +1,26 @@
 import 'dart:typed_data';
 import '../connector/meshcore_protocol.dart';
 
-class Contact {
+class DiscoveryContact {
   final Uint8List publicKey;
   final String name;
   final int type;
-  final int flags;
   final int pathLength; // -1 = flood, 0+ = direct hops (from device)
   final Uint8List path; // Path bytes from device
-  final int?
-  pathOverride; // User's path override: -1 = force flood, null = auto
-  final Uint8List? pathOverrideBytes; // User's path override bytes
   final double? latitude;
   final double? longitude;
   final DateTime lastSeen;
-  final DateTime lastMessageAt;
 
-  Contact({
+  DiscoveryContact({
     required this.publicKey,
     required this.name,
     required this.type,
-    this.flags = 0,
     required this.pathLength,
     required this.path,
-    this.pathOverride,
-    this.pathOverrideBytes,
     this.latitude,
     this.longitude,
     required this.lastSeen,
-    DateTime? lastMessageAt,
-  }) : lastMessageAt = lastMessageAt ?? lastSeen;
+  });
 
   String get publicKeyHex => pubKeyToHex(publicKey);
 
@@ -49,56 +40,37 @@ class Contact {
   }
 
   String get pathLabel {
-    if (pathOverride != null) {
-      if (pathOverride! < 0) return 'Flood (forced)';
-      if (pathOverride == 0) return 'Direct (forced)';
-      return '$pathOverride hops (forced)';
-    }
     if (pathLength < 0) return 'Flood';
     if (pathLength == 0) return 'Direct';
     return '$pathLength hops';
   }
 
   bool get hasLocation => latitude != null && longitude != null;
-  bool get isFavorite => (flags & contactFlagFavorite) != 0;
 
-  Contact copyWith({
+  DiscoveryContact copyWith({
     Uint8List? publicKey,
     String? name,
     int? type,
-    int? flags,
     int? pathLength,
     Uint8List? path,
-    int? pathOverride,
-    Uint8List? pathOverrideBytes,
-    bool clearPathOverride = false,
     double? latitude,
     double? longitude,
     DateTime? lastSeen,
-    DateTime? lastMessageAt,
   }) {
-    return Contact(
+    return DiscoveryContact(
       publicKey: publicKey ?? this.publicKey,
       name: name ?? this.name,
       type: type ?? this.type,
-      flags: flags ?? this.flags,
       pathLength: pathLength ?? this.pathLength,
       path: path ?? this.path,
-      pathOverride: clearPathOverride
-          ? null
-          : (pathOverride ?? this.pathOverride),
-      pathOverrideBytes: clearPathOverride
-          ? null
-          : (pathOverrideBytes ?? this.pathOverrideBytes),
       latitude: latitude ?? this.latitude,
       longitude: longitude ?? this.longitude,
       lastSeen: lastSeen ?? this.lastSeen,
-      lastMessageAt: lastMessageAt ?? this.lastMessageAt,
     );
   }
 
   String get pathIdList {
-    final pathBytes = _pathBytesForDisplay;
+    final pathBytes = path;
     if (pathBytes.isEmpty) return '';
     final parts = <String>[];
     final groupSize = pathHashSize;
@@ -121,7 +93,7 @@ class Contact {
   }
 
   Uint8List? get traceRouteBytes {
-    final pathBytes = _pathBytesForDisplay;
+    final pathBytes = path;
     Uint8List? traceBytes;
 
     if (pathBytes.isEmpty) {
@@ -156,63 +128,9 @@ class Contact {
     return traceBytes;
   }
 
-  Uint8List get _pathBytesForDisplay {
-    if (pathOverride != null) {
-      if (pathOverride! < 0) return Uint8List(0);
-      return pathOverrideBytes ?? Uint8List(0);
-    }
-    return path;
-  }
-
-  static Contact? fromFrame(Uint8List data) {
-    if (data.isEmpty) return null;
-    if (data[0] != respCodeContact) return null;
-    try {
-      final pubKey = Uint8List.fromList(
-        data.sublist(contactPubKeyOffset, contactPubKeyOffset + pubKeySize),
-      );
-      final type = data[contactTypeOffset];
-      final flags = data[contactFlagsOffset];
-      final pathLen = data[contactPathLenOffset].toSigned(8);
-      final safePathLen = pathLen > 0
-          ? (pathLen > maxPathSize ? maxPathSize : pathLen)
-          : 0;
-      final pathBytes = safePathLen > 0
-          ? Uint8List.fromList(
-              data.sublist(contactPathOffset, contactPathOffset + safePathLen),
-            )
-          : Uint8List(0);
-      final name = readCString(data, contactNameOffset, maxNameSize);
-      final lastmod = readUint32LE(data, contactLastModOffset);
-
-      double? lat, lon;
-      final latRaw = readInt32LE(data, contactLatOffset);
-      final lonRaw = readInt32LE(data, contactLonOffset);
-      if (latRaw != 0 || lonRaw != 0) {
-        lat = latRaw / 1e6;
-        lon = lonRaw / 1e6;
-      }
-
-      return Contact(
-        publicKey: pubKey,
-        name: name.isEmpty ? 'Unknown' : name,
-        type: type,
-        flags: flags,
-        pathLength: pathLen,
-        path: pathBytes,
-        latitude: lat,
-        longitude: lon,
-        lastSeen: DateTime.fromMillisecondsSinceEpoch(lastmod * 1000),
-      );
-    } catch (e) {
-      // If parsing fails, return null
-      return null;
-    }
-  }
-
   @override
   bool operator ==(Object other) =>
-      other is Contact && publicKeyHex == other.publicKeyHex;
+      other is DiscoveryContact && publicKeyHex == other.publicKeyHex;
 
   @override
   int get hashCode => publicKeyHex.hashCode;

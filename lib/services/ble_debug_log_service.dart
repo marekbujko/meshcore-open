@@ -215,8 +215,8 @@ class BleDebugLogService extends ChangeNotifier {
         return 'RESP_CODE_CHANNEL_MSG_RECV_V3';
       case respCodeChannelInfo:
         return 'RESP_CODE_CHANNEL_INFO';
-      case respCodeRadioSettings:
-        return 'RESP_CODE_RADIO_SETTINGS';
+      case respCodeAutoAddConfig:
+        return 'RESP_CODE_AUTO_ADD_CONFIG';
       case pushCodeTraceData:
         return 'PUSH_CODE_TRACE_DATA';
       default:
