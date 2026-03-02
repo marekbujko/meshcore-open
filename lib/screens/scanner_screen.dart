@@ -68,6 +68,11 @@ class _ScannerScreenState extends State<ScannerScreen> {
   void dispose() {
     _connector.removeListener(_connectionListener);
     unawaited(_bluetoothStateSubscription.cancel());
+    if (!_changedNavigation) {
+      WidgetsBinding.instance.addPostFrameCallback((_) {
+        unawaited(_connector.disconnect(manual: true));
+      });
+    }
     super.dispose();
   }
 
