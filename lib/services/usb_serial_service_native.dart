@@ -5,6 +5,7 @@ import 'package:flserial/flserial_exception.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/services.dart';
 
+import 'app_debug_log_service.dart';
 import '../utils/platform_info.dart';
 import '../utils/usb_port_labels.dart';
 import 'usb_serial_frame_codec.dart';
@@ -29,6 +30,7 @@ class UsbSerialService {
   String? _connectedPortKey;
   String? _connectedPortLabel;
   FlSerial? _serial;
+  AppDebugLogService? _debugLogService;
 
   UsbSerialStatus get status => _status;
   String? get activePortKey => _connectedPortKey;
@@ -66,6 +68,10 @@ class UsbSerialService {
     return Future.value(FlSerial.listPorts());
   }
 
+  void setDebugLogService(AppDebugLogService? service) {
+    _debugLogService = service;
+  }
+
   Future<void> connect({
     required String portName,
     int baudRate = 115200,
@@ -80,6 +86,7 @@ class UsbSerialService {
 
     _status = UsbSerialStatus.connecting;
     final normalizedPortName = normalizeUsbPortName(portName);
+    _frameDecoder.reset();
 
     if (_useAndroidUsbHost) {
       try {
@@ -87,8 +94,9 @@ class UsbSerialService {
           'portName': normalizedPortName,
           'baudRate': baudRate,
         });
-        debugPrint(
+        _debugLogService?.info(
           'USB serial opened port=$normalizedPortName on Android via USB host bridge',
+          tag: 'USB Serial',
         );
       } on PlatformException catch (error) {
         _status = UsbSerialStatus.disconnected;
@@ -111,8 +119,9 @@ class UsbSerialService {
         serial.setFlowControlNone();
         serial.setRTS(false);
         serial.setDTR(true);
-        debugPrint(
+        _debugLogService?.info(
           'USB serial opened port=$normalizedPortName cts=${serial.getCTS()} dsr=${serial.getDSR()} dtr=true rts=false',
+          tag: 'USB Serial',
         );
       } on FlSerialException catch (error) {
         _serial?.free();
@@ -174,6 +183,7 @@ class UsbSerialService {
     _status = UsbSerialStatus.disconnecting;
     _connectedPortKey = null;
     _connectedPortLabel = null;
+    _frameDecoder.reset();
     await _androidDataSubscription?.cancel();
     _androidDataSubscription = null;
     await _dataSubscription?.cancel();
@@ -255,8 +265,9 @@ class UsbSerialService {
   void _ingestRawBytes(Uint8List bytes) {
     for (final packet in _frameDecoder.ingest(bytes)) {
       if (!packet.isRxFrame) {
-        debugPrint(
+        _debugLogService?.info(
           'USB ignored packet start=0x${packet.frameStart.toRadixString(16).padLeft(2, '0')} len=${packet.payload.length}',
+          tag: 'USB Serial',
         );
         continue;
       }
@@ -287,10 +298,13 @@ class UsbSerialService {
 
   void _logFrameSummary(String prefix, Uint8List bytes) {
     if (bytes.isEmpty) {
-      debugPrint('$prefix len=0');
+      _debugLogService?.info('$prefix len=0', tag: 'USB Serial');
       return;
     }
-    debugPrint('$prefix code=${bytes[0]} len=${bytes.length}');
+    _debugLogService?.info(
+      '$prefix code=${bytes[0]} len=${bytes.length}',
+      tag: 'USB Serial',
+    );
   }
 }
 

@@ -5,6 +5,7 @@ import 'dart:js_interop_unsafe';
 import 'package:flutter/foundation.dart';
 import 'package:web/web.dart' as web;
 
+import 'app_debug_log_service.dart';
 import '../utils/usb_port_labels.dart';
 import 'usb_serial_frame_codec.dart';
 
@@ -27,6 +28,7 @@ class UsbSerialService {
   String? _connectedPortName;
   String? _connectedPortKey;
   String _requestPortLabel = 'Choose USB Device';
+  AppDebugLogService? _debugLogService;
 
   UsbSerialStatus get status => _status;
   String? get activePortKey => _connectedPortKey;
@@ -69,6 +71,7 @@ class UsbSerialService {
     }
 
     _status = UsbSerialStatus.connecting;
+    _frameDecoder.reset();
 
     try {
       final requestedPortName = normalizeUsbPortName(portName);
@@ -88,7 +91,10 @@ class UsbSerialService {
       _status = UsbSerialStatus.connected;
       unawaited(_pumpReads());
 
-      debugPrint('USB serial opened port=$_connectedPortName via Web Serial');
+      _debugLogService?.info(
+        'USB serial opened port=$_connectedPortName via Web Serial',
+        tag: 'USB Serial',
+      );
     } catch (error) {
       await _cleanupFailedConnect();
       _status = UsbSerialStatus.disconnected;
@@ -126,6 +132,7 @@ class UsbSerialService {
     _port = null;
     _connectedPortName = null;
     _connectedPortKey = null;
+    _frameDecoder.reset();
 
     if (reader != null) {
       try {
@@ -167,6 +174,10 @@ class UsbSerialService {
       return;
     }
     _requestPortLabel = trimmed;
+  }
+
+  void setDebugLogService(AppDebugLogService? service) {
+    _debugLogService = service;
   }
 
   void dispose() {
@@ -407,8 +418,9 @@ class UsbSerialService {
   void _ingestRawBytes(Uint8List bytes) {
     for (final packet in _frameDecoder.ingest(bytes)) {
       if (!packet.isRxFrame) {
-        debugPrint(
+        _debugLogService?.info(
           'USB ignored packet start=0x${packet.frameStart.toRadixString(16).padLeft(2, '0')} len=${packet.payload.length}',
+          tag: 'USB Serial',
         );
         continue;
       }
@@ -439,10 +451,13 @@ class UsbSerialService {
 
   void _logFrameSummary(String prefix, Uint8List bytes) {
     if (bytes.isEmpty) {
-      debugPrint('$prefix len=0');
+      _debugLogService?.info('$prefix len=0', tag: 'USB Serial');
       return;
     }
-    debugPrint('$prefix code=${bytes[0]} len=${bytes.length}');
+    _debugLogService?.info(
+      '$prefix code=${bytes[0]} len=${bytes.length}',
+      tag: 'USB Serial',
+    );
   }
 }
 

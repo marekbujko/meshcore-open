@@ -350,9 +350,36 @@ class MeshCoreConnector extends ChangeNotifier {
           ? allMessages.sublist(allMessages.length - _messageWindowSize)
           : allMessages;
 
-      _conversations[contactKeyHex] = windowedMessages;
+      final currentMessages =
+          _conversations[contactKeyHex] ?? const <Message>[];
+      final mergedMessages = <Message>[...windowedMessages];
+      final existingKeys = <String>{
+        for (final message in windowedMessages) _messageMergeKey(message),
+      };
+
+      for (final message in currentMessages) {
+        final key = _messageMergeKey(message);
+        if (existingKeys.add(key)) {
+          mergedMessages.add(message);
+        }
+      }
+
+      mergedMessages.sort((a, b) => a.timestamp.compareTo(b.timestamp));
+      final windowedMergedMessages = mergedMessages.length > _messageWindowSize
+          ? mergedMessages.sublist(mergedMessages.length - _messageWindowSize)
+          : mergedMessages;
+
+      _conversations[contactKeyHex] = windowedMergedMessages;
       notifyListeners();
     }
+  }
+
+  String _messageMergeKey(Message message) {
+    final messageId = message.messageId;
+    if (messageId != null && messageId.isNotEmpty) {
+      return 'id:$messageId';
+    }
+    return 'fallback:${message.isOutgoing}:${message.timestamp.millisecondsSinceEpoch}:${message.text}';
   }
 
   /// Load older messages for a contact (pagination)
@@ -590,6 +617,7 @@ class MeshCoreConnector extends ChangeNotifier {
     _bleDebugLogService = bleDebugLogService;
     _appDebugLogService = appDebugLogService;
     _backgroundService = backgroundService;
+    _usbSerialService.setDebugLogService(_appDebugLogService);
 
     // Initialize notification service
     _notificationService.initialize();
@@ -749,7 +777,7 @@ class MeshCoreConnector extends ChangeNotifier {
         androidScanMode: AndroidScanMode.lowLatency,
       );
     } catch (error) {
-      debugPrint('[BLE Scan] Scan/picker failure: $error');
+      _appDebugLogService?.warn('Scan/picker failure: $error', tag: 'BLE Scan');
       _setState(MeshCoreConnectionState.disconnected);
       rethrow;
     }
@@ -806,7 +834,10 @@ class MeshCoreConnector extends ChangeNotifier {
 
     try {
       final connectLabel = _deviceDisplayName ?? _deviceId;
-      debugPrint('[BLE Connect] Starting connect to $connectLabel');
+      _appDebugLogService?.info(
+        'Starting connect to $connectLabel',
+        tag: 'BLE Connect',
+      );
       _connectionSubscription = device.connectionState.listen((state) {
         if (state == BluetoothConnectionState.disconnected && isConnected) {
           _handleDisconnection();
@@ -820,7 +851,10 @@ class MeshCoreConnector extends ChangeNotifier {
           license: License.free,
         );
       } catch (error) {
-        debugPrint('[BLE Connect] device.connect() failure: $error');
+        _appDebugLogService?.error(
+          'device.connect() failure: $error',
+          tag: 'BLE Connect',
+        );
         rethrow;
       }
 
@@ -828,9 +862,12 @@ class MeshCoreConnector extends ChangeNotifier {
       if (!PlatformInfo.isWeb) {
         try {
           final mtu = await device.requestMtu(185);
-          debugPrint('MTU set to: $mtu');
+          _appDebugLogService?.info('MTU set to: $mtu', tag: 'BLE Connect');
         } catch (e) {
-          debugPrint('MTU request failed: $e, using default');
+          _appDebugLogService?.warn(
+            'MTU request failed: $e, using default',
+            tag: 'BLE Connect',
+          );
         }
       }
 
@@ -838,11 +875,15 @@ class MeshCoreConnector extends ChangeNotifier {
       try {
         services = await device.discoverServices();
       } catch (error) {
-        debugPrint('[BLE Connect] service discovery failure: $error');
+        _appDebugLogService?.error(
+          'service discovery failure: $error',
+          tag: 'BLE Connect',
+        );
         if (PlatformInfo.isWeb &&
             error.toString().contains('GATT Server is disconnected')) {
-          debugPrint(
-            '[BLE Connect] retrying service discovery after transient web disconnect',
+          _appDebugLogService?.warn(
+            'retrying service discovery after transient web disconnect',
+            tag: 'BLE Connect',
           );
           await Future<void>.delayed(const Duration(milliseconds: 300));
           await device.connect(
@@ -882,17 +923,32 @@ class MeshCoreConnector extends ChangeNotifier {
       }
 
       if (PlatformInfo.isWeb) {
-        debugPrint('Starting setNotifyValue(true)');
-        debugPrint('Web: Calling setNotifyValue(true) without awaiting');
+        _appDebugLogService?.info(
+          'Starting setNotifyValue(true)',
+          tag: 'BLE Connect',
+        );
+        _appDebugLogService?.info(
+          'Web: Calling setNotifyValue(true) without awaiting',
+          tag: 'BLE Connect',
+        );
         unawaited(() async {
           try {
             await _txCharacteristic!.setNotifyValue(true);
           } catch (error) {
-            debugPrint('[BLE Connect] notify failure (web, ignored): $error');
-            debugPrint('Web setNotifyValue error (ignoring): $error');
+            _appDebugLogService?.warn(
+              'notify failure (web, ignored): $error',
+              tag: 'BLE Connect',
+            );
+            _appDebugLogService?.warn(
+              'Web setNotifyValue error (ignoring): $error',
+              tag: 'BLE Connect',
+            );
           }
         }());
-        debugPrint('setNotifyValue(true) configuration completed');
+        _appDebugLogService?.info(
+          'setNotifyValue(true) configuration completed',
+          tag: 'BLE Connect',
+        );
       } else {
         bool notifySet = false;
         for (int attempt = 0; attempt < 3 && !notifySet; attempt++) {
@@ -903,8 +959,11 @@ class MeshCoreConnector extends ChangeNotifier {
             await _txCharacteristic!.setNotifyValue(true);
             notifySet = true;
           } catch (e) {
-            debugPrint('[BLE Connect] notify failure: $e');
-            debugPrint('setNotifyValue attempt ${attempt + 1}/3 failed: $e');
+            _appDebugLogService?.warn('notify failure: $e', tag: 'BLE Connect');
+            _appDebugLogService?.warn(
+              'setNotifyValue attempt ${attempt + 1}/3 failed: $e',
+              tag: 'BLE Connect',
+            );
             if (attempt == 2) rethrow;
           }
         }
@@ -925,7 +984,19 @@ class MeshCoreConnector extends ChangeNotifier {
           _activeTransport == MeshCoreTransportType.bluetooth) {
         // Chrome's Web Bluetooth stack commonly delays incoming notifications
         // until the non-blocking notify setup settles. Avoid stacking extra
-        // startup writes while that is happening.
+        // startup writes while that is happening. Defer the clock sync until
+        // the connection has had time to settle.
+        unawaited(
+          Future<void>(() async {
+            await Future<void>.delayed(const Duration(seconds: 5));
+            if (!isConnected ||
+                !PlatformInfo.isWeb ||
+                _activeTransport != MeshCoreTransportType.bluetooth) {
+              return;
+            }
+            await syncTime();
+          }),
+        );
       } else {
         final gotSelfInfo = await _waitForSelfInfo(
           timeout: const Duration(seconds: 3),
@@ -943,7 +1014,7 @@ class MeshCoreConnector extends ChangeNotifier {
         unawaited(getChannels());
       }
     } catch (e) {
-      debugPrint("Connection error: $e");
+      _appDebugLogService?.error('Connection error: $e', tag: 'BLE Connect');
       await disconnect(manual: false);
       rethrow;
     }
@@ -986,7 +1057,7 @@ class MeshCoreConnector extends ChangeNotifier {
       _usbFrameSubscription = _usbSerialService.frameStream.listen(
         _handleFrame,
         onError: (error, stackTrace) {
-          debugPrint('USB transport error: $error');
+          _appDebugLogService?.error('USB transport error: $error', tag: 'USB');
           unawaited(disconnect(manual: false));
         },
         onDone: () {
@@ -1013,7 +1084,7 @@ class MeshCoreConnector extends ChangeNotifier {
 
       await syncTime();
     } catch (error) {
-      debugPrint('USB connection error: $error');
+      _appDebugLogService?.error('USB connection error: $error', tag: 'USB');
       await disconnect(manual: false);
       rethrow;
     }
@@ -1149,7 +1220,7 @@ class MeshCoreConnector extends ChangeNotifier {
       // Skip queued BLE operations so disconnect doesn't get stuck behind them.
       await _device?.disconnect(queue: false);
     } catch (e) {
-      debugPrint("Disconnect error: $e");
+      _appDebugLogService?.warn('Disconnect error: $e', tag: 'BLE Connect');
     }
 
     _device = null;

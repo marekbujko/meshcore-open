@@ -37,6 +37,11 @@ class UsbSerialFrameDecoder {
   final List<int> _rxBuffer = <int>[];
   int _startIndex = 0;
 
+  void reset() {
+    _rxBuffer.clear();
+    _startIndex = 0;
+  }
+
   List<UsbSerialDecodedPacket> ingest(Uint8List bytes) {
     if (bytes.isEmpty) {
       return const <UsbSerialDecodedPacket>[];

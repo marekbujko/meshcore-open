@@ -120,4 +120,22 @@ void main() {
       expect(packets.single.payload, orderedEquals(<int>[0x44]));
     },
   );
+
+  test('UsbSerialFrameDecoder reset clears buffered partial data', () {
+    final decoder = UsbSerialFrameDecoder();
+
+    expect(
+      decoder.ingest(Uint8List.fromList(<int>[usbSerialRxFrameStart, 0x02])),
+      isEmpty,
+    );
+
+    decoder.reset();
+
+    final packets = decoder.ingest(
+      Uint8List.fromList(<int>[usbSerialRxFrameStart, 0x01, 0x00, 0x55]),
+    );
+
+    expect(packets, hasLength(1));
+    expect(packets.single.payload, orderedEquals(<int>[0x55]));
+  });
 }
