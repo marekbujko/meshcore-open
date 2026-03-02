@@ -147,7 +147,7 @@ class MainActivity : FlutterActivity() {
                 addAction(UsbManager.ACTION_USB_DEVICE_DETACHED)
             }
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) {
-            registerReceiver(permissionReceiver, filter, RECEIVER_NOT_EXPORTED)
+            registerReceiver(permissionReceiver, filter, Context.RECEIVER_NOT_EXPORTED)
         } else {
             @Suppress("DEPRECATION")
             registerReceiver(permissionReceiver, filter)
