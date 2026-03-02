@@ -6,6 +6,13 @@ const int usbSerialHeaderLength = 3;
 const int usbSerialMaxPayloadLength = 172;
 
 Uint8List wrapUsbSerialTxFrame(Uint8List payload) {
+  if (payload.length > usbSerialMaxPayloadLength) {
+    throw ArgumentError.value(
+      payload.length,
+      'payload.length',
+      'USB serial payload exceeds $usbSerialMaxPayloadLength bytes',
+    );
+  }
   final packet = Uint8List(usbSerialHeaderLength + payload.length);
   packet[0] = usbSerialTxFrameStart;
   packet[1] = payload.length & 0xff;

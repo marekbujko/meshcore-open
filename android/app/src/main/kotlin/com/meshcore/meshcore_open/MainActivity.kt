@@ -105,8 +105,12 @@ class MainActivity : FlutterActivity() {
                     "connect" -> handleUsbConnect(call, result)
                     "write" -> handleUsbWrite(call, result)
                     "disconnect" -> {
-                        closeUsbConnection()
-                        result.success(null)
+                        usbIoExecutor.execute {
+                            closeUsbConnection()
+                            mainHandler.post {
+                                result.success(null)
+                            }
+                        }
                     }
                     else -> result.notImplemented()
                 }
