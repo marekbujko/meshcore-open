@@ -1,3 +1,0 @@
-[submodule "vendor/flserial"]
-	path = vendor/flserial
-	url = git@github.com:MeshEnvy/flserial.git
