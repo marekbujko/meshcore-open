@@ -131,6 +131,10 @@ flutter_launcher_icons:
   # For details regarding fonts from package dependencies,
   # see https://flutter.dev/to/font-from-package
 
+dependency_overrides:
+  flserial:
+    path: packages/flserial
+
 build_pipe:
   workflows:
     default:
