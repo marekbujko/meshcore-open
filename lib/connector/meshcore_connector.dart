@@ -4105,6 +4105,7 @@ class MeshCoreConnector extends ChangeNotifier {
 
   void removeAllDiscoveredContacts() {
     _discoveredContacts.clear();
+    unawaited(_persistDiscoveredContacts());
     notifyListeners();
   }
 }

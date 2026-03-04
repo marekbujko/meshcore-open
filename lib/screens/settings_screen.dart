@@ -959,11 +959,11 @@ class _SettingsScreenState extends State<SettingsScreen> {
 
   void _sendSettings(
     MeshCoreConnector connector,
-    autoAddChat,
-    autoAddRepeater,
-    autoAddRoomServer,
-    autoAddSensor,
-    overwriteOldest,
+    bool autoAddChat,
+    bool autoAddRepeater,
+    bool autoAddRoomServer,
+    bool autoAddSensor,
+    bool overwriteOldest,
   ) async {
     final frame = buildSetAutoAddConfigFrame(
       autoAddChat: autoAddChat,
