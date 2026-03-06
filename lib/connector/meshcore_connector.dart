@@ -130,10 +130,13 @@ class MeshCoreConnector extends ChangeNotifier {
   StreamSubscription<List<ScanResult>>? _scanSubscription;
   StreamSubscription<BluetoothConnectionState>? _connectionSubscription;
   StreamSubscription<List<int>>? _notifySubscription;
+  Timer? _notifyListenersTimer;
   Timer? _selfInfoRetryTimer;
   Timer? _reconnectTimer;
   Timer? _batteryPollTimer;
   int _reconnectAttempts = 0;
+  bool _notifyListenersDirty = false;
+  static const Duration _notifyListenersDebounce = Duration(milliseconds: 50);
 
   final StreamController<Uint8List> _receivedFramesController =
       StreamController<Uint8List>.broadcast();
@@ -3765,11 +3768,46 @@ class MeshCoreConnector extends ChangeNotifier {
     }
   }
 
+  void markNotifyDirty() {
+    if (_notifyListenersDirty && _notifyListenersTimer != null) {
+      return;
+    }
+
+    _notifyListenersDirty = true;
+    _notifyListenersTimer ??= Timer(
+      _notifyListenersDebounce,
+      _flushBatchedNotify,
+    );
+  }
+
+  void _flushBatchedNotify() {
+    _notifyListenersTimer = null;
+    if (!_notifyListenersDirty) {
+      return;
+    }
+
+    _notifyListenersDirty = false;
+    super.notifyListeners();
+
+    if (_notifyListenersDirty && _notifyListenersTimer == null) {
+      _notifyListenersTimer = Timer(
+        _notifyListenersDebounce,
+        _flushBatchedNotify,
+      );
+    }
+  }
+
+  @override
+  void notifyListeners() {
+    markNotifyDirty();
+  }
+
   @override
   void dispose() {
     _scanSubscription?.cancel();
     _connectionSubscription?.cancel();
     _notifySubscription?.cancel();
+    _notifyListenersTimer?.cancel();
     _reconnectTimer?.cancel();
     _batteryPollTimer?.cancel();
     _receivedFramesController.close();
