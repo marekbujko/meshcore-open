@@ -127,7 +127,7 @@ class AppLocalizationsZh extends AppLocalizations {
   String get usbScreenStatus => '选择一个 USB 设备';
 
   @override
-  String get usbScreenNote => '在支持的 Android 设备和桌面平台上，USB 串行通信功能已启用。';
+  String get usbScreenNote => 'USB 串行接口在支持的 Android 设备和桌面平台上处于活动状态。';
 
   @override
   String get usbScreenEmptyState => '未找到任何 USB 设备。请插入一个，然后刷新。';

@@ -129,7 +129,7 @@ class AppLocalizationsSv extends AppLocalizations {
 
   @override
   String get usbScreenNote =>
-      'USB-seriell kommunikation är aktiv på stödda Android-enheter och skrivbordsplattformar.';
+      'USB-seriell kommunikation är aktiv på stöderliga Android-enheter och på skrivbordsplattformar.';
 
   @override
   String get usbScreenEmptyState =>
@@ -153,7 +153,8 @@ class AppLocalizationsSv extends AppLocalizations {
   String get usbErrorNotConnected => 'Ingen USB-enhet är ansluten.';
 
   @override
-  String get usbErrorOpenFailed => 'Kunde inte öppna det valda USB-enheten.';
+  String get usbErrorOpenFailed =>
+      'Misslyckades med att öppna det valda USB-enheten.';
 
   @override
   String get usbErrorConnectFailed =>

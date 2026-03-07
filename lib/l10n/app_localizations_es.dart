@@ -122,7 +122,7 @@ class AppLocalizationsEs extends AppLocalizations {
 
   @override
   String get usbScreenSubtitle =>
-      'Seleccione un dispositivo de serie detectado y conéctelo directamente a su nodo MeshCore.';
+      'Seleccione el dispositivo de serie detectado y conéctelo directamente a su nodo MeshCore.';
 
   @override
   String get usbScreenStatus => 'Seleccione un dispositivo USB';
@@ -133,7 +133,7 @@ class AppLocalizationsEs extends AppLocalizations {
 
   @override
   String get usbScreenEmptyState =>
-      'No se encontraron dispositivos USB. Conecte uno y vuelva a cargar.';
+      'No se encontraron dispositivos USB. Conecte uno y vuelva a intentar.';
 
   @override
   String get usbErrorPermissionDenied =>
@@ -163,7 +163,7 @@ class AppLocalizationsEs extends AppLocalizations {
 
   @override
   String get usbErrorUnsupported =>
-      'La comunicación serial mediante USB no está soportada en esta plataforma.';
+      'La comunicación serial a través de USB no está soportada en esta plataforma.';
 
   @override
   String get usbErrorAlreadyActive => 'La conexión USB ya está activa.';
@@ -177,7 +177,7 @@ class AppLocalizationsEs extends AppLocalizations {
 
   @override
   String get usbErrorConnectTimedOut =>
-      'Se ha producido un error debido a la espera prolongada para recibir una respuesta del dispositivo.';
+      'Se ha agotado el tiempo de espera mientras se esperaba la respuesta del dispositivo.';
 
   @override
   String get scanner_scanning => 'Escaneando dispositivos...';

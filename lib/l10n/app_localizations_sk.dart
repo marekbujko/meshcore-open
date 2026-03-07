@@ -148,7 +148,7 @@ class AppLocalizationsSk extends AppLocalizations {
 
   @override
   String get usbErrorBusy =>
-      'Ďalšia požiadavka na pripojenie cez USB je aktuálne v prebiehajúcom procese.';
+      'Ďalšia požiadavka na pripojenie cez USB je aktuálne v procese.';
 
   @override
   String get usbErrorNotConnected => 'Nie je pripojené žiadne USB zariadenie.';
@@ -159,7 +159,7 @@ class AppLocalizationsSk extends AppLocalizations {
 
   @override
   String get usbErrorConnectFailed =>
-      'Nezvládlo sa pripojenie k vybranému USB zariadeniu.';
+      'Nepodarilo sa sa sa pripojiť k vybranému USB zariadeniu.';
 
   @override
   String get usbErrorUnsupported =>
@@ -177,7 +177,7 @@ class AppLocalizationsSk extends AppLocalizations {
 
   @override
   String get usbErrorConnectTimedOut =>
-      'Čakal som, kým sa zariadenie neozvými, ale časový limit sa dosiahol.';
+      'Čakal som, kým sa zariadenie neozvými, ale časový limit sa dobehol.';
 
   @override
   String get scanner_scanning => 'Skrívania zariadení...';

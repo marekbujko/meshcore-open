@@ -151,7 +151,7 @@ class AppLocalizationsRu extends AppLocalizations {
       'Еще одно запрошенное соединение через USB уже находится в процессе.';
 
   @override
-  String get usbErrorNotConnected => 'Ни одно устройство USB не подключено.';
+  String get usbErrorNotConnected => 'Ни одно USB-устройство не подключено.';
 
   @override
   String get usbErrorOpenFailed =>
@@ -166,8 +166,7 @@ class AppLocalizationsRu extends AppLocalizations {
       'Поддержка последовательного USB отсутствует на данной платформе.';
 
   @override
-  String get usbErrorAlreadyActive =>
-      'USB-соединение уже установлено и работает.';
+  String get usbErrorAlreadyActive => 'USB-соединение уже установлено.';
 
   @override
   String get usbErrorNoDeviceSelected =>

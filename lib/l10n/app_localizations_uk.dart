@@ -129,7 +129,7 @@ class AppLocalizationsUk extends AppLocalizations {
 
   @override
   String get usbScreenNote =>
-      'USB-серіальний порт активний на підтримуваних пристроях на базі Android та на десктопних платформах.';
+      'USB-серіальний інтерфейс активний на підтримуваних пристроях на базі Android та на десктопних платформах.';
 
   @override
   String get usbScreenEmptyState =>

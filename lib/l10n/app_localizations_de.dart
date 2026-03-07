@@ -118,7 +118,7 @@ class AppLocalizationsDe extends AppLocalizations {
   String get connectionChoiceBluetoothLabel => 'Bluetooth';
 
   @override
-  String get usbScreenTitle => 'Über USB verbinden';
+  String get usbScreenTitle => 'Verbinden über USB';
 
   @override
   String get usbScreenSubtitle =>
@@ -129,7 +129,7 @@ class AppLocalizationsDe extends AppLocalizations {
 
   @override
   String get usbScreenNote =>
-      'USB-Serielle Schnittstelle ist auf unterstützten Android-Geräten und Desktop-Plattformen aktiv.';
+      'Die USB-Serielle Schnittstelle ist auf unterstützten Android-Geräten und Desktop-Plattformen aktiv.';
 
   @override
   String get usbScreenEmptyState =>
@@ -163,7 +163,7 @@ class AppLocalizationsDe extends AppLocalizations {
 
   @override
   String get usbErrorUnsupported =>
-      'Die Unterstützung für USB-Seriellschnittstellen ist auf dieser Plattform nicht vorhanden.';
+      'Die USB-Serielle Schnittstelle wird auf dieser Plattform nicht unterstützt.';
 
   @override
   String get usbErrorAlreadyActive =>
@@ -177,7 +177,7 @@ class AppLocalizationsDe extends AppLocalizations {
 
   @override
   String get usbErrorConnectTimedOut =>
-      'Die Wartezeit ist abgelaufen, da keine Antwort vom Gerät empfangen wurde.';
+      'Wartezeit abgelaufen, da keine Antwort vom Gerät empfangen wurde.';
 
   @override
   String get scanner_scanning => 'Scannen nach Geräten...';

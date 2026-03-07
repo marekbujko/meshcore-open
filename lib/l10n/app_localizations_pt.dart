@@ -122,7 +122,7 @@ class AppLocalizationsPt extends AppLocalizations {
 
   @override
   String get usbScreenSubtitle =>
-      'Selecione o dispositivo serial detectado e conecte-o diretamente ao seu nó MeshCore.';
+      'Selecione um dispositivo serial detectado e conecte-o diretamente ao seu nó MeshCore.';
 
   @override
   String get usbScreenStatus => 'Selecione um dispositivo USB';

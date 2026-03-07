@@ -129,7 +129,7 @@ class AppLocalizationsPl extends AppLocalizations {
 
   @override
   String get usbScreenNote =>
-      'Port szeregowy USB jest aktywny na urządzeniach z Androidem i platformach stacjonarnych, które obsługują tę funkcję.';
+      'Port szeregowy USB jest aktywny na urządzeniach z systemem Android i platformach stacjonarnych, które go obsługują.';
 
   @override
   String get usbScreenEmptyState =>
@@ -159,7 +159,7 @@ class AppLocalizationsPl extends AppLocalizations {
 
   @override
   String get usbErrorConnectFailed =>
-      'Nie udało się nawiązać połączenia z wybranym urządzeniem USB.';
+      'Nie udało się połączyć z wybranym urządzeniem USB.';
 
   @override
   String get usbErrorUnsupported =>

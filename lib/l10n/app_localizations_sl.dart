@@ -125,7 +125,7 @@ class AppLocalizationsSl extends AppLocalizations {
       'Izberite zaznano serijsko napravo in se neposredno povežite z vašo MeshCore napravo.';
 
   @override
-  String get usbScreenStatus => 'Izberite USB naprave.';
+  String get usbScreenStatus => 'Izberite USB naprave';
 
   @override
   String get usbScreenNote =>
@@ -140,7 +140,7 @@ class AppLocalizationsSl extends AppLocalizations {
       'Dovoljenje za dostop preko USB-ja je bilo zavrnjeno.';
 
   @override
-  String get usbErrorDeviceMissing => 'Izbrani USB napravega več ni na voljo.';
+  String get usbErrorDeviceMissing => 'Izbrani USB napravej je več ne.';
 
   @override
   String get usbErrorInvalidPort => 'Izberite veljavno USB naprave.';
@@ -149,10 +149,11 @@ class AppLocalizationsSl extends AppLocalizations {
   String get usbErrorBusy => 'Že je v teku zahteva za povezavo preko USB.';
 
   @override
-  String get usbErrorNotConnected => 'Ni priklopljenih USB naprav.';
+  String get usbErrorNotConnected => 'Ni priklopljenih USB naprave.';
 
   @override
-  String get usbErrorOpenFailed => 'Niso uspeli odkriti izbrane USB naprave.';
+  String get usbErrorOpenFailed =>
+      'Uspešno ni bilo mogo, da se odpre izbran naprave USB.';
 
   @override
   String get usbErrorConnectFailed =>

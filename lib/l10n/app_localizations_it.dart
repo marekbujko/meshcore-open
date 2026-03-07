@@ -133,7 +133,7 @@ class AppLocalizationsIt extends AppLocalizations {
 
   @override
   String get usbScreenEmptyState =>
-      'Nessun dispositivo USB rilevato. Collegare uno e riavviare.';
+      'Nessun dispositivo USB rilevato. Collegare uno e aggiornare.';
 
   @override
   String get usbErrorPermissionDenied =>

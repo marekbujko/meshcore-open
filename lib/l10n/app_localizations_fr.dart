@@ -129,11 +129,11 @@ class AppLocalizationsFr extends AppLocalizations {
 
   @override
   String get usbScreenNote =>
-      'La communication série USB est active sur les appareils Android et les plateformes de bureau pris en charge.';
+      'La communication série USB est active sur les appareils Android et les plateformes de bureau compatibles.';
 
   @override
   String get usbScreenEmptyState =>
-      'Aucun périphérique USB n\'a été trouvé. Veuillez connecter un périphérique et rafraîchir la page.';
+      'Aucun périphérique USB n\'a été trouvé. Veuillez en brancher un et rafraîchir la page.';
 
   @override
   String get usbErrorPermissionDenied => 'L\'accès via USB a été refusé.';

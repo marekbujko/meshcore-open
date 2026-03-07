@@ -122,7 +122,7 @@ class AppLocalizationsNl extends AppLocalizations {
 
   @override
   String get usbScreenSubtitle =>
-      'Kies een gedetecteerd seriële apparaat en verbind deze direct met uw MeshCore-node.';
+      'Selecteer een gedetecteerd seriële apparaat en verbind deze direct met uw MeshCore-node.';
 
   @override
   String get usbScreenStatus => 'Selecteer een USB-apparaat';
@@ -175,7 +175,7 @@ class AppLocalizationsNl extends AppLocalizations {
 
   @override
   String get usbErrorConnectTimedOut =>
-      'Wachtperiode is verlopen, er is geen reactie ontvangen van het apparaat.';
+      'Wachtperiode is verlopen, aangezien het apparaat niet reageerde.';
 
   @override
   String get scanner_scanning => 'Scannen naar apparaten...';

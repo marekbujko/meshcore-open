@@ -118,11 +118,11 @@ class AppLocalizationsBg extends AppLocalizations {
   String get connectionChoiceBluetoothLabel => 'Bluetooth';
 
   @override
-  String get usbScreenTitle => 'Свързване чрез USB';
+  String get usbScreenTitle => 'Свържете се чрез USB';
 
   @override
   String get usbScreenSubtitle =>
-      'Изберете открит сериен уред и се свържете директно към вашия MeshCore възел.';
+      'Изберете открития сериен уред и свържете директно към вашия MeshCore възел.';
 
   @override
   String get usbScreenStatus => 'Изберете USB устройство';
@@ -143,7 +143,7 @@ class AppLocalizationsBg extends AppLocalizations {
       'Избраното USB устройство вече не е налично.';
 
   @override
-  String get usbErrorInvalidPort => 'Изберете валидно USB устройство.';
+  String get usbErrorInvalidPort => 'Изберете валитно USB устройство.';
 
   @override
   String get usbErrorBusy =>
