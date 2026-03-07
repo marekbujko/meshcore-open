@@ -325,6 +325,10 @@ class UsbSerialService {
     // Native implementations do not use a synthetic chooser row.
   }
 
+  void setFallbackDeviceName(String label) {
+    // Native implementations use OS-provided device names.
+  }
+
   void updateConnectedLabel(String label) {
     final trimmed = label.trim();
     if (trimmed.isEmpty) {

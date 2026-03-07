@@ -433,8 +433,38 @@ abstract class AppLocalizations {
   /// No description provided for @usbErrorConnectTimedOut.
   ///
   /// In en, this message translates to:
-  /// **'Timed out waiting for the device to respond.'**
+  /// **'Connection timed out. Make sure the device has USB Companion firmware.'**
   String get usbErrorConnectTimedOut;
+
+  /// No description provided for @usbFallbackDeviceName.
+  ///
+  /// In en, this message translates to:
+  /// **'Web Serial Device'**
+  String get usbFallbackDeviceName;
+
+  /// No description provided for @usbStatus_notConnected.
+  ///
+  /// In en, this message translates to:
+  /// **'Select a USB device'**
+  String get usbStatus_notConnected;
+
+  /// No description provided for @usbStatus_connecting.
+  ///
+  /// In en, this message translates to:
+  /// **'Connecting to USB device...'**
+  String get usbStatus_connecting;
+
+  /// No description provided for @usbStatus_searching.
+  ///
+  /// In en, this message translates to:
+  /// **'Searching for USB devices...'**
+  String get usbStatus_searching;
+
+  /// No description provided for @usbConnectionFailed.
+  ///
+  /// In en, this message translates to:
+  /// **'USB connection failed: {error}'**
+  String usbConnectionFailed(String error);
 
   /// No description provided for @scanner_scanning.
   ///

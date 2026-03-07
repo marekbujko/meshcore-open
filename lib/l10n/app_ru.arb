@@ -1087,5 +1087,17 @@
   "usbErrorAlreadyActive": "USB-соединение уже установлено.",
   "usbErrorNoDeviceSelected": "Не было выбрано ни одно устройство USB.",
   "usbErrorPortClosed": "USB-соединение не установлено.",
-  "usbErrorConnectTimedOut": "Ожидание ответа от устройства превысило установленное время."
+  "usbFallbackDeviceName": "Устройство для последовательного подключения к сети",
+  "@usbConnectionFailed": {
+    "placeholders": {
+      "error": {
+        "type": "String"
+      }
+    }
+  },
+  "usbStatus_searching": "Поиск USB-устройств...",
+  "usbStatus_connecting": "Подключение к USB-устройству...",
+  "usbConnectionFailed": "Не удалось установить соединение через USB: {error}",
+  "usbStatus_notConnected": "Выберите USB-устройство",
+  "usbErrorConnectTimedOut": "Соединение не установлено. Убедитесь, что устройство имеет установленное программное обеспечение USB Companion."
 }

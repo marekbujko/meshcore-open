@@ -52,7 +52,12 @@ class AppDebugLogService extends ChangeNotifier {
     String tag = 'App',
     AppDebugLogLevel level = AppDebugLogLevel.info,
   }) {
-    if (!_enabled) return;
+    if (!_enabled && !kDebugMode) return;
+    if (!_enabled) {
+      // In debug mode, still print to console but don't store entries.
+      debugPrint('[$tag] $message');
+      return;
+    }
 
     _entries.add(
       AppDebugLogEntry(

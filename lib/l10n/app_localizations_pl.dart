@@ -177,7 +177,25 @@ class AppLocalizationsPl extends AppLocalizations {
 
   @override
   String get usbErrorConnectTimedOut =>
-      'Czekanie na odpowiedź urządzenia zakończyło się z powodu braku reakcji.';
+      'Połączenie nie zostało nawiązane. Upewnij się, że urządzenie posiada oprogramowanie \"USB Companion\".';
+
+  @override
+  String get usbFallbackDeviceName =>
+      'Urządzenie do komunikacji przez sieć (seria)';
+
+  @override
+  String get usbStatus_notConnected => 'Wybierz urządzenie USB';
+
+  @override
+  String get usbStatus_connecting => 'Połączenie z urządzeniem USB...';
+
+  @override
+  String get usbStatus_searching => 'Wyszukiwanie urządzeń USB...';
+
+  @override
+  String usbConnectionFailed(String error) {
+    return 'Błąd połączenia USB: $error';
+  }
 
   @override
   String get scanner_scanning => 'Skanowanie urządzeń...';

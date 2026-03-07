@@ -1847,5 +1847,17 @@
   "usbErrorAlreadyActive": "USB връзката вече е активирана.",
   "usbErrorNoDeviceSelected": "Няма избран USB устройство.",
   "usbErrorPortClosed": "USB връзката не е активна.",
-  "usbErrorConnectTimedOut": "Изчаква се, но устройството не отговаря в рамките на зададения време."
+  "usbFallbackDeviceName": "Устройство за четене на уеб серийни данни",
+  "@usbConnectionFailed": {
+    "placeholders": {
+      "error": {
+        "type": "String"
+      }
+    }
+  },
+  "usbStatus_connecting": "Свързване към USB устройство...",
+  "usbConnectionFailed": "Неуспешно свързване през USB: {error}",
+  "usbStatus_notConnected": "Изберете USB устройство",
+  "usbStatus_searching": "Търсене на USB устройства...",
+  "usbErrorConnectTimedOut": "Връзката прекъсна. Уверете се, че устройството има софтуер за USB връзка."
 }

@@ -1834,7 +1834,7 @@
   "usbScreenSubtitle": "Välj en detekterad seriell enhet och anslut direkt till din MeshCore-nod.",
   "usbScreenTitle": "Anslut via USB",
   "usbScreenStatus": "Välj en USB-enhet",
-  "usbScreenNote": "USB-seriell kommunikation är aktiv på stöderliga Android-enheter och på skrivbordsplattformar.",
+  "usbScreenNote": "USB-seriell kommunikation är aktiv på stödda Android-enheter och på skrivbordsplattformar.",
   "usbScreenEmptyState": "Inga USB-enheter hittades. Anslut en och uppdatera.",
   "usbErrorPermissionDenied": "Tillgången via USB nekas.",
   "usbErrorDeviceMissing": "Den valda USB-enheten är inte längre tillgänglig.",
@@ -1847,5 +1847,17 @@
   "usbErrorAlreadyActive": "En USB-anslutning är redan aktiv.",
   "usbErrorNoDeviceSelected": "Ingen USB-enhet valdes.",
   "usbErrorPortClosed": "USB-anslutningen är inte aktiv.",
-  "usbErrorConnectTimedOut": "Tiden har löpt ut medan vi väntade på att enheten skulle svara."
+  "usbFallbackDeviceName": "Web-serieenhet",
+  "@usbConnectionFailed": {
+    "placeholders": {
+      "error": {
+        "type": "String"
+      }
+    }
+  },
+  "usbStatus_connecting": "Anslutning till USB-enhet...",
+  "usbStatus_notConnected": "Välj en USB-enhet",
+  "usbConnectionFailed": "Fel vid USB-anslutning: {error}",
+  "usbStatus_searching": "Söker efter USB-enheter...",
+  "usbErrorConnectTimedOut": "Anslutningen har tidsutgått. Se till att enheten har rätt USB-firmware."
 }

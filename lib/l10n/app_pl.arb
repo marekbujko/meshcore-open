@@ -1847,5 +1847,17 @@
   "usbErrorAlreadyActive": "Połączenie USB jest już aktywne.",
   "usbErrorNoDeviceSelected": "Nie został wybrany żaden urządzenie USB.",
   "usbErrorPortClosed": "Połączenie USB nie jest aktywne.",
-  "usbErrorConnectTimedOut": "Czekanie na odpowiedź urządzenia zakończyło się z powodu braku reakcji."
+  "usbFallbackDeviceName": "Urządzenie do komunikacji przez sieć (seria)",
+  "@usbConnectionFailed": {
+    "placeholders": {
+      "error": {
+        "type": "String"
+      }
+    }
+  },
+  "usbStatus_searching": "Wyszukiwanie urządzeń USB...",
+  "usbStatus_connecting": "Połączenie z urządzeniem USB...",
+  "usbStatus_notConnected": "Wybierz urządzenie USB",
+  "usbConnectionFailed": "Błąd połączenia USB: {error}",
+  "usbErrorConnectTimedOut": "Połączenie nie zostało nawiązane. Upewnij się, że urządzenie posiada oprogramowanie \"USB Companion\"."
 }

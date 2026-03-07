@@ -1847,5 +1847,17 @@
   "usbErrorAlreadyActive": "USB-з'єднання вже встановлено.",
   "usbErrorNoDeviceSelected": "Не було вибрано жодного пристрою USB.",
   "usbErrorPortClosed": "З'єднання USB не встановлено.",
-  "usbErrorConnectTimedOut": "Час очікування закінчився, оскільки пристрій не відповів."
+  "usbFallbackDeviceName": "Пристрій для передачі даних по веб-серіалах",
+  "@usbConnectionFailed": {
+    "placeholders": {
+      "error": {
+        "type": "String"
+      }
+    }
+  },
+  "usbStatus_searching": "Пошук пристроїв USB...",
+  "usbStatus_notConnected": "Виберіть пристрій USB",
+  "usbConnectionFailed": "Не вдалося встановити з'єднання через USB: {error}",
+  "usbStatus_connecting": "Підключення до USB-пристрою...",
+  "usbErrorConnectTimedOut": "З'єднання не вдалося встановити. Переконайтеся, що пристрій має встановлене програмне забезпечення USB Companion."
 }

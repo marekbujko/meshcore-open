@@ -1847,5 +1847,17 @@
   "usbErrorAlreadyActive": "USB povezava je že aktivirana.",
   "usbErrorNoDeviceSelected": "Ni bilo izbranega USB naprave.",
   "usbErrorPortClosed": "USB povezava ni aktivirana.",
-  "usbErrorConnectTimedOut": "Čakanje je preseglo določeno časovno obdobo, ker se naprave ni odzval."
+  "usbFallbackDeviceName": "Naprave za serijsko komunikacijo preko spleta",
+  "@usbConnectionFailed": {
+    "placeholders": {
+      "error": {
+        "type": "String"
+      }
+    }
+  },
+  "usbStatus_notConnected": "Izberite USB naprave.",
+  "usbStatus_connecting": "Povezava z USB napravo...",
+  "usbStatus_searching": "Iskanje USB naprav...",
+  "usbConnectionFailed": "Napaka pri povezavi preko USB: {error}",
+  "usbErrorConnectTimedOut": "Vzpostavitve ni bilo mogo. Prosimo, da se prepričate, da ima naprave trenutno nameštan firmware USB Companion."
 }

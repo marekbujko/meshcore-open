@@ -175,7 +175,24 @@ class AppLocalizationsNl extends AppLocalizations {
 
   @override
   String get usbErrorConnectTimedOut =>
-      'Wachtperiode is verlopen, aangezien het apparaat niet reageerde.';
+      'Verbinding is verbroken. Zorg ervoor dat het apparaat de juiste USB-firmware heeft.';
+
+  @override
+  String get usbFallbackDeviceName => 'Web-serieapparaat';
+
+  @override
+  String get usbStatus_notConnected => 'Selecteer een USB-apparaat';
+
+  @override
+  String get usbStatus_connecting => 'Verbinding maken met USB-apparaat...';
+
+  @override
+  String get usbStatus_searching => 'Zoeken naar USB-apparaten...';
+
+  @override
+  String usbConnectionFailed(String error) {
+    return 'Fout bij de USB-verbinding: $error';
+  }
 
   @override
   String get scanner_scanning => 'Scannen naar apparaten...';

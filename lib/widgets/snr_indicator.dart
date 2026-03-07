@@ -78,40 +78,36 @@ class _SNRIndicatorState extends State<SNRIndicator> {
       widget.connector.currentSf,
     );
 
-    return InkWell(
-      onTap: () {
-        if (directRepeater != null) {
-          _showFullPathDialog(context, directBestRepeaters);
-        }
-      },
-      borderRadius: BorderRadius.circular(8),
-      child: Padding(
-        padding: const EdgeInsets.symmetric(horizontal: 4, vertical: 8),
-        child: Column(
-          mainAxisSize: MainAxisSize.min,
-          children: [
-            Column(
-              mainAxisSize: MainAxisSize.min,
-              children: [
-                Icon(snrUi.icon, size: 18, color: snrUi.color),
-                Text(
-                  snrUi.text,
-                  style: TextStyle(fontSize: 12, color: snrUi.color),
-                ),
-              ],
-            ),
-            if (directRepeater != null)
+    return ConstrainedBox(
+      constraints: const BoxConstraints(minWidth: 40, minHeight: 40),
+      child: InkWell(
+        onTap: directRepeater != null
+            ? () => _showFullPathDialog(context, directBestRepeaters)
+            : null,
+        borderRadius: BorderRadius.circular(8),
+        child: Padding(
+          padding: const EdgeInsets.symmetric(horizontal: 4, vertical: 8),
+          child: Column(
+            mainAxisSize: MainAxisSize.min,
+            children: [
+              Icon(snrUi.icon, size: 18, color: snrUi.color),
               Text(
-                '${directRepeaters.length}: ${directRepeater.pubkeyFirstByte.toRadixString(16).padLeft(2, '0')}: ${_formatLastUpdated(directRepeater.lastUpdated)}',
-                style: TextStyle(
-                  fontSize: 12,
-                  fontWeight: FontWeight.w500,
-                  color: Colors.grey,
-                ),
-                maxLines: 1,
-                overflow: TextOverflow.ellipsis,
+                snrUi.text,
+                style: TextStyle(fontSize: 12, color: snrUi.color),
               ),
-          ],
+              if (directRepeater != null)
+                Text(
+                  '${directRepeaters.length}: ${directRepeater.pubkeyFirstByte.toRadixString(16).padLeft(2, '0')}: ${_formatLastUpdated(directRepeater.lastUpdated)}',
+                  style: TextStyle(
+                    fontSize: 12,
+                    fontWeight: FontWeight.w500,
+                    color: Colors.grey,
+                  ),
+                  maxLines: 1,
+                  overflow: TextOverflow.ellipsis,
+                ),
+            ],
+          ),
         ),
       ),
     );
@@ -148,8 +144,10 @@ class _SNRIndicatorState extends State<SNRIndicator> {
       builder: (context) => AlertDialog(
         title: Text(l10n.snrIndicator_nearByRepeaters),
         content: SizedBox(
+          width: double.maxFinite,
           child: Scrollbar(
             child: ListView.separated(
+              shrinkWrap: true,
               padding: const EdgeInsets.symmetric(vertical: 4),
               itemCount: directBestRepeaters.length,
               separatorBuilder: (_, _) => const Divider(height: 1),

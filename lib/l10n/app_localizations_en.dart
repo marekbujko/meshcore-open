@@ -174,7 +174,24 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get usbErrorConnectTimedOut =>
-      'Timed out waiting for the device to respond.';
+      'Connection timed out. Make sure the device has USB Companion firmware.';
+
+  @override
+  String get usbFallbackDeviceName => 'Web Serial Device';
+
+  @override
+  String get usbStatus_notConnected => 'Select a USB device';
+
+  @override
+  String get usbStatus_connecting => 'Connecting to USB device...';
+
+  @override
+  String get usbStatus_searching => 'Searching for USB devices...';
+
+  @override
+  String usbConnectionFailed(String error) {
+    return 'USB connection failed: $error';
+  }
 
   @override
   String get scanner_scanning => 'Scanning for devices...';

@@ -40,15 +40,15 @@ class MeshcoreUsbFunctions(
     private val mainHandler = Handler(Looper.getMainLooper())
     private val usbIoExecutor: ExecutorService = Executors.newSingleThreadExecutor()
 
-    private var eventSink: EventChannel.EventSink? = null
-    private var usbConnection: UsbDeviceConnection? = null
-    private var usbInEndpoint: UsbEndpoint? = null
-    private var usbOutEndpoint: UsbEndpoint? = null
-    private var controlInterface: UsbInterface? = null
-    private var dataInterface: UsbInterface? = null
+    @Volatile private var eventSink: EventChannel.EventSink? = null
+    @Volatile private var usbConnection: UsbDeviceConnection? = null
+    @Volatile private var usbInEndpoint: UsbEndpoint? = null
+    @Volatile private var usbOutEndpoint: UsbEndpoint? = null
+    @Volatile private var controlInterface: UsbInterface? = null
+    @Volatile private var dataInterface: UsbInterface? = null
     private var readThread: Thread? = null
     @Volatile private var isReading = false
-    private var connectedDeviceName: String? = null
+    @Volatile private var connectedDeviceName: String? = null
 
     private var pendingConnectResult: MethodChannel.Result? = null
     private var pendingConnectPortName: String? = null
@@ -86,7 +86,7 @@ class MeshcoreUsbFunctions(
                 if (device == null) {
                     result.error(
                         "usb_device_missing",
-                        "USB device no longer available for $portName",
+                        null,
                         null,
                     )
                     return
@@ -95,7 +95,7 @@ class MeshcoreUsbFunctions(
                 val granted =
                     intent.getBooleanExtra(UsbManager.EXTRA_PERMISSION_GRANTED, false)
                 if (!granted || !usbManager.hasPermission(device)) {
-                    result.error("usb_permission_denied", "USB permission denied", null)
+                    result.error("usb_permission_denied", null, null)
                     return
                 }
 
@@ -176,13 +176,13 @@ class MeshcoreUsbFunctions(
         val portName = call.argument<String>("portName")
         val baudRate = call.argument<Int>("baudRate") ?: 115200
         if (portName.isNullOrBlank()) {
-            result.error("usb_invalid_port", "Port name is required", null)
+            result.error("usb_invalid_port", null, null)
             return
         }
 
         val device = findUsbDevice(portName)
         if (device == null) {
-            result.error("usb_device_missing", "USB device not found for $portName", null)
+            result.error("usb_device_missing", null, null)
             return
         }
 
@@ -192,7 +192,7 @@ class MeshcoreUsbFunctions(
         }
 
         if (pendingConnectResult != null) {
-            result.error("usb_busy", "Another USB permission request is already pending", null)
+            result.error("usb_busy", null, null)
             return
         }
 
@@ -214,11 +214,11 @@ class MeshcoreUsbFunctions(
         val connection = usbConnection
         val endpoint = usbOutEndpoint
         if (data == null) {
-            result.error("usb_invalid_data", "Data is required", null)
+            result.error("usb_invalid_data", null, null)
             return
         }
         if (connection == null || endpoint == null) {
-            result.error("usb_not_connected", "USB serial port is not connected", null)
+            result.error("usb_not_connected", null, null)
             return
         }
 
@@ -259,7 +259,7 @@ class MeshcoreUsbFunctions(
                     mainHandler.post {
                         result.error(
                             "usb_driver_missing",
-                            "No compatible USB serial interface for ${device.deviceName}",
+                            null,
                             null,
                         )
                     }
@@ -271,7 +271,7 @@ class MeshcoreUsbFunctions(
                     mainHandler.post {
                         result.error(
                             "usb_open_failed",
-                            "UsbManager could not open ${device.deviceName}",
+                            null,
                             null,
                         )
                     }
@@ -283,7 +283,7 @@ class MeshcoreUsbFunctions(
                     mainHandler.post {
                         result.error(
                             "usb_open_failed",
-                            "Could not claim USB data interface for ${device.deviceName}",
+                            null,
                             null,
                         )
                     }
@@ -299,20 +299,21 @@ class MeshcoreUsbFunctions(
                     mainHandler.post {
                         result.error(
                             "usb_open_failed",
-                            "Could not claim USB control interface for ${device.deviceName}",
+                            null,
                             null,
                         )
                     }
                     return@execute
                 }
 
-                configureDevice(connection, config, baudRate)
-
                 usbConnection = connection
                 usbInEndpoint = config.inEndpoint
                 usbOutEndpoint = config.outEndpoint
                 controlInterface = config.controlInterface
                 dataInterface = config.dataInterface
+
+                configureDevice(connection, config, baudRate)
+
                 connectedDeviceName = device.deviceName
                 startReadLoop()
 

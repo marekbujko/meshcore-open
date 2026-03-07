@@ -177,7 +177,24 @@ class AppLocalizationsSk extends AppLocalizations {
 
   @override
   String get usbErrorConnectTimedOut =>
-      'Čakal som, kým sa zariadenie neozvými, ale časový limit sa dobehol.';
+      'Pripojenie nebolo úspešné. Uistite sa, že zariadenie má nainštalovaný firmware USB Companion.';
+
+  @override
+  String get usbFallbackDeviceName => 'Webový sériový zariadenie';
+
+  @override
+  String get usbStatus_notConnected => 'Vyberte USB zariadenie';
+
+  @override
+  String get usbStatus_connecting => 'Pripojenie k USB zariadeniu...';
+
+  @override
+  String get usbStatus_searching => 'Hľadanie USB zariadení...';
+
+  @override
+  String usbConnectionFailed(String error) {
+    return 'Neúspešné pripojenie cez USB: $error';
+  }
 
   @override
   String get scanner_scanning => 'Skrívania zariadení...';

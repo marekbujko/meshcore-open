@@ -32,6 +32,7 @@ class UsbSerialService {
   String? _connectedPortName;
   String? _connectedPortKey;
   String _requestPortLabel = 'Choose USB Device';
+  String _fallbackDeviceName = 'Web Serial Device';
   AppDebugLogService? _debugLogService;
 
   UsbSerialStatus get status => _status;
@@ -77,11 +78,19 @@ class UsbSerialService {
 
     try {
       final requestedPortName = normalizeUsbPortName(portName);
+      _debugLogService?.info(
+        'Web connect: requested=$requestedPortName baud=$baudRate',
+        tag: 'USB Serial',
+      );
       final selectedPortKey = requestedPortName.startsWith('web:port:')
           ? requestedPortName
           : null;
       _port = _authorizedPortsByKey[requestedPortName];
       final authorizedPorts = await _getAuthorizedPorts();
+      _debugLogService?.info(
+        'Web connect: ${authorizedPorts.length} authorized port(s), cached=${_port != null}',
+        tag: 'USB Serial',
+      );
       _port ??= _selectPort(authorizedPorts, requestedPortName);
 
       _port ??= await _requestPort();
@@ -89,6 +98,10 @@ class UsbSerialService {
         throw StateError('No USB serial device selected');
       }
 
+      _debugLogService?.info(
+        'Web connect: opening port at $baudRate baud…',
+        tag: 'USB Serial',
+      );
       await _openPort(_port!, baudRate);
       _connectedPortKey = _cachePort(_port!, preferredKey: selectedPortKey);
       _connectedPortName = _displayLabelForPort(
@@ -105,6 +118,10 @@ class UsbSerialService {
         tag: 'USB Serial',
       );
     } catch (error) {
+      _debugLogService?.error(
+        'Web connect failed: $error',
+        tag: 'USB Serial',
+      );
       await _cleanupFailedConnect();
       _status = UsbSerialStatus.disconnected;
       _connectedPortName = null;
@@ -192,6 +209,14 @@ class UsbSerialService {
       return;
     }
     _requestPortLabel = trimmed;
+  }
+
+  void setFallbackDeviceName(String label) {
+    final trimmed = label.trim();
+    if (trimmed.isEmpty) {
+      return;
+    }
+    _fallbackDeviceName = trimmed;
   }
 
   void setDebugLogService(AppDebugLogService? service) {
@@ -403,6 +428,7 @@ class UsbSerialService {
       vendorId: hasVendor ? vendorId : null,
       productId: hasProduct ? productId : null,
       requestPortLabel: _requestPortLabel,
+      fallbackDeviceName: _fallbackDeviceName,
       knownUsbNames: _knownUsbNames,
     );
   }

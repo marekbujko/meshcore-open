@@ -129,7 +129,7 @@ class AppLocalizationsSv extends AppLocalizations {
 
   @override
   String get usbScreenNote =>
-      'USB-seriell kommunikation är aktiv på stöderliga Android-enheter och på skrivbordsplattformar.';
+      'USB-seriell kommunikation är aktiv på stödda Android-enheter och på skrivbordsplattformar.';
 
   @override
   String get usbScreenEmptyState =>
@@ -175,7 +175,24 @@ class AppLocalizationsSv extends AppLocalizations {
 
   @override
   String get usbErrorConnectTimedOut =>
-      'Tiden har löpt ut medan vi väntade på att enheten skulle svara.';
+      'Anslutningen har tidsutgått. Se till att enheten har rätt USB-firmware.';
+
+  @override
+  String get usbFallbackDeviceName => 'Web-serieenhet';
+
+  @override
+  String get usbStatus_notConnected => 'Välj en USB-enhet';
+
+  @override
+  String get usbStatus_connecting => 'Anslutning till USB-enhet...';
+
+  @override
+  String get usbStatus_searching => 'Söker efter USB-enheter...';
+
+  @override
+  String usbConnectionFailed(String error) {
+    return 'Fel vid USB-anslutning: $error';
+  }
 
   @override
   String get scanner_scanning => 'Söker efter enheter...';

@@ -176,7 +176,25 @@ class AppLocalizationsFr extends AppLocalizations {
 
   @override
   String get usbErrorConnectTimedOut =>
-      'Attente avec délai, en attendant une réponse de l\'appareil.';
+      'La connexion a expiré. Assurez-vous que l\'appareil dispose du firmware USB Companion.';
+
+  @override
+  String get usbFallbackDeviceName =>
+      'Dispositif de communication série sur le Web';
+
+  @override
+  String get usbStatus_notConnected => 'Sélectionnez un périphérique USB';
+
+  @override
+  String get usbStatus_connecting => 'Connexion au périphérique USB...';
+
+  @override
+  String get usbStatus_searching => 'Recherche de périphériques USB...';
+
+  @override
+  String usbConnectionFailed(String error) {
+    return 'Échec de la connexion USB : $error';
+  }
 
   @override
   String get scanner_scanning => 'Recherche de périphériques...';

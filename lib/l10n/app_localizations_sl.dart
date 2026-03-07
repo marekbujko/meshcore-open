@@ -174,7 +174,25 @@ class AppLocalizationsSl extends AppLocalizations {
 
   @override
   String get usbErrorConnectTimedOut =>
-      'Čakanje je preseglo določeno časovno obdobo, ker se naprave ni odzval.';
+      'Vzpostavitve ni bilo mogo. Prosimo, da se prepričate, da ima naprave trenutno nameštan firmware USB Companion.';
+
+  @override
+  String get usbFallbackDeviceName =>
+      'Naprave za serijsko komunikacijo preko spleta';
+
+  @override
+  String get usbStatus_notConnected => 'Izberite USB naprave.';
+
+  @override
+  String get usbStatus_connecting => 'Povezava z USB napravo...';
+
+  @override
+  String get usbStatus_searching => 'Iskanje USB naprav...';
+
+  @override
+  String usbConnectionFailed(String error) {
+    return 'Napaka pri povezavi preko USB: $error';
+  }
 
   @override
   String get scanner_scanning => 'Skeniram za naprave...';

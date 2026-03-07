@@ -175,7 +175,25 @@ class AppLocalizationsUk extends AppLocalizations {
 
   @override
   String get usbErrorConnectTimedOut =>
-      'Час очікування закінчився, оскільки пристрій не відповів.';
+      'З\'єднання не вдалося встановити. Переконайтеся, що пристрій має встановлене програмне забезпечення USB Companion.';
+
+  @override
+  String get usbFallbackDeviceName =>
+      'Пристрій для передачі даних по веб-серіалах';
+
+  @override
+  String get usbStatus_notConnected => 'Виберіть пристрій USB';
+
+  @override
+  String get usbStatus_connecting => 'Підключення до USB-пристрою...';
+
+  @override
+  String get usbStatus_searching => 'Пошук пристроїв USB...';
+
+  @override
+  String usbConnectionFailed(String error) {
+    return 'Не вдалося встановити з\'єднання через USB: $error';
+  }
 
   @override
   String get scanner_scanning => 'Пошук пристроїв...';

@@ -177,7 +177,24 @@ class AppLocalizationsDe extends AppLocalizations {
 
   @override
   String get usbErrorConnectTimedOut =>
-      'Wartezeit abgelaufen, da keine Antwort vom Gerät empfangen wurde.';
+      'Verbindung konnte nicht hergestellt werden. Stellen Sie sicher, dass das Gerät die entsprechende USB-Firmware enthält.';
+
+  @override
+  String get usbFallbackDeviceName => 'Web-Serielle Geräte';
+
+  @override
+  String get usbStatus_notConnected => 'Wählen Sie ein USB-Gerät aus';
+
+  @override
+  String get usbStatus_connecting => 'Verbindung zum USB-Gerät...';
+
+  @override
+  String get usbStatus_searching => 'Suche nach USB-Geräten...';
+
+  @override
+  String usbConnectionFailed(String error) {
+    return 'Fehler beim USB-Verbindungsaufbau: $error';
+  }
 
   @override
   String get scanner_scanning => 'Scannen nach Geräten...';

@@ -177,7 +177,25 @@ class AppLocalizationsRu extends AppLocalizations {
 
   @override
   String get usbErrorConnectTimedOut =>
-      'Ожидание ответа от устройства превысило установленное время.';
+      'Соединение не установлено. Убедитесь, что устройство имеет установленное программное обеспечение USB Companion.';
+
+  @override
+  String get usbFallbackDeviceName =>
+      'Устройство для последовательного подключения к сети';
+
+  @override
+  String get usbStatus_notConnected => 'Выберите USB-устройство';
+
+  @override
+  String get usbStatus_connecting => 'Подключение к USB-устройству...';
+
+  @override
+  String get usbStatus_searching => 'Поиск USB-устройств...';
+
+  @override
+  String usbConnectionFailed(String error) {
+    return 'Не удалось установить соединение через USB: $error';
+  }
 
   @override
   String get scanner_scanning => 'Поиск устройств...';

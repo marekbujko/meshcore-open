@@ -1847,5 +1847,17 @@
   "usbErrorAlreadyActive": "Une connexion USB est déjà établie.",
   "usbErrorNoDeviceSelected": "Aucun appareil USB n'a été sélectionné.",
   "usbErrorPortClosed": "La connexion USB n'est pas établie.",
-  "usbErrorConnectTimedOut": "Attente avec délai, en attendant une réponse de l'appareil."
+  "usbFallbackDeviceName": "Dispositif de communication série sur le Web",
+  "@usbConnectionFailed": {
+    "placeholders": {
+      "error": {
+        "type": "String"
+      }
+    }
+  },
+  "usbStatus_notConnected": "Sélectionnez un périphérique USB",
+  "usbConnectionFailed": "Échec de la connexion USB : {error}",
+  "usbStatus_connecting": "Connexion au périphérique USB...",
+  "usbStatus_searching": "Recherche de périphériques USB...",
+  "usbErrorConnectTimedOut": "La connexion a expiré. Assurez-vous que l'appareil dispose du firmware USB Companion."
 }

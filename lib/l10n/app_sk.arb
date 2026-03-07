@@ -1847,5 +1847,17 @@
   "usbErrorAlreadyActive": "Pripojenie cez USB je už aktivované.",
   "usbErrorNoDeviceSelected": "Nebolo vybrané žiadne USB zariadenie.",
   "usbErrorPortClosed": "Pripojenie cez USB nie je aktivované.",
-  "usbErrorConnectTimedOut": "Čakal som, kým sa zariadenie neozvými, ale časový limit sa dobehol."
+  "usbFallbackDeviceName": "Webový sériový zariadenie",
+  "@usbConnectionFailed": {
+    "placeholders": {
+      "error": {
+        "type": "String"
+      }
+    }
+  },
+  "usbStatus_searching": "Hľadanie USB zariadení...",
+  "usbConnectionFailed": "Neúspešné pripojenie cez USB: {error}",
+  "usbStatus_notConnected": "Vyberte USB zariadenie",
+  "usbStatus_connecting": "Pripojenie k USB zariadeniu...",
+  "usbErrorConnectTimedOut": "Pripojenie nebolo úspešné. Uistite sa, že zariadenie má nainštalovaný firmware USB Companion."
 }

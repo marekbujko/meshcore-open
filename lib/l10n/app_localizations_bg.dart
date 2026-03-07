@@ -175,7 +175,25 @@ class AppLocalizationsBg extends AppLocalizations {
 
   @override
   String get usbErrorConnectTimedOut =>
-      'Изчаква се, но устройството не отговаря в рамките на зададения време.';
+      'Връзката прекъсна. Уверете се, че устройството има софтуер за USB връзка.';
+
+  @override
+  String get usbFallbackDeviceName =>
+      'Устройство за четене на уеб серийни данни';
+
+  @override
+  String get usbStatus_notConnected => 'Изберете USB устройство';
+
+  @override
+  String get usbStatus_connecting => 'Свързване към USB устройство...';
+
+  @override
+  String get usbStatus_searching => 'Търсене на USB устройства...';
+
+  @override
+  String usbConnectionFailed(String error) {
+    return 'Неуспешно свързване през USB: $error';
+  }
 
   @override
   String get scanner_scanning => 'Сканиране за устройства...';

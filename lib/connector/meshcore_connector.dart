@@ -21,7 +21,7 @@ import '../services/path_history_service.dart';
 import '../services/app_settings_service.dart';
 import '../services/background_service.dart';
 import '../services/notification_service.dart';
-import '../services/usb_serial_service.dart';
+import 'meshcore_connector_usb.dart';
 import '../storage/channel_message_store.dart';
 import '../storage/channel_order_store.dart';
 import '../storage/channel_settings_store.dart';
@@ -114,11 +114,9 @@ class MeshCoreConnector extends ChangeNotifier {
   String? _lastDeviceId;
   String? _lastDeviceDisplayName;
   bool _manualDisconnect = false;
-  final UsbSerialService _usbSerialService = UsbSerialService();
+  final MeshCoreUsbManager _usbManager = MeshCoreUsbManager();
   StreamSubscription<Uint8List>? _usbFrameSubscription;
   MeshCoreTransportType _activeTransport = MeshCoreTransportType.bluetooth;
-  String? _activeUsbPortKey;
-  String? _activeUsbPortLabel;
 
   final List<ScanResult> _scanResults = [];
   final List<Contact> _contacts = [];
@@ -252,9 +250,8 @@ class MeshCoreConnector extends ChangeNotifier {
   String get deviceIdLabel => _deviceId ?? 'Unknown';
 
   MeshCoreTransportType get activeTransport => _activeTransport;
-  String? get activeUsbPort => _activeUsbPortKey;
-  String? get activeUsbPortDisplayLabel =>
-      _activeUsbPortLabel ?? _activeUsbPortKey;
+  String? get activeUsbPort => _usbManager.activePortKey;
+  String? get activeUsbPortDisplayLabel => _usbManager.activePortDisplayLabel;
   bool get isUsbTransportConnected =>
       _state == MeshCoreConnectionState.connected &&
       _activeTransport == MeshCoreTransportType.usb;
@@ -661,7 +658,7 @@ class MeshCoreConnector extends ChangeNotifier {
     _bleDebugLogService = bleDebugLogService;
     _appDebugLogService = appDebugLogService;
     _backgroundService = backgroundService;
-    _usbSerialService.setDebugLogService(_appDebugLogService);
+    _usbManager.setDebugLogService(_appDebugLogService);
 
     // Initialize notification service
     _notificationService.initialize();
@@ -871,10 +868,14 @@ class MeshCoreConnector extends ChangeNotifier {
     }
   }
 
-  Future<List<String>> listUsbPorts() => _usbSerialService.listPorts();
+  Future<List<String>> listUsbPorts() => _usbManager.listPorts();
 
   void setUsbRequestPortLabel(String label) {
-    _usbSerialService.setRequestPortLabel(label);
+    _usbManager.setRequestPortLabel(label);
+  }
+
+  void setUsbFallbackDeviceName(String label) {
+    _usbManager.setFallbackDeviceName(label);
   }
 
   Future<void> connectUsb({
@@ -883,53 +884,70 @@ class MeshCoreConnector extends ChangeNotifier {
   }) async {
     if (_state == MeshCoreConnectionState.connecting ||
         _state == MeshCoreConnectionState.connected) {
+      _appDebugLogService?.warn(
+        'connectUsb ignored: already $_state',
+        tag: 'USB',
+      );
       return;
     }
 
-    _activeTransport = MeshCoreTransportType.bluetooth;
-    _activeUsbPortKey = null;
-    _activeUsbPortLabel = null;
+    _appDebugLogService?.info(
+      'connectUsb: port=$portName baud=$baudRate',
+      tag: 'USB',
+    );
 
     await stopScan();
     _cancelReconnectTimer();
     _manualDisconnect = false;
     _resetConnectionHandshakeState();
     _activeTransport = MeshCoreTransportType.usb;
-    _activeUsbPortKey = portName;
-    _activeUsbPortLabel = portName;
     _setState(MeshCoreConnectionState.connecting);
 
     try {
       await _usbFrameSubscription?.cancel();
       _usbFrameSubscription = null;
-      await _usbSerialService.connect(portName: portName, baudRate: baudRate);
-      _activeUsbPortKey = _usbSerialService.activePortKey ?? _activeUsbPortKey;
-      _activeUsbPortLabel =
-          _usbSerialService.activePortDisplayLabel ?? _activeUsbPortLabel;
+      _appDebugLogService?.info(
+        'connectUsb: opening serial port…',
+        tag: 'USB',
+      );
+      await _usbManager.connect(portName: portName, baudRate: baudRate);
+      _appDebugLogService?.info(
+        'connectUsb: serial port opened, label=${_usbManager.activePortDisplayLabel}',
+        tag: 'USB',
+      );
       notifyListeners();
       if (PlatformInfo.isWeb) {
         await stopScan();
       }
       await Future<void>.delayed(const Duration(milliseconds: 200));
-      _usbFrameSubscription = _usbSerialService.frameStream.listen(
+      _usbFrameSubscription = _usbManager.frameStream.listen(
         _handleFrame,
         onError: (error, stackTrace) {
           _appDebugLogService?.error('USB transport error: $error', tag: 'USB');
           unawaited(disconnect(manual: false));
         },
         onDone: () {
+          _appDebugLogService?.warn('USB frame stream ended', tag: 'USB');
           unawaited(disconnect(manual: false));
         },
       );
 
       _setState(MeshCoreConnectionState.connected);
       _pendingInitialChannelSync = true;
+      _appDebugLogService?.info(
+        'connectUsb: requesting device info…',
+        tag: 'USB',
+      );
       await _requestDeviceInfo();
       _startBatteryPolling();
       var gotSelfInfo = await _waitForSelfInfo(
         timeout: const Duration(seconds: 3),
       );
       if (!gotSelfInfo) {
+        _appDebugLogService?.warn(
+          'connectUsb: SELF_INFO timeout, retrying…',
+          tag: 'USB',
+        );
         await refreshDeviceInfo();
         gotSelfInfo = await _waitForSelfInfo(
           timeout: const Duration(seconds: 3),
@@ -939,7 +957,9 @@ class MeshCoreConnector extends ChangeNotifier {
         throw StateError('Timed out waiting for SELF_INFO during connect');
       }
 
+      _appDebugLogService?.info('connectUsb: syncing time…', tag: 'USB');
       await syncTime();
+      _appDebugLogService?.info('connectUsb: complete', tag: 'USB');
     } catch (error) {
       _appDebugLogService?.error('USB connection error: $error', tag: 'USB');
       await disconnect(manual: false);
@@ -954,8 +974,6 @@ class MeshCoreConnector extends ChangeNotifier {
     }
 
     _activeTransport = MeshCoreTransportType.bluetooth;
-    _activeUsbPortKey = null;
-    _activeUsbPortLabel = null;
 
     await stopScan();
     _setState(MeshCoreConnectionState.connecting);
@@ -1282,7 +1300,7 @@ class MeshCoreConnector extends ChangeNotifier {
 
     await _usbFrameSubscription?.cancel();
     _usbFrameSubscription = null;
-    await _usbSerialService.disconnect();
+    await _usbManager.disconnect();
 
     await _notifySubscription?.cancel();
     _notifySubscription = null;
@@ -1341,8 +1359,6 @@ class MeshCoreConnector extends ChangeNotifier {
     _reactionSendQueueSequence = 0;
 
     _activeTransport = MeshCoreTransportType.bluetooth;
-    _activeUsbPortKey = null;
-    _activeUsbPortLabel = null;
 
     _setState(MeshCoreConnectionState.disconnected);
     _appDebugLogService?.info(
@@ -1365,7 +1381,7 @@ class MeshCoreConnector extends ChangeNotifier {
     _bleDebugLogService?.logFrame(data, outgoing: true);
 
     if (_activeTransport == MeshCoreTransportType.usb) {
-      await _usbSerialService.write(data);
+      await _usbManager.write(data);
     } else {
       if (_rxCharacteristic == null) {
         throw Exception("MeshCore RX characteristic not available");
@@ -2464,9 +2480,7 @@ class MeshCoreConnector extends ChangeNotifier {
     if (_activeTransport == MeshCoreTransportType.usb &&
         selfName != null &&
         selfName.isNotEmpty) {
-      _usbSerialService.updateConnectedLabel(selfName);
-      _activeUsbPortLabel =
-          _usbSerialService.activePortDisplayLabel ?? _activeUsbPortLabel;
+      _usbManager.updateConnectedLabel(selfName);
     }
     _awaitingSelfInfo = false;
     _selfInfoRetryTimer?.cancel();
@@ -4246,7 +4260,7 @@ class MeshCoreConnector extends ChangeNotifier {
     _reconnectTimer?.cancel();
     _batteryPollTimer?.cancel();
     _receivedFramesController.close();
-    _usbSerialService.dispose();
+    _usbManager.dispose();
 
     // Flush pending unread writes before disposal
     _unreadStore.flush();
@@ -4269,6 +4283,10 @@ class MeshCoreConnector extends ChangeNotifier {
       final header = packet.readByte();
       routeType = header & 0x03;
       payloadType = (header >> 2) & 0x0F;
+      if (routeType == _routeTransportFlood ||
+          routeType == _routeTransportDirect) {
+        packet.skipBytes(4); // Skip transport-specific bytes
+      }
       //final payloadVer = (header >> 6) & 0x03;
       final pathLen = packet.readByte();
       pathBytes = packet.readBytes(pathLen);
@@ -4301,7 +4319,12 @@ class MeshCoreConnector extends ChangeNotifier {
       packet.skipBytes(1); // Skip SNR byte
       packet.skipBytes(1); // Skip RSSI byte
       final header = packet.readByte();
+      final routeType = header & 0x03;
       payloadType = (header >> 2) & 0x0F;
+      if (routeType == _routeTransportFlood ||
+          routeType == _routeTransportDirect) {
+        packet.skipBytes(4); // Skip transport-specific bytes
+      }
       //final payloadVer = (header >> 6) & 0x03;
       final pathLen = packet.readByte();
       pathBytes = packet.readBytes(pathLen);

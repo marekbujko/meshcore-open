@@ -1852,5 +1852,17 @@
   "usbErrorAlreadyActive": "USB 连接已建立。",
   "usbErrorNoDeviceSelected": "未选择任何 USB 设备。",
   "usbErrorPortClosed": "USB 连接未建立。",
-  "usbErrorConnectTimedOut": "等待设备响应超时。"
+  "usbFallbackDeviceName": "Web 串流设备",
+  "@usbConnectionFailed": {
+    "placeholders": {
+      "error": {
+        "type": "String"
+      }
+    }
+  },
+  "usbStatus_searching": "正在搜索 USB 设备...",
+  "usbStatus_connecting": "连接USB设备...",
+  "usbStatus_notConnected": "选择一个 USB 设备",
+  "usbConnectionFailed": "USB 连接失败：{error}",
+  "usbErrorConnectTimedOut": "连接超时。请确保设备已安装 USB 伴侣固件。"
 }

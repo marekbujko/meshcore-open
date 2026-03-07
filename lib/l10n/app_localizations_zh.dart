@@ -166,7 +166,24 @@ class AppLocalizationsZh extends AppLocalizations {
   String get usbErrorPortClosed => 'USB 连接未建立。';
 
   @override
-  String get usbErrorConnectTimedOut => '等待设备响应超时。';
+  String get usbErrorConnectTimedOut => '连接超时。请确保设备已安装 USB 伴侣固件。';
+
+  @override
+  String get usbFallbackDeviceName => 'Web 串流设备';
+
+  @override
+  String get usbStatus_notConnected => '选择一个 USB 设备';
+
+  @override
+  String get usbStatus_connecting => '连接USB设备...';
+
+  @override
+  String get usbStatus_searching => '正在搜索 USB 设备...';
+
+  @override
+  String usbConnectionFailed(String error) {
+    return 'USB 连接失败：$error';
+  }
 
   @override
   String get scanner_scanning => '正在搜索设备...';

@@ -177,7 +177,24 @@ class AppLocalizationsPt extends AppLocalizations {
 
   @override
   String get usbErrorConnectTimedOut =>
-      'Tempo limite aguardando a resposta do dispositivo.';
+      'A conexão expirou. Verifique se o dispositivo possui o firmware USB Companion.';
+
+  @override
+  String get usbFallbackDeviceName => 'Dispositivo de Serial para a Web';
+
+  @override
+  String get usbStatus_notConnected => 'Selecione um dispositivo USB';
+
+  @override
+  String get usbStatus_connecting => 'Conectando ao dispositivo USB...';
+
+  @override
+  String get usbStatus_searching => 'Procurando por dispositivos USB...';
+
+  @override
+  String usbConnectionFailed(String error) {
+    return 'Falha na conexão USB: $error';
+  }
 
   @override
   String get scanner_scanning => 'Procurando por dispositivos...';

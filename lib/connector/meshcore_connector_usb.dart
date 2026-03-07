@@ -1,32 +1,71 @@
-import 'package:flutter/foundation.dart';
+import 'dart:typed_data';
 
-import 'meshcore_connector.dart';
+import '../services/app_debug_log_service.dart';
+import '../services/usb_serial_service.dart';
 
-class MeshCoreConnectorUsb {
-  const MeshCoreConnectorUsb(this.connector);
+/// Manages USB serial transport for MeshCore devices.
+///
+/// Owns the [UsbSerialService] and USB-specific connection state.
+/// The main [MeshCoreConnector] delegates all USB operations here.
+class MeshCoreUsbManager {
+  MeshCoreUsbManager();
 
-  final MeshCoreConnector connector;
+  final UsbSerialService _service = UsbSerialService();
+  AppDebugLogService? _debugLog;
+  String? _activePortKey;
+  String? _activePortLabel;
 
-  MeshCoreConnectionState get state => connector.state;
-  MeshCoreTransportType get activeTransport => connector.activeTransport;
-  String? get activeUsbPortDisplayLabel => connector.activeUsbPortDisplayLabel;
-  bool get isUsbTransportConnected => connector.isUsbTransportConnected;
+  // --- Getters ---
+  String? get activePortKey => _activePortKey;
+  String? get activePortDisplayLabel => _activePortLabel ?? _activePortKey;
+  bool get isConnected => _service.isConnected;
+  Stream<Uint8List> get frameStream => _service.frameStream;
 
-  void addListener(VoidCallback listener) => connector.addListener(listener);
-  void removeListener(VoidCallback listener) =>
-      connector.removeListener(listener);
+  // --- Configuration ---
+  Future<List<String>> listPorts() => _service.listPorts();
 
-  Future<List<String>> listPorts() => connector.listUsbPorts();
+  void setRequestPortLabel(String label) =>
+      _service.setRequestPortLabel(label);
 
-  void setRequestPortLabel(String label) {
-    connector.setUsbRequestPortLabel(label);
+  void setFallbackDeviceName(String label) =>
+      _service.setFallbackDeviceName(label);
+
+  void setDebugLogService(AppDebugLogService? service) {
+    _debugLog = service;
+    _service.setDebugLogService(service);
   }
 
-  Future<void> connect({required String portName, int baudRate = 115200}) {
-    return connector.connectUsb(portName: portName, baudRate: baudRate);
+  // --- Connection lifecycle ---
+  Future<void> connect({required String portName, int baudRate = 115200}) async {
+    _debugLog?.info(
+      'UsbManager.connect: portName=$portName baud=$baudRate',
+      tag: 'USB',
+    );
+    await _service.connect(portName: portName, baudRate: baudRate);
+    _activePortKey = _service.activePortKey ?? portName;
+    _activePortLabel = _service.activePortDisplayLabel ?? portName;
+    _debugLog?.info(
+      'UsbManager.connect: done, key=$_activePortKey label=$_activePortLabel',
+      tag: 'USB',
+    );
   }
 
-  Future<void> disconnect({bool manual = true}) {
-    return connector.disconnect(manual: manual);
+  Future<void> disconnect() async {
+    _debugLog?.info('UsbManager.disconnect', tag: 'USB');
+    await _service.disconnect();
+    _activePortKey = null;
+    _activePortLabel = null;
+  }
+
+  Future<void> write(Uint8List data) => _service.write(data);
+
+  // --- Label management ---
+  void updateConnectedLabel(String selfName) {
+    _service.updateConnectedLabel(selfName);
+    _activePortLabel = _service.activePortDisplayLabel ?? _activePortLabel;
+  }
+
+  void dispose() {
+    _service.dispose();
   }
 }

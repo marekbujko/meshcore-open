@@ -1847,5 +1847,17 @@
   "usbErrorAlreadyActive": "La connessione USB è già attiva.",
   "usbErrorNoDeviceSelected": "Non è stato selezionato alcun dispositivo USB.",
   "usbErrorPortClosed": "La connessione USB non è attiva.",
-  "usbErrorConnectTimedOut": "Attesa superata, in attesa di una risposta dal dispositivo."
+  "usbFallbackDeviceName": "Dispositivo per comunicazione seriale su rete",
+  "@usbConnectionFailed": {
+    "placeholders": {
+      "error": {
+        "type": "String"
+      }
+    }
+  },
+  "usbStatus_searching": "Ricerca di dispositivi USB...",
+  "usbConnectionFailed": "Errore nella connessione USB: {error}",
+  "usbStatus_notConnected": "Seleziona un dispositivo USB",
+  "usbStatus_connecting": "Connessione al dispositivo USB...",
+  "usbErrorConnectTimedOut": "La connessione è scaduta. Assicurarsi che il dispositivo abbia il firmware USB Companion."
 }

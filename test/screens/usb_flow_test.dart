@@ -19,6 +19,7 @@ class _FakeMeshCoreConnector extends MeshCoreConnector {
   final List<String> _ports;
 
   String? requestPortLabel;
+  String? fallbackDeviceName;
   int connectUsbCalls = 0;
   String? lastConnectPortName;
   String? fakeActiveUsbPort;
@@ -29,6 +30,9 @@ class _FakeMeshCoreConnector extends MeshCoreConnector {
 
   @override
   MeshCoreConnectionState get state => initialState;
+
+  @override
+  MeshCoreTransportType get activeTransport => MeshCoreTransportType.usb;
 
   @override
   String? get activeUsbPort => fakeActiveUsbPort;
@@ -63,6 +67,11 @@ class _FakeMeshCoreConnector extends MeshCoreConnector {
   @override
   void setUsbRequestPortLabel(String label) {
     requestPortLabel = label;
+  }
+
+  @override
+  void setUsbFallbackDeviceName(String label) {
+    fallbackDeviceName = label;
   }
 }
 
@@ -107,16 +116,23 @@ void main() {
       );
       await tester.pumpAndSettle();
 
-      await tester.tap(find.widgetWithText(FilledButton, 'Connect'));
+      await tester.tap(find.ancestor(
+            of: find.text('Connect'),
+            matching: find.bySubtype<ElevatedButton>(),
+          ));
       await tester.pump();
 
       expect(connector.connectUsbCalls, 0);
-      expect(find.byType(CircularProgressIndicator), findsNothing);
+
+      // UsbScreen.dispose() schedules disconnect work that debounces notify.
+      // Drain that debounce timer before test teardown.
+      await tester.pumpWidget(const SizedBox.shrink());
+      await tester.pump(const Duration(milliseconds: 60));
     },
   );
 
   testWidgets(
-    'UsbScreen keeps raw selection when connector USB display label changes',
+    'UsbScreen sends raw port name when tapping Connect',
     (tester) async {
       final connector = _FakeMeshCoreConnector(
         ports: <String>['COM6 - USB Serial Device (COM6)'],
@@ -127,12 +143,10 @@ void main() {
       );
       await tester.pumpAndSettle();
 
-      connector.fakeActiveUsbPortDisplayLabel =
-          'COM6 - KD3CGK mesh-utility.org';
-      connector.notifyListeners();
-      await tester.pump(const Duration(milliseconds: 60));
-
-      await tester.tap(find.widgetWithText(FilledButton, 'Connect'));
+      await tester.tap(find.ancestor(
+            of: find.text('Connect'),
+            matching: find.bySubtype<ElevatedButton>(),
+          ));
       await tester.pump();
 
       expect(connector.connectUsbCalls, 1);
@@ -163,7 +177,8 @@ void main() {
   });
 
   group('Error Handling', () {
-    testWidgets('shows error message when listing ports fails', (tester) async {
+    testWidgets('shows error SnackBar when listing ports fails',
+        (tester) async {
       final connector = _FakeMeshCoreConnector();
       connector.listUsbPortsImpl = () async {
         throw PlatformException(
@@ -180,7 +195,7 @@ void main() {
       expect(find.text('USB permission was denied.'), findsOneWidget);
     });
 
-    testWidgets('connection failure completes without leaving loading state', (
+    testWidgets('connection failure shows SnackBar error', (
       tester,
     ) async {
       final connector = _FakeMeshCoreConnector(ports: <String>['COM1']);
@@ -195,11 +210,17 @@ void main() {
       );
       await tester.pumpAndSettle();
 
-      await tester.tap(find.widgetWithText(FilledButton, 'Connect'));
+      await tester.tap(find.ancestor(
+            of: find.text('Connect'),
+            matching: find.bySubtype<ElevatedButton>(),
+          ));
       await tester.pumpAndSettle();
 
       expect(connectAttempted, isTrue);
-      expect(find.byType(CircularProgressIndicator), findsNothing);
+      expect(
+        find.text('Another USB connection request is already in progress.'),
+        findsOneWidget,
+      );
     });
   });
 }

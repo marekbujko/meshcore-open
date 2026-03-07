@@ -177,7 +177,24 @@ class AppLocalizationsEs extends AppLocalizations {
 
   @override
   String get usbErrorConnectTimedOut =>
-      'Se ha agotado el tiempo de espera mientras se esperaba la respuesta del dispositivo.';
+      'La conexión ha caducado. Asegúrese de que el dispositivo tenga el firmware USB Companion.';
+
+  @override
+  String get usbFallbackDeviceName => 'Dispositivo de serie web';
+
+  @override
+  String get usbStatus_notConnected => 'Seleccione un dispositivo USB';
+
+  @override
+  String get usbStatus_connecting => 'Conectándose al dispositivo USB...';
+
+  @override
+  String get usbStatus_searching => 'Buscando dispositivos USB...';
+
+  @override
+  String usbConnectionFailed(String error) {
+    return 'Error al conectar mediante USB: $error';
+  }
 
   @override
   String get scanner_scanning => 'Escaneando dispositivos...';

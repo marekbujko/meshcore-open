@@ -31,6 +31,7 @@ String describeWebUsbPort({
   required int? vendorId,
   required int? productId,
   String requestPortLabel = 'Choose USB Device',
+  String fallbackDeviceName = 'Web Serial Device',
   Map<String, String> knownUsbNames = const <String, String>{},
 }) {
   if (vendorId == null && productId == null) {
@@ -43,7 +44,7 @@ String describeWebUsbPort({
       ? knownUsbNames['${vendorHex.toLowerCase()}:${productHex.toLowerCase()}']
       : null;
 
-  final parts = <String>[knownName ?? 'Web Serial Device'];
+  final parts = <String>[knownName ?? fallbackDeviceName];
   if (vendorHex != null) {
     parts.add('VID:$vendorHex');
   }
