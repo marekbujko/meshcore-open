@@ -1155,9 +1155,7 @@ class _RadioSettingsDialogState extends State<_RadioSettingsDialog> {
         _lastNonRepeatSnapshot!,
       );
     } else {
-      _lastNonRepeatSnapshot =
-          _sessionRememberedNonRepeatSnapshot() ??
-          _nonRepeatSnapshotForCurrentSelection();
+      _lastNonRepeatSnapshot = _nonRepeatSnapshotForCurrentSelection();
     }
     WidgetsBinding.instance.addPostFrameCallback((_) {
       if (!mounted) return;
@@ -1461,6 +1459,18 @@ class _RadioSettingsDialogState extends State<_RadioSettingsDialog> {
     }
 
     try {
+      _logRadioSettingsState('Saving radio settings');
+      await widget.connector.sendFrame(
+        buildSetRadioParamsFrame(
+          freqHz,
+          bwHz,
+          sf,
+          cr,
+          clientRepeat: knownRepeat ? _clientRepeat : null,
+        ),
+      );
+      await widget.connector.sendFrame(buildSetRadioTxPowerFrame(txPower));
+      await widget.connector.refreshDeviceInfo();
       final rememberedSnapshot = _clientRepeat
           ? _lastNonRepeatSnapshot
           : _currentSnapshot();
@@ -1478,18 +1488,6 @@ class _RadioSettingsDialogState extends State<_RadioSettingsDialog> {
           ),
         );
       }
-      _logRadioSettingsState('Saving radio settings');
-      await widget.connector.sendFrame(
-        buildSetRadioParamsFrame(
-          freqHz,
-          bwHz,
-          sf,
-          cr,
-          clientRepeat: knownRepeat ? _clientRepeat : null,
-        ),
-      );
-      await widget.connector.sendFrame(buildSetRadioTxPowerFrame(txPower));
-      await widget.connector.refreshDeviceInfo();
 
       if (!mounted) return;
       Navigator.pop(context);
