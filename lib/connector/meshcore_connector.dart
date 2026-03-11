@@ -992,6 +992,21 @@ class MeshCoreConnector extends ChangeNotifier {
     _setState(MeshCoreConnectionState.connecting);
 
     try {
+      Future<void> handleTcpConnectAbort({required String message}) async {
+        _appDebugLogService?.warn(message, tag: 'TCP');
+        final shouldResetState = shouldResetStateAfterTcpConnectAbort(
+          state: _state,
+          activeTransport: _activeTransport,
+        );
+        if (shouldResetState) {
+          await disconnect(manual: false);
+          return;
+        }
+        if (_tcpManager.isConnected) {
+          await _tcpManager.disconnect();
+        }
+      }
+
       await _tcpFrameSubscription?.cancel();
       _tcpFrameSubscription = null;
       await _tcpManager.connect(host: host, port: port);
@@ -1000,13 +1015,10 @@ class MeshCoreConnector extends ChangeNotifier {
           _state != MeshCoreConnectionState.connecting ||
           !_tcpManager.isConnected;
       if (isTcpConnectCancelled) {
-        _appDebugLogService?.warn(
-          'connectTcp aborted before handshake: state=$_state transport=$_activeTransport connected=${_tcpManager.isConnected}',
-          tag: 'TCP',
+        await handleTcpConnectAbort(
+          message:
+              'connectTcp aborted before handshake: state=$_state transport=$_activeTransport connected=${_tcpManager.isConnected}',
         );
-        if (_tcpManager.isConnected) {
-          await _tcpManager.disconnect();
-        }
         return;
       }
       notifyListeners();
@@ -1017,13 +1029,10 @@ class MeshCoreConnector extends ChangeNotifier {
           _state != MeshCoreConnectionState.connecting ||
           !_tcpManager.isConnected;
       if (isTcpConnectCancelledAfterDelay) {
-        _appDebugLogService?.warn(
-          'connectTcp aborted after connect delay: state=$_state transport=$_activeTransport connected=${_tcpManager.isConnected}',
-          tag: 'TCP',
+        await handleTcpConnectAbort(
+          message:
+              'connectTcp aborted after connect delay: state=$_state transport=$_activeTransport connected=${_tcpManager.isConnected}',
         );
-        if (_tcpManager.isConnected) {
-          await _tcpManager.disconnect();
-        }
         return;
       }
       _tcpFrameSubscription = _tcpManager.frameStream.listen(
@@ -1089,6 +1098,15 @@ class MeshCoreConnector extends ChangeNotifier {
         (state == MeshCoreConnectionState.disconnected ||
             state == MeshCoreConnectionState.disconnecting) &&
         (activeTransport != MeshCoreTransportType.tcp || !tcpManagerConnected);
+  }
+
+  @visibleForTesting
+  static bool shouldResetStateAfterTcpConnectAbort({
+    required MeshCoreConnectionState state,
+    required MeshCoreTransportType activeTransport,
+  }) {
+    return state == MeshCoreConnectionState.connecting &&
+        activeTransport == MeshCoreTransportType.tcp;
   }
 
   Future<void> connect(BluetoothDevice device, {String? displayName}) async {

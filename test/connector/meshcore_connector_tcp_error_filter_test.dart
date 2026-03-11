@@ -61,4 +61,33 @@ void main() {
       expect(result, isFalse);
     });
   });
+
+  group('shouldResetStateAfterTcpConnectAbort', () {
+    test('returns true when TCP connect is still in connecting state', () {
+      final result = MeshCoreConnector.shouldResetStateAfterTcpConnectAbort(
+        state: MeshCoreConnectionState.connecting,
+        activeTransport: MeshCoreTransportType.tcp,
+      );
+
+      expect(result, isTrue);
+    });
+
+    test('returns false when state is already disconnected', () {
+      final result = MeshCoreConnector.shouldResetStateAfterTcpConnectAbort(
+        state: MeshCoreConnectionState.disconnected,
+        activeTransport: MeshCoreTransportType.tcp,
+      );
+
+      expect(result, isFalse);
+    });
+
+    test('returns false when transport switched away from TCP', () {
+      final result = MeshCoreConnector.shouldResetStateAfterTcpConnectAbort(
+        state: MeshCoreConnectionState.connecting,
+        activeTransport: MeshCoreTransportType.bluetooth,
+      );
+
+      expect(result, isFalse);
+    });
+  });
 }
