@@ -102,6 +102,22 @@ class RepeaterBatterySnapshot {
   });
 }
 
+class MeshCoreRadioStateSnapshot {
+  final int freqHz;
+  final int bwHz;
+  final int sf;
+  final int cr;
+  final int txPowerDbm;
+
+  const MeshCoreRadioStateSnapshot({
+    required this.freqHz,
+    required this.bwHz,
+    required this.sf,
+    required this.cr,
+    required this.txPowerDbm,
+  });
+}
+
 class MeshCoreConnector extends ChangeNotifier {
   // Message windowing to limit memory usage
   static const int _messageWindowSize = 200;
@@ -167,6 +183,7 @@ class MeshCoreConnector extends ChangeNotifier {
   int? _currentSf;
   int? _currentCr;
   bool? _clientRepeat;
+  MeshCoreRadioStateSnapshot? _rememberedNonRepeatRadioState;
   int? _firmwareVerCode;
   int _pathHashByteWidth = 1;
   CompanionRadioStats? _latestRadioStats;
@@ -366,6 +383,8 @@ class MeshCoreConnector extends ChangeNotifier {
   int? get currentBwHz => _currentBwHz;
   int? get currentSf => _currentSf;
   int? get currentCr => _currentCr;
+  MeshCoreRadioStateSnapshot? get rememberedNonRepeatRadioState =>
+      _rememberedNonRepeatRadioState;
   bool? get autoAddUsers => _autoAddUsers;
   bool? get autoAddRepeaters => _autoAddRepeaters;
   bool? get autoAddRoomServers => _autoAddRoomServers;
@@ -377,6 +396,10 @@ class MeshCoreConnector extends ChangeNotifier {
   int get advertLocationPolicy => _advertLocPolicy;
   int get multiAcks => _multiAcks;
   bool? get clientRepeat => _clientRepeat;
+  void rememberNonRepeatRadioState(MeshCoreRadioStateSnapshot snapshot) {
+    _rememberedNonRepeatRadioState = snapshot;
+  }
+
   int? get firmwareVerCode => _firmwareVerCode;
   Map<String, String>? get currentCustomVars => _currentCustomVars;
   int? get batteryMillivolts => _batteryMillivolts;
@@ -2152,6 +2175,7 @@ class MeshCoreConnector extends ChangeNotifier {
     _selfLatitude = null;
     _selfLongitude = null;
     _clientRepeat = null;
+    _rememberedNonRepeatRadioState = null;
     _firmwareVerCode = null;
     _batteryMillivolts = null;
     _repeaterBatterySnapshots.clear();
