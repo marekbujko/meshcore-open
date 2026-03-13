@@ -118,6 +118,52 @@ class AppLocalizationsFr extends AppLocalizations {
   String get connectionChoiceBluetoothLabel => 'Bluetooth';
 
   @override
+  String get connectionChoiceTcpLabel => 'TCP';
+
+  @override
+  String get tcpScreenTitle => 'Établir une connexion via TCP';
+
+  @override
+  String get tcpHostLabel => 'Adresse IP';
+
+  @override
+  String get tcpHostHint => '192.168.40.10';
+
+  @override
+  String get tcpPortLabel => 'Port';
+
+  @override
+  String get tcpPortHint => '5000';
+
+  @override
+  String get tcpStatus_notConnected =>
+      'Entrez l\'adresse de destination et connectez-vous.';
+
+  @override
+  String tcpStatus_connectingTo(String endpoint) {
+    return 'Connexion à $endpoint...';
+  }
+
+  @override
+  String get tcpErrorHostRequired => 'Une adresse IP est obligatoire.';
+
+  @override
+  String get tcpErrorPortInvalid =>
+      'La taille du port doit être comprise entre 1 et 65535.';
+
+  @override
+  String get tcpErrorUnsupported =>
+      'Le protocole TCP n\'est pas pris en charge sur cette plateforme.';
+
+  @override
+  String get tcpErrorTimedOut => 'La connexion TCP a expiré.';
+
+  @override
+  String tcpConnectionFailed(String error) {
+    return 'Échec de la connexion TCP : $error';
+  }
+
+  @override
   String get usbScreenTitle => 'Connectez via USB';
 
   @override

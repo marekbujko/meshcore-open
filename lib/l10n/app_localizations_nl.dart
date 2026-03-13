@@ -118,6 +118,51 @@ class AppLocalizationsNl extends AppLocalizations {
   String get connectionChoiceBluetoothLabel => 'Bluetooth';
 
   @override
+  String get connectionChoiceTcpLabel => 'TCP';
+
+  @override
+  String get tcpScreenTitle => 'Verbind via TCP';
+
+  @override
+  String get tcpHostLabel => 'IP-adres';
+
+  @override
+  String get tcpHostHint => '192.168.40.10';
+
+  @override
+  String get tcpPortLabel => 'Poort';
+
+  @override
+  String get tcpPortHint => '5000';
+
+  @override
+  String get tcpStatus_notConnected => 'Voer het eindpunt in en verbind';
+
+  @override
+  String tcpStatus_connectingTo(String endpoint) {
+    return 'Verbinding maken met $endpoint...';
+  }
+
+  @override
+  String get tcpErrorHostRequired => 'Een IP-adres is vereist.';
+
+  @override
+  String get tcpErrorPortInvalid =>
+      'De poortwaarde moet tussen 1 en 65535 liggen.';
+
+  @override
+  String get tcpErrorUnsupported =>
+      'TCP-transport wordt niet ondersteund op deze platform.';
+
+  @override
+  String get tcpErrorTimedOut => 'De TCP-verbinding is verlopen.';
+
+  @override
+  String tcpConnectionFailed(String error) {
+    return 'Verbinding met TCP mislukt: $error';
+  }
+
+  @override
   String get usbScreenTitle => 'Verbind via USB';
 
   @override

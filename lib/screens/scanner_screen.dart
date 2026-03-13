@@ -10,6 +10,7 @@ import '../utils/app_logger.dart';
 import '../widgets/adaptive_app_bar_title.dart';
 import '../widgets/device_tile.dart';
 import 'contacts_screen.dart';
+import 'tcp_screen.dart';
 import 'usb_screen.dart';
 
 /// Screen for scanning and connecting to MeshCore devices
@@ -125,61 +126,78 @@ class _ScannerScreenState extends State<ScannerScreen> {
               connector.state == MeshCoreConnectionState.scanning;
           final isBluetoothOff = _bluetoothState == BluetoothAdapterState.off;
           final usbSupported = PlatformInfo.supportsUsbSerial;
+          final tcpSupported = !PlatformInfo.isWeb;
 
           return SafeArea(
             top: false,
             minimum: const EdgeInsets.fromLTRB(16, 8, 16, 16),
-            child: Row(
-              mainAxisAlignment: MainAxisAlignment.end,
-              children: [
-                if (usbSupported)
+            child: FittedBox(
+              fit: BoxFit.scaleDown,
+              alignment: Alignment.centerRight,
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.end,
+                children: [
+                  if (usbSupported)
+                    FloatingActionButton.extended(
+                      onPressed: () {
+                        appLogger.info(
+                          'USB selected, opening UsbScreen',
+                          tag: 'ScannerScreen',
+                        );
+                        Navigator.of(context).push(
+                          MaterialPageRoute(builder: (_) => const UsbScreen()),
+                        );
+                      },
+                      heroTag: 'scanner_usb_action',
+                      icon: const Icon(Icons.usb),
+                      label: Text(context.l10n.connectionChoiceUsbLabel),
+                    ),
+                  if (usbSupported) const SizedBox(width: 12),
+                  if (tcpSupported)
+                    FloatingActionButton.extended(
+                      onPressed: () {
+                        Navigator.of(context).push(
+                          MaterialPageRoute(builder: (_) => const TcpScreen()),
+                        );
+                      },
+                      heroTag: 'scanner_tcp_action',
+                      icon: const Icon(Icons.lan),
+                      label: Text(context.l10n.connectionChoiceTcpLabel),
+                    ),
+                  if (tcpSupported) const SizedBox(width: 12),
                   FloatingActionButton.extended(
-                    onPressed: () {
-                      appLogger.info(
-                        'USB selected, opening UsbScreen',
-                        tag: 'ScannerScreen',
-                      );
-                      Navigator.of(context).push(
-                        MaterialPageRoute(builder: (_) => const UsbScreen()),
-                      );
-                    },
-                    heroTag: 'scanner_usb_action',
-                    icon: const Icon(Icons.usb),
-                    label: Text(context.l10n.connectionChoiceUsbLabel),
+                    heroTag: 'scanner_ble_action',
+                    onPressed: isBluetoothOff
+                        ? null
+                        : () {
+                            if (isScanning) {
+                              connector.stopScan();
+                            } else {
+                              unawaited(
+                                connector.startScan().catchError((e) {
+                                  appLogger.warn(
+                                    'startScan error: $e',
+                                    tag: 'ScannerScreen',
+                                  );
+                                }),
+                              );
+                            }
+                          },
+                    icon: isScanning
+                        ? const SizedBox(
+                            width: 20,
+                            height: 20,
+                            child: CircularProgressIndicator(strokeWidth: 2),
+                          )
+                        : const Icon(Icons.bluetooth_searching),
+                    label: Text(
+                      isScanning
+                          ? context.l10n.scanner_stop
+                          : context.l10n.scanner_scan,
+                    ),
                   ),
-                if (usbSupported) const SizedBox(width: 12),
-                FloatingActionButton.extended(
-                  heroTag: 'scanner_ble_action',
-                  onPressed: isBluetoothOff
-                      ? null
-                      : () {
-                          if (isScanning) {
-                            connector.stopScan();
-                          } else {
-                            unawaited(
-                              connector.startScan().catchError((e) {
-                                appLogger.warn(
-                                  'startScan error: $e',
-                                  tag: 'ScannerScreen',
-                                );
-                              }),
-                            );
-                          }
-                        },
-                  icon: isScanning
-                      ? const SizedBox(
-                          width: 20,
-                          height: 20,
-                          child: CircularProgressIndicator(strokeWidth: 2),
-                        )
-                      : const Icon(Icons.bluetooth_searching),
-                  label: Text(
-                    isScanning
-                        ? context.l10n.scanner_stop
-                        : context.l10n.scanner_scan,
-                  ),
-                ),
-              ],
+                ],
+              ),
             ),
           );
         },

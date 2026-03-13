@@ -118,6 +118,50 @@ class AppLocalizationsSv extends AppLocalizations {
   String get connectionChoiceBluetoothLabel => 'Bluetooth';
 
   @override
+  String get connectionChoiceTcpLabel => 'TCP';
+
+  @override
+  String get tcpScreenTitle => 'Anslut via TCP';
+
+  @override
+  String get tcpHostLabel => 'IP-adress';
+
+  @override
+  String get tcpHostHint => '192.168.40.10';
+
+  @override
+  String get tcpPortLabel => 'Port';
+
+  @override
+  String get tcpPortHint => '5000';
+
+  @override
+  String get tcpStatus_notConnected => 'Ange slutpunkt och anslut';
+
+  @override
+  String tcpStatus_connectingTo(String endpoint) {
+    return 'Anslutning till $endpoint...';
+  }
+
+  @override
+  String get tcpErrorHostRequired => 'IP-adress krävs.';
+
+  @override
+  String get tcpErrorPortInvalid => 'Porten måste vara mellan 1 och 65535.';
+
+  @override
+  String get tcpErrorUnsupported =>
+      'TCP-transport fungerar inte på denna plattform.';
+
+  @override
+  String get tcpErrorTimedOut => 'TCP-anslutningen har tidsut gått.';
+
+  @override
+  String tcpConnectionFailed(String error) {
+    return 'Fel vid TCP-anslutning: $error';
+  }
+
+  @override
   String get usbScreenTitle => 'Anslut via USB';
 
   @override

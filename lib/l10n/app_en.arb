@@ -49,6 +49,33 @@
   "scanner_title": "MeshCore Open",
   "connectionChoiceUsbLabel": "USB",
   "connectionChoiceBluetoothLabel": "Bluetooth",
+  "connectionChoiceTcpLabel": "TCP",
+  "tcpScreenTitle": "Connect over TCP",
+  "tcpHostLabel": "IP Address",
+  "tcpHostHint": "192.168.40.10",
+  "tcpPortLabel": "Port",
+  "tcpPortHint": "5000",
+  "tcpStatus_notConnected": "Enter endpoint and connect",
+  "tcpStatus_connectingTo": "Connecting to {endpoint}...",
+  "@tcpStatus_connectingTo": {
+    "placeholders": {
+      "endpoint": {
+        "type": "String"
+      }
+    }
+  },
+  "tcpErrorHostRequired": "IP address is required.",
+  "tcpErrorPortInvalid": "Port must be between 1 and 65535.",
+  "tcpErrorUnsupported": "TCP transport is not supported on this platform.",
+  "tcpErrorTimedOut": "TCP connection timed out.",
+  "tcpConnectionFailed": "TCP connection failed: {error}",
+  "@tcpConnectionFailed": {
+    "placeholders": {
+      "error": {
+        "type": "String"
+      }
+    }
+  },
   "usbScreenTitle": "Connect over USB",
   "usbScreenSubtitle": "Choose a detected serial device and connect directly to your MeshCore node.",
   "usbScreenStatus": "Select a USB device",

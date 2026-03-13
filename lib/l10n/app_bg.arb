@@ -1860,5 +1860,32 @@
   "usbStatus_notConnected": "Изберете USB устройство",
   "usbStatus_searching": "Търсене на USB устройства...",
   "usbErrorConnectTimedOut": "Връзката прекъсна. Уверете се, че устройството има софтуер за USB връзка.",
+  "@tcpStatus_connectingTo": {
+    "placeholders": {
+      "endpoint": {
+        "type": "String"
+      }
+    }
+  },
+  "@tcpConnectionFailed": {
+    "placeholders": {
+      "error": {
+        "type": "String"
+      }
+    }
+  },
+  "tcpHostHint": "192.168.40.10",
+  "tcpScreenTitle": "Свържете се чрез TCP",
+  "connectionChoiceTcpLabel": "TCP",
+  "tcpHostLabel": "IP адрес",
+  "tcpPortLabel": "Пристанище",
+  "tcpPortHint": "5000",
+  "tcpStatus_notConnected": "Въведете крайната точка и свържете се.",
+  "tcpStatus_connectingTo": "Свързване към {endpoint}...",
+  "tcpErrorHostRequired": "Необходим е IP адрес.",
+  "tcpErrorPortInvalid": "Портът трябва да бъде между 1 и 65535.",
+  "tcpErrorUnsupported": "Транспортът чрез TCP не се поддържа на тази платформа.",
+  "tcpErrorTimedOut": "Връзката TCP изтекла.",
+  "tcpConnectionFailed": "Неуспешно е установено TCP връзката: {error}",
   "map_showDiscoveryContacts": "Покажи контакти за откриване"
 }

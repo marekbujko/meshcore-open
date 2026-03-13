@@ -1888,5 +1888,32 @@
   "usbStatus_notConnected": "Seleccione un dispositivo USB",
   "usbConnectionFailed": "Error al conectar mediante USB: {error}",
   "usbErrorConnectTimedOut": "La conexión ha caducado. Asegúrese de que el dispositivo tenga el firmware USB Companion.",
+  "@tcpStatus_connectingTo": {
+    "placeholders": {
+      "endpoint": {
+        "type": "String"
+      }
+    }
+  },
+  "@tcpConnectionFailed": {
+    "placeholders": {
+      "error": {
+        "type": "String"
+      }
+    }
+  },
+  "tcpScreenTitle": "Establecer conexión a través de TCP",
+  "connectionChoiceTcpLabel": "TCP",
+  "tcpHostHint": "192.168.40.10",
+  "tcpHostLabel": "Dirección IP",
+  "tcpPortLabel": "Puerto",
+  "tcpPortHint": "5000",
+  "tcpStatus_notConnected": "Ingrese la dirección final y conecte.",
+  "tcpStatus_connectingTo": "Conectándose a {endpoint}...",
+  "tcpErrorHostRequired": "Se requiere la dirección IP.",
+  "tcpErrorPortInvalid": "El puerto debe estar entre 1 y 65535.",
+  "tcpErrorUnsupported": "El protocolo de transporte TCP no está soportado en esta plataforma.",
+  "tcpErrorTimedOut": "La conexión TCP ha caducado.",
+  "tcpConnectionFailed": "Error en la conexión TCP: {error}",
   "map_showDiscoveryContacts": "Mostrar Contactos de Descubrimiento"
 }

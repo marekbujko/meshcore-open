@@ -1860,5 +1860,32 @@
   "usbConnectionFailed": "Falha na conexão USB: {error}",
   "usbStatus_connecting": "Conectando ao dispositivo USB...",
   "usbErrorConnectTimedOut": "A conexão expirou. Verifique se o dispositivo possui o firmware USB Companion.",
+  "@tcpStatus_connectingTo": {
+    "placeholders": {
+      "endpoint": {
+        "type": "String"
+      }
+    }
+  },
+  "@tcpConnectionFailed": {
+    "placeholders": {
+      "error": {
+        "type": "String"
+      }
+    }
+  },
+  "tcpHostLabel": "Endereço IP",
+  "connectionChoiceTcpLabel": "TCP",
+  "tcpScreenTitle": "Estabelecer conexão via TCP",
+  "tcpHostHint": "192.168.40.10",
+  "tcpPortLabel": "Porta",
+  "tcpPortHint": "5000",
+  "tcpStatus_notConnected": "Insira o endereço final e conecte-se.",
+  "tcpStatus_connectingTo": "Conectando a {endpoint}...",
+  "tcpErrorHostRequired": "É necessário fornecer um endereço IP.",
+  "tcpErrorPortInvalid": "O valor do porto deve estar entre 1 e 65535.",
+  "tcpErrorUnsupported": "O protocolo TCP não é suportado nesta plataforma.",
+  "tcpErrorTimedOut": "A conexão TCP expirou.",
+  "tcpConnectionFailed": "Falha na conexão TCP: {error}",
   "map_showDiscoveryContacts": "Mostrar Contatos de Descoberta"
 }

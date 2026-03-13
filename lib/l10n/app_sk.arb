@@ -1860,5 +1860,32 @@
   "usbStatus_notConnected": "Vyberte USB zariadenie",
   "usbStatus_connecting": "Pripojenie k USB zariadeniu...",
   "usbErrorConnectTimedOut": "Pripojenie nebolo úspešné. Uistite sa, že zariadenie má nainštalovaný firmware USB Companion.",
+  "@tcpStatus_connectingTo": {
+    "placeholders": {
+      "endpoint": {
+        "type": "String"
+      }
+    }
+  },
+  "@tcpConnectionFailed": {
+    "placeholders": {
+      "error": {
+        "type": "String"
+      }
+    }
+  },
+  "tcpHostHint": "192.168.40.10",
+  "tcpHostLabel": "IP adresa",
+  "tcpScreenTitle": "Spojte sa pomocou protokolu TCP",
+  "connectionChoiceTcpLabel": "TCP",
+  "tcpPortLabel": "Port",
+  "tcpPortHint": "5000",
+  "tcpStatus_notConnected": "Zadajte cieľovú adresu a pripojte sa.",
+  "tcpStatus_connectingTo": "Pripojenie k {endpoint}...",
+  "tcpErrorHostRequired": "Je potrebné zadať IP adresu.",
+  "tcpErrorPortInvalid": "Číslo portu musí byť medzi 1 a 65535.",
+  "tcpErrorUnsupported": "Prevoz prostredníctvom protokolu TCP nie je na tejto platforme podporovaný.",
+  "tcpErrorTimedOut": "Pripojenie TCP vypršalo.",
+  "tcpConnectionFailed": "Neúspešné vytvorenie TCP spojenia: {error}",
   "map_showDiscoveryContacts": "Zobraziť kontakty objavov"
 }

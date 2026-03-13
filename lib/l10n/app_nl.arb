@@ -1860,5 +1860,32 @@
   "usbStatus_connecting": "Verbinding maken met USB-apparaat...",
   "usbStatus_searching": "Zoeken naar USB-apparaten...",
   "usbErrorConnectTimedOut": "Verbinding is verbroken. Zorg ervoor dat het apparaat de juiste USB-firmware heeft.",
+  "@tcpStatus_connectingTo": {
+    "placeholders": {
+      "endpoint": {
+        "type": "String"
+      }
+    }
+  },
+  "@tcpConnectionFailed": {
+    "placeholders": {
+      "error": {
+        "type": "String"
+      }
+    }
+  },
+  "tcpScreenTitle": "Verbind via TCP",
+  "tcpHostLabel": "IP-adres",
+  "tcpHostHint": "192.168.40.10",
+  "connectionChoiceTcpLabel": "TCP",
+  "tcpPortLabel": "Poort",
+  "tcpPortHint": "5000",
+  "tcpStatus_notConnected": "Voer het eindpunt in en verbind",
+  "tcpStatus_connectingTo": "Verbinding maken met {endpoint}...",
+  "tcpErrorHostRequired": "Een IP-adres is vereist.",
+  "tcpErrorPortInvalid": "De poortwaarde moet tussen 1 en 65535 liggen.",
+  "tcpErrorUnsupported": "TCP-transport wordt niet ondersteund op deze platform.",
+  "tcpErrorTimedOut": "De TCP-verbinding is verlopen.",
+  "tcpConnectionFailed": "Verbinding met TCP mislukt: {error}",
   "map_showDiscoveryContacts": "Ontdek contacten weergeven"
 }

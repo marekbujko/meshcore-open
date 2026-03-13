@@ -21,6 +21,7 @@ import '../services/app_settings_service.dart';
 import '../services/background_service.dart';
 import '../services/notification_service.dart';
 import 'meshcore_connector_usb.dart';
+import 'meshcore_connector_tcp.dart';
 import '../storage/channel_message_store.dart';
 import '../storage/channel_order_store.dart';
 import '../storage/channel_settings_store.dart';
@@ -85,7 +86,7 @@ enum MeshCoreConnectionState {
   disconnecting,
 }
 
-enum MeshCoreTransportType { bluetooth, usb }
+enum MeshCoreTransportType { bluetooth, usb, tcp }
 
 class RepeaterBatterySnapshot {
   final int millivolts;
@@ -115,6 +116,7 @@ class MeshCoreConnector extends ChangeNotifier {
   bool _manualDisconnect = false;
   final MeshCoreUsbManager _usbManager = MeshCoreUsbManager();
   StreamSubscription<Uint8List>? _usbFrameSubscription;
+  final MeshCoreTcpConnector _tcpConnector = MeshCoreTcpConnector();
   MeshCoreTransportType _activeTransport = MeshCoreTransportType.bluetooth;
 
   final List<ScanResult> _scanResults = [];
@@ -254,6 +256,10 @@ class MeshCoreConnector extends ChangeNotifier {
   bool get isUsbTransportConnected =>
       _state == MeshCoreConnectionState.connected &&
       _activeTransport == MeshCoreTransportType.usb;
+  String? get activeTcpEndpoint => _tcpConnector.activeEndpoint;
+  bool get isTcpTransportConnected =>
+      _state == MeshCoreConnectionState.connected &&
+      _activeTransport == MeshCoreTransportType.tcp;
 
   String get deviceDisplayName {
     if (_selfName != null && _selfName!.isNotEmpty) {
@@ -659,6 +665,7 @@ class MeshCoreConnector extends ChangeNotifier {
     _appDebugLogService = appDebugLogService;
     _backgroundService = backgroundService;
     _usbManager.setDebugLogService(_appDebugLogService);
+    _tcpConnector.setDebugLogService(_appDebugLogService);
 
     // Initialize notification service
     _notificationService.initialize();
@@ -964,6 +971,142 @@ class MeshCoreConnector extends ChangeNotifier {
     }
   }
 
+  Future<void> connectTcp({required String host, required int port}) async {
+    if (_state == MeshCoreConnectionState.connecting ||
+        _state == MeshCoreConnectionState.connected) {
+      _appDebugLogService?.warn(
+        'connectTcp ignored: already $_state',
+        tag: 'TCP',
+      );
+      return;
+    }
+
+    _appDebugLogService?.info('connectTcp: endpoint=$host:$port', tag: 'TCP');
+
+    await stopScan();
+    _cancelReconnectTimer();
+    _manualDisconnect = false;
+    _resetConnectionHandshakeState();
+    _activeTransport = MeshCoreTransportType.tcp;
+    _setState(MeshCoreConnectionState.connecting);
+
+    try {
+      Future<void> handleTcpConnectAbort({required String message}) async {
+        _appDebugLogService?.warn(message, tag: 'TCP');
+        final shouldResetState = shouldResetStateAfterTcpConnectAbort(
+          state: _state,
+          activeTransport: _activeTransport,
+        );
+        if (shouldResetState) {
+          await disconnect(manual: false);
+          return;
+        }
+        if (_tcpConnector.isConnected) {
+          await _tcpConnector.disconnect();
+        }
+      }
+
+      await _tcpConnector.cancelFrameSubscription();
+      await _tcpConnector.connect(host: host, port: port);
+      final isTcpConnectCancelled =
+          _activeTransport != MeshCoreTransportType.tcp ||
+          _state != MeshCoreConnectionState.connecting ||
+          !_tcpConnector.isConnected;
+      if (isTcpConnectCancelled) {
+        await handleTcpConnectAbort(
+          message:
+              'connectTcp aborted before handshake: state=$_state transport=$_activeTransport connected=${_tcpConnector.isConnected}',
+        );
+        return;
+      }
+      notifyListeners();
+
+      await Future<void>.delayed(const Duration(milliseconds: 200));
+      final isTcpConnectCancelledAfterDelay =
+          _activeTransport != MeshCoreTransportType.tcp ||
+          _state != MeshCoreConnectionState.connecting ||
+          !_tcpConnector.isConnected;
+      if (isTcpConnectCancelledAfterDelay) {
+        await handleTcpConnectAbort(
+          message:
+              'connectTcp aborted after connect delay: state=$_state transport=$_activeTransport connected=${_tcpConnector.isConnected}',
+        );
+        return;
+      }
+      _tcpConnector.listenFrames(
+        onFrame: _handleFrame,
+        onError: (error, stackTrace) {
+          _appDebugLogService?.error('TCP transport error: $error', tag: 'TCP');
+          unawaited(disconnect(manual: false));
+        },
+        onDone: () {
+          _appDebugLogService?.warn('TCP frame stream ended', tag: 'TCP');
+          unawaited(disconnect(manual: false));
+        },
+      );
+
+      _setState(MeshCoreConnectionState.connected);
+      _pendingInitialChannelSync = true;
+      await _requestDeviceInfo();
+      _startBatteryPolling();
+
+      var gotSelfInfo = await _waitForSelfInfo(
+        timeout: const Duration(seconds: 3),
+      );
+      if (!gotSelfInfo) {
+        await refreshDeviceInfo();
+        gotSelfInfo = await _waitForSelfInfo(
+          timeout: const Duration(seconds: 3),
+        );
+      }
+      if (!gotSelfInfo) {
+        throw StateError('Timed out waiting for SELF_INFO during TCP connect');
+      }
+
+      await syncTime();
+    } catch (error) {
+      _appDebugLogService?.error('TCP connection error: $error', tag: 'TCP');
+      final tcpConnectCancelledBeforeHandshake =
+          shouldIgnoreLateTcpConnectError(
+            manualDisconnect: _manualDisconnect,
+            state: _state,
+            activeTransport: _activeTransport,
+            tcpManagerConnected: _tcpConnector.isConnected,
+          );
+      if (tcpConnectCancelledBeforeHandshake) {
+        _appDebugLogService?.info(
+          'Ignoring late TCP connect error after cancellation/switch: state=$_state transport=$_activeTransport',
+          tag: 'TCP',
+        );
+        return;
+      }
+      await disconnect(manual: false);
+      rethrow;
+    }
+  }
+
+  @visibleForTesting
+  static bool shouldIgnoreLateTcpConnectError({
+    required bool manualDisconnect,
+    required MeshCoreConnectionState state,
+    required MeshCoreTransportType activeTransport,
+    required bool tcpManagerConnected,
+  }) {
+    return manualDisconnect &&
+        (state == MeshCoreConnectionState.disconnected ||
+            state == MeshCoreConnectionState.disconnecting) &&
+        (activeTransport != MeshCoreTransportType.tcp || !tcpManagerConnected);
+  }
+
+  @visibleForTesting
+  static bool shouldResetStateAfterTcpConnectAbort({
+    required MeshCoreConnectionState state,
+    required MeshCoreTransportType activeTransport,
+  }) {
+    return state == MeshCoreConnectionState.connecting &&
+        activeTransport == MeshCoreTransportType.tcp;
+  }
+
   Future<void> connect(BluetoothDevice device, {String? displayName}) async {
     if (_state == MeshCoreConnectionState.connecting ||
         _state == MeshCoreConnectionState.connected) {
@@ -1229,6 +1372,7 @@ class MeshCoreConnector extends ChangeNotifier {
 
   bool get _shouldGateInitialChannelSync =>
       _activeTransport == MeshCoreTransportType.usb ||
+      _activeTransport == MeshCoreTransportType.tcp ||
       (_activeTransport == MeshCoreTransportType.bluetooth &&
           PlatformInfo.isWeb);
 
@@ -1275,9 +1419,11 @@ class MeshCoreConnector extends ChangeNotifier {
   Future<void> disconnect({bool manual = true}) async {
     if (_state == MeshCoreConnectionState.disconnecting) return;
     final transportAtDisconnect = _activeTransport;
-    final transportLabel = transportAtDisconnect == MeshCoreTransportType.usb
-        ? 'USB'
-        : 'BLE';
+    final transportLabel = switch (transportAtDisconnect) {
+      MeshCoreTransportType.bluetooth => 'BLE',
+      MeshCoreTransportType.usb => 'USB',
+      MeshCoreTransportType.tcp => 'TCP',
+    };
 
     _appDebugLogService?.info(
       'Starting disconnect transport=$transportLabel manual=$manual',
@@ -1297,6 +1443,7 @@ class MeshCoreConnector extends ChangeNotifier {
     await _usbFrameSubscription?.cancel();
     _usbFrameSubscription = null;
     await _usbManager.disconnect();
+    await _tcpConnector.disconnect();
 
     await _notifySubscription?.cancel();
     _notifySubscription = null;
@@ -1378,6 +1525,8 @@ class MeshCoreConnector extends ChangeNotifier {
 
     if (_activeTransport == MeshCoreTransportType.usb) {
       await _usbManager.write(data);
+    } else if (_activeTransport == MeshCoreTransportType.tcp) {
+      await _tcpConnector.write(data);
     } else {
       if (_rxCharacteristic == null) {
         throw Exception("MeshCore RX characteristic not available");
@@ -2370,7 +2519,8 @@ class MeshCoreConnector extends ChangeNotifier {
         }
         if (_pendingDeferredChannelSyncAfterContacts &&
             (_activeTransport == MeshCoreTransportType.bluetooth ||
-                _activeTransport == MeshCoreTransportType.usb)) {
+                _activeTransport == MeshCoreTransportType.usb ||
+                _activeTransport == MeshCoreTransportType.tcp)) {
           _pendingDeferredChannelSyncAfterContacts = false;
           _pendingInitialChannelSync = false;
           unawaited(getChannels());
@@ -2559,14 +2709,16 @@ class MeshCoreConnector extends ChangeNotifier {
     if (PlatformInfo.isWeb &&
         _activeTransport == MeshCoreTransportType.bluetooth) {
       _pendingInitialContactsSync = true;
-    } else if (_activeTransport == MeshCoreTransportType.usb) {
+    } else if (_activeTransport == MeshCoreTransportType.usb ||
+        _activeTransport == MeshCoreTransportType.tcp) {
       _pendingDeferredChannelSyncAfterContacts = true;
       getContacts();
     } else {
       getContacts();
     }
     if (_shouldGateInitialChannelSync &&
-        _activeTransport != MeshCoreTransportType.usb) {
+        _activeTransport != MeshCoreTransportType.usb &&
+        _activeTransport != MeshCoreTransportType.tcp) {
       _maybeStartInitialChannelSync();
     }
   }
@@ -4334,6 +4486,7 @@ class MeshCoreConnector extends ChangeNotifier {
     _batteryPollTimer?.cancel();
     _receivedFramesController.close();
     _usbManager.dispose();
+    _tcpConnector.dispose();
 
     // Flush pending unread writes before disposal
     _unreadStore.flush();

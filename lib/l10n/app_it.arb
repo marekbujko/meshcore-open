@@ -1860,5 +1860,32 @@
   "usbStatus_notConnected": "Seleziona un dispositivo USB",
   "usbStatus_connecting": "Connessione al dispositivo USB...",
   "usbErrorConnectTimedOut": "La connessione è scaduta. Assicurarsi che il dispositivo abbia il firmware USB Companion.",
+  "@tcpStatus_connectingTo": {
+    "placeholders": {
+      "endpoint": {
+        "type": "String"
+      }
+    }
+  },
+  "@tcpConnectionFailed": {
+    "placeholders": {
+      "error": {
+        "type": "String"
+      }
+    }
+  },
+  "tcpHostLabel": "Indirizzo IP",
+  "tcpHostHint": "192.168.40.10",
+  "connectionChoiceTcpLabel": "TCP",
+  "tcpScreenTitle": "Stabilire una connessione tramite TCP",
+  "tcpPortLabel": "Porta",
+  "tcpPortHint": "5000",
+  "tcpStatus_notConnected": "Inserisci l'endpoint e connettiti.",
+  "tcpStatus_connectingTo": "Connessione a {endpoint}...",
+  "tcpErrorHostRequired": "È necessario fornire un indirizzo IP.",
+  "tcpErrorPortInvalid": "La dimensione della porta deve essere compresa tra 1 e 65535.",
+  "tcpErrorUnsupported": "Il protocollo TCP non è supportato su questa piattaforma.",
+  "tcpErrorTimedOut": "La connessione TCP è scaduta.",
+  "tcpConnectionFailed": "Impossibile stabilire la connessione TCP: {error}",
   "map_showDiscoveryContacts": "Mostra Contatti di Discovery"
 }

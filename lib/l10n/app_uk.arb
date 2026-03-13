@@ -1860,5 +1860,32 @@
   "usbConnectionFailed": "Не вдалося встановити з'єднання через USB: {error}",
   "usbStatus_connecting": "Підключення до USB-пристрою...",
   "usbErrorConnectTimedOut": "З'єднання не вдалося встановити. Переконайтеся, що пристрій має встановлене програмне забезпечення USB Companion.",
+  "@tcpStatus_connectingTo": {
+    "placeholders": {
+      "endpoint": {
+        "type": "String"
+      }
+    }
+  },
+  "@tcpConnectionFailed": {
+    "placeholders": {
+      "error": {
+        "type": "String"
+      }
+    }
+  },
+  "connectionChoiceTcpLabel": "TCP",
+  "tcpHostHint": "192.168.40.10",
+  "tcpHostLabel": "IP-адреса",
+  "tcpScreenTitle": "З'єднатися через протокол TCP",
+  "tcpPortLabel": "Порт",
+  "tcpPortHint": "5000",
+  "tcpStatus_notConnected": "Введіть кінцеву точку та підключіться",
+  "tcpStatus_connectingTo": "Підключення до {endpoint}...",
+  "tcpErrorHostRequired": "Необхідно вказати IP-адресу.",
+  "tcpErrorPortInvalid": "Порт повинен бути в межах від 1 до 65535.",
+  "tcpErrorUnsupported": "Транспорт TCP не підтримується на цій платформі.",
+  "tcpErrorTimedOut": "З'єднання TCP завершилося через закінчення часу очікування.",
+  "tcpConnectionFailed": "Не вдалося встановити з'єднання TCP: {error}",
   "map_showDiscoveryContacts": "Показати контакти Відкриття"
 }

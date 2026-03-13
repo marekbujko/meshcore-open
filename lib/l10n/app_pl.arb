@@ -1860,5 +1860,32 @@
   "usbStatus_notConnected": "Wybierz urządzenie USB",
   "usbConnectionFailed": "Błąd połączenia USB: {error}",
   "usbErrorConnectTimedOut": "Połączenie nie zostało nawiązane. Upewnij się, że urządzenie posiada oprogramowanie \"USB Companion\".",
+  "@tcpStatus_connectingTo": {
+    "placeholders": {
+      "endpoint": {
+        "type": "String"
+      }
+    }
+  },
+  "@tcpConnectionFailed": {
+    "placeholders": {
+      "error": {
+        "type": "String"
+      }
+    }
+  },
+  "connectionChoiceTcpLabel": "TCP",
+  "tcpHostHint": "192.168.40.10",
+  "tcpScreenTitle": "Połącz się za pomocą protokołu TCP",
+  "tcpHostLabel": "Adres IP",
+  "tcpPortLabel": "Port",
+  "tcpPortHint": "5000",
+  "tcpStatus_notConnected": "Wprowadź adres URL i połącz",
+  "tcpStatus_connectingTo": "Połączenie z {endpoint}...",
+  "tcpErrorHostRequired": "Wymagana jest adresa IP.",
+  "tcpErrorPortInvalid": "Numer portu musi mieścić się w zakresie od 1 do 65535.",
+  "tcpErrorUnsupported": "Transport protokoł TCP nie jest obsługiwany na tym urządzeniu.",
+  "tcpErrorTimedOut": "Połączenie TCP zakończyło się bez powodzenia.",
+  "tcpConnectionFailed": "Błąd połączenia TCP: {error}",
   "map_showDiscoveryContacts": "Pokaż kontakty odkrywania"
 }

@@ -118,6 +118,49 @@ class AppLocalizationsZh extends AppLocalizations {
   String get connectionChoiceBluetoothLabel => '蓝牙';
 
   @override
+  String get connectionChoiceTcpLabel => 'TCP';
+
+  @override
+  String get tcpScreenTitle => '通过 TCP 连接';
+
+  @override
+  String get tcpHostLabel => 'IP地址';
+
+  @override
+  String get tcpHostHint => '192.168.40.10';
+
+  @override
+  String get tcpPortLabel => '端口';
+
+  @override
+  String get tcpPortHint => '5000';
+
+  @override
+  String get tcpStatus_notConnected => '输入目标地址，然后连接';
+
+  @override
+  String tcpStatus_connectingTo(String endpoint) {
+    return '连接到 $endpoint...';
+  }
+
+  @override
+  String get tcpErrorHostRequired => '需要提供IP地址。';
+
+  @override
+  String get tcpErrorPortInvalid => '端口号必须在 1 到 65535 之间。';
+
+  @override
+  String get tcpErrorUnsupported => '此平台不支持 TCP 传输。';
+
+  @override
+  String get tcpErrorTimedOut => 'TCP 连接超时。';
+
+  @override
+  String tcpConnectionFailed(String error) {
+    return 'TCP 连接失败：$error';
+  }
+
+  @override
   String get usbScreenTitle => '通过USB连接';
 
   @override

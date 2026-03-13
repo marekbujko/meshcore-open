@@ -118,6 +118,52 @@ class AppLocalizationsPl extends AppLocalizations {
   String get connectionChoiceBluetoothLabel => 'Bluetooth';
 
   @override
+  String get connectionChoiceTcpLabel => 'TCP';
+
+  @override
+  String get tcpScreenTitle => 'Połącz się za pomocą protokołu TCP';
+
+  @override
+  String get tcpHostLabel => 'Adres IP';
+
+  @override
+  String get tcpHostHint => '192.168.40.10';
+
+  @override
+  String get tcpPortLabel => 'Port';
+
+  @override
+  String get tcpPortHint => '5000';
+
+  @override
+  String get tcpStatus_notConnected => 'Wprowadź adres URL i połącz';
+
+  @override
+  String tcpStatus_connectingTo(String endpoint) {
+    return 'Połączenie z $endpoint...';
+  }
+
+  @override
+  String get tcpErrorHostRequired => 'Wymagana jest adresa IP.';
+
+  @override
+  String get tcpErrorPortInvalid =>
+      'Numer portu musi mieścić się w zakresie od 1 do 65535.';
+
+  @override
+  String get tcpErrorUnsupported =>
+      'Transport protokoł TCP nie jest obsługiwany na tym urządzeniu.';
+
+  @override
+  String get tcpErrorTimedOut =>
+      'Połączenie TCP zakończyło się bez powodzenia.';
+
+  @override
+  String tcpConnectionFailed(String error) {
+    return 'Błąd połączenia TCP: $error';
+  }
+
+  @override
   String get usbScreenTitle => 'Połącz przez USB';
 
   @override

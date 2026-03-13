@@ -334,6 +334,84 @@ abstract class AppLocalizations {
   /// **'Bluetooth'**
   String get connectionChoiceBluetoothLabel;
 
+  /// No description provided for @connectionChoiceTcpLabel.
+  ///
+  /// In en, this message translates to:
+  /// **'TCP'**
+  String get connectionChoiceTcpLabel;
+
+  /// No description provided for @tcpScreenTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Connect over TCP'**
+  String get tcpScreenTitle;
+
+  /// No description provided for @tcpHostLabel.
+  ///
+  /// In en, this message translates to:
+  /// **'IP Address'**
+  String get tcpHostLabel;
+
+  /// No description provided for @tcpHostHint.
+  ///
+  /// In en, this message translates to:
+  /// **'192.168.40.10'**
+  String get tcpHostHint;
+
+  /// No description provided for @tcpPortLabel.
+  ///
+  /// In en, this message translates to:
+  /// **'Port'**
+  String get tcpPortLabel;
+
+  /// No description provided for @tcpPortHint.
+  ///
+  /// In en, this message translates to:
+  /// **'5000'**
+  String get tcpPortHint;
+
+  /// No description provided for @tcpStatus_notConnected.
+  ///
+  /// In en, this message translates to:
+  /// **'Enter endpoint and connect'**
+  String get tcpStatus_notConnected;
+
+  /// No description provided for @tcpStatus_connectingTo.
+  ///
+  /// In en, this message translates to:
+  /// **'Connecting to {endpoint}...'**
+  String tcpStatus_connectingTo(String endpoint);
+
+  /// No description provided for @tcpErrorHostRequired.
+  ///
+  /// In en, this message translates to:
+  /// **'IP address is required.'**
+  String get tcpErrorHostRequired;
+
+  /// No description provided for @tcpErrorPortInvalid.
+  ///
+  /// In en, this message translates to:
+  /// **'Port must be between 1 and 65535.'**
+  String get tcpErrorPortInvalid;
+
+  /// No description provided for @tcpErrorUnsupported.
+  ///
+  /// In en, this message translates to:
+  /// **'TCP transport is not supported on this platform.'**
+  String get tcpErrorUnsupported;
+
+  /// No description provided for @tcpErrorTimedOut.
+  ///
+  /// In en, this message translates to:
+  /// **'TCP connection timed out.'**
+  String get tcpErrorTimedOut;
+
+  /// No description provided for @tcpConnectionFailed.
+  ///
+  /// In en, this message translates to:
+  /// **'TCP connection failed: {error}'**
+  String tcpConnectionFailed(String error);
+
   /// No description provided for @usbScreenTitle.
   ///
   /// In en, this message translates to:

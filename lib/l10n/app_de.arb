@@ -1888,5 +1888,32 @@
   "usbStatus_connecting": "Verbindung zum USB-Gerät...",
   "usbConnectionFailed": "Fehler beim USB-Verbindungsaufbau: {error}",
   "usbErrorConnectTimedOut": "Verbindung konnte nicht hergestellt werden. Stellen Sie sicher, dass das Gerät die entsprechende USB-Firmware enthält.",
+  "@tcpStatus_connectingTo": {
+    "placeholders": {
+      "endpoint": {
+        "type": "String"
+      }
+    }
+  },
+  "@tcpConnectionFailed": {
+    "placeholders": {
+      "error": {
+        "type": "String"
+      }
+    }
+  },
+  "tcpHostLabel": "IP-Adresse",
+  "connectionChoiceTcpLabel": "TCP",
+  "tcpHostHint": "192.168.40.10",
+  "tcpScreenTitle": "Verbinden über TCP",
+  "tcpPortLabel": "Port",
+  "tcpPortHint": "5000",
+  "tcpStatus_notConnected": "Geben Sie den Endpunkt ein und verbinden Sie sich.",
+  "tcpStatus_connectingTo": "Verbindung zu {endpoint}...",
+  "tcpErrorHostRequired": "Eine IP-Adresse ist erforderlich.",
+  "tcpErrorPortInvalid": "Die Portnummer muss zwischen 1 und 65535 liegen.",
+  "tcpErrorUnsupported": "Die TCP-Übertragung wird auf dieser Plattform nicht unterstützt.",
+  "tcpErrorTimedOut": "Die TCP-Verbindung ist abgelaufen.",
+  "tcpConnectionFailed": "Fehler beim TCP-Verbindungsaufbau: {error}",
   "map_showDiscoveryContacts": "Entdeckungs-Kontakte anzeigen"
 }

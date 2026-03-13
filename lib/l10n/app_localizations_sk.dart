@@ -118,6 +118,50 @@ class AppLocalizationsSk extends AppLocalizations {
   String get connectionChoiceBluetoothLabel => 'Bluetooth';
 
   @override
+  String get connectionChoiceTcpLabel => 'TCP';
+
+  @override
+  String get tcpScreenTitle => 'Spojte sa pomocou protokolu TCP';
+
+  @override
+  String get tcpHostLabel => 'IP adresa';
+
+  @override
+  String get tcpHostHint => '192.168.40.10';
+
+  @override
+  String get tcpPortLabel => 'Port';
+
+  @override
+  String get tcpPortHint => '5000';
+
+  @override
+  String get tcpStatus_notConnected => 'Zadajte cieľovú adresu a pripojte sa.';
+
+  @override
+  String tcpStatus_connectingTo(String endpoint) {
+    return 'Pripojenie k $endpoint...';
+  }
+
+  @override
+  String get tcpErrorHostRequired => 'Je potrebné zadať IP adresu.';
+
+  @override
+  String get tcpErrorPortInvalid => 'Číslo portu musí byť medzi 1 a 65535.';
+
+  @override
+  String get tcpErrorUnsupported =>
+      'Prevoz prostredníctvom protokolu TCP nie je na tejto platforme podporovaný.';
+
+  @override
+  String get tcpErrorTimedOut => 'Pripojenie TCP vypršalo.';
+
+  @override
+  String tcpConnectionFailed(String error) {
+    return 'Neúspešné vytvorenie TCP spojenia: $error';
+  }
+
+  @override
   String get usbScreenTitle => 'Pripojte cez USB';
 
   @override

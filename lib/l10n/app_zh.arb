@@ -1865,5 +1865,32 @@
   "usbStatus_notConnected": "选择一个 USB 设备",
   "usbConnectionFailed": "USB 连接失败：{error}",
   "usbErrorConnectTimedOut": "连接超时。请确保设备已安装 USB 伴侣固件。",
+  "@tcpStatus_connectingTo": {
+    "placeholders": {
+      "endpoint": {
+        "type": "String"
+      }
+    }
+  },
+  "@tcpConnectionFailed": {
+    "placeholders": {
+      "error": {
+        "type": "String"
+      }
+    }
+  },
+  "tcpHostLabel": "IP地址",
+  "tcpHostHint": "192.168.40.10",
+  "tcpScreenTitle": "通过 TCP 连接",
+  "connectionChoiceTcpLabel": "TCP",
+  "tcpPortLabel": "端口",
+  "tcpPortHint": "5000",
+  "tcpStatus_notConnected": "输入目标地址，然后连接",
+  "tcpStatus_connectingTo": "连接到 {endpoint}...",
+  "tcpErrorHostRequired": "需要提供IP地址。",
+  "tcpErrorPortInvalid": "端口号必须在 1 到 65535 之间。",
+  "tcpErrorUnsupported": "此平台不支持 TCP 传输。",
+  "tcpErrorTimedOut": "TCP 连接超时。",
+  "tcpConnectionFailed": "TCP 连接失败：{error}",
   "map_showDiscoveryContacts": "显示发现联系人"
 }

@@ -118,6 +118,52 @@ class AppLocalizationsDe extends AppLocalizations {
   String get connectionChoiceBluetoothLabel => 'Bluetooth';
 
   @override
+  String get connectionChoiceTcpLabel => 'TCP';
+
+  @override
+  String get tcpScreenTitle => 'Verbinden über TCP';
+
+  @override
+  String get tcpHostLabel => 'IP-Adresse';
+
+  @override
+  String get tcpHostHint => '192.168.40.10';
+
+  @override
+  String get tcpPortLabel => 'Port';
+
+  @override
+  String get tcpPortHint => '5000';
+
+  @override
+  String get tcpStatus_notConnected =>
+      'Geben Sie den Endpunkt ein und verbinden Sie sich.';
+
+  @override
+  String tcpStatus_connectingTo(String endpoint) {
+    return 'Verbindung zu $endpoint...';
+  }
+
+  @override
+  String get tcpErrorHostRequired => 'Eine IP-Adresse ist erforderlich.';
+
+  @override
+  String get tcpErrorPortInvalid =>
+      'Die Portnummer muss zwischen 1 und 65535 liegen.';
+
+  @override
+  String get tcpErrorUnsupported =>
+      'Die TCP-Übertragung wird auf dieser Plattform nicht unterstützt.';
+
+  @override
+  String get tcpErrorTimedOut => 'Die TCP-Verbindung ist abgelaufen.';
+
+  @override
+  String tcpConnectionFailed(String error) {
+    return 'Fehler beim TCP-Verbindungsaufbau: $error';
+  }
+
+  @override
   String get usbScreenTitle => 'Verbinden über USB';
 
   @override

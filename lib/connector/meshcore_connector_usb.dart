@@ -53,6 +53,9 @@ class MeshCoreUsbManager {
   }
 
   Future<void> disconnect() async {
+    if (!_service.isConnected && _activePortKey == null) {
+      return;
+    }
     _debugLog?.info('UsbManager.disconnect', tag: 'USB');
     await _service.disconnect();
     _activePortKey = null;
