@@ -903,6 +903,9 @@ class AppLocalizationsRu extends AppLocalizations {
   String get contacts_groupNameRequired => 'Имя группы обязательно';
 
   @override
+  String get contacts_groupNameReserved => 'Это имя группы зарезервировано';
+
+  @override
   String contacts_groupAlreadyExists(String name) {
     return 'Группа \"$name\" уже существует';
   }

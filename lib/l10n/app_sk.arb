@@ -285,6 +285,7 @@
   "contacts_newGroup": "Nová skupina",
   "contacts_groupName": "Názov skupiny",
   "contacts_groupNameRequired": "Skupina musí mať názov.",
+  "contacts_groupNameReserved": "Tento názov skupiny je rezervovaný",
   "contacts_groupAlreadyExists": "Skupina \"{name}\" už existuje",
   "@contacts_groupAlreadyExists": {
     "placeholders": {

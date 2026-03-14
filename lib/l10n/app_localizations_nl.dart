@@ -896,6 +896,9 @@ class AppLocalizationsNl extends AppLocalizations {
   String get contacts_groupNameRequired => 'De groepnaam is verplicht.';
 
   @override
+  String get contacts_groupNameReserved => 'Deze groepsnaam is gereserveerd';
+
+  @override
   String contacts_groupAlreadyExists(String name) {
     return 'De groep \"$name\" bestaat al.';
   }

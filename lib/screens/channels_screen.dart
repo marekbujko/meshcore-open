@@ -11,6 +11,7 @@ import 'package:uuid/uuid.dart';
 import '../connector/meshcore_connector.dart';
 import '../l10n/l10n.dart';
 import '../services/app_settings_service.dart';
+import '../services/ui_view_state_service.dart';
 import '../models/channel.dart';
 import '../models/community.dart';
 import '../storage/community_store.dart';
@@ -28,8 +29,6 @@ import 'contacts_screen.dart';
 import 'map_screen.dart';
 import 'settings_screen.dart';
 
-enum ChannelSortOption { manual, name, latestMessages, unread }
-
 class ChannelsScreen extends StatefulWidget {
   final bool hideBackButton;
 
@@ -43,9 +42,7 @@ class _ChannelsScreenState extends State<ChannelsScreen>
     with DisconnectNavigationMixin {
   final TextEditingController _searchController = TextEditingController();
   final CommunityStore _communityStore = CommunityStore();
-  String _searchQuery = '';
   Timer? _searchDebounce;
-  ChannelSortOption _sortOption = ChannelSortOption.manual;
   List<Community> _communities = [];
 
   // Cache of PSK hex -> Community for quick lookup
@@ -56,6 +53,9 @@ class _ChannelsScreenState extends State<ChannelsScreen>
   @override
   void initState() {
     super.initState();
+    _searchController.text = context
+        .read<UiViewStateService>()
+        .channelsSearchText;
     WidgetsBinding.instance.addPostFrameCallback((_) {
       context.read<MeshCoreConnector>().getChannels();
       _loadCommunities();
@@ -110,6 +110,7 @@ class _ChannelsScreenState extends State<ChannelsScreen>
   @override
   Widget build(BuildContext context) {
     final connector = context.watch<MeshCoreConnector>();
+    final viewState = context.watch<UiViewStateService>();
 
     final channelMessageStore = ChannelMessageStore();
     channelMessageStore.setPublicKeyHex = connector.selfPublicKeyHex;
@@ -205,6 +206,7 @@ class _ChannelsScreenState extends State<ChannelsScreen>
             final filteredChannels = _filterAndSortChannels(
               channels,
               connector,
+              viewState,
             );
 
             return Column(
@@ -219,17 +221,19 @@ class _ChannelsScreenState extends State<ChannelsScreen>
                       suffixIcon: Row(
                         mainAxisSize: MainAxisSize.min,
                         children: [
-                          if (_searchQuery.isNotEmpty)
+                          if (viewState.channelsSearchText.isNotEmpty)
                             IconButton(
                               icon: const Icon(Icons.clear),
                               onPressed: () {
+                                _searchDebounce?.cancel();
+                                _searchDebounce = null;
                                 _searchController.clear();
-                                setState(() {
-                                  _searchQuery = '';
-                                });
+                                context
+                                    .read<UiViewStateService>()
+                                    .setChannelsSearchText('');
                               },
                             ),
-                          _buildFilterButton(),
+                          _buildFilterButton(viewState),
                         ],
                       ),
                       border: OutlineInputBorder(
@@ -246,9 +250,9 @@ class _ChannelsScreenState extends State<ChannelsScreen>
                         const Duration(milliseconds: 300),
                         () {
                           if (!mounted) return;
-                          setState(() {
-                            _searchQuery = value.toLowerCase();
-                          });
+                          context
+                              .read<UiViewStateService>()
+                              .setChannelsSearchText(value);
                         },
                       );
                     },
@@ -283,8 +287,9 @@ class _ChannelsScreenState extends State<ChannelsScreen>
                             ),
                           ],
                         )
-                      : (_sortOption == ChannelSortOption.manual &&
-                            _searchQuery.isEmpty)
+                      : (viewState.channelsSortOption ==
+                                ChannelSortOption.manual &&
+                            viewState.channelsSearchText.isEmpty)
                       ? ReorderableListView.builder(
                           padding: const EdgeInsets.only(
                             left: 16,
@@ -584,59 +589,40 @@ class _ChannelsScreenState extends State<ChannelsScreen>
     await showDisconnectDialog(context, connector);
   }
 
-  Widget _buildFilterButton() {
-    const actionSortManual = 0;
-    const actionSortName = 1;
-    const actionSortLatest = 2;
-    const actionSortUnread = 3;
-
-    return SortFilterMenu(
+  Widget _buildFilterButton(UiViewStateService viewState) {
+    return SortFilterMenu<ChannelSortOption>(
       tooltip: context.l10n.listFilter_tooltip,
       sections: [
-        SortFilterMenuSection(
+        SortFilterMenuSection<ChannelSortOption>(
           title: context.l10n.channels_sortBy,
           options: [
-            SortFilterMenuOption(
-              value: actionSortManual,
+            SortFilterMenuOption<ChannelSortOption>(
+              value: ChannelSortOption.manual,
               label: context.l10n.channels_sortManual,
-              checked: _sortOption == ChannelSortOption.manual,
+              checked: viewState.channelsSortOption == ChannelSortOption.manual,
             ),
-            SortFilterMenuOption(
-              value: actionSortName,
+            SortFilterMenuOption<ChannelSortOption>(
+              value: ChannelSortOption.name,
               label: context.l10n.channels_sortAZ,
-              checked: _sortOption == ChannelSortOption.name,
+              checked: viewState.channelsSortOption == ChannelSortOption.name,
             ),
-            SortFilterMenuOption(
-              value: actionSortLatest,
+            SortFilterMenuOption<ChannelSortOption>(
+              value: ChannelSortOption.latestMessages,
               label: context.l10n.channels_sortLatestMessages,
-              checked: _sortOption == ChannelSortOption.latestMessages,
+              checked:
+                  viewState.channelsSortOption ==
+                  ChannelSortOption.latestMessages,
             ),
-            SortFilterMenuOption(
-              value: actionSortUnread,
+            SortFilterMenuOption<ChannelSortOption>(
+              value: ChannelSortOption.unread,
               label: context.l10n.channels_sortUnread,
-              checked: _sortOption == ChannelSortOption.unread,
+              checked: viewState.channelsSortOption == ChannelSortOption.unread,
             ),
           ],
         ),
       ],
-      onSelected: (action) {
-        setState(() {
-          switch (action) {
-            case actionSortManual:
-              _sortOption = ChannelSortOption.manual;
-              break;
-            case actionSortLatest:
-              _sortOption = ChannelSortOption.latestMessages;
-              break;
-            case actionSortUnread:
-              _sortOption = ChannelSortOption.unread;
-              break;
-            case actionSortName:
-            default:
-              _sortOption = ChannelSortOption.name;
-              break;
-          }
-        });
+      onSelected: (sortOption) {
+        viewState.setChannelsSortOption(sortOption);
       },
     );
   }
@@ -644,11 +630,14 @@ class _ChannelsScreenState extends State<ChannelsScreen>
   List<Channel> _filterAndSortChannels(
     List<Channel> channels,
     MeshCoreConnector connector,
+    UiViewStateService viewState,
   ) {
     var filtered = channels.where((channel) {
-      if (_searchQuery.isEmpty) return true;
+      if (viewState.channelsSearchText.isEmpty) return true;
       final label = _normalizeChannelName(channel);
-      return label.toLowerCase().contains(_searchQuery);
+      return label.toLowerCase().contains(
+        viewState.channelsSearchText.toLowerCase(),
+      );
     }).toList();
 
     int compareByName(Channel a, Channel b) {
@@ -657,7 +646,7 @@ class _ChannelsScreenState extends State<ChannelsScreen>
       return nameA.toLowerCase().compareTo(nameB.toLowerCase());
     }
 
-    switch (_sortOption) {
+    switch (viewState.channelsSortOption) {
       case ChannelSortOption.manual:
         break;
       case ChannelSortOption.latestMessages:

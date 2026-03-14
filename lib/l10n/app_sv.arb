@@ -285,6 +285,7 @@
   "contacts_newGroup": "Ny grupp",
   "contacts_groupName": "Gruppnamn",
   "contacts_groupNameRequired": "Gruppnamnet är obligatoriskt",
+  "contacts_groupNameReserved": "Detta gruppnamn är reserverat",
   "contacts_groupAlreadyExists": "Gruppen \"{name}\" finns redan.",
   "@contacts_groupAlreadyExists": {
     "placeholders": {

@@ -846,6 +846,9 @@ class AppLocalizationsZh extends AppLocalizations {
   String get contacts_groupNameRequired => '请输入群聊名称';
 
   @override
+  String get contacts_groupNameReserved => '该群组名称已被保留';
+
+  @override
   String contacts_groupAlreadyExists(String name) {
     return '名为 \"$name\" 的群聊已存在';
   }

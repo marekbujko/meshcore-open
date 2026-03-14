@@ -905,6 +905,9 @@ class AppLocalizationsPl extends AppLocalizations {
   String get contacts_groupNameRequired => 'Nazwa grupy jest wymagana';
 
   @override
+  String get contacts_groupNameReserved => 'Ta nazwa grupy jest zastrzeżona';
+
+  @override
   String contacts_groupAlreadyExists(String name) {
     return 'Grupa \"$name\" już istnieje';
   }

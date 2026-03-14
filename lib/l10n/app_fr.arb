@@ -285,6 +285,7 @@
   "contacts_newGroup": "Nouveau Groupe",
   "contacts_groupName": "Nom du groupe",
   "contacts_groupNameRequired": "Le nom du groupe est obligatoire.",
+  "contacts_groupNameReserved": "Ce nom de groupe est réservé",
   "contacts_groupAlreadyExists": "Le groupe \"{name}\" existe déjà.",
   "@contacts_groupAlreadyExists": {
     "placeholders": {

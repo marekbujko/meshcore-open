@@ -893,6 +893,9 @@ class AppLocalizationsSl extends AppLocalizations {
   String get contacts_groupNameRequired => 'Ime skupine je obvezno.';
 
   @override
+  String get contacts_groupNameReserved => 'To ime skupine je rezervirano';
+
+  @override
   String contacts_groupAlreadyExists(String name) {
     return 'Skupina \"$name\" že obstaja';
   }

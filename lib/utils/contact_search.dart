@@ -1,5 +1,9 @@
 import '../models/contact.dart';
 
+enum ContactSortOption { lastSeen, recentMessages, name }
+
+enum ContactTypeFilter { all, favorites, users, repeaters, rooms }
+
 bool matchesContactQuery(Contact contact, String query) {
   final normalizedQuery = query.trim().toLowerCase();
   if (normalizedQuery.isEmpty) return true;

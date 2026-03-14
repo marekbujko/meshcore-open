@@ -300,6 +300,7 @@
   "contacts_newGroup": "新建群聊",
   "contacts_groupName": "群聊名称",
   "contacts_groupNameRequired": "请输入群聊名称",
+  "contacts_groupNameReserved": "该群组名称已被保留",
   "contacts_groupAlreadyExists": "名为 \"{name}\" 的群聊已存在",
   "@contacts_groupAlreadyExists": {
     "placeholders": {

@@ -1,12 +1,9 @@
 import 'package:flutter/material.dart';
 import '../l10n/l10n.dart';
+import '../utils/contact_search.dart';
 
-enum ContactSortOption { lastSeen, recentMessages, name }
-
-enum ContactTypeFilter { all, favorites, users, repeaters, rooms }
-
-class SortFilterMenuOption {
-  final int value;
+class SortFilterMenuOption<T> {
+  final T value;
   final String label;
   final bool? checked;
 
@@ -17,16 +14,16 @@ class SortFilterMenuOption {
   });
 }
 
-class SortFilterMenuSection {
+class SortFilterMenuSection<T> {
   final String title;
-  final List<SortFilterMenuOption> options;
+  final List<SortFilterMenuOption<T>> options;
 
   const SortFilterMenuSection({required this.title, required this.options});
 }
 
-class SortFilterMenu extends StatelessWidget {
-  final List<SortFilterMenuSection> sections;
-  final ValueChanged<int> onSelected;
+class SortFilterMenu<T> extends StatelessWidget {
+  final List<SortFilterMenuSection<T>> sections;
+  final ValueChanged<T> onSelected;
   final String tooltip;
   final Widget icon;
 
@@ -40,7 +37,7 @@ class SortFilterMenu extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return PopupMenuButton<int>(
+    return PopupMenuButton<T>(
       icon: icon,
       tooltip: tooltip,
       onSelected: onSelected,
@@ -53,11 +50,11 @@ class SortFilterMenu extends StatelessWidget {
         final visibleSections = sections
             .where((section) => section.options.isNotEmpty)
             .toList();
-        final entries = <PopupMenuEntry<int>>[];
+        final entries = <PopupMenuEntry<T>>[];
         for (int i = 0; i < visibleSections.length; i++) {
           final section = visibleSections[i];
           entries.add(
-            PopupMenuItem<int>(
+            PopupMenuItem<T>(
               enabled: false,
               child: Text(section.title, style: labelStyle),
             ),
@@ -65,14 +62,14 @@ class SortFilterMenu extends StatelessWidget {
           for (final option in section.options) {
             if (option.checked == null) {
               entries.add(
-                PopupMenuItem<int>(
+                PopupMenuItem<T>(
                   value: option.value,
                   child: Text(option.label),
                 ),
               );
             } else {
               entries.add(
-                CheckedPopupMenuItem<int>(
+                CheckedPopupMenuItem<T>(
                   value: option.value,
                   checked: option.checked ?? false,
                   child: Text(option.label),
@@ -99,7 +96,6 @@ const int _actionFilterUsers = 6;
 const int _actionFilterRepeaters = 7;
 const int _actionFilterRooms = 8;
 const int _actionToggleUnreadOnly = 9;
-const int _actionNewGroup = 10;
 
 class ContactsFilterMenu extends StatelessWidget {
   final ContactSortOption sortOption;
@@ -108,7 +104,6 @@ class ContactsFilterMenu extends StatelessWidget {
   final ValueChanged<ContactSortOption> onSortChanged;
   final ValueChanged<ContactTypeFilter> onTypeFilterChanged;
   final ValueChanged<bool> onUnreadOnlyChanged;
-  final VoidCallback onNewGroup;
 
   const ContactsFilterMenu({
     super.key,
@@ -118,7 +113,6 @@ class ContactsFilterMenu extends StatelessWidget {
     required this.onSortChanged,
     required this.onTypeFilterChanged,
     required this.onUnreadOnlyChanged,
-    required this.onNewGroup,
   });
 
   @override
@@ -180,10 +174,6 @@ class ContactsFilterMenu extends StatelessWidget {
               label: l10n.listFilter_unreadOnly,
               checked: showUnreadOnly,
             ),
-            SortFilterMenuOption(
-              value: _actionNewGroup,
-              label: l10n.listFilter_newGroup,
-            ),
           ],
         ),
       ],
@@ -215,9 +205,6 @@ class ContactsFilterMenu extends StatelessWidget {
             break;
           case _actionToggleUnreadOnly:
             onUnreadOnlyChanged(!showUnreadOnly);
-            break;
-          case _actionNewGroup:
-            onNewGroup();
             break;
         }
       },

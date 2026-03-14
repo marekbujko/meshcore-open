@@ -1714,6 +1714,12 @@ abstract class AppLocalizations {
   /// **'Group name is required'**
   String get contacts_groupNameRequired;
 
+  /// No description provided for @contacts_groupNameReserved.
+  ///
+  /// In en, this message translates to:
+  /// **'This group name is reserved'**
+  String get contacts_groupNameReserved;
+
   /// No description provided for @contacts_groupAlreadyExists.
   ///
   /// In en, this message translates to:
