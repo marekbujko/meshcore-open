@@ -1,7 +1,6 @@
 import 'dart:async';
 
 import 'package:flutter/material.dart';
-import 'package:meshcore_open/models/app_settings.dart';
 import 'package:provider/provider.dart';
 
 import '../connector/meshcore_connector.dart';
