@@ -87,7 +87,7 @@ Contact? getRepeaterPrefixMatchNearLocation(
   var bestDistance = double.infinity;
 
   for (final c in candidates) {
-    if (c.hasLocation) {
+    if (c.hasLocation && c.latitude != null && c.longitude != null) {
       final d = distance(searchPoint, LatLng(c.latitude!, c.longitude!));
       if (d < bestDistance) {
         bestDistance = d;
