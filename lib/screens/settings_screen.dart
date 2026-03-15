@@ -1,3 +1,4 @@
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:meshcore_open/utils/gpx_export.dart';
 import 'package:meshcore_open/widgets/elements_ui.dart';
@@ -14,6 +15,21 @@ import 'app_settings_screen.dart';
 import 'app_debug_log_screen.dart';
 import 'ble_debug_log_screen.dart';
 import '../widgets/radio_stats_entry.dart';
+
+/// Convert device coding-rate value (1-4 on some firmware, 5-8 on others)
+/// to the UI enum range (always 5-8).
+int _toUiCodingRate(int deviceCr) {
+  return deviceCr <= 4 ? deviceCr + 4 : deviceCr;
+}
+
+/// Convert UI coding-rate value (5-8) back to firmware encoding.
+/// Uses the current device CR to detect which encoding the firmware expects.
+int _toDeviceCodingRate(int uiCr, int? deviceCr) {
+  if (deviceCr != null && deviceCr <= 4) {
+    return uiCr - 4;
+  }
+  return uiCr;
+}
 
 class SettingsScreen extends StatefulWidget {
   const SettingsScreen({super.key});
@@ -1184,10 +1200,9 @@ class _RadioSettingsDialogState extends State<_RadioSettingsDialog> {
   }
 
   int? _findMatchingPresetIndexForSnapshot(_RadioSettingsSnapshot snapshot) {
-    const epsilon = 0.001;
     for (final i in _visiblePresetIndexes()) {
       final preset = RadioSettings.presets[i].$2;
-      if ((preset.frequencyMHz - snapshot.frequencyMHz).abs() < epsilon &&
+      if (preset.frequencyHz == snapshot.frequencyHz &&
           preset.bandwidth == snapshot.bandwidth &&
           preset.spreadingFactor == snapshot.spreadingFactor &&
           preset.codingRate == snapshot.codingRate &&
@@ -1258,42 +1273,18 @@ class _RadioSettingsDialogState extends State<_RadioSettingsDialog> {
 
   _RadioSettingsSnapshot? _sessionRememberedNonRepeatSnapshot() {
     final snapshot = widget.connector.rememberedNonRepeatRadioState;
-    if (snapshot == null) {
-      return null;
-    }
-
-    final bandwidth = LoRaBandwidth.values
-        .where((bw) => bw.hz == snapshot.bwHz)
-        .firstOrNull;
-    final spreadingFactor = LoRaSpreadingFactor.values
-        .where((sf) => sf.value == snapshot.sf)
-        .firstOrNull;
-    final codingRate = LoRaCodingRate.values
-        .where((cr) => cr.value == _toUiCodingRate(snapshot.cr))
-        .firstOrNull;
-
-    if (bandwidth == null || spreadingFactor == null || codingRate == null) {
-      return null;
-    }
-
-    return _RadioSettingsSnapshot(
-      frequencyMHz: snapshot.freqHz / 1000.0,
-      bandwidth: bandwidth,
-      spreadingFactor: spreadingFactor,
-      codingRate: codingRate,
-      txPowerDbm: snapshot.txPowerDbm,
-    );
+    if (snapshot == null) return null;
+    return _RadioSettingsSnapshot.fromMeshCoreSnapshot(snapshot);
   }
 
   _RadioSettingsSnapshot _inferNonRepeatSnapshotForRepeatEnabled() {
     final current = _currentSnapshot();
-    const epsilon = 0.001;
     for (final i in _visiblePresetIndexes()) {
       final preset = RadioSettings.presets[i].$2;
-      final offGridFrequencyMHz = _offGridFrequencyForBaseFrequency(
-        preset.frequencyMHz,
-      );
-      if ((offGridFrequencyMHz - current.frequencyMHz).abs() < epsilon &&
+      final offGridFreqHz =
+          (_offGridFrequencyForBaseFrequency(preset.frequencyMHz) * 1000)
+              .round();
+      if (offGridFreqHz == current.frequencyHz &&
           preset.bandwidth == current.bandwidth &&
           preset.spreadingFactor == current.spreadingFactor &&
           preset.codingRate == current.codingRate &&
@@ -1476,16 +1467,7 @@ class _RadioSettingsDialogState extends State<_RadioSettingsDialog> {
           : _currentSnapshot();
       if (rememberedSnapshot != null) {
         widget.connector.rememberNonRepeatRadioState(
-          MeshCoreRadioStateSnapshot(
-            freqHz: (rememberedSnapshot.frequencyMHz * 1000).round(),
-            bwHz: rememberedSnapshot.bandwidth.hz,
-            sf: rememberedSnapshot.spreadingFactor.value,
-            cr: _toDeviceCodingRate(
-              rememberedSnapshot.codingRate.value,
-              widget.connector.currentCr,
-            ),
-            txPowerDbm: rememberedSnapshot.txPowerDbm,
-          ),
+          rememberedSnapshot.toMeshCoreSnapshot(widget.connector.currentCr),
         );
       }
 
@@ -1502,17 +1484,6 @@ class _RadioSettingsDialogState extends State<_RadioSettingsDialog> {
         SnackBar(content: Text(l10n.settings_error(e.toString()))),
       );
     }
-  }
-
-  int _toUiCodingRate(int deviceCr) {
-    return deviceCr <= 4 ? deviceCr + 4 : deviceCr;
-  }
-
-  int _toDeviceCodingRate(int uiCr, int? deviceCr) {
-    if (deviceCr != null && deviceCr <= 4) {
-      return uiCr - 4;
-    }
-    return uiCr;
   }
 
   String _presetLabel(int? index) {
@@ -1534,6 +1505,7 @@ class _RadioSettingsDialogState extends State<_RadioSettingsDialog> {
   }
 
   void _logRadioSettingsState(String message) {
+    if (!kDebugMode) return;
     _appLog.info(
       '$message | '
       'freq=${_frequencyController.text}MHz '
@@ -1711,10 +1683,47 @@ class _RadioSettingsSnapshot {
     required this.txPowerDbm,
   });
 
+  /// Frequency in integer Hz — avoids floating-point comparison issues.
+  int get frequencyHz => (frequencyMHz * 1000).round();
+
+  /// Convert from the connector's raw-int snapshot to UI-enum snapshot.
+  static _RadioSettingsSnapshot? fromMeshCoreSnapshot(
+    MeshCoreRadioStateSnapshot snapshot,
+  ) {
+    final bw = LoRaBandwidth.values
+        .where((b) => b.hz == snapshot.bwHz)
+        .firstOrNull;
+    final sf = LoRaSpreadingFactor.values
+        .where((s) => s.value == snapshot.sf)
+        .firstOrNull;
+    final cr = LoRaCodingRate.values
+        .where((c) => c.value == _toUiCodingRate(snapshot.cr))
+        .firstOrNull;
+    if (bw == null || sf == null || cr == null) return null;
+    return _RadioSettingsSnapshot(
+      frequencyMHz: snapshot.freqHz / 1000.0,
+      bandwidth: bw,
+      spreadingFactor: sf,
+      codingRate: cr,
+      txPowerDbm: snapshot.txPowerDbm,
+    );
+  }
+
+  /// Convert back to the connector's raw-int snapshot.
+  MeshCoreRadioStateSnapshot toMeshCoreSnapshot(int? deviceCr) {
+    return MeshCoreRadioStateSnapshot(
+      freqHz: frequencyHz,
+      bwHz: bandwidth.hz,
+      sf: spreadingFactor.value,
+      cr: _toDeviceCodingRate(codingRate.value, deviceCr),
+      txPowerDbm: txPowerDbm,
+    );
+  }
+
   @override
   bool operator ==(Object other) {
     return other is _RadioSettingsSnapshot &&
-        frequencyMHz == other.frequencyMHz &&
+        frequencyHz == other.frequencyHz &&
         bandwidth == other.bandwidth &&
         spreadingFactor == other.spreadingFactor &&
         codingRate == other.codingRate &&
@@ -1723,7 +1732,7 @@ class _RadioSettingsSnapshot {
 
   @override
   int get hashCode => Object.hash(
-    frequencyMHz,
+    frequencyHz,
     bandwidth,
     spreadingFactor,
     codingRate,
