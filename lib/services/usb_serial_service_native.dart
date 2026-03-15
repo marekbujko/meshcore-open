@@ -259,9 +259,7 @@ class UsbSerialService {
     }
     if (_useAndroidUsbHost) {
       try {
-        await _androidMethodChannel.invokeMethod<void>('write', {
-          'data': data,
-        });
+        await _androidMethodChannel.invokeMethod<void>('write', {'data': data});
       } on PlatformException catch (error) {
         throw StateError(error.message ?? error.code);
       }
