@@ -257,7 +257,17 @@
   "contacts_title": "Kontakty",
   "contacts_noContacts": "Brak jeszcze kontaktów.",
   "contacts_contactsWillAppear": "Kontakty będą wyświetlane, gdy urządzenia nadają rozgłoszenia.",
-  "contacts_searchContacts": "Wyszukaj kontakty...",
+  "contacts_searchContacts": "Wyszukaj {number}{str} kontakty...",
+  "@contacts_searchContacts": {
+    "placeholders": {
+      "number": {
+        "type": "int"
+      },
+      "str": {
+        "type": "String"
+      }
+    }
+  },
   "contacts_noUnreadContacts": "Brak nieprzeczytanych kontaktów",
   "contacts_noContactsFound": "Brak znalezionych kontaktów ani grup.",
   "contacts_deleteContact": "Usuń Kontakt",
@@ -1579,9 +1589,37 @@
   "contacts_zeroHopContactAdvertFailed": "Nie udało się wysłać kontaktu.",
   "notification_activityTitle": "Aktywność MeshCore",
   "notification_messagesCount": "{count} {count, plural, =1{wiadomość} few{wiadomości} many{wiadomości} other{wiadomości}}",
+  "@notification_messagesCount": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
   "notification_channelMessagesCount": "{count} {count, plural, =1{wiadomość kanału} few{wiadomości kanału} many{wiadomości kanału} other{wiadomości kanału}}",
+  "@notification_channelMessagesCount": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
   "notification_newNodesCount": "{count} {count, plural, =1{nowy węzeł} few{nowe węzły} many{nowych węzłów} other{nowych węzłów}}",
+  "@notification_newNodesCount": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
   "notification_newTypeDiscovered": "Nowy {contactType} wykryty",
+  "@notification_newTypeDiscovered": {
+    "placeholders": {
+      "contactType": {
+        "type": "String"
+      }
+    }
+  },
   "notification_receivedNewMessage": "Otrzymano nową wiadomość",
   "settings_gpxExportContacts": "Eksportuj towarzyszy do GPX",
   "settings_gpxExportRepeaters": "Eksportuj powtórki / serwer pokojowy do GPX",

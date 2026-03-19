@@ -876,7 +876,7 @@ class AppLocalizationsPl extends AppLocalizations {
 
   @override
   String contacts_searchContacts(int number, String str) {
-    return 'Wyszukaj kontakty...';
+    return 'Wyszukaj $number$str kontakty...';
   }
 
   @override
