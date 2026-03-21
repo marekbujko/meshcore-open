@@ -660,14 +660,6 @@ class _SettingsScreenState extends State<SettingsScreen> {
     );
   }
 
-  void _sendAdvert(BuildContext context, MeshCoreConnector connector) {
-    final l10n = context.l10n;
-    connector.sendSelfAdvert(flood: true);
-    ScaffoldMessenger.of(
-      context,
-    ).showSnackBar(SnackBar(content: Text(l10n.settings_advertisementSent)));
-  }
-
   void _syncTime(BuildContext context, MeshCoreConnector connector) {
     final l10n = context.l10n;
     connector.syncTime();
