@@ -6,7 +6,7 @@ class MeshCoreUuids {
   static const List<String> deviceNamePrefixes = [
     "MeshCore-",
     "Whisper-",
-    "Wiscore-",
+    "WisCore-",
     "HT-",
   ];
 }
