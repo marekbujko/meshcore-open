@@ -1892,7 +1892,7 @@
   "map_setAsMyLocation": "Задайте като моя местоположение",
   "@path_routeWeight": {
     "placeholders": {
-      "value": {
+      "weight": {
         "type": "String"
       },
       "max": {
