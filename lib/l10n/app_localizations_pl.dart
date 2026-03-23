@@ -768,11 +768,11 @@ class AppLocalizationsPl extends AppLocalizations {
   String get appSettings_mapDisplay => 'Wyświetlanie mapy';
 
   @override
-  String get appSettings_showRepeaters => 'Pokaż powtarzacze';
+  String get appSettings_showRepeaters => 'Pokaż przekaźniki';
 
   @override
   String get appSettings_showRepeatersSubtitle =>
-      'Wyświetl węzły powtarzaczy na mapie';
+      'Wyświetl węzły przekaźników na mapie';
 
   @override
   String get appSettings_showChatNodes => 'Pokaż Węzły Rozmowy';
@@ -899,7 +899,7 @@ class AppLocalizationsPl extends AppLocalizations {
 
   @override
   String contacts_searchRepeaters(int number, String str) {
-    return 'Wyszukaj $number$str powtórników...';
+    return 'Wyszukaj $number$str przekaźników...';
   }
 
   @override
@@ -923,7 +923,7 @@ class AppLocalizationsPl extends AppLocalizations {
   }
 
   @override
-  String get contacts_manageRepeater => 'Zarządzaj powtarzaczem';
+  String get contacts_manageRepeater => 'Zarządzaj przekaźnikiem';
 
   @override
   String get contacts_manageRoom => 'Zarządzaj Serwerem Pokoju';
@@ -1532,7 +1532,7 @@ class AppLocalizationsPl extends AppLocalizations {
   String get map_chat => 'Rozmowa';
 
   @override
-  String get map_repeater => 'Powtarzacz';
+  String get map_repeater => 'Przekaźnik';
 
   @override
   String get map_room => 'Pokój';
@@ -1611,7 +1611,7 @@ class AppLocalizationsPl extends AppLocalizations {
   String get map_chatNodes => 'Węzły czatu';
 
   @override
-  String get map_repeaters => 'Powtarzacze';
+  String get map_repeaters => 'Przekaźniki';
 
   @override
   String get map_otherNodes => 'Inne węzły';
@@ -1651,7 +1651,7 @@ class AppLocalizationsPl extends AppLocalizations {
   String get map_joinRoom => 'Dołącz do pokoju';
 
   @override
-  String get map_manageRepeater => 'Zarządzaj powtarzaczem';
+  String get map_manageRepeater => 'Zarządzaj przekaźnikiem';
 
   @override
   String get map_tapToAdd => 'Kliknij na węzły, aby dodać je do ścieżki.';
@@ -1808,7 +1808,7 @@ class AppLocalizationsPl extends AppLocalizations {
       'Czy na pewno chcesz się odłączyć od tego urządzenia?';
 
   @override
-  String get login_repeaterLogin => 'Logowanie do powtarzacza';
+  String get login_repeaterLogin => 'Logowanie do przekaźnika';
 
   @override
   String get login_roomLogin => 'Logowanie do pokoju';
@@ -1828,7 +1828,7 @@ class AppLocalizationsPl extends AppLocalizations {
 
   @override
   String get login_repeaterDescription =>
-      'Wprowadź hasło do powtarzacza, aby uzyskać dostęp do ustawień i stanu.';
+      'Wprowadź hasło do przekaźnika, aby uzyskać dostęp do ustawień i stanu.';
 
   @override
   String get login_roomDescription =>
@@ -1864,7 +1864,7 @@ class AppLocalizationsPl extends AppLocalizations {
 
   @override
   String get login_failedMessage =>
-      'Logowanie nie powiodło się. Hasło jest nieprawidłowe albo powtarzacz jest nieosiągalny.';
+      'Logowanie nie powiodło się. Hasło jest nieprawidłowe albo przekaźnik jest nieosiągalny.';
 
   @override
   String get common_reload => 'Odśwież';
@@ -1916,7 +1916,7 @@ class AppLocalizationsPl extends AppLocalizations {
 
   @override
   String get path_noRepeatersFound =>
-      'Nie znaleziono powtarzaczy ani serwerów pokoi.';
+      'Nie znaleziono przekaźników ani serwerów pokoi.';
 
   @override
   String get path_customPathsRequire =>
@@ -1935,7 +1935,7 @@ class AppLocalizationsPl extends AppLocalizations {
   String get path_setPath => 'Ustaw Ścieżkę';
 
   @override
-  String get repeater_management => 'Zarządzanie powtarzaczami';
+  String get repeater_management => 'Zarządzanie przekaźnikami';
 
   @override
   String get room_management => 'Zarządzanie Serwerem Pokoju';
@@ -1948,7 +1948,7 @@ class AppLocalizationsPl extends AppLocalizations {
 
   @override
   String get repeater_statusSubtitle =>
-      'Wyświetl status powtarzacza, statystyki i sąsiadów.';
+      'Wyświetl status przekaźnika, statystyki i sąsiadów.';
 
   @override
   String get repeater_telemetry => 'Telemetria';
@@ -1961,7 +1961,7 @@ class AppLocalizationsPl extends AppLocalizations {
   String get repeater_cli => 'CLI';
 
   @override
-  String get repeater_cliSubtitle => 'Wyślij polecenia do powtarzacza';
+  String get repeater_cliSubtitle => 'Wyślij polecenia do przekaźnika';
 
   @override
   String get repeater_neighbors => 'Sąsiedzi';
@@ -1974,10 +1974,10 @@ class AppLocalizationsPl extends AppLocalizations {
   String get repeater_settings => 'Ustawienia';
 
   @override
-  String get repeater_settingsSubtitle => 'Skonfiguruj parametry powtarzacza';
+  String get repeater_settingsSubtitle => 'Skonfiguruj parametry przekaźnika';
 
   @override
-  String get repeater_statusTitle => 'Status powtarzacza';
+  String get repeater_statusTitle => 'Status przekaźnika';
 
   @override
   String get repeater_routingMode => 'Tryb routingu';
@@ -2083,16 +2083,16 @@ class AppLocalizationsPl extends AppLocalizations {
   }
 
   @override
-  String get repeater_settingsTitle => 'Ustawienia powtarzacza';
+  String get repeater_settingsTitle => 'Ustawienia przekaźnika';
 
   @override
   String get repeater_basicSettings => 'Podstawowe Ustawienia';
 
   @override
-  String get repeater_repeaterName => 'Nazwa powtarzacza';
+  String get repeater_repeaterName => 'Nazwa przekaźnika';
 
   @override
-  String get repeater_repeaterNameHelper => 'Wyświetl nazwę tego powtarzacza';
+  String get repeater_repeaterNameHelper => 'Wyświetl nazwę tego przekaźnika';
 
   @override
   String get repeater_adminPassword => 'Hasło Administracyjne';
@@ -2153,7 +2153,7 @@ class AppLocalizationsPl extends AppLocalizations {
 
   @override
   String get repeater_packetForwardingSubtitle =>
-      'Włącz powtarzacz, aby przekazywać pakiety.';
+      'Włącz przekaźnik, aby przekazywać pakiety.';
 
   @override
   String get repeater_guestAccess => 'Dostęp dla gości';
@@ -2196,15 +2196,14 @@ class AppLocalizationsPl extends AppLocalizations {
   String get repeater_dangerZone => 'Strefa Zagrożeń';
 
   @override
-  String get repeater_rebootRepeater => 'Zrestartuj Powtarzacz';
+  String get repeater_rebootRepeater => 'Zrestartuj Przekaźnik';
 
   @override
-  String get repeater_rebootRepeaterSubtitle =>
-      'Zrestartuj urządzenie powtarzające.';
+  String get repeater_rebootRepeaterSubtitle => 'Zrestartuj przekaźnik.';
 
   @override
   String get repeater_rebootRepeaterConfirm =>
-      'Czy na pewno chcesz zrestartować ten powtarzacz?';
+      'Czy na pewno chcesz zrestartować ten przekaźnik?';
 
   @override
   String get repeater_regenerateIdentityKey => 'Wygeneruj klucz tożsamości';
@@ -2215,18 +2214,18 @@ class AppLocalizationsPl extends AppLocalizations {
 
   @override
   String get repeater_regenerateIdentityKeyConfirm =>
-      'Zostanie wygenerowana nowa tożsamość dla powtarzacza. Kontynuować?';
+      'Zostanie wygenerowana nowa tożsamość dla przekaźnika. Kontynuować?';
 
   @override
   String get repeater_eraseFileSystem => 'Wyczyść System Plików';
 
   @override
   String get repeater_eraseFileSystemSubtitle =>
-      'Sformatuj system plików powtarzacza';
+      'Sformatuj system plików przekaźnika';
 
   @override
   String get repeater_eraseFileSystemConfirm =>
-      'OSTRZEŻENIE: To spowoduje usunięcie wszystkich danych z powtarzacza. Nie da się tego cofnąć!';
+      'OSTRZEŻENIE: To spowoduje usunięcie wszystkich danych z przekaźnika. Nie da się tego cofnąć!';
 
   @override
   String get repeater_eraseSerialOnly =>
@@ -2290,7 +2289,7 @@ class AppLocalizationsPl extends AppLocalizations {
   }
 
   @override
-  String get repeater_cliTitle => 'Powtarzacz CLI';
+  String get repeater_cliTitle => 'Przekaźnik CLI';
 
   @override
   String get repeater_debugNextCommand => 'Debug Następną Komendę';
@@ -2381,7 +2380,7 @@ class AppLocalizationsPl extends AppLocalizations {
 
   @override
   String get repeater_cliHelpSetRepeat =>
-      'Włącza lub wyłącza rolę powtarzacza dla tego węzła.';
+      'Włącza lub wyłącza rolę przekaźnika dla tego węzła.';
 
   @override
   String get repeater_cliHelpSetAllowReadOnly =>
@@ -2413,7 +2412,7 @@ class AppLocalizationsPl extends AppLocalizations {
 
   @override
   String get repeater_cliHelpSetGuestPassword =>
-      'Ustawia/aktualizuje hasło gościa. (dla powtarzaczy loginy gości mogą wysyłać żądanie \"Get Stats\")';
+      'Ustawia/aktualizuje hasło gościa. (dla przekaźników loginy gości mogą wysyłać żądanie \"Get Stats\")';
 
   @override
   String get repeater_cliHelpSetName => 'Ustawia nazwę rozgłoszenia.';
@@ -2579,11 +2578,11 @@ class AppLocalizationsPl extends AppLocalizations {
   String get repeater_logging => 'Rejestrowanie';
 
   @override
-  String get repeater_neighborsRepeaterOnly => 'Sąsiedzi (tylko powtarzacz)';
+  String get repeater_neighborsRepeaterOnly => 'Sąsiedzi (tylko przekaźnik)';
 
   @override
   String get repeater_regionManagementRepeaterOnly =>
-      'Zarządzanie Regionem (tylko Powtarzacz)';
+      'Zarządzanie Regionem (tylko Przekaźnik)';
 
   @override
   String get repeater_regionNote =>
@@ -2664,7 +2663,7 @@ class AppLocalizationsPl extends AppLocalizations {
   }
 
   @override
-  String get neighbors_repeatersNeighbors => 'Powtarzacze Sąsiedzi';
+  String get neighbors_repeatersNeighbors => 'Przekaźniki Sąsiedzi';
 
   @override
   String get neighbors_noData => 'Brak danych dotyczących sąsiadów.';
@@ -2689,7 +2688,7 @@ class AppLocalizationsPl extends AppLocalizations {
   String get channelPath_otherObservedPaths => 'Inne zaobserwowane ścieżki';
 
   @override
-  String get channelPath_repeaterHops => 'Skoki powtarzaczy';
+  String get channelPath_repeaterHops => 'Skoki przekaźników';
 
   @override
   String get channelPath_noHopDetails =>
@@ -2757,7 +2756,7 @@ class AppLocalizationsPl extends AppLocalizations {
 
   @override
   String get channelPath_noRepeaterLocations =>
-      'Brak dostępnych lokalizacji powtarzaczy dla tej ścieżki.';
+      'Brak dostępnych lokalizacji przekaźników dla tej ścieżki.';
 
   @override
   String channelPath_primaryPath(int index) {
@@ -2780,7 +2779,7 @@ class AppLocalizationsPl extends AppLocalizations {
       'Brak dostępnych szczegółów hopa dla tego pakietu.';
 
   @override
-  String get channelPath_unknownRepeater => 'Nieznany Powtarzacz';
+  String get channelPath_unknownRepeater => 'Nieznany Przekaźnik';
 
   @override
   String get community_title => 'Społeczność';
@@ -2986,7 +2985,7 @@ class AppLocalizationsPl extends AppLocalizations {
   String get listFilter_users => 'Użytkownicy';
 
   @override
-  String get listFilter_repeaters => 'Powtarzacze';
+  String get listFilter_repeaters => 'Przekaźniki';
 
   @override
   String get listFilter_roomServers => 'Serwery pokoju';
@@ -3161,10 +3160,10 @@ class AppLocalizationsPl extends AppLocalizations {
   String get contacts_ping => 'Pingować';
 
   @override
-  String get contacts_repeaterPathTrace => 'Śledzenie ścieżki do powtarzacza';
+  String get contacts_repeaterPathTrace => 'Śledzenie ścieżki do przekaźnika';
 
   @override
-  String get contacts_repeaterPing => 'Ping powtarzacza';
+  String get contacts_repeaterPing => 'Ping przekaźnika';
 
   @override
   String get contacts_roomPathTrace =>
@@ -3280,11 +3279,11 @@ class AppLocalizationsPl extends AppLocalizations {
 
   @override
   String get settings_gpxExportRepeaters =>
-      'Eksportuj powtórki / serwer pokojowy do GPX';
+      'Eksportuj przekaźniki / serwer pokojowy do GPX';
 
   @override
   String get settings_gpxExportRepeatersSubtitle =>
-      'Eksportuje powtarzacze / roomserver z lokalizacją do pliku GPX.';
+      'Eksportuje przekaźniki / roomserver z lokalizacją do pliku GPX.';
 
   @override
   String get settings_gpxExportContacts => 'Eksportuj towarzyszy do GPX';
@@ -3316,7 +3315,7 @@ class AppLocalizationsPl extends AppLocalizations {
 
   @override
   String get settings_gpxExportRepeatersRoom =>
-      'Lokalizacje serwerów powtarzających i pomieszczeń';
+      'Lokalizacje przekaźników i serwerów pokojowych';
 
   @override
   String get settings_gpxExportChat => 'Lokalizacje towarzyszy';
@@ -3358,11 +3357,11 @@ class AppLocalizationsPl extends AppLocalizations {
 
   @override
   String get contactsSettings_autoAddRepeatersTitle =>
-      'Automatyczne dodawanie powtarzalników';
+      'Automatyczne dodawanie przekaźników';
 
   @override
   String get contactsSettings_autoAddRepeatersSubtitle =>
-      'Zezwól towarzyszowi na automatyczne dodawanie odkrytych powtarzaczy.';
+      'Zezwól towarzyszowi na automatyczne dodawanie odkrytych przekaźników.';
 
   @override
   String get contactsSettings_autoAddRoomServersTitle =>
