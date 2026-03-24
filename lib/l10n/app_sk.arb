@@ -1943,5 +1943,68 @@
   "settings_telemetryModeUpdated": "Režim telemetrie bol aktualizovaný",
   "settings_multiAck": "Viaceré ACK: {value}",
   "map_showOverlaps": "Prekrývanie opakovača kľúča",
-  "map_runTraceWithReturnPath": "Vráťte sa späť po tej istej ceste."
+  "map_runTraceWithReturnPath": "Vráťte sa späť po tej istej ceste.",
+  "@radioStats_noiseFloor": {
+    "placeholders": {
+      "noiseDbm": {
+        "type": "int"
+      }
+    }
+  },
+  "@radioStats_lastRssi": {
+    "placeholders": {
+      "rssiDbm": {
+        "type": "int"
+      }
+    }
+  },
+  "@radioStats_lastSnr": {
+    "placeholders": {
+      "snr": {
+        "type": "String"
+      }
+    }
+  },
+  "@radioStats_txAir": {
+    "placeholders": {
+      "seconds": {
+        "type": "int"
+      }
+    }
+  },
+  "@radioStats_rxAir": {
+    "placeholders": {
+      "seconds": {
+        "type": "int"
+      }
+    }
+  },
+  "@radioStats_stripNoise": {
+    "placeholders": {
+      "noiseDbm": {
+        "type": "int"
+      }
+    }
+  },
+  "chat_sendCooldown": "Prosím, počkajte chvíľu, než zašlete znova.",
+  "appSettings_jumpToOldestUnread": "Presk oceň",
+  "appSettings_jumpToOldestUnreadSubtitle": "Pri otvorení chatu s neprečítanými správami, prejdite do prvého neprečítaného, namiesto poslednej.",
+  "appSettings_languageHu": "Maďarský",
+  "appSettings_languageJa": "Japonský",
+  "appSettings_languageKo": "Kórejský",
+  "radioStats_tooltip": "Statistiky rádiových a sieťových kanálov",
+  "radioStats_screenTitle": "Štatistiky rádiových vysielaní",
+  "radioStats_notConnected": "Pripojte sa k zariadeniu, aby ste mohli sledovať štatistiky rádiového vysielania.",
+  "radioStats_firmwareTooOld": "Statistické údaje z rádia vyžadujú sprievodný softvér verzie v8 alebo novšej.",
+  "radioStats_waiting": "Čakám na údaje…",
+  "radioStats_noiseFloor": "Úroveň hluku: {noiseDbm} dBm",
+  "radioStats_lastRssi": "Posledný údaj RSSI: {rssiDbm} dBm",
+  "radioStats_lastSnr": "Posledná hodnota SNR: {snr} dB",
+  "radioStats_txAir": "Čas vysielania na TX (celkový): {seconds} s",
+  "radioStats_rxAir": "Čas RX (celkový): {seconds} s",
+  "radioStats_chartCaption": "Úroveň šumu (dBm) pre posledné vzorky.",
+  "radioStats_stripNoise": "Úroveň hluku: {noiseDbm} dBm",
+  "radioStats_stripWaiting": "Získavanie údajov o rádiu…",
+  "radioStats_settingsTile": "Štatistiky rádiových vysielaní",
+  "radioStats_settingsSubtitle": "Úroveň hluku, RSSI, SNR a časové rozloženie"
 }

@@ -3501,7 +3501,7 @@ class AppLocalizationsSl extends AppLocalizations {
 
   @override
   String get radioStats_firmwareTooOld =>
-      'Statistika za radio zahteva združljivo programsko opremo v8 ali kasnejše različice.';
+      'Statistika za radio zahteva združljivo programsko opremo v8 ali kasnejše.';
 
   @override
   String get radioStats_waiting => 'Čakam na podatke…';

@@ -1943,5 +1943,68 @@
   "settings_telemetryModeUpdated": "Telemetrie-modus bijgewerkt",
   "settings_multiAck": "Multi-ACKs: {value}",
   "map_showOverlaps": "Herhalingssleutel overlapt",
-  "map_runTraceWithReturnPath": "Terugkeren op hetzelfde pad."
+  "map_runTraceWithReturnPath": "Terugkeren op hetzelfde pad.",
+  "@radioStats_noiseFloor": {
+    "placeholders": {
+      "noiseDbm": {
+        "type": "int"
+      }
+    }
+  },
+  "@radioStats_lastRssi": {
+    "placeholders": {
+      "rssiDbm": {
+        "type": "int"
+      }
+    }
+  },
+  "@radioStats_lastSnr": {
+    "placeholders": {
+      "snr": {
+        "type": "String"
+      }
+    }
+  },
+  "@radioStats_txAir": {
+    "placeholders": {
+      "seconds": {
+        "type": "int"
+      }
+    }
+  },
+  "@radioStats_rxAir": {
+    "placeholders": {
+      "seconds": {
+        "type": "int"
+      }
+    }
+  },
+  "@radioStats_stripNoise": {
+    "placeholders": {
+      "noiseDbm": {
+        "type": "int"
+      }
+    }
+  },
+  "appSettings_jumpToOldestUnread": "Ga naar het oudste ongelezen bericht",
+  "appSettings_jumpToOldestUnreadSubtitle": "Bij het openen van een chat met ongelezen berichten, scroll dan naar het eerste ongelezen bericht, in plaats van naar het meest recente.",
+  "chat_sendCooldown": "Gelieve even te wachten voordat u opnieuw verzendt.",
+  "appSettings_languageHu": "Hongaars",
+  "appSettings_languageJa": "Japanisch",
+  "appSettings_languageKo": "Koreaans",
+  "radioStats_tooltip": "Statistieken voor radio en mesh-netwerken",
+  "radioStats_screenTitle": "Statistieken over radio",
+  "radioStats_notConnected": "Verbind met een apparaat om radio-statistieken te bekijken.",
+  "radioStats_firmwareTooOld": "Om de statistieken via radio te kunnen gebruiken, is firmware versie 8 of een nieuwere vereist.",
+  "radioStats_waiting": "Wacht op gegevens…",
+  "radioStats_noiseFloor": "Ruisfrequentie: {noiseDbm} dBm",
+  "radioStats_lastRssi": "Laatste RSSI-waarde: {rssiDbm} dBm",
+  "radioStats_lastSnr": "Laatste SNR: {snr} dB",
+  "radioStats_txAir": "TX-tijd (totaal): {seconds} s",
+  "radioStats_rxAir": "Tijd besteed met RX (totaal): {seconds} s",
+  "radioStats_chartCaption": "Ruisfrequentie (dBm) over recente metingen.",
+  "radioStats_stripNoise": "Ruisfrequentie: {noiseDbm} dBm",
+  "radioStats_stripWaiting": "Radio-statistieken ophalen…",
+  "radioStats_settingsTile": "Statistieken over radio",
+  "radioStats_settingsSubtitle": "Ruimtelijke ruis, RSSI, SNR en beschikbare tijd"
 }

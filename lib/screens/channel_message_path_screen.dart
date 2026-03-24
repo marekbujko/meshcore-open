@@ -64,8 +64,9 @@ class ChannelMessagePathScreen extends StatelessWidget {
                       flipPathAround: true,
                       reversePathAround:
                           !(!channelMessage && !message.isOutgoing),
-                      pathHashByteWidth:
-                          context.read<MeshCoreConnector>().pathHashByteWidth,
+                      pathHashByteWidth: context
+                          .read<MeshCoreConnector>()
+                          .pathHashByteWidth,
                     ),
                   ),
                 ),

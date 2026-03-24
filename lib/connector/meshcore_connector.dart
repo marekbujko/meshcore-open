@@ -186,6 +186,7 @@ class MeshCoreConnector extends ChangeNotifier {
   DateTime _lastChannelMsgRxTime = DateTime.fromMillisecondsSinceEpoch(0);
   static const int _radioQuietMs = 3000;
   static const int _radioQuietMaxWaitMs = 3000;
+
   /// When companion radio stats are unavailable, keep the legacy fixed backoff.
   static const int _contactMsgBackoffFallbackMs = 5000;
   static const int _contactMsgBackoffMinMs = 500;
@@ -349,6 +350,7 @@ class MeshCoreConnector extends ChangeNotifier {
     if (sw == null || !sw.isRunning) return false;
     return sw.elapsed < const Duration(seconds: 2);
   }
+
   int? get currentFreqHz => _currentFreqHz;
   int? get currentBwHz => _currentBwHz;
   int? get currentSf => _currentSf;
@@ -818,18 +820,19 @@ class MeshCoreConnector extends ChangeNotifier {
     // Quieter (more negative) → lower score; noisier → higher.
     const noiseQuietDbm = -118.0;
     const noiseNoisyDbm = -88.0;
-    final noiseT =
-        ((nf - noiseQuietDbm) / (noiseNoisyDbm - noiseQuietDbm)).clamp(0.0, 1.0);
+    final noiseT = ((nf - noiseQuietDbm) / (noiseNoisyDbm - noiseQuietDbm))
+        .clamp(0.0, 1.0);
 
     final snr = stats.lastSnrDb;
     const snrGood = 12.0;
     const snrBad = -2.0;
-    final snrT =
-        (1.0 - ((snr - snrBad) / (snrGood - snrBad))).clamp(0.0, 1.0);
+    final snrT = (1.0 - ((snr - snrBad) / (snrGood - snrBad))).clamp(0.0, 1.0);
 
     final airBusy = _recentAirtimeBusyFraction();
-    final severity =
-        (math.max(noiseT, snrT) * 0.82 + airBusy * 0.18).clamp(0.0, 1.0);
+    final severity = (math.max(noiseT, snrT) * 0.82 + airBusy * 0.18).clamp(
+      0.0,
+      1.0,
+    );
 
     return (_contactMsgBackoffMinMs +
             severity * (_contactMsgBackoffMaxMs - _contactMsgBackoffMinMs))
@@ -856,9 +859,7 @@ class MeshCoreConnector extends ChangeNotifier {
     return bumpAt.isAfter(lastInboundRxTime) ? bumpAt : lastInboundRxTime;
   }
 
-  Future<void> _waitForRadioQuiet({
-    required DateTime lastInboundRxTime,
-  }) async {
+  Future<void> _waitForRadioQuiet({required DateTime lastInboundRxTime}) async {
     // Wait for backoff after inbound traffic / RF airtime (avoid collision with
     // mesh propagation). Elapsed time uses the dot's airtime bump when newer.
     final backoffTargetMs = _contactMessageBackoffTargetMs();

@@ -1119,9 +1119,9 @@ class _ChannelChatScreenState extends State<ChannelChatScreen> {
     final now = DateTime.now();
     if (_lastChannelSendAt != null &&
         now.difference(_lastChannelSendAt!) < const Duration(seconds: 1)) {
-      ScaffoldMessenger.of(context).showSnackBar(
-        SnackBar(content: Text(context.l10n.chat_sendCooldown)),
-      );
+      ScaffoldMessenger.of(
+        context,
+      ).showSnackBar(SnackBar(content: Text(context.l10n.chat_sendCooldown)));
       return;
     }
     _lastChannelSendAt = now;

@@ -294,9 +294,7 @@ class AppSettingsScreen extends StatelessWidget {
           SwitchListTile(
             secondary: const Icon(Icons.vertical_align_top),
             title: Text(context.l10n.appSettings_jumpToOldestUnread),
-            subtitle: Text(
-              context.l10n.appSettings_jumpToOldestUnreadSubtitle,
-            ),
+            subtitle: Text(context.l10n.appSettings_jumpToOldestUnreadSubtitle),
             value: settingsService.settings.jumpToOldestUnread,
             onChanged: settingsService.setJumpToOldestUnread,
           ),

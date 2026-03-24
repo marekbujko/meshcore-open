@@ -613,9 +613,9 @@ class _ChatScreenState extends State<ChatScreen> {
     final now = DateTime.now();
     if (_lastTextSendAt != null &&
         now.difference(_lastTextSendAt!) < const Duration(seconds: 1)) {
-      ScaffoldMessenger.of(context).showSnackBar(
-        SnackBar(content: Text(context.l10n.chat_sendCooldown)),
-      );
+      ScaffoldMessenger.of(
+        context,
+      ).showSnackBar(SnackBar(content: Text(context.l10n.chat_sendCooldown)));
       return;
     }
     _lastTextSendAt = now;

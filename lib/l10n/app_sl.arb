@@ -1943,5 +1943,68 @@
   "settings_multiAck": "Večkratni potrditvi: {value}",
   "settings_telemetryModeUpdated": "Način telemetrije posodobljen",
   "map_showOverlaps": "Prekrivanje ključa ponovnega predvajanja",
-  "map_runTraceWithReturnPath": "Vrni se nazaj po isti poti."
+  "map_runTraceWithReturnPath": "Vrni se nazaj po isti poti.",
+  "@radioStats_noiseFloor": {
+    "placeholders": {
+      "noiseDbm": {
+        "type": "int"
+      }
+    }
+  },
+  "@radioStats_lastRssi": {
+    "placeholders": {
+      "rssiDbm": {
+        "type": "int"
+      }
+    }
+  },
+  "@radioStats_lastSnr": {
+    "placeholders": {
+      "snr": {
+        "type": "String"
+      }
+    }
+  },
+  "@radioStats_txAir": {
+    "placeholders": {
+      "seconds": {
+        "type": "int"
+      }
+    }
+  },
+  "@radioStats_rxAir": {
+    "placeholders": {
+      "seconds": {
+        "type": "int"
+      }
+    }
+  },
+  "@radioStats_stripNoise": {
+    "placeholders": {
+      "noiseDbm": {
+        "type": "int"
+      }
+    }
+  },
+  "appSettings_languageHu": "Madžarski",
+  "appSettings_jumpToOldestUnreadSubtitle": "Ko odpirate klepet z neprebranimi sporočili, se premaknite na prvo neprebrano sporočilo, namesto najnovejšega.",
+  "chat_sendCooldown": "Prosimo, počakajte trenutek, preden pošljete ponovno.",
+  "appSettings_jumpToOldestUnread": "Pritisnite za najstarejše nepročitano sporočilo",
+  "appSettings_languageJa": "Japonski",
+  "appSettings_languageKo": "Korejski",
+  "radioStats_tooltip": "Statistike za radio in mrežo",
+  "radioStats_notConnected": "Povežite se z napravo, da si ogledate statistiko o radiju.",
+  "radioStats_screenTitle": "Radijske statistike",
+  "radioStats_firmwareTooOld": "Statistika za radio zahteva združljivo programsko opremo v8 ali kasnejše.",
+  "radioStats_waiting": "Čakam na podatke…",
+  "radioStats_noiseFloor": "Število šuma: {noiseDbm} dBm",
+  "radioStats_lastRssi": "Najkasnejše vrednost RSSI: {rssiDbm} dBm",
+  "radioStats_lastSnr": "Najkasnejše vrednost SNR: {snr} dB",
+  "radioStats_txAir": "Čas na TX (skupno): {seconds} s",
+  "radioStats_rxAir": "Čas, namenjen RX-ju (skupno): {seconds} s",
+  "radioStats_chartCaption": "Ravnovredna raven šuma (dBm) za nedavne vzorce.",
+  "radioStats_stripNoise": "Število šuma: {noiseDbm} dBm",
+  "radioStats_stripWaiting": "Prejemanje statistike o radiju…",
+  "radioStats_settingsTile": "Radijske statistike",
+  "radioStats_settingsSubtitle": "Število šumov, RSSI, SNR in čas, ki ga je napolnila oprema"
 }

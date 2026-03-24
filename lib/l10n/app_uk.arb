@@ -1943,5 +1943,68 @@
   "settings_telemetryModeUpdated": "Режим телеметрії оновлено",
   "settings_multiAck": "Багатократне підтвердження: {value}",
   "map_showOverlaps": "Перекриття ключа повторювача",
-  "map_runTraceWithReturnPath": "Повернутися назад тим же шляхом"
+  "map_runTraceWithReturnPath": "Повернутися назад тим же шляхом",
+  "@radioStats_noiseFloor": {
+    "placeholders": {
+      "noiseDbm": {
+        "type": "int"
+      }
+    }
+  },
+  "@radioStats_lastRssi": {
+    "placeholders": {
+      "rssiDbm": {
+        "type": "int"
+      }
+    }
+  },
+  "@radioStats_lastSnr": {
+    "placeholders": {
+      "snr": {
+        "type": "String"
+      }
+    }
+  },
+  "@radioStats_txAir": {
+    "placeholders": {
+      "seconds": {
+        "type": "int"
+      }
+    }
+  },
+  "@radioStats_rxAir": {
+    "placeholders": {
+      "seconds": {
+        "type": "int"
+      }
+    }
+  },
+  "@radioStats_stripNoise": {
+    "placeholders": {
+      "noiseDbm": {
+        "type": "int"
+      }
+    }
+  },
+  "chat_sendCooldown": "Будь ласка, зачекайте трохи, перш ніж відправляти знову.",
+  "appSettings_languageHu": "Угорський",
+  "appSettings_jumpToOldestUnreadSubtitle": "При відкритті чату з не прочитаними повідомленнями, прокрутіть до першого не прочитаного повідомлення, а не до останнього.",
+  "appSettings_jumpToOldestUnread": "Перейти до найстарішого непрочитаного повідомлення",
+  "appSettings_languageJa": "Японська",
+  "appSettings_languageKo": "Кореєська",
+  "radioStats_tooltip": "Статистика радіо та мережі",
+  "radioStats_screenTitle": "Дані про радіостанції",
+  "radioStats_notConnected": "Підключіться до пристрою, щоб переглядати статистику радіопередач.",
+  "radioStats_firmwareTooOld": "Статистика радіо приймача вимагає супутнього програмного забезпечення версії 8 або новішої.",
+  "radioStats_waiting": "Очікую на отримання даних…",
+  "radioStats_noiseFloor": "Рівень шуму: {noiseDbm} дБм",
+  "radioStats_lastRssi": "Останній показник RSSI: {rssiDbm} дБм",
+  "radioStats_lastSnr": "Останній показник SNR: {snr} дБ",
+  "radioStats_txAir": "Час трансляції на телеканалі TX (загальний): {seconds} секунд",
+  "radioStats_rxAir": "Загальний час використання RX: {seconds} секунд",
+  "radioStats_chartCaption": "Рівень шуму (дБм) на основі останніх вимірювань.",
+  "radioStats_stripNoise": "Рівень шуму: {noiseDbm} дБм",
+  "radioStats_stripWaiting": "Отримано статистику радіо…",
+  "radioStats_settingsTile": "Дані про радіостанції",
+  "radioStats_settingsSubtitle": "Рівень шуму, RSSI, SNR та час, протягом якого пристрій використовує радіоканал."
 }

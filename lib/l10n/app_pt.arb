@@ -1943,5 +1943,68 @@
   "settings_telemetryModeUpdated": "Modo de telemetria atualizado",
   "settings_multiAck": "Multi-ACKs: {value}",
   "map_showOverlaps": "Sobreposições da Chave Repeater",
-  "map_runTraceWithReturnPath": "Retornar ao mesmo caminho."
+  "map_runTraceWithReturnPath": "Retornar ao mesmo caminho.",
+  "@radioStats_noiseFloor": {
+    "placeholders": {
+      "noiseDbm": {
+        "type": "int"
+      }
+    }
+  },
+  "@radioStats_lastRssi": {
+    "placeholders": {
+      "rssiDbm": {
+        "type": "int"
+      }
+    }
+  },
+  "@radioStats_lastSnr": {
+    "placeholders": {
+      "snr": {
+        "type": "String"
+      }
+    }
+  },
+  "@radioStats_txAir": {
+    "placeholders": {
+      "seconds": {
+        "type": "int"
+      }
+    }
+  },
+  "@radioStats_rxAir": {
+    "placeholders": {
+      "seconds": {
+        "type": "int"
+      }
+    }
+  },
+  "@radioStats_stripNoise": {
+    "placeholders": {
+      "noiseDbm": {
+        "type": "int"
+      }
+    }
+  },
+  "appSettings_jumpToOldestUnread": "Vá para a mensagem mais antiga não lida",
+  "chat_sendCooldown": "Por favor, aguarde um momento antes de reenviar.",
+  "appSettings_languageHu": "Húngaro",
+  "appSettings_jumpToOldestUnreadSubtitle": "Ao abrir uma conversa com mensagens não lidas, role para a primeira mensagem não lida, em vez da mais recente.",
+  "appSettings_languageJa": "Japonês",
+  "appSettings_languageKo": "Coreano",
+  "radioStats_tooltip": "Estatísticas de rádio e malha",
+  "radioStats_screenTitle": "Estatísticas de rádio",
+  "radioStats_notConnected": "Conecte-se a um dispositivo para visualizar estatísticas de rádio.",
+  "radioStats_firmwareTooOld": "As estatísticas de rádio exigem o firmware v8 ou uma versão mais recente.",
+  "radioStats_waiting": "Aguardando dados…",
+  "radioStats_noiseFloor": "Nível de ruído: {noiseDbm} dBm",
+  "radioStats_lastRssi": "Último RSSI: {rssiDbm} dBm",
+  "radioStats_lastSnr": "Último SNR: {snr} dB",
+  "radioStats_txAir": "Tempo de transmissão da TX (total): {seconds} s",
+  "radioStats_rxAir": "Tempo de uso do RX (total): {seconds} s",
+  "radioStats_chartCaption": "Nível de ruído (dBm) em amostras recentes.",
+  "radioStats_stripNoise": "Nível de ruído: {noiseDbm} dBm",
+  "radioStats_stripWaiting": "Obtendo estatísticas de rádio…",
+  "radioStats_settingsTile": "Estatísticas de rádio",
+  "radioStats_settingsSubtitle": "Nível de ruído, RSSI, SNR e tempo de transmissão"
 }

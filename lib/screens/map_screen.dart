@@ -2191,8 +2191,9 @@ class _MapScreenState extends State<MapScreen> {
                   if (_pathTrace.isNotEmpty)
                     IconButton(
                       onPressed: () {
-                        final hashW =
-                            context.read<MeshCoreConnector>().pathHashByteWidth;
+                        final hashW = context
+                            .read<MeshCoreConnector>()
+                            .pathHashByteWidth;
                         Navigator.push(
                           context,
                           MaterialPageRoute(

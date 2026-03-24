@@ -275,8 +275,8 @@ class _SettingsScreenState extends State<SettingsScreen> {
             title: Text(l10n.radioStats_settingsTile),
             subtitle: Text(l10n.radioStats_settingsSubtitle),
             trailing: const Icon(Icons.chevron_right),
-            enabled: connector.isConnected &&
-                connector.supportsCompanionRadioStats,
+            enabled:
+                connector.isConnected && connector.supportsCompanionRadioStats,
             onTap: () => pushCompanionRadioStatsScreen(context),
           ),
           const Divider(height: 1),

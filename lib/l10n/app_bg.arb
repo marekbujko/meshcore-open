@@ -1943,5 +1943,68 @@
   "settings_multiAck": "Мулти-потвърди: {value}",
   "settings_telemetryModeUpdated": "Режим на телеметрията е обновен",
   "map_showOverlaps": "Покриване на ключа на повтаряча",
-  "map_runTraceWithReturnPath": "Върни се по същия път."
+  "map_runTraceWithReturnPath": "Върни се по същия път.",
+  "@radioStats_noiseFloor": {
+    "placeholders": {
+      "noiseDbm": {
+        "type": "int"
+      }
+    }
+  },
+  "@radioStats_lastRssi": {
+    "placeholders": {
+      "rssiDbm": {
+        "type": "int"
+      }
+    }
+  },
+  "@radioStats_lastSnr": {
+    "placeholders": {
+      "snr": {
+        "type": "String"
+      }
+    }
+  },
+  "@radioStats_txAir": {
+    "placeholders": {
+      "seconds": {
+        "type": "int"
+      }
+    }
+  },
+  "@radioStats_rxAir": {
+    "placeholders": {
+      "seconds": {
+        "type": "int"
+      }
+    }
+  },
+  "@radioStats_stripNoise": {
+    "placeholders": {
+      "noiseDbm": {
+        "type": "int"
+      }
+    }
+  },
+  "chat_sendCooldown": "Моля, изчакайте малко, преди да изпратите отново.",
+  "appSettings_languageHu": "Унгарски",
+  "appSettings_jumpToOldestUnread": "Преминете към най-старата непочетена статия",
+  "appSettings_jumpToOldestUnreadSubtitle": "Когато отворите чат с непрочетени съобщения, плъзнете надолу, за да видите първото непрочетено съобщение, вместо най-новото.",
+  "appSettings_languageJa": "Японски",
+  "appSettings_languageKo": "Корейски",
+  "radioStats_tooltip": "Статистика за радио и мрежа",
+  "radioStats_screenTitle": "Статистически данни за радиопредаванията",
+  "radioStats_notConnected": "Свържете се с устройство, за да видите статистически данни за радиопредаване.",
+  "radioStats_firmwareTooOld": "Статистиката на радиостанцията изисква съвместимо софтуерно решение версия 8 или по-нова.",
+  "radioStats_waiting": "Изчакване на данни…",
+  "radioStats_noiseFloor": "Ниво на шума: {noiseDbm} dBm",
+  "radioStats_lastRssi": "Последен RSSI: {rssiDbm} dBm",
+  "radioStats_lastSnr": "Последна стойност на SNR: {snr} dB",
+  "radioStats_txAir": "Време на въздух (общо): {seconds} секунди",
+  "radioStats_rxAir": "Общо време на използване на RX (в секунди): {seconds} с",
+  "radioStats_chartCaption": "Ниво на шума (dBm) за последните измервания.",
+  "radioStats_stripNoise": "Ниво на шума: {noiseDbm} dBm",
+  "radioStats_stripWaiting": "Извличане на данни за радиото…",
+  "radioStats_settingsTile": "Статистически данни за радиостанции",
+  "radioStats_settingsSubtitle": "Ниво на шума, RSSI, SNR и време на пренос"
 }

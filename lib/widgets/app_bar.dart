@@ -36,8 +36,7 @@ class AppBarTitle extends StatelessWidget {
         final compact = availableWidth < 170;
         final showSubtitle =
             !compact && connector.isConnected && selfName != null && subtitle;
-        final showBattery =
-            showBatteryIndicator && availableWidth >= 60;
+        final showBattery = showBatteryIndicator && availableWidth >= 60;
         final showSnr = availableWidth >= 110;
         final showIndicators = (showBattery || showSnr) && indicators;
 
@@ -64,21 +63,13 @@ class AppBarTitle extends StatelessWidget {
             if (showIndicators) const SizedBox(width: 6),
             if (showIndicators)
               Row(
-                crossAxisAlignment: CrossAxisAlignment.start,
+                crossAxisAlignment: CrossAxisAlignment.center,
                 mainAxisSize: MainAxisSize.min,
                 children: [
                   if (showBattery) BatteryIndicator(connector: connector),
                   if (showSnr) SNRIndicator(connector: connector),
                   if (connector.supportsCompanionRadioStats)
-                    ValueListenableBuilder(
-                      valueListenable: connector.radioStatsNotifier,
-                      builder: (context, _, child) => Padding(
-                        padding: const EdgeInsets.only(left: 4),
-                        child: AirActivityDot(
-                          active: connector.radioStatsAirActivityPulse,
-                        ),
-                      ),
-                    ),
+                    const RadioStatsIconButton(compact: true),
                 ],
               ),
             trailing ?? const SizedBox.shrink(),

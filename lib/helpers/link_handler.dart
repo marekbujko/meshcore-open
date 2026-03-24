@@ -10,10 +10,7 @@ class LinkHandler {
     final orange = brightness == Brightness.dark
         ? const Color(0xFFFFB74D)
         : const Color(0xFFE65100);
-    return base.copyWith(
-      color: orange,
-      decoration: TextDecoration.underline,
-    );
+    return base.copyWith(color: orange, decoration: TextDecoration.underline);
   }
 
   /// Returns a [SelectableLinkify] on desktop or a [Linkify] on mobile.
@@ -23,8 +20,7 @@ class LinkHandler {
     required TextStyle style,
     TextStyle? linkStyle,
   }) {
-    final effectiveLinkStyle =
-        linkStyle ?? defaultLinkStyle(context, style);
+    final effectiveLinkStyle = linkStyle ?? defaultLinkStyle(context, style);
     const options = LinkifyOptions(humanize: false, defaultToHttps: false);
     const linkifiers = [UrlLinkifier(), EmailLinkifier()];
     void onOpen(LinkableElement link) => handleLinkTap(context, link.url);

@@ -3494,7 +3494,7 @@ class AppLocalizationsEs extends AppLocalizations {
 
   @override
   String get appSettings_jumpToOldestUnread =>
-      'Ve a el mensaje más antiguo sin leer';
+      'Salta a los mensajes más antiguos sin leer';
 
   @override
   String get appSettings_jumpToOldestUnreadSubtitle =>
