@@ -396,6 +396,49 @@ class AppLocalizationsSk extends AppLocalizations {
   String get settings_privacyModeDisabled => 'Ochranný režim je vypnutý';
 
   @override
+  String get settings_privacy => 'Nastavenia súkromia';
+
+  @override
+  String get settings_privacySubtitle => 'Ovládni, aké informácie sa zdieľajú.';
+
+  @override
+  String get settings_privacySettingsDescription =>
+      'Vyberte, ktoré informácie váš zariadenie zdieľa s ostatnými.';
+
+  @override
+  String get settings_denyAll => 'Zamietnuť všetko';
+
+  @override
+  String get settings_allowByContact => 'Povoliť podľa kontaktových vlajok';
+
+  @override
+  String get settings_allowAll => 'Povoliť všetko';
+
+  @override
+  String get settings_telemetryBaseMode => 'Základný režim telemetrie';
+
+  @override
+  String get settings_telemetryLocationMode => 'Režim umiestnenia telemetrie';
+
+  @override
+  String get settings_telemetryEnvironmentMode => 'Režim prostredia telemetrie';
+
+  @override
+  String get settings_advertLocation => 'Umiestnenie inzerátu';
+
+  @override
+  String get settings_advertLocationSubtitle => 'Zahrnúť polohu do inzerátu';
+
+  @override
+  String settings_multiAck(String value) {
+    return 'Viaceré ACK: $value';
+  }
+
+  @override
+  String get settings_telemetryModeUpdated =>
+      'Režim telemetrie bol aktualizovaný';
+
+  @override
   String get settings_actions => 'Možné akcie';
 
   @override
@@ -979,6 +1022,41 @@ class AppLocalizationsSk extends AppLocalizations {
   String contacts_lastSeenDaysAgo(int days) {
     return 'Posledné zobrazenie $days dní dozadu';
   }
+
+  @override
+  String get contact_info => 'Kontaktné informácie';
+
+  @override
+  String get contact_settings => 'Nastavenia kontaktov';
+
+  @override
+  String get contact_telemetry => 'Telemetria';
+
+  @override
+  String get contact_lastSeen => 'Naposledy videný';
+
+  @override
+  String get contact_clearChat => 'Vymazať chat';
+
+  @override
+  String get contact_teleBase => 'Báza telemetrie';
+
+  @override
+  String get contact_teleBaseSubtitle =>
+      'Povoliť zdieľanie úrovne batérie a základnej telemetrie';
+
+  @override
+  String get contact_teleLoc => 'Lokácia telemetrie';
+
+  @override
+  String get contact_teleLocSubtitle => 'Povoliť zdieľanie údajov o lokalite';
+
+  @override
+  String get contact_teleEnv => 'Prostredie telemetrie';
+
+  @override
+  String get contact_teleEnvSubtitle =>
+      'Povoliť zdieľanie údajov senzorov prostredia';
 
   @override
   String get channels_title => 'Kanály';

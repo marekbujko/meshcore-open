@@ -85,9 +85,7 @@ class MessageStore {
       'messageId': msg.messageId,
       'retryCount': msg.retryCount,
       'estimatedTimeoutMs': msg.estimatedTimeoutMs,
-      'expectedAckHash': msg.expectedAckHash != null
-          ? base64Encode(msg.expectedAckHash!)
-          : null,
+      'expectedAckHash': msg.expectedAckHash,
       'sentAt': msg.sentAt?.millisecondsSinceEpoch,
       'deliveredAt': msg.deliveredAt?.millisecondsSinceEpoch,
       'tripTimeMs': msg.tripTimeMs,
@@ -119,9 +117,7 @@ class MessageStore {
       messageId: json['messageId'] as String?,
       retryCount: json['retryCount'] as int? ?? 0,
       estimatedTimeoutMs: json['estimatedTimeoutMs'] as int?,
-      expectedAckHash: json['expectedAckHash'] != null
-          ? Uint8List.fromList(base64Decode(json['expectedAckHash'] as String))
-          : null,
+      expectedAckHash: json['expectedAckHash'] as int? ?? 0,
       sentAt: json['sentAt'] != null
           ? DateTime.fromMillisecondsSinceEpoch(json['sentAt'] as int)
           : null,

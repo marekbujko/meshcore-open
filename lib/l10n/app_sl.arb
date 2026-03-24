@@ -1900,6 +1900,35 @@
       }
     }
   },
+  "settings_privacy": "Nastavitve zasebnosti",
+  "settings_privacySettingsDescription": "Izberite, katere informacije vaš naprava deli z drugimi.",
+  "settings_telemetryBaseMode": "Osnovni način telemetrije",
+  "settings_telemetryLocationMode": "Način delovanja telemetrije",
+  "settings_telemetryEnvironmentMode": "Način delovanja okolja telemetrije",
+  "settings_advertLocation": "Lokacija oglasa",
+  "settings_allowByContact": "Dovoli po kontaktnih zastavah",
+  "settings_denyAll": "Zavrniti vse",
+  "settings_allowAll": "Dovoli vse",
+  "settings_privacySubtitle": "Kontrolirajte, katere informacije so deljene.",
+  "contact_info": "Kontaktni podatki",
+  "contact_teleBase": "Baza telemetrije",
+  "contact_teleBaseSubtitle": "Dovoli deljenje stanja baterije in osnovne telemetrije",
+  "contact_teleLoc": "Lokacija telemetrije",
+  "contact_lastSeen": "Zadnjič videno",
+  "contact_settings": "Nastavitve stika",
+  "settings_advertLocationSubtitle": "Vključi lokacijo v oglas.",
+  "contact_telemetry": "Telemetrija",
+  "contact_clearChat": "Počisti klepet",
+  "contact_teleEnv": "Okolje telemetrije",
+  "contact_teleEnvSubtitle": "Dovoli deljenje podatkov okoljskih senzorjev",
+  "contact_teleLocSubtitle": "Dovoli deljenje podatkov o lokaciji",
+  "@settings_multiAck": {
+    "placeholders": {
+      "value": {
+        "type": "String"
+      }
+    }
+  },
   "appSettings_maxRouteWeightSubtitle": "Največja teža, ki jo lahko pot doseže s uspešnimi dostavnami.",
   "appSettings_initialRouteWeight": "Izvirna teža poti",
   "appSettings_initialRouteWeightSubtitle": "Izguba teže za nove, odkriti poti",
@@ -1910,5 +1939,7 @@
   "appSettings_routeWeightFailureDecrementSubtitle": "Težo, ki ni bila uspešno dostavljena, odstranili s poti.",
   "appSettings_maxMessageRetries": "Najve število poskusov pošiljanja sporočil",
   "appSettings_maxMessageRetriesSubtitle": "Število poskusov ponovnega poslanja, preden se sporočilo označuje kot neuspešno",
-  "path_routeWeight": "{weight}/{max}"
+  "path_routeWeight": "{weight}/{max}",
+  "settings_multiAck": "Večkratni potrditvi: {value}",
+  "settings_telemetryModeUpdated": "Način telemetrije posodobljen"
 }

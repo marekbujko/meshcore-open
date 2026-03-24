@@ -38,6 +38,7 @@ import '../widgets/gif_picker.dart';
 import '../widgets/path_selection_dialog.dart';
 import '../utils/app_logger.dart';
 import '../l10n/l10n.dart';
+import 'telemetry_screen.dart';
 
 class ChatScreen extends StatefulWidget {
   final Contact contact;
@@ -246,9 +247,77 @@ class _ChatScreenState extends State<ChatScreen> {
             tooltip: context.l10n.chat_pathManagement,
             onPressed: () => _showPathHistory(context),
           ),
-          IconButton(
-            icon: const Icon(Icons.info_outline),
-            onPressed: () => _showContactInfo(context),
+          Consumer<MeshCoreConnector>(
+            builder: (context, connector, _) {
+              return PopupMenuButton<String>(
+                icon: const Icon(Icons.more_vert),
+                onSelected: (value) {
+                  if (value == 'info') {
+                    _showContactInfo(context);
+                  }
+                  if (value == 'settings') {
+                    _showContactSettings(context);
+                  }
+                  if (value == 'telemetry') {
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                        builder: (context) =>
+                            TelemetryScreen(contact: widget.contact),
+                      ),
+                    );
+                  }
+                  if (value == 'clearChat') {
+                    connector.clearMessagesForContact(widget.contact);
+                  }
+                },
+                itemBuilder: (context) => [
+                  PopupMenuItem(
+                    value: 'info',
+                    child: Row(
+                      children: [
+                        const Icon(Icons.info_outline, size: 20),
+                        const SizedBox(width: 12),
+                        Text(context.l10n.contact_info),
+                      ],
+                    ),
+                  ),
+                  PopupMenuItem(
+                    value: 'telemetry',
+                    child: Row(
+                      children: [
+                        const Icon(Icons.bar_chart, size: 20),
+                        const SizedBox(width: 12),
+                        Text(context.l10n.contact_telemetry),
+                      ],
+                    ),
+                  ),
+                  PopupMenuItem(
+                    value: 'settings',
+                    child: Row(
+                      children: [
+                        const Icon(Icons.settings, size: 20),
+                        const SizedBox(width: 12),
+                        Text(context.l10n.contact_settings),
+                      ],
+                    ),
+                  ),
+                  PopupMenuItem(
+                    value: 'clearChat',
+                    child: Row(
+                      children: [
+                        const Icon(Icons.delete, size: 20, color: Colors.red),
+                        const SizedBox(width: 12),
+                        Text(
+                          context.l10n.contact_clearChat,
+                          style: const TextStyle(color: Colors.red),
+                        ),
+                      ],
+                    ),
+                  ),
+                ],
+              );
+            },
           ),
         ],
       ),
@@ -895,11 +964,22 @@ class _ChatScreenState extends State<ChatScreen> {
     );
   }
 
+  int _resolveContactIndex = -1;
+
   Contact _resolveContact(MeshCoreConnector connector) {
-    return connector.contacts.firstWhere(
+    if (_resolveContactIndex >= 0 &&
+        _resolveContactIndex < connector.contacts.length &&
+        connector.contacts[_resolveContactIndex].publicKeyHex ==
+            widget.contact.publicKeyHex) {
+      return connector.contacts[_resolveContactIndex];
+    }
+    _resolveContactIndex = connector.contacts.indexWhere(
       (c) => c.publicKeyHex == widget.contact.publicKeyHex,
-      orElse: () => widget.contact,
     );
+    if (_resolveContactIndex == -1) {
+      return widget.contact;
+    }
+    return connector.contacts[_resolveContactIndex];
   }
 
   Contact _resolveContactFrom4Bytes(
@@ -952,59 +1032,127 @@ class _ChatScreenState extends State<ChatScreen> {
 
   void _showContactInfo(BuildContext context) {
     final connector = Provider.of<MeshCoreConnector>(context, listen: false);
-    connector.ensureContactSmazSettingLoaded(widget.contact.publicKeyHex);
-
+    final contact = _resolveContact(connector);
     showDialog(
       context: context,
-      builder: (context) => Consumer<MeshCoreConnector>(
-        builder: (context, connector, _) {
-          final contact = _resolveContact(connector);
-          final smazEnabled = connector.isContactSmazEnabled(
-            contact.publicKeyHex,
-          );
-
-          return AlertDialog(
-            title: Text(contact.name),
-            content: SingleChildScrollView(
-              child: Column(
-                mainAxisSize: MainAxisSize.min,
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  _buildInfoRow(context.l10n.chat_type, contact.typeLabel),
-                  _buildInfoRow(context.l10n.chat_path, contact.pathLabel),
-                  if (contact.hasLocation)
-                    _buildInfoRow(
-                      context.l10n.chat_location,
-                      '${contact.latitude?.toStringAsFixed(4)}, ${contact.longitude?.toStringAsFixed(4)}',
-                    ),
-                  _buildInfoRow(
-                    context.l10n.chat_publicKey,
-                    '${contact.publicKeyHex.substring(0, 16)}...',
-                  ),
-                  const Divider(),
-                  SwitchListTile(
-                    contentPadding: EdgeInsets.zero,
-                    title: Text(context.l10n.channels_smazCompression),
-                    subtitle: Text(context.l10n.chat_compressOutgoingMessages),
-                    value: smazEnabled,
-                    onChanged: (value) {
-                      connector.setContactSmazEnabled(
-                        contact.publicKeyHex,
-                        value,
-                      );
-                    },
-                  ),
-                ],
+      builder: (context) => AlertDialog(
+        title: SelectableText(contact.name),
+        content: SingleChildScrollView(
+          child: Column(
+            mainAxisSize: MainAxisSize.min,
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              _buildInfoRow(context.l10n.chat_type, contact.typeLabel),
+              _buildInfoRow(context.l10n.chat_path, contact.pathLabel),
+              _buildInfoRow(
+                context.l10n.contact_lastSeen,
+                _formatContactLastMessage(contact.lastMessageAt),
               ),
-            ),
-            actions: [
-              TextButton(
-                onPressed: () => Navigator.pop(context),
-                child: Text(context.l10n.common_close),
-              ),
+              if (contact.hasLocation)
+                _buildInfoRow(
+                  context.l10n.chat_location,
+                  '${contact.latitude?.toStringAsFixed(4)}, ${contact.longitude?.toStringAsFixed(4)}',
+                ),
+              _buildInfoRow(context.l10n.chat_publicKey, contact.publicKeyHex),
             ],
-          );
-        },
+          ),
+        ),
+        actions: [
+          TextButton(
+            onPressed: () => Navigator.pop(context),
+            child: Text(context.l10n.common_close),
+          ),
+        ],
+      ),
+    );
+  }
+
+  void _showContactSettings(BuildContext context) {
+    final connector = Provider.of<MeshCoreConnector>(context, listen: false);
+    connector.ensureContactSmazSettingLoaded(widget.contact.publicKeyHex);
+    final contact = widget.contact;
+    bool smazEnabled = connector.isContactSmazEnabled(contact.publicKeyHex);
+    bool teleBaseEnabled = contact.teleBaseEnabled;
+    bool teleLocEnabled = contact.teleLocEnabled;
+    bool teleEnvEnabled = contact.teleEnvEnabled;
+    showDialog(
+      context: context,
+      builder: (context) => StatefulBuilder(
+        builder: (context, setDialogState) => AlertDialog(
+          title: Text(context.l10n.contact_settings),
+          content: SingleChildScrollView(
+            child: Column(
+              mainAxisSize: MainAxisSize.min,
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                if (contact.hasLocation) ...[
+                  _buildInfoRow(
+                    context.l10n.chat_location,
+                    '${contact.latitude?.toStringAsFixed(4)}, ${contact.longitude?.toStringAsFixed(4)}',
+                  ),
+                  const Divider(height: 8),
+                ],
+                SwitchListTile(
+                  contentPadding: EdgeInsets.zero,
+                  title: Text(context.l10n.channels_smazCompression),
+                  subtitle: Text(context.l10n.chat_compressOutgoingMessages),
+                  value: smazEnabled,
+                  onChanged: (value) {
+                    connector.setContactSmazEnabled(
+                      contact.publicKeyHex,
+                      value,
+                    );
+                    setDialogState(() => smazEnabled = value);
+                  },
+                ),
+                const Divider(height: 8),
+                SwitchListTile(
+                  contentPadding: EdgeInsets.zero,
+                  title: Text(context.l10n.contact_teleBase),
+                  subtitle: Text(context.l10n.contact_teleBaseSubtitle),
+                  value: teleBaseEnabled,
+                  onChanged: (value) {
+                    setDialogState(() => teleBaseEnabled = value);
+                  },
+                ),
+                const Divider(height: 8),
+                SwitchListTile(
+                  contentPadding: EdgeInsets.zero,
+                  title: Text(context.l10n.contact_teleLoc),
+                  subtitle: Text(context.l10n.contact_teleLocSubtitle),
+                  value: teleLocEnabled,
+                  onChanged: (value) {
+                    setDialogState(() => teleLocEnabled = value);
+                  },
+                ),
+                const Divider(height: 8),
+                SwitchListTile(
+                  contentPadding: EdgeInsets.zero,
+                  title: Text(context.l10n.contact_teleEnv),
+                  subtitle: Text(context.l10n.contact_teleEnvSubtitle),
+                  value: teleEnvEnabled,
+                  onChanged: (value) {
+                    setDialogState(() => teleEnvEnabled = value);
+                  },
+                ),
+              ],
+            ),
+          ),
+          actions: [
+            TextButton(
+              onPressed: () {
+                connector.setContactFlags(
+                  contact,
+                  teleBase: teleBaseEnabled,
+                  teleLoc: teleLocEnabled,
+                  teleEnv: teleEnvEnabled,
+                );
+                Navigator.pop(context);
+              },
+              child: Text(context.l10n.common_close),
+            ),
+          ],
+        ),
       ),
     );
   }
@@ -1019,10 +1167,30 @@ class _ChatScreenState extends State<ChatScreen> {
             width: 80,
             child: Text(label, style: TextStyle(color: Colors.grey[600])),
           ),
-          Expanded(child: Text(value)),
+          Expanded(child: SelectableText(value)),
         ],
       ),
     );
+  }
+
+  String _formatContactLastMessage(DateTime timestamp) {
+    final diff = DateTime.now().difference(timestamp);
+    if (diff.isNegative || diff.inMinutes < 5) {
+      return context.l10n.contacts_lastSeenNow;
+    }
+    if (diff.inMinutes < 60) {
+      return context.l10n.contacts_lastSeenMinsAgo(diff.inMinutes);
+    }
+    if (diff.inHours < 24) {
+      final hours = diff.inHours;
+      return hours == 1
+          ? context.l10n.contacts_lastSeenHourAgo
+          : context.l10n.contacts_lastSeenHoursAgo(hours);
+    }
+    final days = diff.inDays;
+    return days == 1
+        ? context.l10n.contacts_lastSeenDayAgo
+        : context.l10n.contacts_lastSeenDaysAgo(days);
   }
 
   void _openChat(BuildContext context, Contact contact) {

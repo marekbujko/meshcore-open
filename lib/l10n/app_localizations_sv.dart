@@ -393,6 +393,49 @@ class AppLocalizationsSv extends AppLocalizations {
   String get settings_privacyModeDisabled => 'Privatläge är avstängt';
 
   @override
+  String get settings_privacy => 'Inställningar för sekretess';
+
+  @override
+  String get settings_privacySubtitle =>
+      'Kontrollera vilken information som delas.';
+
+  @override
+  String get settings_privacySettingsDescription =>
+      'Välj vilken information din enhet delar med andra.';
+
+  @override
+  String get settings_denyAll => 'Neka alla';
+
+  @override
+  String get settings_allowByContact => 'Tillåt via kontaktflaggor';
+
+  @override
+  String get settings_allowAll => 'Tillåt alla';
+
+  @override
+  String get settings_telemetryBaseMode => 'Telemetribasläge';
+
+  @override
+  String get settings_telemetryLocationMode => 'Telemetritillstånd för plats';
+
+  @override
+  String get settings_telemetryEnvironmentMode => 'Telemetri miljöläge';
+
+  @override
+  String get settings_advertLocation => 'Annonsplacering';
+
+  @override
+  String get settings_advertLocationSubtitle => 'Inkludera plats i annonsen';
+
+  @override
+  String settings_multiAck(String value) {
+    return 'Multi-ACKs: $value';
+  }
+
+  @override
+  String get settings_telemetryModeUpdated => 'Telemetri-läge uppdaterat';
+
+  @override
   String get settings_actions => 'Åtgärder';
 
   @override
@@ -971,6 +1014,40 @@ class AppLocalizationsSv extends AppLocalizations {
   String contacts_lastSeenDaysAgo(int days) {
     return 'Senast synlig $days dagar sedan';
   }
+
+  @override
+  String get contact_info => 'Kontaktinformation';
+
+  @override
+  String get contact_settings => 'Kontaktinställningar';
+
+  @override
+  String get contact_telemetry => 'Telemetri';
+
+  @override
+  String get contact_lastSeen => 'Senast sedd';
+
+  @override
+  String get contact_clearChat => 'Rensa Chatt';
+
+  @override
+  String get contact_teleBase => 'Telemetribas';
+
+  @override
+  String get contact_teleBaseSubtitle =>
+      'Tillåt delning av batterinivå och grundläggande telemetri';
+
+  @override
+  String get contact_teleLoc => 'Telemetridata plats';
+
+  @override
+  String get contact_teleLocSubtitle => 'Tillåt delning av platsdata';
+
+  @override
+  String get contact_teleEnv => 'Telemetri Miljö';
+
+  @override
+  String get contact_teleEnvSubtitle => 'Tillåt delning av miljösensordata';
 
   @override
   String get channels_title => 'Kanaler';

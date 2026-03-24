@@ -399,6 +399,52 @@ class AppLocalizationsIt extends AppLocalizations {
   String get settings_privacyModeDisabled => 'Modalità privacy disabilitata';
 
   @override
+  String get settings_privacy => 'Impostazioni sulla privacy';
+
+  @override
+  String get settings_privacySubtitle =>
+      'Controlla le informazioni che vengono condivise.';
+
+  @override
+  String get settings_privacySettingsDescription =>
+      'Scegli le informazioni che il tuo dispositivo condivide con gli altri.';
+
+  @override
+  String get settings_denyAll => 'Negare tutto';
+
+  @override
+  String get settings_allowByContact => 'Consenti in base ai flag di contatto';
+
+  @override
+  String get settings_allowAll => 'Consenti tutto';
+
+  @override
+  String get settings_telemetryBaseMode => 'Modalità di base di telemetria';
+
+  @override
+  String get settings_telemetryLocationMode =>
+      'Modalità di posizionamento telemetrico';
+
+  @override
+  String get settings_telemetryEnvironmentMode =>
+      'Modalità di ambiente di telemetria';
+
+  @override
+  String get settings_advertLocation => 'Posizione dell\'annuncio';
+
+  @override
+  String get settings_advertLocationSubtitle =>
+      'Includi la posizione nell\'annuncio';
+
+  @override
+  String settings_multiAck(String value) {
+    return 'Multi-ACKs: $value';
+  }
+
+  @override
+  String get settings_telemetryModeUpdated => 'Modalità telemetria aggiornata';
+
+  @override
   String get settings_actions => 'Azioni';
 
   @override
@@ -986,6 +1032,42 @@ class AppLocalizationsIt extends AppLocalizations {
   String contacts_lastSeenDaysAgo(int days) {
     return 'Ultimo visto $days giorni fa';
   }
+
+  @override
+  String get contact_info => 'Informazioni di Contatto';
+
+  @override
+  String get contact_settings => 'Impostazioni di contatto';
+
+  @override
+  String get contact_telemetry => 'Telemetria';
+
+  @override
+  String get contact_lastSeen => 'Ultimo accesso';
+
+  @override
+  String get contact_clearChat => 'Cancella chat';
+
+  @override
+  String get contact_teleBase => 'Base di telemetria';
+
+  @override
+  String get contact_teleBaseSubtitle =>
+      'Consenti la condivisione del livello della batteria e della telemetria di base';
+
+  @override
+  String get contact_teleLoc => 'Posizione telemetria';
+
+  @override
+  String get contact_teleLocSubtitle =>
+      'Consenti la condivisione dei dati di posizione';
+
+  @override
+  String get contact_teleEnv => 'Ambiente di telemetria';
+
+  @override
+  String get contact_teleEnvSubtitle =>
+      'Consenti la condivisione dei dati del sensore ambientale';
 
   @override
   String get channels_title => 'Canali';

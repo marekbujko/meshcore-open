@@ -16,7 +16,7 @@ class Message {
   final String? messageId;
   final int retryCount;
   final int? estimatedTimeoutMs;
-  final Uint8List? expectedAckHash;
+  final int? expectedAckHash;
   final DateTime? sentAt;
   final DateTime? deliveredAt;
   final int? tripTimeMs;
@@ -56,7 +56,7 @@ class Message {
     MessageStatus? status,
     int? retryCount,
     int? estimatedTimeoutMs,
-    Uint8List? expectedAckHash,
+    int? expectedAckHash,
     DateTime? sentAt,
     DateTime? deliveredAt,
     int? tripTimeMs,
@@ -90,33 +90,35 @@ class Message {
     );
   }
 
-  static Message? fromFrame(Uint8List data, Uint8List selfPubKey) {
-    if (data.length < msgTextOffset + 1) return null;
+  static Message? fromFrame(Uint8List frame, Uint8List selfPubKey) {
+    if (frame.length < msgTextOffset + 1) return null;
+    final reader = BufferReader(frame);
+    try {
+      final code = reader.readByte();
+      if (code != respCodeContactMsgRecv && code != respCodeContactMsgRecvV3) {
+        return null;
+      }
 
-    final code = data[0];
-    if (code != respCodeContactMsgRecv && code != respCodeContactMsgRecvV3) {
+      final senderKey = reader.readBytes(pubKeySize);
+      final timestampRaw = reader.readInt32LE();
+      final flags = reader.readByte();
+      if ((flags >> 2) != txtTypePlain) {
+        return null;
+      }
+      final text = reader.readCString();
+
+      return Message(
+        senderKey: senderKey,
+        text: text,
+        timestamp: DateTime.fromMillisecondsSinceEpoch(timestampRaw * 1000),
+        isOutgoing: false,
+        isCli: false,
+        status: MessageStatus.delivered,
+        pathBytes: Uint8List(0),
+      );
+    } catch (e) {
       return null;
     }
-
-    final senderKey = Uint8List.fromList(
-      data.sublist(msgPubKeyOffset, msgPubKeyOffset + pubKeySize),
-    );
-    final timestampRaw = readUint32LE(data, msgTimestampOffset);
-    final flags = data[msgFlagsOffset];
-    if ((flags >> 2) != txtTypePlain) {
-      return null;
-    }
-    final text = readCString(data, msgTextOffset, data.length - msgTextOffset);
-
-    return Message(
-      senderKey: senderKey,
-      text: text,
-      timestamp: DateTime.fromMillisecondsSinceEpoch(timestampRaw * 1000),
-      isOutgoing: false,
-      isCli: false,
-      status: MessageStatus.delivered,
-      pathBytes: Uint8List(0),
-    );
   }
 
   static Message outgoing(

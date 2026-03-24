@@ -1900,6 +1900,35 @@
       }
     }
   },
+  "settings_privacy": "Paramètres de confidentialité",
+  "settings_privacySubtitle": "Contrôlez les informations partagées",
+  "settings_telemetryLocationMode": "Mode d'emplacement de télémétrie",
+  "settings_telemetryEnvironmentMode": "Mode d'environnement de télémétrie",
+  "settings_advertLocation": "Emplacement de l'annonce",
+  "settings_advertLocationSubtitle": "Inclure l'emplacement dans l'annonce",
+  "settings_denyAll": "Refuser tout",
+  "settings_allowByContact": "Autoriser par drapeaux de contact",
+  "settings_privacySettingsDescription": "Choisissez les informations que votre appareil partage avec les autres.",
+  "settings_allowAll": "Autoriser tout",
+  "contact_info": "Informations de contact",
+  "settings_telemetryBaseMode": "Mode de base Télémétrie",
+  "contact_teleBase": "Base de télémétrie",
+  "contact_teleLoc": "Emplacement de télémétrie",
+  "contact_teleLocSubtitle": "Autoriser le partage des données de localisation",
+  "contact_teleEnv": "Environnement Télémétrie",
+  "contact_teleEnvSubtitle": "Autoriser le partage des données des capteurs d'environnement",
+  "contact_telemetry": "Télémétrie",
+  "contact_settings": "Paramètres de contact",
+  "contact_lastSeen": "Dernière fois vu",
+  "contact_clearChat": "Effacer la conversation",
+  "contact_teleBaseSubtitle": "Autoriser le partage du niveau de batterie et de la télémétrie de base",
+  "@settings_multiAck": {
+    "placeholders": {
+      "value": {
+        "type": "String"
+      }
+    }
+  },
   "appSettings_maxRouteWeightSubtitle": "Poids maximal qu'un itinéraire peut accumuler grâce à des livraisons réussies.",
   "appSettings_initialRouteWeight": "Poids initial de l'itinéraire",
   "appSettings_maxRouteWeight": "Poids maximal autorisé pour le trajet",
@@ -1910,5 +1939,7 @@
   "appSettings_routeWeightFailureDecrementSubtitle": "Poids retiré d'un itinéraire après une tentative de livraison infructueuse.",
   "appSettings_maxMessageRetries": "Nombre maximal de tentatives de récupération de messages",
   "appSettings_maxMessageRetriesSubtitle": "Nombre de tentatives de relance avant de marquer un message comme ayant échoué.",
-  "path_routeWeight": "{weight}/{max}"
+  "path_routeWeight": "{weight}/{max}",
+  "settings_multiAck": "Multi-ACKs : {value}",
+  "settings_telemetryModeUpdated": "Le mode télémétrie a été mis à jour"
 }

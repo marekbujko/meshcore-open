@@ -1900,6 +1900,35 @@
       }
     }
   },
+  "settings_privacy": "Privacyinstellingen",
+  "settings_privacySubtitle": "Beheer welke informatie wordt gedeeld",
+  "settings_telemetryLocationMode": "Telemetrie-locatiemodus",
+  "settings_telemetryEnvironmentMode": "Telemetrie-omgevingsmodus",
+  "settings_advertLocation": "Advertentielocatie",
+  "settings_advertLocationSubtitle": "Locatie opnemen in advertentie",
+  "settings_privacySettingsDescription": "Kies welke informatie uw apparaat deelt met anderen",
+  "settings_allowByContact": "Toestaan op basis van contactvlaggen",
+  "settings_allowAll": "Alles toestaan",
+  "settings_denyAll": "Weiger alles",
+  "contact_info": "Contactinformatie",
+  "settings_telemetryBaseMode": "Telemetrie-basismodus",
+  "contact_teleBase": "Telemetrie_basis",
+  "contact_teleLoc": "Telemetrielocatie",
+  "contact_teleLocSubtitle": "Locatiegegevens delen toestaan",
+  "contact_teleEnv": "Telemetrieomgeving",
+  "contact_teleEnvSubtitle": "Delen van omgevingsensordata toestaan",
+  "contact_settings": "Contactinstellingen",
+  "contact_telemetry": "Telemetrie",
+  "contact_lastSeen": "Laatst gezien",
+  "contact_clearChat": "Chat leegmaken",
+  "contact_teleBaseSubtitle": "Sta delen van batterij niveau en basis telemetrie toe",
+  "@settings_multiAck": {
+    "placeholders": {
+      "value": {
+        "type": "String"
+      }
+    }
+  },
   "appSettings_maxRouteWeightSubtitle": "Het maximale gewicht dat een route kan bereiken door succesvolle leveringen.",
   "appSettings_initialRouteWeight": "เริ่มต้น gewicht van de route",
   "appSettings_maxRouteWeight": "Maximale gewicht voor de route",
@@ -1910,5 +1939,7 @@
   "appSettings_routeWeightFailureDecrementSubtitle": "Gewicht verwijderd van een pad na een mislukte levering",
   "appSettings_maxMessageRetries": "Aantal pogingen om berichten te versturen",
   "appSettings_maxMessageRetriesSubtitle": "Aantal pogingen om een bericht opnieuw te versturen voordat het als mislukt wordt gemarkeerd",
-  "path_routeWeight": "{weight}/{max}"
+  "path_routeWeight": "{weight}/{max}",
+  "settings_telemetryModeUpdated": "Telemetrie-modus bijgewerkt",
+  "settings_multiAck": "Multi-ACKs: {value}"
 }

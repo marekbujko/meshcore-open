@@ -826,6 +826,84 @@ abstract class AppLocalizations {
   /// **'Privacy mode disabled'**
   String get settings_privacyModeDisabled;
 
+  /// No description provided for @settings_privacy.
+  ///
+  /// In en, this message translates to:
+  /// **'Privacy Settings'**
+  String get settings_privacy;
+
+  /// No description provided for @settings_privacySubtitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Control what information is shared.'**
+  String get settings_privacySubtitle;
+
+  /// No description provided for @settings_privacySettingsDescription.
+  ///
+  /// In en, this message translates to:
+  /// **'Choose what information your device shares with others.'**
+  String get settings_privacySettingsDescription;
+
+  /// No description provided for @settings_denyAll.
+  ///
+  /// In en, this message translates to:
+  /// **'Deny all'**
+  String get settings_denyAll;
+
+  /// No description provided for @settings_allowByContact.
+  ///
+  /// In en, this message translates to:
+  /// **'Allow by contact flags'**
+  String get settings_allowByContact;
+
+  /// No description provided for @settings_allowAll.
+  ///
+  /// In en, this message translates to:
+  /// **'Allow all'**
+  String get settings_allowAll;
+
+  /// No description provided for @settings_telemetryBaseMode.
+  ///
+  /// In en, this message translates to:
+  /// **'Telemetry Base Mode'**
+  String get settings_telemetryBaseMode;
+
+  /// No description provided for @settings_telemetryLocationMode.
+  ///
+  /// In en, this message translates to:
+  /// **'Telemetry Location Mode'**
+  String get settings_telemetryLocationMode;
+
+  /// No description provided for @settings_telemetryEnvironmentMode.
+  ///
+  /// In en, this message translates to:
+  /// **'Telemetry Environment Mode'**
+  String get settings_telemetryEnvironmentMode;
+
+  /// No description provided for @settings_advertLocation.
+  ///
+  /// In en, this message translates to:
+  /// **'Advert Location'**
+  String get settings_advertLocation;
+
+  /// No description provided for @settings_advertLocationSubtitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Include location in advert.'**
+  String get settings_advertLocationSubtitle;
+
+  /// No description provided for @settings_multiAck.
+  ///
+  /// In en, this message translates to:
+  /// **'Multi-ACKs: {value}'**
+  String settings_multiAck(String value);
+
+  /// No description provided for @settings_telemetryModeUpdated.
+  ///
+  /// In en, this message translates to:
+  /// **'Telemetry mode updated'**
+  String get settings_telemetryModeUpdated;
+
   /// No description provided for @settings_actions.
   ///
   /// In en, this message translates to:
@@ -1845,6 +1923,72 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'~ {days} days'**
   String contacts_lastSeenDaysAgo(int days);
+
+  /// No description provided for @contact_info.
+  ///
+  /// In en, this message translates to:
+  /// **'Contact Info'**
+  String get contact_info;
+
+  /// No description provided for @contact_settings.
+  ///
+  /// In en, this message translates to:
+  /// **'Contact Settings'**
+  String get contact_settings;
+
+  /// No description provided for @contact_telemetry.
+  ///
+  /// In en, this message translates to:
+  /// **'Telemetry'**
+  String get contact_telemetry;
+
+  /// No description provided for @contact_lastSeen.
+  ///
+  /// In en, this message translates to:
+  /// **'Last seen'**
+  String get contact_lastSeen;
+
+  /// No description provided for @contact_clearChat.
+  ///
+  /// In en, this message translates to:
+  /// **'Clear Chat'**
+  String get contact_clearChat;
+
+  /// No description provided for @contact_teleBase.
+  ///
+  /// In en, this message translates to:
+  /// **'Telemetry Base'**
+  String get contact_teleBase;
+
+  /// No description provided for @contact_teleBaseSubtitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Allow sharing battery level and basic telemetry'**
+  String get contact_teleBaseSubtitle;
+
+  /// No description provided for @contact_teleLoc.
+  ///
+  /// In en, this message translates to:
+  /// **'Telemetry Location'**
+  String get contact_teleLoc;
+
+  /// No description provided for @contact_teleLocSubtitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Allow sharing location data'**
+  String get contact_teleLocSubtitle;
+
+  /// No description provided for @contact_teleEnv.
+  ///
+  /// In en, this message translates to:
+  /// **'Telemetry Environment'**
+  String get contact_teleEnv;
+
+  /// No description provided for @contact_teleEnvSubtitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Allow sharing environment sensor data'**
+  String get contact_teleEnvSubtitle;
 
   /// No description provided for @channels_title.
   ///

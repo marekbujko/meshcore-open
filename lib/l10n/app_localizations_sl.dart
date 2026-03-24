@@ -394,6 +394,50 @@ class AppLocalizationsSl extends AppLocalizations {
   String get settings_privacyModeDisabled => 'Privatni način je onemogočen.';
 
   @override
+  String get settings_privacy => 'Nastavitve zasebnosti';
+
+  @override
+  String get settings_privacySubtitle =>
+      'Kontrolirajte, katere informacije so deljene.';
+
+  @override
+  String get settings_privacySettingsDescription =>
+      'Izberite, katere informacije vaš naprava deli z drugimi.';
+
+  @override
+  String get settings_denyAll => 'Zavrniti vse';
+
+  @override
+  String get settings_allowByContact => 'Dovoli po kontaktnih zastavah';
+
+  @override
+  String get settings_allowAll => 'Dovoli vse';
+
+  @override
+  String get settings_telemetryBaseMode => 'Osnovni način telemetrije';
+
+  @override
+  String get settings_telemetryLocationMode => 'Način delovanja telemetrije';
+
+  @override
+  String get settings_telemetryEnvironmentMode =>
+      'Način delovanja okolja telemetrije';
+
+  @override
+  String get settings_advertLocation => 'Lokacija oglasa';
+
+  @override
+  String get settings_advertLocationSubtitle => 'Vključi lokacijo v oglas.';
+
+  @override
+  String settings_multiAck(String value) {
+    return 'Večkratni potrditvi: $value';
+  }
+
+  @override
+  String get settings_telemetryModeUpdated => 'Način telemetrije posodobljen';
+
+  @override
   String get settings_actions => 'Akcije';
 
   @override
@@ -976,6 +1020,41 @@ class AppLocalizationsSl extends AppLocalizations {
   String contacts_lastSeenDaysAgo(int days) {
     return 'Zadnjič viden pred $days dnem';
   }
+
+  @override
+  String get contact_info => 'Kontaktni podatki';
+
+  @override
+  String get contact_settings => 'Nastavitve stika';
+
+  @override
+  String get contact_telemetry => 'Telemetrija';
+
+  @override
+  String get contact_lastSeen => 'Zadnjič videno';
+
+  @override
+  String get contact_clearChat => 'Počisti klepet';
+
+  @override
+  String get contact_teleBase => 'Baza telemetrije';
+
+  @override
+  String get contact_teleBaseSubtitle =>
+      'Dovoli deljenje stanja baterije in osnovne telemetrije';
+
+  @override
+  String get contact_teleLoc => 'Lokacija telemetrije';
+
+  @override
+  String get contact_teleLocSubtitle => 'Dovoli deljenje podatkov o lokaciji';
+
+  @override
+  String get contact_teleEnv => 'Okolje telemetrije';
+
+  @override
+  String get contact_teleEnvSubtitle =>
+      'Dovoli deljenje podatkov okoljskih senzorjev';
 
   @override
   String get channels_title => 'Kanali';

@@ -393,6 +393,48 @@ class AppLocalizationsEn extends AppLocalizations {
   String get settings_privacyModeDisabled => 'Privacy mode disabled';
 
   @override
+  String get settings_privacy => 'Privacy Settings';
+
+  @override
+  String get settings_privacySubtitle => 'Control what information is shared.';
+
+  @override
+  String get settings_privacySettingsDescription =>
+      'Choose what information your device shares with others.';
+
+  @override
+  String get settings_denyAll => 'Deny all';
+
+  @override
+  String get settings_allowByContact => 'Allow by contact flags';
+
+  @override
+  String get settings_allowAll => 'Allow all';
+
+  @override
+  String get settings_telemetryBaseMode => 'Telemetry Base Mode';
+
+  @override
+  String get settings_telemetryLocationMode => 'Telemetry Location Mode';
+
+  @override
+  String get settings_telemetryEnvironmentMode => 'Telemetry Environment Mode';
+
+  @override
+  String get settings_advertLocation => 'Advert Location';
+
+  @override
+  String get settings_advertLocationSubtitle => 'Include location in advert.';
+
+  @override
+  String settings_multiAck(String value) {
+    return 'Multi-ACKs: $value';
+  }
+
+  @override
+  String get settings_telemetryModeUpdated => 'Telemetry mode updated';
+
+  @override
   String get settings_actions => 'Actions';
 
   @override
@@ -971,6 +1013,40 @@ class AppLocalizationsEn extends AppLocalizations {
   String contacts_lastSeenDaysAgo(int days) {
     return '~ $days days';
   }
+
+  @override
+  String get contact_info => 'Contact Info';
+
+  @override
+  String get contact_settings => 'Contact Settings';
+
+  @override
+  String get contact_telemetry => 'Telemetry';
+
+  @override
+  String get contact_lastSeen => 'Last seen';
+
+  @override
+  String get contact_clearChat => 'Clear Chat';
+
+  @override
+  String get contact_teleBase => 'Telemetry Base';
+
+  @override
+  String get contact_teleBaseSubtitle =>
+      'Allow sharing battery level and basic telemetry';
+
+  @override
+  String get contact_teleLoc => 'Telemetry Location';
+
+  @override
+  String get contact_teleLocSubtitle => 'Allow sharing location data';
+
+  @override
+  String get contact_teleEnv => 'Telemetry Environment';
+
+  @override
+  String get contact_teleEnvSubtitle => 'Allow sharing environment sensor data';
 
   @override
   String get channels_title => 'Channels';

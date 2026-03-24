@@ -287,10 +287,10 @@ class _SettingsScreenState extends State<SettingsScreen> {
           const Divider(height: 1),
           ListTile(
             leading: const Icon(Icons.visibility_off_outlined),
-            title: Text(l10n.settings_privacyMode),
-            subtitle: Text(l10n.settings_privacyModeSubtitle),
+            title: Text(l10n.settings_privacy),
+            subtitle: Text(l10n.settings_privacySubtitle),
             trailing: const Icon(Icons.chevron_right),
-            onTap: () => _togglePrivacy(context, connector),
+            onTap: () => _privacySettings(context, connector),
           ),
         ],
       ),
@@ -657,47 +657,6 @@ class _SettingsScreenState extends State<SettingsScreen> {
     );
   }
 
-  void _togglePrivacy(BuildContext context, MeshCoreConnector connector) {
-    final l10n = context.l10n;
-    showDialog(
-      context: context,
-      builder: (context) => AlertDialog(
-        title: Text(l10n.settings_privacyMode),
-        content: Text(l10n.settings_privacyModeToggle),
-        actions: [
-          TextButton(
-            onPressed: () => Navigator.pop(context),
-            child: Text(l10n.common_cancel),
-          ),
-          TextButton(
-            onPressed: () async {
-              Navigator.pop(context);
-              await connector.setPrivacyMode(true);
-              await connector.refreshDeviceInfo();
-              if (!context.mounted) return;
-              ScaffoldMessenger.of(context).showSnackBar(
-                SnackBar(content: Text(l10n.settings_privacyModeEnabled)),
-              );
-            },
-            child: Text(l10n.common_enable),
-          ),
-          TextButton(
-            onPressed: () async {
-              Navigator.pop(context);
-              await connector.setPrivacyMode(false);
-              await connector.refreshDeviceInfo();
-              if (!context.mounted) return;
-              ScaffoldMessenger.of(context).showSnackBar(
-                SnackBar(content: Text(l10n.settings_privacyModeDisabled)),
-              );
-            },
-            child: Text(l10n.common_disable),
-          ),
-        ],
-      ),
-    );
-  }
-
   void _sendAdvert(BuildContext context, MeshCoreConnector connector) {
     final l10n = context.l10n;
     connector.sendSelfAdvert(flood: true);
@@ -975,6 +934,136 @@ class _SettingsScreenState extends State<SettingsScreen> {
     await connector.sendFrame(frame);
     await connector.sendFrame(buildGetAutoAddFlagsFrame());
   }
+}
+
+void _privacySettings(BuildContext context, MeshCoreConnector connector) {
+  final l10n = context.l10n;
+
+  int telemetryMode = connector.telemetryModeBase;
+  int telemetryLocMode = connector.telemetryModeLoc;
+  int telemetryEnvMode = connector.telemetryModeEnv;
+  bool advertLocPolicy = connector.advertLocationPolicy == 0 ? false : true;
+  int multiAcks = connector.multiAcks;
+
+  final telemModeBase = [
+    DropdownMenuItem(value: teleModeDeny, child: Text(l10n.settings_denyAll)),
+    DropdownMenuItem(
+      value: teleModeAllowFlags,
+      child: Text(l10n.settings_allowByContact),
+    ),
+    DropdownMenuItem(
+      value: teleModeAllowAll,
+      child: Text(l10n.settings_allowAll),
+    ),
+  ];
+
+  showDialog(
+    context: context,
+    builder: (dialogContext) => StatefulBuilder(
+      builder: (context, setDialogState) => AlertDialog(
+        title: Text(l10n.settings_privacy),
+        content: SingleChildScrollView(
+          child: Column(
+            mainAxisSize: MainAxisSize.min,
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Text(l10n.settings_privacySettingsDescription),
+              const SizedBox(height: 16),
+              FeatureToggleRow(
+                title: l10n.settings_advertLocation,
+                subtitle: l10n.settings_advertLocationSubtitle,
+                value: advertLocPolicy,
+                onChanged: (value) {
+                  setDialogState(() => advertLocPolicy = value);
+                },
+              ),
+              const SizedBox(height: 8),
+              DropdownButtonFormField<int>(
+                initialValue: telemetryMode,
+                decoration: InputDecoration(
+                  labelText: l10n.settings_telemetryBaseMode,
+                  border: const OutlineInputBorder(),
+                ),
+                items: telemModeBase,
+                onChanged: (value) {
+                  if (value != null) {
+                    setDialogState(() => telemetryMode = value);
+                  }
+                },
+              ),
+              const SizedBox(height: 16),
+              DropdownButtonFormField<int>(
+                initialValue: telemetryLocMode,
+                decoration: InputDecoration(
+                  labelText: l10n.settings_telemetryLocationMode,
+                  border: const OutlineInputBorder(),
+                ),
+                items: telemModeBase,
+                onChanged: (value) {
+                  if (value != null) {
+                    setDialogState(() => telemetryLocMode = value);
+                  }
+                },
+              ),
+              const SizedBox(height: 16),
+              DropdownButtonFormField<int>(
+                initialValue: telemetryEnvMode,
+                decoration: InputDecoration(
+                  labelText: l10n.settings_telemetryEnvironmentMode,
+                  border: const OutlineInputBorder(),
+                ),
+                items: telemModeBase,
+                onChanged: (value) {
+                  if (value != null) {
+                    setDialogState(() => telemetryEnvMode = value);
+                  }
+                },
+              ),
+              const SizedBox(height: 16),
+              Text(
+                l10n.settings_multiAck(multiAcks.toString()),
+                style: Theme.of(context).textTheme.bodyMedium,
+              ),
+              Slider(
+                value: multiAcks.toDouble(),
+                min: 0,
+                max: 2,
+                divisions: 2,
+                label: multiAcks.toString(),
+                onChanged: (value) {
+                  setDialogState(() => multiAcks = value.round());
+                },
+              ),
+            ],
+          ),
+        ),
+        actions: [
+          TextButton(
+            onPressed: () => Navigator.pop(context),
+            child: Text(l10n.common_cancel),
+          ),
+          TextButton(
+            onPressed: () async {
+              Navigator.pop(context);
+              await connector.setTelemetryModeBase(
+                telemetryMode,
+                telemetryLocMode,
+                telemetryEnvMode,
+                advertLocPolicy ? 1 : 0,
+                multiAcks,
+              );
+              await connector.refreshDeviceInfo();
+              if (!context.mounted) return;
+              ScaffoldMessenger.of(context).showSnackBar(
+                SnackBar(content: Text(l10n.settings_telemetryModeUpdated)),
+              );
+            },
+            child: Text(l10n.common_save),
+          ),
+        ],
+      ),
+    ),
+  );
 }
 
 class _RadioSettingsDialog extends StatefulWidget {

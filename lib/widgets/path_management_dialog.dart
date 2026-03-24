@@ -34,11 +34,22 @@ class _PathManagementDialog extends StatefulWidget {
 class _PathManagementDialogState extends State<_PathManagementDialog> {
   bool _showAllPaths = false;
 
+  int _resolveContactIndex = -1;
+
   Contact _resolveContact(MeshCoreConnector connector) {
-    return connector.contacts.firstWhere(
+    if (_resolveContactIndex >= 0 &&
+        _resolveContactIndex < connector.contacts.length &&
+        connector.contacts[_resolveContactIndex].publicKeyHex ==
+            widget.contact.publicKeyHex) {
+      return connector.contacts[_resolveContactIndex];
+    }
+    _resolveContactIndex = connector.contacts.indexWhere(
       (c) => c.publicKeyHex == widget.contact.publicKeyHex,
-      orElse: () => widget.contact,
     );
+    if (_resolveContactIndex == -1) {
+      return widget.contact;
+    }
+    return connector.contacts[_resolveContactIndex];
   }
 
   String _formatRelativeTime(BuildContext context, DateTime? time) {

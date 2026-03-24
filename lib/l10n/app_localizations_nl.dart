@@ -396,6 +396,50 @@ class AppLocalizationsNl extends AppLocalizations {
   String get settings_privacyModeDisabled => 'Privacy modus is uitgeschakeld';
 
   @override
+  String get settings_privacy => 'Privacyinstellingen';
+
+  @override
+  String get settings_privacySubtitle =>
+      'Beheer welke informatie wordt gedeeld';
+
+  @override
+  String get settings_privacySettingsDescription =>
+      'Kies welke informatie uw apparaat deelt met anderen';
+
+  @override
+  String get settings_denyAll => 'Weiger alles';
+
+  @override
+  String get settings_allowByContact => 'Toestaan op basis van contactvlaggen';
+
+  @override
+  String get settings_allowAll => 'Alles toestaan';
+
+  @override
+  String get settings_telemetryBaseMode => 'Telemetrie-basismodus';
+
+  @override
+  String get settings_telemetryLocationMode => 'Telemetrie-locatiemodus';
+
+  @override
+  String get settings_telemetryEnvironmentMode => 'Telemetrie-omgevingsmodus';
+
+  @override
+  String get settings_advertLocation => 'Advertentielocatie';
+
+  @override
+  String get settings_advertLocationSubtitle =>
+      'Locatie opnemen in advertentie';
+
+  @override
+  String settings_multiAck(String value) {
+    return 'Multi-ACKs: $value';
+  }
+
+  @override
+  String get settings_telemetryModeUpdated => 'Telemetrie-modus bijgewerkt';
+
+  @override
   String get settings_actions => 'Acties';
 
   @override
@@ -979,6 +1023,40 @@ class AppLocalizationsNl extends AppLocalizations {
   String contacts_lastSeenDaysAgo(int days) {
     return 'Laast gezien $days dagen geleden';
   }
+
+  @override
+  String get contact_info => 'Contactinformatie';
+
+  @override
+  String get contact_settings => 'Contactinstellingen';
+
+  @override
+  String get contact_telemetry => 'Telemetrie';
+
+  @override
+  String get contact_lastSeen => 'Laatst gezien';
+
+  @override
+  String get contact_clearChat => 'Chat leegmaken';
+
+  @override
+  String get contact_teleBase => 'Telemetrie_basis';
+
+  @override
+  String get contact_teleBaseSubtitle =>
+      'Sta delen van batterij niveau en basis telemetrie toe';
+
+  @override
+  String get contact_teleLoc => 'Telemetrielocatie';
+
+  @override
+  String get contact_teleLocSubtitle => 'Locatiegegevens delen toestaan';
+
+  @override
+  String get contact_teleEnv => 'Telemetrieomgeving';
+
+  @override
+  String get contact_teleEnvSubtitle => 'Delen van omgevingsensordata toestaan';
 
   @override
   String get channels_title => 'Kanaal';

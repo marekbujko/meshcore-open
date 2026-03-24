@@ -1905,6 +1905,35 @@
       }
     }
   },
+  "settings_privacySubtitle": "控制要共享的信息。",
+  "settings_privacySettingsDescription": "选择您的设备与他人共享的信息。",
+  "settings_telemetryBaseMode": "遥测基础模式",
+  "settings_telemetryLocationMode": "遥测位置模式",
+  "settings_advertLocation": "广告位置",
+  "settings_advertLocationSubtitle": "在广告中包含位置",
+  "settings_allowByContact": "按联系人标志允许",
+  "settings_denyAll": "拒绝所有",
+  "settings_privacy": "隐私设置",
+  "settings_allowAll": "允许全部",
+  "contact_info": "联系信息",
+  "contact_teleBase": "遥测基站",
+  "contact_teleBaseSubtitle": "允许共享电池电量和基本遥测数据",
+  "settings_telemetryEnvironmentMode": "遥测环境模式",
+  "contact_teleLoc": "遥测位置",
+  "contact_teleEnv": "遥测环境",
+  "contact_teleEnvSubtitle": "允许共享环境传感器数据",
+  "contact_clearChat": "清除聊天记录",
+  "contact_lastSeen": "最近出现",
+  "contact_settings": "联系人设置",
+  "contact_teleLocSubtitle": "允许共享位置数据",
+  "contact_telemetry": "遥测数据",
+  "@settings_multiAck": {
+    "placeholders": {
+      "value": {
+        "type": "String"
+      }
+    }
+  },
   "appSettings_maxRouteWeight": "最大路径重量",
   "appSettings_initialRouteWeightSubtitle": "新发现路径的初始重量",
   "appSettings_initialRouteWeight": "初始路线权重",
@@ -1915,5 +1944,7 @@
   "appSettings_routeWeightFailureDecrementSubtitle": "从一条路径上移除的货物，由于无法成功交付而移除。",
   "appSettings_maxMessageRetries": "最大消息重试次数",
   "appSettings_maxMessageRetriesSubtitle": "在将消息标记为失败之前，允许尝试的次数",
-  "path_routeWeight": "{weight}/{max}"
+  "path_routeWeight": "{weight}/{max}",
+  "settings_multiAck": "多重ACK：{value}",
+  "settings_telemetryModeUpdated": "遥测模式已更新"
 }

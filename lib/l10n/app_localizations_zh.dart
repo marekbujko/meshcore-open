@@ -375,6 +375,47 @@ class AppLocalizationsZh extends AppLocalizations {
   String get settings_privacyModeDisabled => '隐私模式已关闭';
 
   @override
+  String get settings_privacy => '隐私设置';
+
+  @override
+  String get settings_privacySubtitle => '控制要共享的信息。';
+
+  @override
+  String get settings_privacySettingsDescription => '选择您的设备与他人共享的信息。';
+
+  @override
+  String get settings_denyAll => '拒绝所有';
+
+  @override
+  String get settings_allowByContact => '按联系人标志允许';
+
+  @override
+  String get settings_allowAll => '允许全部';
+
+  @override
+  String get settings_telemetryBaseMode => '遥测基础模式';
+
+  @override
+  String get settings_telemetryLocationMode => '遥测位置模式';
+
+  @override
+  String get settings_telemetryEnvironmentMode => '遥测环境模式';
+
+  @override
+  String get settings_advertLocation => '广告位置';
+
+  @override
+  String get settings_advertLocationSubtitle => '在广告中包含位置';
+
+  @override
+  String settings_multiAck(String value) {
+    return '多重ACK：$value';
+  }
+
+  @override
+  String get settings_telemetryModeUpdated => '遥测模式已更新';
+
+  @override
   String get settings_actions => '操作';
 
   @override
@@ -922,6 +963,39 @@ class AppLocalizationsZh extends AppLocalizations {
   String contacts_lastSeenDaysAgo(int days) {
     return '最后在线 $days 天前';
   }
+
+  @override
+  String get contact_info => '联系信息';
+
+  @override
+  String get contact_settings => '联系人设置';
+
+  @override
+  String get contact_telemetry => '遥测数据';
+
+  @override
+  String get contact_lastSeen => '最近出现';
+
+  @override
+  String get contact_clearChat => '清除聊天记录';
+
+  @override
+  String get contact_teleBase => '遥测基站';
+
+  @override
+  String get contact_teleBaseSubtitle => '允许共享电池电量和基本遥测数据';
+
+  @override
+  String get contact_teleLoc => '遥测位置';
+
+  @override
+  String get contact_teleLocSubtitle => '允许共享位置数据';
+
+  @override
+  String get contact_teleEnv => '遥测环境';
+
+  @override
+  String get contact_teleEnvSubtitle => '允许共享环境传感器数据';
 
   @override
   String get channels_title => '频道';

@@ -1,6 +1,8 @@
 import 'dart:convert';
 import 'dart:typed_data';
 
+import 'package:flutter/widgets.dart';
+
 // Buffer Reader - sequential binary data reader with pointer tracking
 class BufferReader {
   int _pointer = 0;
@@ -37,16 +39,6 @@ class BufferReader {
 
   Uint8List readRemainingBytes() => readBytes(remaining);
 
-  String readString() {
-    _lastPointer = _pointer;
-    final value = readRemainingBytes();
-    try {
-      return utf8.decode(Uint8List.fromList(value), allowMalformed: true);
-    } catch (e) {
-      return String.fromCharCodes(value); // Latin-1 fallback
-    }
-  }
-
   String readCStringGreedy(int maxLength) {
     _lastPointer = _pointer;
     final value = <int>[];
@@ -62,11 +54,12 @@ class BufferReader {
     }
   }
 
-  String readCString(int maxLength) {
+  String readCString({int maxLength = -1}) {
     final backupPointer = _pointer;
     final value = <int>[];
     int counter = 0;
-    while (counter < maxLength) {
+    final maxLen = maxLength >= 0 ? maxLength : remaining;
+    while (counter < maxLen) {
       final byte = readByte();
       if (byte == 0) break;
       value.add(byte);
@@ -210,7 +203,7 @@ const int cmdSetChannel = 32;
 const int cmdSendTracePath = 36;
 const int cmdSetOtherParams = 38;
 const int cmdSendAnonReq = 57;
-const int cmdGetTelemetryReq = 39;
+const int cmdSendTelemetryReq = 39;
 const int cmdGetCustomVar = 40;
 const int cmdSetCustomVar = 41;
 const int cmdSendBinaryReq = 50;
@@ -220,6 +213,7 @@ const int cmdGetAutoAddConfig = 59;
 // Text message types
 const int txtTypePlain = 0;
 const int txtTypeCliData = 1;
+const int txtTypeSigned = 2;
 
 // Repeater request types (for server requests)
 const int reqTypeGetStatus = 0x01;
@@ -272,6 +266,10 @@ const int advTypeRepeater = 2;
 const int advTypeRoom = 3;
 const int advTypeSensor = 4;
 
+const int teleModeDeny = 0;
+const int teleModeAllowFlags = 1; // use contact.flags
+const int teleModeAllowAll = 2;
+
 // Payload Types
 const int payloadTypeREQ =
     0x00; // request (prefixed with dest/src hashes, MAC) (enc data: timestamp, blob)
@@ -310,6 +308,7 @@ const int autoAddSensorFlag =
 
 // Sizes
 const int pubKeySize = 32;
+const int signatureSize = 64;
 const int maxPathSize = 64;
 const int pathHashSize = 1;
 const int maxNameSize = 32;
@@ -352,6 +351,9 @@ const int contactPubKeyOffset = 1;
 const int contactTypeOffset = 33;
 const int contactFlagsOffset = 34;
 const int contactFlagFavorite = 0x01;
+const int contactFlagTeleBase = 0x02; // 'base' permission includes battery
+const int contactFlagTeleLoc = 0x04;
+const int contactFlagTeleEnv = 0x08; //access environment sensors
 const int contactPathLenOffset = 35;
 const int contactPathOffset = 36;
 const int contactNameOffset = 100;
@@ -370,52 +372,44 @@ const int msgTextOffset = 38;
 class ParsedContactText {
   final Uint8List senderPrefix;
   final String text;
-
   const ParsedContactText({required this.senderPrefix, required this.text});
 }
 
 ParsedContactText? parseContactMessageText(Uint8List frame) {
   if (frame.isEmpty) return null;
-  final code = frame[0];
-  if (code != respCodeContactMsgRecv && code != respCodeContactMsgRecvV3) {
+
+  final message = BufferReader(frame);
+  try {
+    final code = message.readByte();
+    if (code != respCodeContactMsgRecv && code != respCodeContactMsgRecvV3) {
+      return null;
+    }
+
+    // Companion radio layout:
+    // [code][snr?][res?][res?][prefix x6][path_len][txt_type][timestamp x4][extra?][text...]
+    if (code == respCodeContactMsgRecvV3) {
+      // Skip SNR and reserved bytes in v3 layout
+      message.skipBytes(3);
+    }
+    final senderPrefix = message.readBytes(6); // public key
+    message.skipBytes(1); // path length
+    final textType = message.readByte();
+    message.skipBytes(4); // timestamp (4 bytes)
+
+    final shiftedType = textType >> 2;
+    final isSigned = shiftedType == txtTypeSigned || textType == txtTypeSigned;
+    if (isSigned) {
+      // Signed messages have a 4-byte signature after the timestamp, before the text
+      message.skipBytes(4);
+    }
+    final text = message.readCString();
+    if (text.isEmpty) return null;
+
+    return ParsedContactText(senderPrefix: senderPrefix, text: text);
+  } catch (e) {
+    debugPrint('Error parsing contact message text: $e');
     return null;
   }
-
-  // Companion radio layout:
-  // [code][snr?][res?][res?][prefix x6][path_len][txt_type][timestamp x4][extra?][text...]
-  final isV3 = code == respCodeContactMsgRecvV3;
-  final prefixOffset = isV3 ? 4 : 1;
-  const prefixLen = 6;
-  final txtTypeOffset = prefixOffset + prefixLen + 1;
-  final timestampOffset = txtTypeOffset + 1;
-  final baseTextOffset = timestampOffset + 4;
-  if (frame.length <= baseTextOffset) return null;
-
-  final flags = frame[txtTypeOffset];
-  final shiftedType = flags >> 2;
-  final rawType = flags;
-  final isPlain = shiftedType == txtTypePlain || rawType == txtTypePlain;
-  final isCli = shiftedType == txtTypeCliData || rawType == txtTypeCliData;
-  if (!isPlain && !isCli) {
-    return null;
-  }
-
-  var text = readCString(
-    frame,
-    baseTextOffset,
-    frame.length - baseTextOffset,
-  ).trim();
-  if (text.isEmpty && frame.length > baseTextOffset + 4) {
-    text = readCString(
-      frame,
-      baseTextOffset + 4,
-      frame.length - (baseTextOffset + 4),
-    ).trim();
-  }
-  if (text.isEmpty) return null;
-
-  final senderPrefix = frame.sublist(prefixOffset, prefixOffset + prefixLen);
-  return ParsedContactText(senderPrefix: senderPrefix, text: text);
 }
 
 // Helper to read uint32 little-endian
@@ -438,18 +432,9 @@ int readInt32LE(Uint8List data, int offset) {
   return val;
 }
 
-// Helper to read null-terminated UTF-8 string
-String readCString(Uint8List data, int offset, int maxLen) {
-  int end = offset;
-  while (end < offset + maxLen && end < data.length && data[end] != 0) {
-    end++;
-  }
-  try {
-    return utf8.decode(data.sublist(offset, end), allowMalformed: true);
-  } catch (e) {
-    // Fallback to Latin-1 if UTF-8 decoding fails
-    return String.fromCharCodes(data.sublist(offset, end));
-  }
+// Helper to convert uint32 to hex string
+String ackHashToHex(int ackHash) {
+  return ackHash.toRadixString(16).padLeft(8, '0');
 }
 
 // Helper to convert public key to hex string
@@ -935,5 +920,20 @@ Uint8List buildSetAutoAddConfigFrame({
   if (autoAddSensor) flags |= autoAddSensorFlag;
   if (overwriteOldest) flags |= autoAddOverwriteOldestFlag;
   writer.writeByte(flags);
+  return writer.toBytes();
+}
+
+//Build CMD_SEND_TELEMETRY_REQ
+// Format: [cmd][reserved x3][pub_key? x32]
+Uint8List buildSendTelemetryReq(Uint8List? pubKey) {
+  final writer = BufferWriter();
+  writer.writeByte(cmdSendTelemetryReq);
+
+  if (pubKey != null && pubKey.length == pubKeySize) {
+    writer.writeBytes(Uint8List(3)); // reserved bytes
+    writer.writeBytes(pubKey);
+  } else {
+    writer.writeBytes(Uint8List(4)); // reserved bytes
+  }
   return writer.toBytes();
 }

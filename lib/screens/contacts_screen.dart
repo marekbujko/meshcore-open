@@ -1354,7 +1354,10 @@ class _ContactsScreenState extends State<ContactsScreen>
               ),
               onTap: () async {
                 Navigator.pop(sheetContext);
-                await connector.setContactFavorite(contact, !isFavorite);
+                await connector.setContactFlags(
+                  contact,
+                  isFavorite: !isFavorite,
+                );
               },
             ),
             ListTile(

@@ -1928,6 +1928,35 @@
       }
     }
   },
+  "settings_allowByContact": "Zulassen durch Kontaktflaggen",
+  "settings_privacy": "Datenschutzeinstellungen",
+  "settings_allowAll": "Alles zulassen",
+  "settings_privacySettingsDescription": "Wählen Sie die Informationen, die Ihr Gerät mit anderen teilt.",
+  "settings_denyAll": "Alle ablehnen",
+  "settings_privacySubtitle": "Steuern Sie die Informationen, die freigegeben werden.",
+  "settings_telemetryLocationMode": "Telemetrie-Ortsmodus",
+  "settings_telemetryEnvironmentMode": "Telemetrie-Umgebungsmodus",
+  "settings_advertLocation": "Anzeigenort",
+  "settings_advertLocationSubtitle": "Ort in der Anzeige einbeziehen",
+  "settings_telemetryBaseMode": "Telemetrie-Basismodus",
+  "contact_teleBase": "Telemetriebasis",
+  "contact_teleBaseSubtitle": "Erlauben des Freigebens des Batteriestands und der grundlegenden Telemetrie",
+  "contact_teleLoc": "Telemetrieort",
+  "contact_teleLocSubtitle": "Teilen von Standortdaten zulassen",
+  "contact_info": "Kontaktinformationen",
+  "contact_settings": "Kontakteinstellungen",
+  "contact_telemetry": "Telemetrie",
+  "contact_teleEnv": "Telemetrieumgebung",
+  "contact_lastSeen": "Zuletzt gesehen",
+  "contact_clearChat": "Chat löschen",
+  "contact_teleEnvSubtitle": "Teilen von Umgebungsensordaten zulassen",
+  "@settings_multiAck": {
+    "placeholders": {
+      "value": {
+        "type": "String"
+      }
+    }
+  },
   "appSettings_initialRouteWeightSubtitle": "Ausgangsgewicht für neu entdeckte Pfade",
   "appSettings_maxRouteWeightSubtitle": "Maximales Gewicht, das ein Weg durch erfolgreiche Lieferungen erreichen kann.",
   "appSettings_maxRouteWeight": "Maximale Gesamtstreckenlänge",
@@ -1938,5 +1967,7 @@
   "appSettings_routeWeightFailureDecrementSubtitle": "Gewicht, das nach einem fehlgeschlagenen Versand von einem Weg entfernt wurde",
   "appSettings_maxMessageRetries": "Maximale Anzahl an Wiederholungsversuchen",
   "appSettings_maxMessageRetriesSubtitle": "Anzahl der Versuche, eine Nachricht erneut zu senden, bevor sie als fehlgeschlagen markiert wird.",
-  "path_routeWeight": "{weight}/{max}"
+  "path_routeWeight": "{weight}/{max}",
+  "settings_telemetryModeUpdated": "Telemetriemodus aktualisiert",
+  "settings_multiAck": "Mehrfach-Bestätigungen: {value}"
 }

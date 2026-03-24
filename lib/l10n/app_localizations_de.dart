@@ -399,6 +399,50 @@ class AppLocalizationsDe extends AppLocalizations {
   String get settings_privacyModeDisabled => 'Datenschutzmodus deaktiviert';
 
   @override
+  String get settings_privacy => 'Datenschutzeinstellungen';
+
+  @override
+  String get settings_privacySubtitle =>
+      'Steuern Sie die Informationen, die freigegeben werden.';
+
+  @override
+  String get settings_privacySettingsDescription =>
+      'Wählen Sie die Informationen, die Ihr Gerät mit anderen teilt.';
+
+  @override
+  String get settings_denyAll => 'Alle ablehnen';
+
+  @override
+  String get settings_allowByContact => 'Zulassen durch Kontaktflaggen';
+
+  @override
+  String get settings_allowAll => 'Alles zulassen';
+
+  @override
+  String get settings_telemetryBaseMode => 'Telemetrie-Basismodus';
+
+  @override
+  String get settings_telemetryLocationMode => 'Telemetrie-Ortsmodus';
+
+  @override
+  String get settings_telemetryEnvironmentMode => 'Telemetrie-Umgebungsmodus';
+
+  @override
+  String get settings_advertLocation => 'Anzeigenort';
+
+  @override
+  String get settings_advertLocationSubtitle =>
+      'Ort in der Anzeige einbeziehen';
+
+  @override
+  String settings_multiAck(String value) {
+    return 'Mehrfach-Bestätigungen: $value';
+  }
+
+  @override
+  String get settings_telemetryModeUpdated => 'Telemetriemodus aktualisiert';
+
+  @override
   String get settings_actions => 'Aktionen';
 
   @override
@@ -986,6 +1030,41 @@ class AppLocalizationsDe extends AppLocalizations {
   String contacts_lastSeenDaysAgo(int days) {
     return '~ $days Tage';
   }
+
+  @override
+  String get contact_info => 'Kontaktinformationen';
+
+  @override
+  String get contact_settings => 'Kontakteinstellungen';
+
+  @override
+  String get contact_telemetry => 'Telemetrie';
+
+  @override
+  String get contact_lastSeen => 'Zuletzt gesehen';
+
+  @override
+  String get contact_clearChat => 'Chat löschen';
+
+  @override
+  String get contact_teleBase => 'Telemetriebasis';
+
+  @override
+  String get contact_teleBaseSubtitle =>
+      'Erlauben des Freigebens des Batteriestands und der grundlegenden Telemetrie';
+
+  @override
+  String get contact_teleLoc => 'Telemetrieort';
+
+  @override
+  String get contact_teleLocSubtitle => 'Teilen von Standortdaten zulassen';
+
+  @override
+  String get contact_teleEnv => 'Telemetrieumgebung';
+
+  @override
+  String get contact_teleEnvSubtitle =>
+      'Teilen von Umgebungsensordaten zulassen';
 
   @override
   String get channels_title => 'Kanäle';

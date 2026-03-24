@@ -11,7 +11,7 @@ import 'app_debug_log_service.dart';
 
 class _AckHistoryEntry {
   final String messageId;
-  final List<Uint8List> ackHashes;
+  final List<int> ackHashes;
   final DateTime timestamp;
 
   _AckHistoryEntry({
@@ -77,7 +77,7 @@ class MessageRetryService extends ChangeNotifier {
   final Map<String, Contact> _pendingContacts = {};
   final Map<String, List<PathSelection>> _attemptPathHistory = {};
   final Map<String, AckHashMapping> _ackHashToMessageId = {};
-  final Map<String, List<Uint8List>> _expectedAckHashes = {};
+  final Map<String, List<int>> _expectedAckHashes = {};
   final List<_AckHistoryEntry> _ackHistory = [];
   final Map<String, List<String>> _sendQueue = {};
   final Set<String> _activeMessages = {};
@@ -98,7 +98,7 @@ class MessageRetryService extends ChangeNotifier {
 
   /// Compute expected ACK hash using same algorithm as firmware:
   /// SHA256([timestamp(4)][attempt(1)][text][sender_pubkey(32)]) -> first 4 bytes
-  static Uint8List computeExpectedAckHash(
+  static int computeExpectedAckHash(
     int timestampSeconds,
     int attempt,
     String text,
@@ -126,7 +126,8 @@ class MessageRetryService extends ChangeNotifier {
 
     // Compute SHA256 and return first 4 bytes
     final hash = sha256.convert(buffer);
-    return Uint8List.fromList(hash.bytes.sublist(0, 4));
+    final bytes = Uint8List.fromList(hash.bytes.sublist(0, 4));
+    return (bytes[3] << 24) | (bytes[2] << 16) | (bytes[1] << 8) | bytes[0];
   }
 
   Future<void> sendMessageWithRetry({
@@ -324,9 +325,7 @@ class MessageRetryService extends ChangeNotifier {
         outboundText,
         selfPubKey,
       );
-      final expectedHashHex = expectedHash
-          .map((b) => b.toRadixString(16).padLeft(2, '0'))
-          .join();
+      final expectedHashHex = expectedHash.toRadixString(16).padLeft(8, '0');
       _expectedHashToMessageId[expectedHashHex] = messageId;
 
       final shortText = message.text.length > 20
@@ -341,13 +340,11 @@ class MessageRetryService extends ChangeNotifier {
     config.sendMessage(contact, message.text, attempt, timestampSeconds);
   }
 
-  bool updateMessageFromSent(Uint8List ackHash, int timeoutMs) {
+  bool updateMessageFromSent(int ackHash, int timeoutMs) {
     final config = _config;
     if (config == null) return false;
 
-    final ackHashHex = ackHash
-        .map((b) => b.toRadixString(16).padLeft(2, '0'))
-        .join();
+    final ackHashHex = ackHash.toRadixString(16).padLeft(8, '0');
 
     // Try hash-based matching (fixes LoRa message drops causing mismatches)
     String? messageId = _expectedHashToMessageId.remove(ackHashHex);
@@ -389,10 +386,8 @@ class MessageRetryService extends ChangeNotifier {
 
     // Add this ACK hash to the list of expected ACKs for this message (for history)
     _expectedAckHashes[messageId] ??= [];
-    if (!_expectedAckHashes[messageId]!.any(
-      (hash) => listEquals(hash, ackHash),
-    )) {
-      _expectedAckHashes[messageId]!.add(Uint8List.fromList(ackHash));
+    if (!_expectedAckHashes[messageId]!.any((hash) => hash == ackHash)) {
+      _expectedAckHashes[messageId]!.add(ackHash);
     }
 
     // Calculate timeout: prefer ML prediction, then device-provided, then physics fallback
@@ -559,10 +554,10 @@ class MessageRetryService extends ChangeNotifier {
     }
   }
 
-  bool _checkAckHistory(Uint8List ackHash) {
+  bool _checkAckHistory(int ackHash) {
     for (final entry in _ackHistory) {
       for (final expectedHash in entry.ackHashes) {
-        if (listEquals(expectedHash, ackHash)) {
+        if (expectedHash == ackHash) {
           return true;
         }
       }
@@ -570,13 +565,11 @@ class MessageRetryService extends ChangeNotifier {
     return false;
   }
 
-  void handleAckReceived(Uint8List ackHash, int tripTimeMs) {
+  void handleAckReceived(int ackHash, int tripTimeMs) {
     final config = _config;
     String? matchedMessageId;
     int? matchedAttemptIndex;
-    final ackHashHex = ackHash
-        .map((b) => b.toRadixString(16).padLeft(2, '0'))
-        .join();
+    final ackHashHex = ackHash.toRadixString(16).padLeft(8, '0');
 
     // Clean up old ACK hash mappings (older than 15 minutes)
     final cutoffTime = DateTime.now().subtract(const Duration(minutes: 15));
@@ -606,7 +599,7 @@ class MessageRetryService extends ChangeNotifier {
         final expectedHashes = entry.value;
 
         for (final expectedHash in expectedHashes) {
-          if (listEquals(expectedHash, ackHash)) {
+          if (expectedHash == ackHash) {
             matchedMessageId = messageId;
             matchedAttemptIndex = expectedHashes.indexOf(expectedHash);
             break;
@@ -685,11 +678,11 @@ class MessageRetryService extends ChangeNotifier {
     }
   }
 
-  String? getContactKeyForAckHash(Uint8List ackHash) {
+  String? getContactKeyForAckHash(int ackHash) {
     for (var entry in _pendingMessages.entries) {
       final message = entry.value;
       if (message.expectedAckHash != null &&
-          listEquals(message.expectedAckHash, ackHash)) {
+          message.expectedAckHash == ackHash) {
         final contact = _pendingContacts[entry.key];
         return contact?.publicKeyHex;
       }

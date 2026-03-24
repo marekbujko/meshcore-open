@@ -1900,6 +1900,35 @@
       }
     }
   },
+  "settings_privacy": "Inställningar för sekretess",
+  "settings_allowAll": "Tillåt alla",
+  "settings_privacySubtitle": "Kontrollera vilken information som delas.",
+  "settings_telemetryEnvironmentMode": "Telemetri miljöläge",
+  "settings_telemetryBaseMode": "Telemetribasläge",
+  "settings_telemetryLocationMode": "Telemetritillstånd för plats",
+  "settings_advertLocation": "Annonsplacering",
+  "contact_info": "Kontaktinformation",
+  "contact_settings": "Kontaktinställningar",
+  "contact_telemetry": "Telemetri",
+  "settings_denyAll": "Neka alla",
+  "settings_allowByContact": "Tillåt via kontaktflaggor",
+  "settings_privacySettingsDescription": "Välj vilken information din enhet delar med andra.",
+  "contact_lastSeen": "Senast sedd",
+  "contact_clearChat": "Rensa Chatt",
+  "contact_teleEnv": "Telemetri Miljö",
+  "settings_advertLocationSubtitle": "Inkludera plats i annonsen",
+  "contact_teleEnvSubtitle": "Tillåt delning av miljösensordata",
+  "contact_teleBase": "Telemetribas",
+  "contact_teleBaseSubtitle": "Tillåt delning av batterinivå och grundläggande telemetri",
+  "contact_teleLoc": "Telemetridata plats",
+  "contact_teleLocSubtitle": "Tillåt delning av platsdata",
+  "@settings_multiAck": {
+    "placeholders": {
+      "value": {
+        "type": "String"
+      }
+    }
+  },
   "appSettings_initialRouteWeightSubtitle": "Initial vikt för nyligen upptäckta vägar",
   "appSettings_maxRouteWeight": "Maximalt tillåtet vikt för rutten",
   "appSettings_maxRouteWeightSubtitle": "Maximal vikt som en leveransväg kan ackumulera från framgångsrika leveranser.",
@@ -1910,5 +1939,7 @@
   "appSettings_routeWeightFailureDecrementSubtitle": "Vikt som tagits bort från en väg efter ett misslyckat leveransförsök",
   "appSettings_maxMessageRetries": "Maximalt antal försök",
   "appSettings_maxMessageRetriesSubtitle": "Antal försök att skicka om ett meddelande innan det markeras som misslyckat.",
-  "path_routeWeight": "{weight}/{max}"
+  "path_routeWeight": "{weight}/{max}",
+  "settings_telemetryModeUpdated": "Telemetri-läge uppdaterat",
+  "settings_multiAck": "Multi-ACKs: {value}"
 }

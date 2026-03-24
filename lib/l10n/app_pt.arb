@@ -1900,6 +1900,35 @@
       }
     }
   },
+  "settings_privacySettingsDescription": "Escolha quais informações o seu dispositivo compartilha com os outros.",
+  "settings_allowByContact": "Permitir por bandeiras de contato",
+  "settings_telemetryLocationMode": "Modo de Localização de Telemetria",
+  "settings_telemetryEnvironmentMode": "Modo de Ambiente de Telemetria",
+  "settings_advertLocation": "Localização do Anúncio",
+  "settings_advertLocationSubtitle": "Incluir localização no anúncio",
+  "settings_privacySubtitle": "Controle o que é compartilhado.",
+  "settings_denyAll": "Negar todos",
+  "settings_allowAll": "Permitir todos",
+  "settings_privacy": "Configurações de Privacidade",
+  "contact_info": "Informações de Contato",
+  "settings_telemetryBaseMode": "Modo Base de Telemetria",
+  "contact_teleBase": "Base de Telemetria",
+  "contact_teleLoc": "Localização de Telemetria",
+  "contact_teleLocSubtitle": "Permitir compartilhamento de dados de localização",
+  "contact_teleEnv": "Ambiente de Telemetria",
+  "contact_teleEnvSubtitle": "Permitir compartilhamento de dados do sensor de ambiente",
+  "contact_lastSeen": "Visto pela última vez",
+  "contact_clearChat": "Limpar Chat",
+  "contact_telemetry": "Telemetria",
+  "contact_settings": "Configurações de Contato",
+  "contact_teleBaseSubtitle": "Permitir compartilhamento do nível da bateria e telemetria básica",
+  "@settings_multiAck": {
+    "placeholders": {
+      "value": {
+        "type": "String"
+      }
+    }
+  },
   "appSettings_initialRouteWeight": "Peso Inicial da Rota",
   "appSettings_maxRouteWeight": "Peso Máximo da Rota",
   "appSettings_maxRouteWeightSubtitle": "Peso máximo que um determinado percurso pode acumular com entregas bem-sucedidas.",
@@ -1910,5 +1939,7 @@
   "appSettings_routeWeightFailureDecrementSubtitle": "Peso removido de um caminho após uma tentativa de entrega malsucedida.",
   "appSettings_maxMessageRetries": "Número máximo de tentativas de envio de mensagens",
   "appSettings_maxMessageRetriesSubtitle": "Número de tentativas de reenvio antes de classificar uma mensagem como falha.",
-  "path_routeWeight": "{weight}/{max}"
+  "path_routeWeight": "{weight}/{max}",
+  "settings_telemetryModeUpdated": "Modo de telemetria atualizado",
+  "settings_multiAck": "Multi-ACKs: {value}"
 }

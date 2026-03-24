@@ -1140,6 +1140,35 @@
       }
     }
   },
+  "settings_privacy": "Настройки конфиденциальности",
+  "settings_privacySubtitle": "Контролируйте, какую информацию делиться.",
+  "settings_telemetryLocationMode": "Режим местоположения телеметрии",
+  "settings_telemetryEnvironmentMode": "Режим среды телеметрии",
+  "settings_advertLocation": "Местоположение рекламы",
+  "settings_advertLocationSubtitle": "Включить местоположение в объявление",
+  "settings_allowAll": "Разрешить все",
+  "settings_privacySettingsDescription": "Выберите, какую информацию ваше устройство будет делиться с другими.",
+  "settings_denyAll": "Отклонить все",
+  "settings_allowByContact": "Разрешить по флагам контактов",
+  "contact_info": "Контактная информация",
+  "settings_telemetryBaseMode": "Базовый режим телеметрии",
+  "contact_teleBase": "База телеметрии",
+  "contact_teleLoc": "Местоположение телеметрии",
+  "contact_teleLocSubtitle": "Разрешить обмен данными о местоположении",
+  "contact_teleEnv": "Среда телеметрии",
+  "contact_teleEnvSubtitle": "Разрешить обмен данными датчиков окружающей среды",
+  "contact_settings": "Настройки контактов",
+  "contact_telemetry": "Телеметрия",
+  "contact_clearChat": "Очистить чат",
+  "contact_lastSeen": "Последний раз видели",
+  "contact_teleBaseSubtitle": "Разрешить обмен уровнем заряда батареи и базовой телеметрией",
+  "@settings_multiAck": {
+    "placeholders": {
+      "value": {
+        "type": "String"
+      }
+    }
+  },
   "appSettings_maxRouteWeight": "Максимальный допустимый вес маршрута",
   "appSettings_maxRouteWeightSubtitle": "Максимальный вес, который может быть перевезён по определённому маршруту при успешных доставках.",
   "appSettings_initialRouteWeightSubtitle": "Начальный вес для новых, только что открытых маршрутов",
@@ -1150,5 +1179,7 @@
   "appSettings_routeWeightFailureDecrementSubtitle": "Вес, который был удален с пути после неудачной доставки.",
   "appSettings_maxMessageRetries": "Максимальное количество повторных попыток отправки сообщения",
   "appSettings_maxMessageRetriesSubtitle": "Количество попыток повторной отправки сообщения перед тем, как пометить его как неудачное.",
-  "path_routeWeight": "{weight}/{max}"
+  "path_routeWeight": "{weight}/{max}",
+  "settings_telemetryModeUpdated": "Режим телеметрии обновлен",
+  "settings_multiAck": "Мульти-ACK: {value}"
 }

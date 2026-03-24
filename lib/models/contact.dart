@@ -18,6 +18,7 @@ class Contact {
   final DateTime lastSeen;
   final DateTime lastMessageAt;
   final bool isActive;
+  final bool wasPulled;
   final Uint8List? rawPacket;
 
   Contact({
@@ -34,6 +35,7 @@ class Contact {
     required this.lastSeen,
     DateTime? lastMessageAt,
     this.isActive = true,
+    this.wasPulled = false,
     this.rawPacket,
   }) : lastMessageAt = lastMessageAt ?? lastSeen;
 
@@ -214,4 +216,7 @@ class Contact {
 
   @override
   int get hashCode => publicKeyHex.hashCode;
+  bool get teleBaseEnabled => (flags & contactFlagTeleBase) != 0;
+  bool get teleLocEnabled => (flags & contactFlagTeleLoc) != 0;
+  bool get teleEnvEnabled => (flags & contactFlagTeleEnv) != 0;
 }

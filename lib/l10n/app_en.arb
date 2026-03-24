@@ -166,6 +166,26 @@
   "settings_privacyModeToggle": "Toggle privacy mode to hide your name and location in advertisements.",
   "settings_privacyModeEnabled": "Privacy mode enabled",
   "settings_privacyModeDisabled": "Privacy mode disabled",
+  "settings_privacy": "Privacy Settings",
+  "settings_privacySubtitle": "Control what information is shared.",
+  "settings_privacySettingsDescription": "Choose what information your device shares with others.",
+  "settings_denyAll": "Deny all",
+  "settings_allowByContact": "Allow by contact flags",
+  "settings_allowAll": "Allow all",
+  "settings_telemetryBaseMode": "Telemetry Base Mode",
+  "settings_telemetryLocationMode": "Telemetry Location Mode",
+  "settings_telemetryEnvironmentMode": "Telemetry Environment Mode",
+  "settings_advertLocation": "Advert Location",
+  "settings_advertLocationSubtitle": "Include location in advert.",
+  "settings_multiAck": "Multi-ACKs: {value}",
+  "@settings_multiAck": {
+    "placeholders": {
+      "value": {
+        "type": "String"
+      }
+    }
+  },
+  "settings_telemetryModeUpdated": "Telemetry mode updated",
   "settings_actions": "Actions",
   "settings_sendAdvertisement": "Send Advertisement",
   "settings_sendAdvertisementSubtitle": "Broadcast presence now",
@@ -472,6 +492,17 @@
       }
     }
   },
+  "contact_info": "Contact Info",
+  "contact_settings": "Contact Settings",
+  "contact_telemetry": "Telemetry",
+  "contact_lastSeen": "Last seen",
+  "contact_clearChat": "Clear Chat",
+  "contact_teleBase": "Telemetry Base",
+  "contact_teleBaseSubtitle": "Allow sharing battery level and basic telemetry",
+  "contact_teleLoc": "Telemetry Location",
+  "contact_teleLocSubtitle": "Allow sharing location data",
+  "contact_teleEnv": "Telemetry Environment",
+  "contact_teleEnvSubtitle": "Allow sharing environment sensor data",
   "channels_title": "Channels",
   "channels_noChannelsConfigured": "No channels configured",
   "channels_addPublicChannel": "Add Public Channel",

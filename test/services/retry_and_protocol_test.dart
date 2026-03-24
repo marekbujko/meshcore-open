@@ -14,7 +14,7 @@ import 'package:meshcore_open/services/message_retry_service.dart';
 
 /// Replicates the SHA-256 computation from [MessageRetryService.computeExpectedAckHash]
 /// so tests can cross-check without calling the real implementation twice.
-Uint8List _manualAckHash(
+int _manualAckHash(
   int timestampSeconds,
   int attemptMasked, // already masked to 0x03
   String text,
@@ -35,7 +35,8 @@ Uint8List _manualAckHash(
   buffer.setRange(offset, offset + senderPubKey.length, senderPubKey);
 
   final hash = sha256.convert(buffer);
-  return Uint8List.fromList(hash.bytes.sublist(0, 4));
+  final bytes = Uint8List.fromList(hash.bytes.sublist(0, 4));
+  return (bytes[3] << 24) | (bytes[2] << 16) | (bytes[1] << 8) | bytes[0];
 }
 
 Uint8List _makeKey(int seed) {
@@ -167,16 +168,6 @@ void main() {
         fixedKey,
       );
       expect(first, equals(second));
-    });
-
-    test('hash is exactly 4 bytes long', () {
-      final hash = MessageRetryService.computeExpectedAckHash(
-        fixedTs,
-        0,
-        fixedText,
-        fixedKey,
-      );
-      expect(hash.length, equals(4));
     });
 
     test('hash matches manual SHA-256 computation', () {
@@ -509,7 +500,7 @@ void main() {
           fixedText,
           fixedKey,
         );
-        final hex = hash.map((b) => b.toRadixString(16).padLeft(2, '0')).join();
+        final hex = hash.toRadixString(16).padLeft(8, '0');
         expect(
           hashes.containsKey(hex),
           isFalse,

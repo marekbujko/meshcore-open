@@ -1900,6 +1900,35 @@
       }
     }
   },
+  "settings_privacySubtitle": "Керуйте інформацією, яку буде спільно використовуватися",
+  "settings_privacy": "Налаштування приватності",
+  "settings_telemetryBaseMode": "Режим базової телеметрії",
+  "settings_telemetryLocationMode": "Режим місця телеметрії",
+  "settings_advertLocation": "Розміщення реклами",
+  "settings_advertLocationSubtitle": "Включити місце розташування в оголошення",
+  "settings_privacySettingsDescription": "Виберіть, яку інформацію ваш пристрій буде передавати іншим.",
+  "settings_allowAll": "Дозволити все",
+  "settings_denyAll": "Відхилити все",
+  "settings_allowByContact": "Дозволити за контактними прапорцями",
+  "settings_telemetryEnvironmentMode": "Режим середовища телеметрії",
+  "contact_info": "Контактна інформація",
+  "contact_teleBaseSubtitle": "Дозволити спільний доступ до рівня заряду батареї та базової телеметрії",
+  "contact_teleLoc": "Розташування телеметрії",
+  "contact_teleBase": "Базовий телебачення",
+  "contact_teleLocSubtitle": "Дозволити спільне використання даних про місцеположення",
+  "contact_settings": "Налаштування контактів",
+  "contact_telemetry": "Телеметрія",
+  "contact_clearChat": "Очистити чат",
+  "contact_lastSeen": "Останній раз бачили",
+  "contact_teleEnv": "Середовище телеметрії",
+  "contact_teleEnvSubtitle": "Дозволити спільний доступ до даних датчиків середовища",
+  "@settings_multiAck": {
+    "placeholders": {
+      "value": {
+        "type": "String"
+      }
+    }
+  },
   "appSettings_initialRouteWeight": "Початкова вартість маршруту",
   "appSettings_initialRouteWeightSubtitle": "Початкова вага для нових відкритих шляхів",
   "appSettings_maxRouteWeight": "Максимальна вага маршруту",
@@ -1910,5 +1939,7 @@
   "appSettings_routeWeightFailureDecrementSubtitle": "Вага, яка була знята з маршруту після невдалої доставки",
   "appSettings_maxMessageRetries": "Максимальна кількість повторних спроб надсилання повідомлення",
   "appSettings_maxMessageRetriesSubtitle": "Кількість спроб повторного відправлення повідомлення перед тим, як позначити його як невдале",
-  "path_routeWeight": "{weight}/{max}"
+  "path_routeWeight": "{weight}/{max}",
+  "settings_telemetryModeUpdated": "Режим телеметрії оновлено",
+  "settings_multiAck": "Багатократне підтвердження: {value}"
 }

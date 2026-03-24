@@ -397,6 +397,51 @@ class AppLocalizationsEs extends AppLocalizations {
   String get settings_privacyModeDisabled => 'Modo de privacidad desactivado';
 
   @override
+  String get settings_privacy => 'Configuración de privacidad';
+
+  @override
+  String get settings_privacySubtitle =>
+      'Controlar qué información se comparte.';
+
+  @override
+  String get settings_privacySettingsDescription =>
+      'Elige qué información comparte tu dispositivo con otros.';
+
+  @override
+  String get settings_denyAll => 'Denegar todo';
+
+  @override
+  String get settings_allowByContact => 'Permitir por banderas de contacto';
+
+  @override
+  String get settings_allowAll => 'Permitir todo';
+
+  @override
+  String get settings_telemetryBaseMode => 'Modo base de telemetría';
+
+  @override
+  String get settings_telemetryLocationMode =>
+      'Modo de ubicación de telemetría';
+
+  @override
+  String get settings_telemetryEnvironmentMode =>
+      'Modo de entorno de telemetría';
+
+  @override
+  String get settings_advertLocation => 'Ubicación de anuncio';
+
+  @override
+  String get settings_advertLocationSubtitle => 'Incluir ubicación en anuncio';
+
+  @override
+  String settings_multiAck(String value) {
+    return 'Multi-ACKs: $value';
+  }
+
+  @override
+  String get settings_telemetryModeUpdated => 'Modo de telemetría actualizado';
+
+  @override
   String get settings_actions => 'Acciones';
 
   @override
@@ -986,6 +1031,42 @@ class AppLocalizationsEs extends AppLocalizations {
   String contacts_lastSeenDaysAgo(int days) {
     return '~ $days días';
   }
+
+  @override
+  String get contact_info => 'Información de contacto';
+
+  @override
+  String get contact_settings => 'Configuración de contacto';
+
+  @override
+  String get contact_telemetry => 'Telemetría';
+
+  @override
+  String get contact_lastSeen => 'Visto por última vez';
+
+  @override
+  String get contact_clearChat => 'Borrar chat';
+
+  @override
+  String get contact_teleBase => 'Base de Telemetría';
+
+  @override
+  String get contact_teleBaseSubtitle =>
+      'Permitir el intercambio de nivel de batería y telemetría básica';
+
+  @override
+  String get contact_teleLoc => 'Ubicación de telemetría';
+
+  @override
+  String get contact_teleLocSubtitle =>
+      'Permitir el intercambio de datos de ubicación';
+
+  @override
+  String get contact_teleEnv => 'Entorno de Telemetría';
+
+  @override
+  String get contact_teleEnvSubtitle =>
+      'Permitir el intercambio de datos de sensores de entorno';
 
   @override
   String get channels_title => 'Canales';

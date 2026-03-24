@@ -399,6 +399,51 @@ class AppLocalizationsRu extends AppLocalizations {
       'Режим конфиденциальности выключен';
 
   @override
+  String get settings_privacy => 'Настройки конфиденциальности';
+
+  @override
+  String get settings_privacySubtitle =>
+      'Контролируйте, какую информацию делиться.';
+
+  @override
+  String get settings_privacySettingsDescription =>
+      'Выберите, какую информацию ваше устройство будет делиться с другими.';
+
+  @override
+  String get settings_denyAll => 'Отклонить все';
+
+  @override
+  String get settings_allowByContact => 'Разрешить по флагам контактов';
+
+  @override
+  String get settings_allowAll => 'Разрешить все';
+
+  @override
+  String get settings_telemetryBaseMode => 'Базовый режим телеметрии';
+
+  @override
+  String get settings_telemetryLocationMode =>
+      'Режим местоположения телеметрии';
+
+  @override
+  String get settings_telemetryEnvironmentMode => 'Режим среды телеметрии';
+
+  @override
+  String get settings_advertLocation => 'Местоположение рекламы';
+
+  @override
+  String get settings_advertLocationSubtitle =>
+      'Включить местоположение в объявление';
+
+  @override
+  String settings_multiAck(String value) {
+    return 'Мульти-ACK: $value';
+  }
+
+  @override
+  String get settings_telemetryModeUpdated => 'Режим телеметрии обновлен';
+
+  @override
   String get settings_actions => 'Действия';
 
   @override
@@ -987,6 +1032,42 @@ class AppLocalizationsRu extends AppLocalizations {
   String contacts_lastSeenDaysAgo(int days) {
     return 'Видели $days дн. назад';
   }
+
+  @override
+  String get contact_info => 'Контактная информация';
+
+  @override
+  String get contact_settings => 'Настройки контактов';
+
+  @override
+  String get contact_telemetry => 'Телеметрия';
+
+  @override
+  String get contact_lastSeen => 'Последний раз видели';
+
+  @override
+  String get contact_clearChat => 'Очистить чат';
+
+  @override
+  String get contact_teleBase => 'База телеметрии';
+
+  @override
+  String get contact_teleBaseSubtitle =>
+      'Разрешить обмен уровнем заряда батареи и базовой телеметрией';
+
+  @override
+  String get contact_teleLoc => 'Местоположение телеметрии';
+
+  @override
+  String get contact_teleLocSubtitle =>
+      'Разрешить обмен данными о местоположении';
+
+  @override
+  String get contact_teleEnv => 'Среда телеметрии';
+
+  @override
+  String get contact_teleEnvSubtitle =>
+      'Разрешить обмен данными датчиков окружающей среды';
 
   @override
   String get channels_title => 'Каналы';
