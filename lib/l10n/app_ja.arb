@@ -2044,5 +2044,16 @@
   "contact_teleEnv": "テレメトリ環境",
   "contact_teleEnvSubtitle": "環境センサーのデータを共有することを許可する",
   "map_showOverlaps": "リピーターキーの重複",
-  "map_runTraceWithReturnPath": "元の経路に戻る。"
+  "map_runTraceWithReturnPath": "元の経路に戻る。",
+  "@scanner_linuxPairingPinPrompt": {
+    "placeholders": {
+      "deviceName": {
+        "type": "String"
+      }
+    }
+  },
+  "scanner_linuxPairingShowPin": "PINを表示",
+  "scanner_linuxPairingHidePin": "PINを非表示",
+  "scanner_linuxPairingPinTitle": "Bluetooth ペアリング PIN",
+  "scanner_linuxPairingPinPrompt": "{deviceName}のPINを入力してください（なしの場合は空欄のまま）。"
 }

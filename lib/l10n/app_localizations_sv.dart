@@ -267,20 +267,6 @@ class AppLocalizationsSv extends AppLocalizations {
   }
 
   @override
-  String get scanner_linuxPairingPinTitle => 'PIN för Bluetooth-parning';
-
-  @override
-  String scanner_linuxPairingPinPrompt(String deviceName) {
-    return 'Ange PIN-kod för $deviceName (lämna tomt om ingen finns).';
-  }
-
-  @override
-  String get scanner_linuxPairingShowPin => 'Visa PIN-kod';
-
-  @override
-  String get scanner_linuxPairingHidePin => 'Dölj PIN-kod';
-
-  @override
   String get scanner_stop => 'Stoppa';
 
   @override
@@ -3540,4 +3526,18 @@ class AppLocalizationsSv extends AppLocalizations {
   @override
   String get radioStats_settingsSubtitle =>
       'Bakgrundsnivå, RSSI, SNR och tillgänglig tid';
+
+  @override
+  String get scanner_linuxPairingShowPin => 'Visa PIN';
+
+  @override
+  String get scanner_linuxPairingHidePin => 'Dölj PIN';
+
+  @override
+  String get scanner_linuxPairingPinTitle => 'Bluetooth‑parnings‑PIN';
+
+  @override
+  String scanner_linuxPairingPinPrompt(String deviceName) {
+    return 'Ange PIN för $deviceName (lämna tomt om ingen).';
+  }
 }

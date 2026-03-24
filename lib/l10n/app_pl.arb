@@ -1978,9 +1978,6 @@
   "appSettings_maxMessageRetries": "Maksymalna liczba prób wysłania wiadomości",
   "appSettings_maxMessageRetriesSubtitle": "Liczba prób ponownego wysłania wiadomości przed oznaczaniem jej jako nieudanej",
   "path_routeWeight": "{weight}/{max}",
-  "@scanner_linuxPairingPinPrompt": {
-    "placeholders": {
-      "deviceName": {
   "settings_telemetryModeUpdated": "Tryb telemetryczny zaktualizowany",
   "settings_multiAck": "Wiele potwierdzeń: {value}",
   "map_showOverlaps": "Nakładające się klucze powtarzalne",
@@ -2006,10 +2003,6 @@
       }
     }
   },
-  "scanner_linuxPairingHidePin": "Ukryj kod PIN",
-  "scanner_linuxPairingPinTitle": "PIN do sparowania przez Bluetooth",
-  "scanner_linuxPairingPinPrompt": "Wprowadź kod PIN dla {deviceName} (pust, jeśli nie jest wymagany).",
-  "scanner_linuxPairingShowPin": "Wyświetl kod PIN"
   "@radioStats_txAir": {
     "placeholders": {
       "seconds": {
@@ -2051,5 +2044,16 @@
   "radioStats_stripNoise": "Poziom szumów: {noiseDbm} dBm",
   "radioStats_stripWaiting": "Pobieranie danych dotyczących radia…",
   "radioStats_settingsTile": "Statystyki radiowe",
-  "radioStats_settingsSubtitle": "Szum tła, RSSI, SNR oraz czas dostępny"
+  "radioStats_settingsSubtitle": "Szum tła, RSSI, SNR oraz czas dostępny",
+  "@scanner_linuxPairingPinPrompt": {
+    "placeholders": {
+      "deviceName": {
+        "type": "String"
+      }
+    }
+  },
+  "scanner_linuxPairingShowPin": "Pokaż PIN",
+  "scanner_linuxPairingHidePin": "Ukryj PIN",
+  "scanner_linuxPairingPinPrompt": "Wprowadź kod PIN dla {deviceName} (pozostaw puste, jeśli brak).",
+  "scanner_linuxPairingPinTitle": "Kod PIN parowania Bluetooth"
 }

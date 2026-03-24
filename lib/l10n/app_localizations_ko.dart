@@ -3400,4 +3400,18 @@ class AppLocalizationsKo extends AppLocalizations {
 
   @override
   String get radioStats_settingsSubtitle => '잡음 수준, RSSI, 신호 대 잡음비, 통신 시간';
+
+  @override
+  String get scanner_linuxPairingShowPin => 'PIN 표시';
+
+  @override
+  String get scanner_linuxPairingHidePin => 'PIN 숨기기';
+
+  @override
+  String get scanner_linuxPairingPinTitle => '블루투스 페어링 PIN';
+
+  @override
+  String scanner_linuxPairingPinPrompt(String deviceName) {
+    return '$deviceName에 대한 PIN을 입력하세요 (없으면 비워두세요).';
+  }
 }

@@ -268,21 +268,6 @@ class AppLocalizationsSl extends AppLocalizations {
   }
 
   @override
-  String get scanner_linuxPairingPinTitle =>
-      'PIN za združevanje preko Bluetootha';
-
-  @override
-  String scanner_linuxPairingPinPrompt(String deviceName) {
-    return 'Vnesite PIN kodo za $deviceName (ostavite prazno, če nimate kode).';
-  }
-
-  @override
-  String get scanner_linuxPairingShowPin => 'Prikaži PIN';
-
-  @override
-  String get scanner_linuxPairingHidePin => 'Skrijte PIN';
-
-  @override
   String get scanner_stop => 'Prekliči';
 
   @override
@@ -3564,4 +3549,18 @@ class AppLocalizationsSl extends AppLocalizations {
   @override
   String get radioStats_settingsSubtitle =>
       'Število šumov, RSSI, SNR in čas, ki ga je napolnila oprema';
+
+  @override
+  String get scanner_linuxPairingShowPin => 'Prikaži PIN';
+
+  @override
+  String get scanner_linuxPairingHidePin => 'Skrij PIN';
+
+  @override
+  String get scanner_linuxPairingPinTitle => 'Bluetooth PIN za seznanjanje';
+
+  @override
+  String scanner_linuxPairingPinPrompt(String deviceName) {
+    return 'Vnesite PIN za $deviceName (pustite prazno, če ga ni).';
+  }
 }

@@ -269,20 +269,6 @@ class AppLocalizationsBg extends AppLocalizations {
   }
 
   @override
-  String get scanner_linuxPairingPinTitle => 'PIN за свързване чрез Bluetooth';
-
-  @override
-  String scanner_linuxPairingPinPrompt(String deviceName) {
-    return 'Въведете PIN кода за $deviceName (оставете празно, ако няма такъв).';
-  }
-
-  @override
-  String get scanner_linuxPairingShowPin => 'Покажи PIN';
-
-  @override
-  String get scanner_linuxPairingHidePin => 'Скриване на PIN кода';
-
-  @override
   String get scanner_stop => 'Спрете';
 
   @override
@@ -3581,4 +3567,19 @@ class AppLocalizationsBg extends AppLocalizations {
   @override
   String get radioStats_settingsSubtitle =>
       'Ниво на шума, RSSI, SNR и време на пренос';
+
+  @override
+  String get scanner_linuxPairingShowPin => 'Покажи PIN';
+
+  @override
+  String get scanner_linuxPairingHidePin => 'Скрий ПИН';
+
+  @override
+  String get scanner_linuxPairingPinTitle =>
+      'PIN код за сдвояване на Bluetooth';
+
+  @override
+  String scanner_linuxPairingPinPrompt(String deviceName) {
+    return 'Въведете ПИН за $deviceName (оставете празно, ако няма).';
+  }
 }

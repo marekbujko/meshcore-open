@@ -127,17 +127,7 @@
       }
     }
   },
-  "scanner_linuxPairingPinTitle": "Bluetooth Pairing PIN",
-  "scanner_linuxPairingPinPrompt": "Enter PIN for {deviceName} (leave blank if none).",
-  "@scanner_linuxPairingPinPrompt": {
-    "placeholders": {
-      "deviceName": {
-        "type": "String"
-      }
-    }
-  },
-  "scanner_linuxPairingShowPin": "Show PIN",
-  "scanner_linuxPairingHidePin": "Hide PIN",
+  
   "scanner_stop": "Stop",
   "scanner_scan": "Scan",
   "scanner_bluetoothOff": "Bluetooth is off",
@@ -2051,5 +2041,16 @@
   },
   "radioStats_stripWaiting": "Fetching radio stats…",
   "radioStats_settingsTile": "Radio stats",
-  "radioStats_settingsSubtitle": "Noise floor, RSSI, SNR, and airtime"
+  "radioStats_settingsSubtitle": "Noise floor, RSSI, SNR, and airtime",
+  "scanner_linuxPairingShowPin": "Show PIN",
+  "scanner_linuxPairingHidePin": "Hide PIN",
+  "scanner_linuxPairingPinTitle": "Bluetooth Pairing PIN",
+  "scanner_linuxPairingPinPrompt": "Enter PIN for {deviceName} (leave blank if none).",
+  "@scanner_linuxPairingPinPrompt": {
+    "placeholders": {
+      "deviceName": {
+        "type": "String"
+      }
+    }
+  }
 }

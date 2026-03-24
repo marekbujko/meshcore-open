@@ -3401,4 +3401,18 @@ class AppLocalizationsJa extends AppLocalizations {
 
   @override
   String get radioStats_settingsSubtitle => 'ノイズレベル、RSSI、SNR、および通信時間';
+
+  @override
+  String get scanner_linuxPairingShowPin => 'PINを表示';
+
+  @override
+  String get scanner_linuxPairingHidePin => 'PINを非表示';
+
+  @override
+  String get scanner_linuxPairingPinTitle => 'Bluetooth ペアリング PIN';
+
+  @override
+  String scanner_linuxPairingPinPrompt(String deviceName) {
+    return '$deviceNameのPINを入力してください（なしの場合は空欄のまま）。';
+  }
 }

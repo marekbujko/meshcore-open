@@ -1945,9 +1945,6 @@
   "appSettings_maxMessageRetries": "最大消息重试次数",
   "appSettings_maxMessageRetriesSubtitle": "在将消息标记为失败之前，允许尝试的次数",
   "path_routeWeight": "{weight}/{max}",
-  "@scanner_linuxPairingPinPrompt": {
-    "placeholders": {
-      "deviceName": {
   "settings_multiAck": "多重ACK：{value}",
   "settings_telemetryModeUpdated": "遥测模式已更新",
   "map_showOverlaps": "重复键重叠",
@@ -1973,10 +1970,6 @@
       }
     }
   },
-  "scanner_linuxPairingPinTitle": "蓝牙配对 PIN",
-  "scanner_linuxPairingHidePin": "隐藏PIN码",
-  "scanner_linuxPairingPinPrompt": "输入 {deviceName} 的 PIN 码（如果为空，则留空）。",
-  "scanner_linuxPairingShowPin": "显示PIN码"
   "@radioStats_txAir": {
     "placeholders": {
       "seconds": {
@@ -2018,5 +2011,16 @@
   "radioStats_stripNoise": "噪声水平：{noiseDbm} dBm",
   "radioStats_stripWaiting": "正在获取收音机数据…",
   "radioStats_settingsTile": "广播统计数据",
-  "radioStats_settingsSubtitle": "噪声水平、RSSI、信噪比和空中时间"
+  "radioStats_settingsSubtitle": "噪声水平、RSSI、信噪比和空中时间",
+  "@scanner_linuxPairingPinPrompt": {
+    "placeholders": {
+      "deviceName": {
+        "type": "String"
+      }
+    }
+  },
+  "scanner_linuxPairingShowPin": "显示 PIN码",
+  "scanner_linuxPairingPinPrompt": "输入 {deviceName} 的 PIN（如果没有，请留空）。",
+  "scanner_linuxPairingPinTitle": "蓝牙配对 PIN",
+  "scanner_linuxPairingHidePin": "隐藏 PIN"
 }

@@ -1968,9 +1968,6 @@
   "appSettings_maxMessageRetries": "Número máximo de reintentos de envío de mensajes",
   "appSettings_maxMessageRetriesSubtitle": "Número de intentos de reintento antes de marcar un mensaje como fallido.",
   "path_routeWeight": "{weight}/{max}",
-  "@scanner_linuxPairingPinPrompt": {
-    "placeholders": {
-      "deviceName": {
   "settings_telemetryModeUpdated": "Modo de telemetría actualizado",
   "settings_multiAck": "Multi-ACKs: {value}",
   "map_showOverlaps": "Superposiciones de tecla repetidora",
@@ -1996,10 +1993,6 @@
       }
     }
   },
-  "scanner_linuxPairingPinPrompt": "Introduzca el código PIN para {deviceName} (deje en blanco si no hay ninguno).",
-  "scanner_linuxPairingHidePin": "Ocultar PIN",
-  "scanner_linuxPairingPinTitle": "PIN para emparejar dispositivos Bluetooth",
-  "scanner_linuxPairingShowPin": "Mostrar código PIN"
   "@radioStats_txAir": {
     "placeholders": {
       "seconds": {
@@ -2041,5 +2034,16 @@
   "radioStats_stripNoise": "Nivel de ruido: {noiseDbm} dBm",
   "radioStats_stripWaiting": "Obteniendo estadísticas de la radio…",
   "radioStats_settingsTile": "Estadísticas de radio",
-  "radioStats_settingsSubtitle": "Nivel de ruido, RSSI, SNR y tiempo de transmisión"
+  "radioStats_settingsSubtitle": "Nivel de ruido, RSSI, SNR y tiempo de transmisión",
+  "@scanner_linuxPairingPinPrompt": {
+    "placeholders": {
+      "deviceName": {
+        "type": "String"
+      }
+    }
+  },
+  "scanner_linuxPairingShowPin": "Mostrar PIN",
+  "scanner_linuxPairingPinTitle": "PIN de emparejamiento Bluetooth",
+  "scanner_linuxPairingHidePin": "Ocultar PIN",
+  "scanner_linuxPairingPinPrompt": "Introduzca el PIN para {deviceName} (déjelo en blanco si no hay ninguno)."
 }

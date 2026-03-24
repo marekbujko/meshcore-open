@@ -1940,9 +1940,6 @@
   "appSettings_maxMessageRetries": "Maximalný počet pokusov o doručenie správ",
   "appSettings_maxMessageRetriesSubtitle": "Počet pokusov o odošleť pred označením správy ako neúspešnej",
   "path_routeWeight": "{weight}/{max}",
-  "@scanner_linuxPairingPinPrompt": {
-    "placeholders": {
-      "deviceName": {
   "settings_telemetryModeUpdated": "Režim telemetrie bol aktualizovaný",
   "settings_multiAck": "Viaceré ACK: {value}",
   "map_showOverlaps": "Prekrývanie opakovača kľúča",
@@ -1968,10 +1965,6 @@
       }
     }
   },
-  "scanner_linuxPairingPinPrompt": "Zadajte PIN pre {deviceName} (nechajte prázdne, ak neexistuje).",
-  "scanner_linuxPairingShowPin": "Zobraziť PIN",
-  "scanner_linuxPairingHidePin": "Skryť PIN",
-  "scanner_linuxPairingPinTitle": "PIN pre párovanie cez Bluetooth"
   "@radioStats_txAir": {
     "placeholders": {
       "seconds": {
@@ -2013,5 +2006,16 @@
   "radioStats_stripNoise": "Úroveň hluku: {noiseDbm} dBm",
   "radioStats_stripWaiting": "Získavanie údajov o rádiu…",
   "radioStats_settingsTile": "Štatistiky rádiových vysielaní",
-  "radioStats_settingsSubtitle": "Úroveň hluku, RSSI, SNR a časové rozloženie"
+  "radioStats_settingsSubtitle": "Úroveň hluku, RSSI, SNR a časové rozloženie",
+  "@scanner_linuxPairingPinPrompt": {
+    "placeholders": {
+      "deviceName": {
+        "type": "String"
+      }
+    }
+  },
+  "scanner_linuxPairingPinPrompt": "Zadajte PIN pre {deviceName} (ak nie je, nechajte prázdne).",
+  "scanner_linuxPairingShowPin": "Zobraziť PIN",
+  "scanner_linuxPairingHidePin": "Skryť PIN",
+  "scanner_linuxPairingPinTitle": "Bluetooth párovací PIN"
 }

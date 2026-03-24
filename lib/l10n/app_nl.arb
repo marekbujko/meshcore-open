@@ -1940,9 +1940,6 @@
   "appSettings_maxMessageRetries": "Aantal pogingen om berichten te versturen",
   "appSettings_maxMessageRetriesSubtitle": "Aantal pogingen om een bericht opnieuw te versturen voordat het als mislukt wordt gemarkeerd",
   "path_routeWeight": "{weight}/{max}",
-  "@scanner_linuxPairingPinPrompt": {
-    "placeholders": {
-      "deviceName": {
   "settings_telemetryModeUpdated": "Telemetrie-modus bijgewerkt",
   "settings_multiAck": "Multi-ACKs: {value}",
   "map_showOverlaps": "Herhalingssleutel overlapt",
@@ -1968,10 +1965,6 @@
       }
     }
   },
-  "scanner_linuxPairingPinTitle": "PIN voor Bluetooth-koppeling",
-  "scanner_linuxPairingShowPin": "Toon PIN",
-  "scanner_linuxPairingHidePin": "Verberg PIN",
-  "scanner_linuxPairingPinPrompt": "Voer het pincode-in voor {deviceName} in (laat dit leeg als er geen is)."
   "@radioStats_txAir": {
     "placeholders": {
       "seconds": {
@@ -2013,5 +2006,16 @@
   "radioStats_stripNoise": "Ruisfrequentie: {noiseDbm} dBm",
   "radioStats_stripWaiting": "Radio-statistieken ophalen…",
   "radioStats_settingsTile": "Statistieken over radio",
-  "radioStats_settingsSubtitle": "Ruimtelijke ruis, RSSI, SNR en beschikbare tijd"
+  "radioStats_settingsSubtitle": "Ruimtelijke ruis, RSSI, SNR en beschikbare tijd",
+  "@scanner_linuxPairingPinPrompt": {
+    "placeholders": {
+      "deviceName": {
+        "type": "String"
+      }
+    }
+  },
+  "scanner_linuxPairingShowPin": "Toon PIN",
+  "scanner_linuxPairingHidePin": "PIN verbergen",
+  "scanner_linuxPairingPinPrompt": "Voer PIN in voor {deviceName} (laat leeg als er geen is).",
+  "scanner_linuxPairingPinTitle": "Bluetooth‑koppelings‑PIN"
 }

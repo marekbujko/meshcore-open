@@ -1968,9 +1968,6 @@
   "appSettings_maxMessageRetries": "Maximale Anzahl an Wiederholungsversuchen",
   "appSettings_maxMessageRetriesSubtitle": "Anzahl der Versuche, eine Nachricht erneut zu senden, bevor sie als fehlgeschlagen markiert wird.",
   "path_routeWeight": "{weight}/{max}",
-  "@scanner_linuxPairingPinPrompt": {
-    "placeholders": {
-      "deviceName": {
   "settings_telemetryModeUpdated": "Telemetriemodus aktualisiert",
   "settings_multiAck": "Mehrfach-Bestätigungen: {value}",
   "map_showOverlaps": "Überlappungen der Repeater-Taste",
@@ -1996,10 +1993,6 @@
       }
     }
   },
-  "scanner_linuxPairingHidePin": "PIN verbergen",
-  "scanner_linuxPairingPinPrompt": "Geben Sie den PIN-Code für {deviceName} ein (lassen Sie das Feld leer, falls kein PIN-Code vorhanden ist).",
-  "scanner_linuxPairingShowPin": "PIN anzeigen",
-  "scanner_linuxPairingPinTitle": "PIN für die Bluetooth-Verbindung"
   "@radioStats_txAir": {
     "placeholders": {
       "seconds": {
@@ -2041,5 +2034,16 @@
   "radioStats_stripNoise": "Rauschpegel: {noiseDbm} dBm",
   "radioStats_stripWaiting": "Abrufen von Radiostatus…",
   "radioStats_settingsTile": "Senderinformationen",
-  "radioStats_settingsSubtitle": "Rauschpegel, RSSI, Signal-Rausch-Verhältnis (SNR) und Nutzzeit"
+  "radioStats_settingsSubtitle": "Rauschpegel, RSSI, Signal-Rausch-Verhältnis (SNR) und Nutzzeit",
+  "@scanner_linuxPairingPinPrompt": {
+    "placeholders": {
+      "deviceName": {
+        "type": "String"
+      }
+    }
+  },
+  "scanner_linuxPairingShowPin": "PIN anzeigen",
+  "scanner_linuxPairingHidePin": "PIN ausblenden",
+  "scanner_linuxPairingPinTitle": "Bluetooth-Paarungs-PIN",
+  "scanner_linuxPairingPinPrompt": "Geben Sie die PIN für {deviceName} ein (leer lassen, falls keine)."
 }

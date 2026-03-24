@@ -3586,4 +3586,18 @@ class AppLocalizationsHu extends AppLocalizations {
   @override
   String get radioStats_settingsSubtitle =>
       'Háttérzaj, RSSI, zaj-sűrűség, és a használat időtartama';
+
+  @override
+  String get scanner_linuxPairingShowPin => 'PIN megjelenítése';
+
+  @override
+  String get scanner_linuxPairingHidePin => 'PIN elrejtése';
+
+  @override
+  String get scanner_linuxPairingPinTitle => 'Bluetooth párosítási PIN';
+
+  @override
+  String scanner_linuxPairingPinPrompt(String deviceName) {
+    return 'Adja meg a(z) $deviceName PIN-kódját (hagyja üresen, ha nincs).';
+  }
 }

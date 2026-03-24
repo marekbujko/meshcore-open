@@ -268,20 +268,6 @@ class AppLocalizationsNl extends AppLocalizations {
   }
 
   @override
-  String get scanner_linuxPairingPinTitle => 'PIN voor Bluetooth-koppeling';
-
-  @override
-  String scanner_linuxPairingPinPrompt(String deviceName) {
-    return 'Voer het pincode-in voor $deviceName in (laat dit leeg als er geen is).';
-  }
-
-  @override
-  String get scanner_linuxPairingShowPin => 'Toon PIN';
-
-  @override
-  String get scanner_linuxPairingHidePin => 'Verberg PIN';
-
-  @override
   String get scanner_stop => 'Stoppen';
 
   @override
@@ -3565,4 +3551,18 @@ class AppLocalizationsNl extends AppLocalizations {
   @override
   String get radioStats_settingsSubtitle =>
       'Ruimtelijke ruis, RSSI, SNR en beschikbare tijd';
+
+  @override
+  String get scanner_linuxPairingShowPin => 'Toon PIN';
+
+  @override
+  String get scanner_linuxPairingHidePin => 'PIN verbergen';
+
+  @override
+  String get scanner_linuxPairingPinTitle => 'Bluetooth‑koppelings‑PIN';
+
+  @override
+  String scanner_linuxPairingPinPrompt(String deviceName) {
+    return 'Voer PIN in voor $deviceName (laat leeg als er geen is).';
+  }
 }

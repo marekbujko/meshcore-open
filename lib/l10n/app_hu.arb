@@ -2044,5 +2044,16 @@
   "contact_teleEnv": "Adatkapcsolati környezet",
   "contact_teleEnvSubtitle": "Engedje meg az érzékelő adatok megosztását",
   "map_showOverlaps": "Az ismétlő kulcsok ütköznek",
-  "map_runTraceWithReturnPath": "Visszaforduljon az eredeti úton."
+  "map_runTraceWithReturnPath": "Visszaforduljon az eredeti úton.",
+  "@scanner_linuxPairingPinPrompt": {
+    "placeholders": {
+      "deviceName": {
+        "type": "String"
+      }
+    }
+  },
+  "scanner_linuxPairingHidePin": "PIN elrejtése",
+  "scanner_linuxPairingShowPin": "PIN megjelenítése",
+  "scanner_linuxPairingPinTitle": "Bluetooth párosítási PIN",
+  "scanner_linuxPairingPinPrompt": "Adja meg a(z) {deviceName} PIN-kódját (hagyja üresen, ha nincs)."
 }

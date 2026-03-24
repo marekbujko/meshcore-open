@@ -1940,9 +1940,6 @@
   "appSettings_maxMessageRetries": "Максимальна кількість повторних спроб надсилання повідомлення",
   "appSettings_maxMessageRetriesSubtitle": "Кількість спроб повторного відправлення повідомлення перед тим, як позначити його як невдале",
   "path_routeWeight": "{weight}/{max}",
-  "@scanner_linuxPairingPinPrompt": {
-    "placeholders": {
-      "deviceName": {
   "settings_telemetryModeUpdated": "Режим телеметрії оновлено",
   "settings_multiAck": "Багатократне підтвердження: {value}",
   "map_showOverlaps": "Перекриття ключа повторювача",
@@ -1968,10 +1965,6 @@
       }
     }
   },
-  "scanner_linuxPairingHidePin": "Приховати PIN-код",
-  "scanner_linuxPairingPinTitle": "PIN для з'єднання через Bluetooth",
-  "scanner_linuxPairingPinPrompt": "Введіть PIN-код для {deviceName} (залиште поле порожнім, якщо немає).",
-  "scanner_linuxPairingShowPin": "Показати PIN-код"
   "@radioStats_txAir": {
     "placeholders": {
       "seconds": {
@@ -2013,5 +2006,16 @@
   "radioStats_stripNoise": "Рівень шуму: {noiseDbm} дБм",
   "radioStats_stripWaiting": "Отримано статистику радіо…",
   "radioStats_settingsTile": "Дані про радіостанції",
-  "radioStats_settingsSubtitle": "Рівень шуму, RSSI, SNR та час, протягом якого пристрій використовує радіоканал."
+  "radioStats_settingsSubtitle": "Рівень шуму, RSSI, SNR та час, протягом якого пристрій використовує радіоканал.",
+  "@scanner_linuxPairingPinPrompt": {
+    "placeholders": {
+      "deviceName": {
+        "type": "String"
+      }
+    }
+  },
+  "scanner_linuxPairingPinTitle": "PIN‑код спарювання Bluetooth",
+  "scanner_linuxPairingShowPin": "Показати PIN",
+  "scanner_linuxPairingPinPrompt": "Введіть PIN для {deviceName} (залиште порожнім, якщо його немає).",
+  "scanner_linuxPairingHidePin": "Приховати PIN"
 }

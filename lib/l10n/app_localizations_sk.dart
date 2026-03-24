@@ -270,20 +270,6 @@ class AppLocalizationsSk extends AppLocalizations {
   }
 
   @override
-  String get scanner_linuxPairingPinTitle => 'PIN pre párovanie cez Bluetooth';
-
-  @override
-  String scanner_linuxPairingPinPrompt(String deviceName) {
-    return 'Zadajte PIN pre $deviceName (nechajte prázdne, ak neexistuje).';
-  }
-
-  @override
-  String get scanner_linuxPairingShowPin => 'Zobraziť PIN';
-
-  @override
-  String get scanner_linuxPairingHidePin => 'Skryť PIN';
-
-  @override
   String get scanner_stop => 'Zastavte';
 
   @override
@@ -3558,4 +3544,18 @@ class AppLocalizationsSk extends AppLocalizations {
   @override
   String get radioStats_settingsSubtitle =>
       'Úroveň hluku, RSSI, SNR a časové rozloženie';
+
+  @override
+  String get scanner_linuxPairingShowPin => 'Zobraziť PIN';
+
+  @override
+  String get scanner_linuxPairingHidePin => 'Skryť PIN';
+
+  @override
+  String get scanner_linuxPairingPinTitle => 'Bluetooth párovací PIN';
+
+  @override
+  String scanner_linuxPairingPinPrompt(String deviceName) {
+    return 'Zadajte PIN pre $deviceName (ak nie je, nechajte prázdne).';
+  }
 }

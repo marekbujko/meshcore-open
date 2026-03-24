@@ -2044,5 +2044,16 @@
   "contact_teleEnv": "텔레메트리 환경",
   "contact_teleEnvSubtitle": "환경 센서 데이터를 공유하도록 허용",
   "map_showOverlaps": "반복 키 중복",
-  "map_runTraceWithReturnPath": "원래 경로로 돌아가세요."
+  "map_runTraceWithReturnPath": "원래 경로로 돌아가세요.",
+  "@scanner_linuxPairingPinPrompt": {
+    "placeholders": {
+      "deviceName": {
+        "type": "String"
+      }
+    }
+  },
+  "scanner_linuxPairingShowPin": "PIN 표시",
+  "scanner_linuxPairingPinTitle": "블루투스 페어링 PIN",
+  "scanner_linuxPairingHidePin": "PIN 숨기기",
+  "scanner_linuxPairingPinPrompt": "{deviceName}에 대한 PIN을 입력하세요 (없으면 비워두세요)."
 }
