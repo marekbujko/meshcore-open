@@ -440,7 +440,7 @@ class AppLocalizationsPl extends AppLocalizations {
 
   @override
   String settings_multiAck(String value) {
-    return 'Wiele potwierdzeń: $value';
+    return 'Wielokrotne ACK: $value';
   }
 
   @override
@@ -611,7 +611,7 @@ class AppLocalizationsPl extends AppLocalizations {
   String get appSettings_language => 'Język';
 
   @override
-  String get appSettings_languageSystem => 'Domyślny systemu';
+  String get appSettings_languageSystem => 'Domyślny systemowy';
 
   @override
   String get appSettings_languageEn => 'English';
@@ -1699,7 +1699,7 @@ class AppLocalizationsPl extends AppLocalizations {
   String get map_otherNodes => 'Inne węzły';
 
   @override
-  String get map_showOverlaps => 'Nakładające się klucze powtarzalne';
+  String get map_showOverlaps => 'Nakładające się klucze przekaźników';
 
   @override
   String get map_keyPrefix => 'Prefiks klucza';
@@ -1745,7 +1745,7 @@ class AppLocalizationsPl extends AppLocalizations {
   String get map_runTrace => 'Uruchom ślad ścieżki';
 
   @override
-  String get map_runTraceWithReturnPath => 'Wróć z powrotem tą samą ścieżką';
+  String get map_runTraceWithReturnPath => 'Wróć tą samą ścieżką';
 
   @override
   String get map_removeLast => 'Usuń ostatni';
@@ -2055,8 +2055,7 @@ class AppLocalizationsPl extends AppLocalizations {
   String get repeater_neighbors => 'Sąsiedzi';
 
   @override
-  String get repeater_neighborsSubtitle =>
-      'Wyświetl sąsiedztwo zerowych hopów.';
+  String get repeater_neighborsSubtitle => 'Wyświetl sąsiadów zero-hop.';
 
   @override
   String get repeater_settings => 'Ustawienia';
@@ -3368,11 +3367,11 @@ class AppLocalizationsPl extends AppLocalizations {
 
   @override
   String get settings_gpxExportRepeaters =>
-      'Eksportuj przekaźniki / serwer pokojowy do GPX';
+      'Eksportuj przekaźniki / roomservery do GPX';
 
   @override
   String get settings_gpxExportRepeatersSubtitle =>
-      'Eksportuje przekaźniki / roomserver z lokalizacją do pliku GPX.';
+      'Eksportuje przekaźniki / roomservery z lokalizacją do pliku GPX.';
 
   @override
   String get settings_gpxExportContacts => 'Eksportuj towarzyszy do GPX';
@@ -3404,7 +3403,7 @@ class AppLocalizationsPl extends AppLocalizations {
 
   @override
   String get settings_gpxExportRepeatersRoom =>
-      'Lokalizacje przekaźników i serwerów pokojowych';
+      'Lokalizacje przekaźników i roomserverów';
 
   @override
   String get settings_gpxExportChat => 'Lokalizacje towarzyszy';
@@ -3421,7 +3420,7 @@ class AppLocalizationsPl extends AppLocalizations {
       'Eksport danych mapy GPX meshcore-open';
 
   @override
-  String get snrIndicator_nearByRepeaters => 'Nadajniki w pobliżu';
+  String get snrIndicator_nearByRepeaters => 'Pobliskie przekaźniki';
 
   @override
   String get snrIndicator_lastSeen => 'Ostatnio widziany';
@@ -3454,11 +3453,11 @@ class AppLocalizationsPl extends AppLocalizations {
 
   @override
   String get contactsSettings_autoAddRoomServersTitle =>
-      'Automatycznie dodaj serwery pokojowe';
+      'Automatycznie dodaj roomservery';
 
   @override
   String get contactsSettings_autoAddRoomServersSubtitle =>
-      'Zezwól towarzyszowi na automatyczne dodawanie znalezionych serwerów pokojowych.';
+      'Zezwól towarzyszowi na automatyczne dodawanie znalezionych roomserverów.';
 
   @override
   String get contactsSettings_autoAddSensorsTitle =>
