@@ -7,7 +7,7 @@ class UnreadBadge extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final display = count > 99 ? '99+' : count.toString();
+    final display = count > 9999 ? '9999+' : count.toString();
     return Container(
       padding: const EdgeInsets.symmetric(horizontal: 6, vertical: 2),
       decoration: BoxDecoration(
