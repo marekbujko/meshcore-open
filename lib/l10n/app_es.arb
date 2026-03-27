@@ -2088,7 +2088,6 @@
   "translation_translateTo": "Traducir a {language}",
   "translation_translationOptions": "Opciones de traducción",
   "translation_systemLanguage": "Idioma del sistema",
-  "scanner_linuxPairingPinPrompt": "Introduzca el PIN para {deviceName} (déjelo en blanco si no hay ninguno).",
   "repeater_cliQuickDiscovery": "Descubrir Vecinos",
   "repeater_cliQuickClockSync": "Sincronización del reloj"
 }

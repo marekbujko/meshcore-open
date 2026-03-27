@@ -879,7 +879,7 @@ List<_PathHop> _buildPathHops(
       previousPosition = resolvedPosition;
     }
     // If the best candidate is much farther than the previous hop, it's likely not the correct match.
-    if (lastDistance + bestDistance > 50000 &&
+    if (lastDistance + bestDistance > 70000 &&
         candidates != null &&
         candidates.isNotEmpty) {
       i--;

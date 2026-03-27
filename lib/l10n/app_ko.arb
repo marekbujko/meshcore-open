@@ -2082,6 +2082,7 @@
   },
   "scanner_linuxPairingPinTitle": "블루투스 페어링 PIN",
   "scanner_linuxPairingHidePin": "PIN 숨기기",
+<<<<<<< HEAD
   "scanner_linuxPairingShowPin": "PIN 보기",
   "scanner_linuxPairingPinPrompt": "{deviceName}의 PIN을 입력하세요 (해당하는 경우에만 입력).",
   "@translation_translateTo": {

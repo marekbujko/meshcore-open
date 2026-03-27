@@ -2416,6 +2416,12 @@ class AppLocalizationsNl extends AppLocalizations {
   String get repeater_cliQuickDiscovery => 'Ontdek Buren';
 
   @override
+  String get repeater_cliQuickClockSync => 'Kloksynchronisatie';
+
+  @override
+  String get repeater_cliQuickDiscovery => 'Ontdek Buren';
+
+  @override
   String get repeater_cliHelpAdvert => 'Verstuurt een advertentiepakket';
 
   @override
