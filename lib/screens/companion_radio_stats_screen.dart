@@ -24,6 +24,7 @@ class _CompanionRadioStatsScreenState extends State<CompanionRadioStatsScreen> {
     final c = context.read<MeshCoreConnector>();
     _connector = c;
     c.acquireRadioStatsPolling();
+    c.setPollingInterval(1);
     c.radioStatsNotifier.addListener(_onStatsUpdate);
   }
 
@@ -44,6 +45,7 @@ class _CompanionRadioStatsScreenState extends State<CompanionRadioStatsScreen> {
   void dispose() {
     _connector?.radioStatsNotifier.removeListener(_onStatsUpdate);
     _connector?.releaseRadioStatsPolling();
+    _connector?.setPollingInterval(30);
     super.dispose();
   }
 

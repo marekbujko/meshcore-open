@@ -2059,5 +2059,10 @@
   "translation_composerEnabledHint": "I messaggi verranno tradotti prima di essere inviati.",
   "translation_translateTo": "Tradurre in {language}",
   "translation_translationOptions": "Opzioni di traduzione",
-  "translation_systemLanguage": "Lingua del sistema"
+  "translation_systemLanguage": "Lingua del sistema",
+  "scanner_linuxPairingHidePin": "Nascondi PIN",
+  "scanner_linuxPairingPinTitle": "PIN di associazione Bluetooth",
+  "scanner_linuxPairingPinPrompt": "Inserisci il PIN per {deviceName} (lascia vuoto se non ce n'è).",
+  "repeater_cliQuickClockSync": "Sincronizzazione dell'orologio",
+  "repeater_cliQuickDiscovery": "Scopri i Vicini"
 }

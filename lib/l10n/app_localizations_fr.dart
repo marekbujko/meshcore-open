@@ -2443,6 +2443,12 @@ class AppLocalizationsFr extends AppLocalizations {
   String get repeater_cliQuickClock => 'Horloge';
 
   @override
+  String get repeater_cliQuickClockSync => 'Synchronisation de l\'horloge';
+
+  @override
+  String get repeater_cliQuickDiscovery => 'Découvrir les voisins';
+
+  @override
   String get repeater_cliHelpAdvert => 'Envoie un paquet d\'annonce';
 
   @override

@@ -2059,5 +2059,11 @@
   "translation_messageTranslation": "Meddelandets översättning",
   "translation_translateTo": "Översätt till {language}",
   "translation_translationOptions": "Översättningsalternativ",
-  "translation_systemLanguage": "Språk för systemet"
+  "translation_systemLanguage": "Språk för systemet",
+  "scanner_linuxPairingShowPin": "Visa PIN",
+  "scanner_linuxPairingPinTitle": "Bluetooth‑parnings‑PIN",
+  "scanner_linuxPairingPinPrompt": "Ange PIN för {deviceName} (lämna tomt om ingen).",
+  "scanner_linuxPairingHidePin": "Dölj PIN",
+  "repeater_cliQuickDiscovery": "Upptäck grannar",
+  "repeater_cliQuickClockSync": "Synkronisera klocka"
 }

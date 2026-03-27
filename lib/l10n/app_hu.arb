@@ -2097,5 +2097,8 @@
   "translation_composerDisabledHint": "Küldj üzeneteket az eredeti, nyomtatott nyelven.",
   "translation_translateTo": "Fordítás {language}-ra",
   "translation_translationOptions": "Fordítási lehetőségek",
-  "translation_systemLanguage": "Rendszer nyelvé"
+  "translation_systemLanguage": "Rendszer nyelvé",
+  "scanner_linuxPairingPinPrompt": "Adja meg a(z) {deviceName} PIN-kódját (hagyja üresen, ha nincs).",
+  "repeater_cliQuickClockSync": "Óra szinkronizálás",
+  "repeater_cliQuickDiscovery": "Fedezd fel a szomszédokat"
 }

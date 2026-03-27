@@ -35,13 +35,15 @@ class _RepeaterCliScreenState extends State<RepeaterCliScreen> {
 
   // Common commands for quick access
   late final List<Map<String, String>> _quickCommands = [
+    {'labelKey': 'advertise', 'command': 'advert'},
     {'labelKey': 'getName', 'command': 'get name'},
     {'labelKey': 'getRadio', 'command': 'get radio'},
     {'labelKey': 'getTx', 'command': 'get tx'},
+    {'labelKey': 'discovery', 'command': 'discover.neighbors'},
     {'labelKey': 'neighbors', 'command': 'neighbors'},
     {'labelKey': 'version', 'command': 'ver'},
-    {'labelKey': 'advertise', 'command': 'advert'},
     {'labelKey': 'clock', 'command': 'clock'},
+    {'labelKey': 'clock sync', 'command': 'clock sync'},
   ];
 
   @override
@@ -407,6 +409,10 @@ class _RepeaterCliScreenState extends State<RepeaterCliScreen> {
         return l10n.repeater_cliQuickAdvertise;
       case 'clock':
         return l10n.repeater_cliQuickClock;
+      case 'clock sync':
+        return l10n.repeater_cliQuickClockSync;
+      case 'discovery':
+        return l10n.repeater_cliQuickDiscovery;
       default:
         return key;
     }

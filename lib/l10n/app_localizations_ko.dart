@@ -2320,6 +2320,12 @@ class AppLocalizationsKo extends AppLocalizations {
   String get repeater_cliQuickClock => '시계';
 
   @override
+  String get repeater_cliQuickClockSync => '시계 동기화';
+
+  @override
+  String get repeater_cliQuickDiscovery => '이웃 발견하기';
+
+  @override
   String get repeater_cliHelpAdvert => '광고 패킷을 발송';
 
   @override

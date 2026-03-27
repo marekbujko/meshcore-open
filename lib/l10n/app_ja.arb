@@ -2097,5 +2097,11 @@
   "translation_composerDisabledHint": "元のタイプされた言語でメッセージを送信してください。",
   "translation_translateTo": "{language} への翻訳",
   "translation_translationOptions": "翻訳の選択肢",
-  "translation_systemLanguage": "システム言語"
+  "translation_systemLanguage": "システム言語",
+  "scanner_linuxPairingShowPin": "PINを表示",
+  "scanner_linuxPairingHidePin": "PINを非表示",
+  "scanner_linuxPairingPinTitle": "Bluetooth ペアリング PIN",
+  "scanner_linuxPairingPinPrompt": "{deviceName}のPINを入力してください（なしの場合は空欄のまま）。",
+  "repeater_cliQuickClockSync": "クロック同期",
+  "repeater_cliQuickDiscovery": "近隣を発見する"
 }

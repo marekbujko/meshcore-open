@@ -2323,6 +2323,12 @@ class AppLocalizationsJa extends AppLocalizations {
   String get repeater_cliQuickClock => '時計';
 
   @override
+  String get repeater_cliQuickClockSync => 'クロック同期';
+
+  @override
+  String get repeater_cliQuickDiscovery => '近隣を発見する';
+
+  @override
   String get repeater_cliHelpAdvert => '広告用資料を送る';
 
   @override

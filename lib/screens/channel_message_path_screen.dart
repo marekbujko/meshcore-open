@@ -822,7 +822,8 @@ List<_PathHop> _buildPathHops(
 ) {
   if (pathBytes.isEmpty) return const [];
   final candidatesByPrefix = <int, List<Contact>>{};
-  for (final contact in connector.allContacts) {
+  final allContacts = connector.allContacts;
+  for (final contact in allContacts) {
     if (contact.publicKey.isEmpty) continue;
     if (contact.type != advTypeRepeater && contact.type != advTypeRoom) {
       continue;
@@ -839,7 +840,8 @@ List<_PathHop> _buildPathHops(
       : null;
   var previousPosition = startPoint;
   final distance = Distance();
-
+  var lastDistance = 0.0;
+  var bestDistance = 0.0;
   final hops = <_PathHop>[];
   for (var i = 0; i < pathBytes.length; i++) {
     final searchPoint = i == 0 ? startPoint : previousPosition;
@@ -848,7 +850,7 @@ List<_PathHop> _buildPathHops(
     if (candidates != null && candidates.isNotEmpty) {
       var bestIndex = 0;
       if (searchPoint != null) {
-        var bestDistance = double.infinity;
+        bestDistance = double.infinity;
         for (var j = 0; j < candidates.length; j++) {
           final candidate = candidates[j];
           if (!candidate.hasLocation ||
@@ -876,6 +878,16 @@ List<_PathHop> _buildPathHops(
     if (resolvedPosition != null) {
       previousPosition = resolvedPosition;
     }
+    // If the best candidate is much farther than the previous hop, it's likely not the correct match.
+    if (lastDistance + bestDistance > 70000 &&
+        candidates != null &&
+        candidates.isNotEmpty) {
+      i--;
+      lastDistance = bestDistance;
+      continue;
+    }
+    lastDistance = bestDistance;
+
     hops.add(
       _PathHop(
         index: i + 1,

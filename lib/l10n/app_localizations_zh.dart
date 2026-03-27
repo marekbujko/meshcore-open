@@ -2278,6 +2278,12 @@ class AppLocalizationsZh extends AppLocalizations {
   String get repeater_cliQuickClock => '时钟';
 
   @override
+  String get repeater_cliQuickClockSync => '同步时钟';
+
+  @override
+  String get repeater_cliQuickDiscovery => '发现邻居';
+
+  @override
   String get repeater_cliHelpAdvert => '发送广播包';
 
   @override

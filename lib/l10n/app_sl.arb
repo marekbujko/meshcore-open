@@ -2059,5 +2059,10 @@
   "translation_messageTranslation": "Prevod sporočila",
   "translation_translateTo": "Prevesti v {language}",
   "translation_translationOptions": "Možnosti prevoda",
-  "translation_systemLanguage": "Jezik sistema"
+  "translation_systemLanguage": "Jezik sistema",
+  "scanner_linuxPairingHidePin": "Skrij PIN",
+  "scanner_linuxPairingPinPrompt": "Vnesite PIN za {deviceName} (pustite prazno, če ga ni).",
+  "scanner_linuxPairingPinTitle": "Bluetooth PIN za seznanjanje",
+  "repeater_cliQuickDiscovery": "Odkrijte sosede",
+  "repeater_cliQuickClockSync": "Usklajevanje ure"
 }

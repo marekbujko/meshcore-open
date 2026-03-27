@@ -127,7 +127,7 @@ class _ChannelsScreenState extends State<ChannelsScreen>
       canPop: allowBack,
       child: Scaffold(
         appBar: AppBar(
-          title: AppBarTitle(context.l10n.channels_title, indicators: false),
+          title: AppBarTitle(context.l10n.channels_title),
           centerTitle: true,
           automaticallyImplyLeading: false,
           actions: [
