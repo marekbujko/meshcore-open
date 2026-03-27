@@ -303,8 +303,12 @@
   "path_routeWeight": "{weight}/{max}",
   "@path_routeWeight": {
     "placeholders": {
-      "weight": { "type": "String" },
-      "max": { "type": "String" }
+      "weight": {
+        "type": "String"
+      },
+      "max": {
+        "type": "String"
+      }
     }
   },
   "appSettings_battery": "Battery",
@@ -1333,6 +1337,8 @@
   "repeater_cliQuickVersion": "Version",
   "repeater_cliQuickAdvertise": "Advertise",
   "repeater_cliQuickClock": "Clock",
+  "repeater_cliQuickClockSync": "Clock Sync",
+  "repeater_cliQuickDiscovery": "Discover Neighbors",
   "repeater_cliHelpAdvert": "Sends an advertisement packet",
   "repeater_cliHelpReboot": "Reboots the device. (note, you'll prob get 'Timeout' which is normal)",
   "repeater_cliHelpClock": "Displays current time per device's clock.",

@@ -2059,5 +2059,10 @@
   "translation_messageTranslation": "Berichtvertaling",
   "translation_translationOptions": "Opties voor vertaling",
   "translation_systemLanguage": "Taal van het systeem",
-  "translation_translateTo": "Vertalen naar {language}"
+  "translation_translateTo": "Vertalen naar {language}",
+  "scanner_linuxPairingHidePin": "PIN verbergen",
+  "scanner_linuxPairingPinPrompt": "Voer PIN in voor {deviceName} (laat leeg als er geen is).",
+  "scanner_linuxPairingPinTitle": "Bluetooth‑koppelings‑PIN",
+  "repeater_cliQuickDiscovery": "Ontdek Buren",
+  "repeater_cliQuickClockSync": "Kloksynchronisatie"
 }

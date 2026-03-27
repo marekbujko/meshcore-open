@@ -2427,6 +2427,12 @@ class AppLocalizationsIt extends AppLocalizations {
   String get repeater_cliQuickClock => 'Orologio';
 
   @override
+  String get repeater_cliQuickClockSync => 'Sincronizzazione dell\'orologio';
+
+  @override
+  String get repeater_cliQuickDiscovery => 'Scopri i Vicini';
+
+  @override
   String get repeater_cliHelpAdvert => 'Invia un pacchetto pubblicitario';
 
   @override

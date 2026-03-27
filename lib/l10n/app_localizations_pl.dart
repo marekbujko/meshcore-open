@@ -2436,6 +2436,12 @@ class AppLocalizationsPl extends AppLocalizations {
   String get repeater_cliQuickClock => 'Godzina';
 
   @override
+  String get repeater_cliQuickClockSync => 'Synchronizacja zegara';
+
+  @override
+  String get repeater_cliQuickDiscovery => 'Odkryj Sąsiadów';
+
+  @override
   String get repeater_cliHelpAdvert => 'Wysyła pakiet rozgłoszeniowy';
 
   @override

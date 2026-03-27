@@ -2428,6 +2428,12 @@ class AppLocalizationsRu extends AppLocalizations {
   String get repeater_cliQuickClock => 'Время';
 
   @override
+  String get repeater_cliQuickClockSync => 'Синхронизация часов';
+
+  @override
+  String get repeater_cliQuickDiscovery => 'Обнаружить Соседей';
+
+  @override
   String get repeater_cliHelpAdvert => 'Отправляет пакет анонсирования';
 
   @override

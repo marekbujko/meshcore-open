@@ -2059,5 +2059,9 @@
   "translation_messageTranslation": "Traduction du message",
   "translation_translateTo": "Traduire en {language}",
   "translation_translationOptions": "Options de traduction",
-  "translation_systemLanguage": "Langue du système"
+  "translation_systemLanguage": "Langue du système",
+  "scanner_linuxPairingPinTitle": "Code PIN d’appairage Bluetooth",
+  "scanner_linuxPairingPinPrompt": "Entrez le code PIN pour {deviceName} (laissez vide si aucun).",
+  "repeater_cliQuickClockSync": "Synchronisation de l'horloge",
+  "repeater_cliQuickDiscovery": "Découvrir les voisins"
 }

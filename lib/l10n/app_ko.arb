@@ -2097,5 +2097,8 @@
   "translation_composerDisabledHint": "원래 작성된 언어로 메시지를 보내세요.",
   "translation_translateTo": "{language} 번역",
   "translation_translationOptions": "번역 옵션",
-  "translation_systemLanguage": "시스템 언어"
+  "translation_systemLanguage": "시스템 언어",
+  "scanner_linuxPairingPinPrompt": "{deviceName}에 대한 PIN을 입력하세요 (없으면 비워두세요).",
+  "repeater_cliQuickClockSync": "시계 동기화",
+  "repeater_cliQuickDiscovery": "이웃 발견하기"
 }

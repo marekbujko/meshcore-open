@@ -2097,5 +2097,11 @@
   "translation_messageTranslation": "Tłumaczenie wiadomości",
   "translation_translationOptions": "Opcje tłumaczenia",
   "translation_systemLanguage": "Język systemu",
-  "translation_translateTo": "Tłumacz na {language}"
+  "translation_translateTo": "Tłumacz na {language}",
+  "scanner_linuxPairingShowPin": "Pokaż PIN",
+  "scanner_linuxPairingHidePin": "Ukryj PIN",
+  "scanner_linuxPairingPinPrompt": "Wprowadź kod PIN dla {deviceName} (pozostaw puste, jeśli brak).",
+  "scanner_linuxPairingPinTitle": "Kod PIN parowania Bluetooth",
+  "repeater_cliQuickClockSync": "Synchronizacja zegara",
+  "repeater_cliQuickDiscovery": "Odkryj Sąsiadów"
 }

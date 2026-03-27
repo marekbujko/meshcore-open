@@ -56,6 +56,7 @@ class PathTraceMapScreen extends StatefulWidget {
   final bool reversePathAround;
   final Contact? targetContact;
   final int pathHashByteWidth;
+  final List<Contact>? pathContacts;
 
   const PathTraceMapScreen({
     super.key,
@@ -66,6 +67,7 @@ class PathTraceMapScreen extends StatefulWidget {
     this.reversePathAround = false,
     this.targetContact,
     this.pathHashByteWidth = pathHashSize,
+    this.pathContacts,
   });
 
   @override
@@ -74,6 +76,8 @@ class PathTraceMapScreen extends StatefulWidget {
 
 class _PathTraceMapScreenState extends State<PathTraceMapScreen> {
   static const double _labelZoomThreshold = 8.5;
+  //miles to meters conversion for filtering out repeaters that are too far from the last known GPS hop to be a likely match, to avoid false matches that throw off the inferred positions of other hops in the path
+  static const double _maxRepeaterMatchDistanceMeters = 40 * 1609.344;
 
   StreamSubscription<Uint8List>? _frameSubscription;
   Timer? _timeoutTimer;
@@ -266,17 +270,43 @@ class _PathTraceMapScreenState extends State<PathTraceMapScreen> {
           .toList();
 
       Map<int, Contact> pathContacts = {};
-      final contacts = connector.allContacts;
-      contacts.where((c) => c.type != advTypeChat).forEach((repeater) {
-        for (var repeaterData in pathData) {
-          if (listEquals(
-            repeater.publicKey.sublist(0, 1),
-            Uint8List.fromList([repeaterData]),
-          )) {
-            pathContacts[repeaterData] = repeater;
+      Contact lastContact = Contact(
+        path: Uint8List(0),
+        pathLength: 0,
+        publicKey: connector.selfPublicKey ?? Uint8List(0),
+        name: context.l10n.pathTrace_you,
+        type: advTypeChat,
+        latitude: connector.selfLatitude,
+        longitude: connector.selfLongitude,
+        lastSeen: DateTime.now(),
+      );
+      if (widget.pathContacts != null) {
+        pathContacts = {for (var c in widget.pathContacts!) c.publicKey[0]: c};
+      } else {
+        final contacts = connector.allContactsUnfiltered;
+        contacts.where((c) => c.type != advTypeChat).forEach((repeater) {
+          if (lastContact.latitude != null &&
+              lastContact.longitude != null &&
+              repeater.hasLocation &&
+              lastContact.hasLocation &&
+              Distance().distance(
+                    LatLng(lastContact.latitude!, lastContact.longitude!),
+                    LatLng(repeater.latitude!, repeater.longitude!),
+                  ) >
+                  _maxRepeaterMatchDistanceMeters) {
+            return; //skip reapeaters that are far away from the last one with known GPS, to avoid false matches
           }
-        }
-      });
+          for (var repeaterData in pathData) {
+            if (listEquals(
+              repeater.publicKey.sublist(0, 1),
+              Uint8List.fromList([repeaterData]),
+            )) {
+              pathContacts[repeaterData] = repeater;
+              lastContact = repeater;
+            }
+          }
+        });
+      }
 
       // For hops with no GPS contact, infer position from other contacts
       // with known GPS that share the same last-hop byte.

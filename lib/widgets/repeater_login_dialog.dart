@@ -113,7 +113,7 @@ class _RepeaterLoginDialogState extends State<RepeaterLoginDialog> {
         messageBytes: responseBytes,
       );
       final timeoutSeconds = (timeoutMs / 1000).ceil();
-      final timeout = Duration(milliseconds: timeoutMs);
+      final timeout = Duration(milliseconds: timeoutMs + 2000);
       final selectionLabel = selection.useFlood
           ? 'flood'
           : '${selection.hopCount} hops';

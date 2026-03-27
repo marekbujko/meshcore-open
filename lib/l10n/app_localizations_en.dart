@@ -2380,6 +2380,12 @@ class AppLocalizationsEn extends AppLocalizations {
   String get repeater_cliQuickClock => 'Clock';
 
   @override
+  String get repeater_cliQuickClockSync => 'Clock Sync';
+
+  @override
+  String get repeater_cliQuickDiscovery => 'Discover Neighbors';
+
+  @override
   String get repeater_cliHelpAdvert => 'Sends an advertisement packet';
 
   @override

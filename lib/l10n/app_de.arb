@@ -2087,5 +2087,10 @@
   "translation_composerDisabledHint": "Nachrichten in der ursprünglichen, getippten Sprache senden.",
   "translation_translateTo": "Übersetzen Sie auf {language}",
   "translation_translationOptions": "Übersetzungsmöglichkeiten",
-  "translation_systemLanguage": "Sprache des Systems"
+  "translation_systemLanguage": "Sprache des Systems",
+  "scanner_linuxPairingHidePin": "PIN ausblenden",
+  "scanner_linuxPairingPinTitle": "Bluetooth-Paarungs-PIN",
+  "scanner_linuxPairingPinPrompt": "Geben Sie die PIN für {deviceName} ein (leer lassen, falls keine).",
+  "repeater_cliQuickClockSync": "Uhr Synchronisieren",
+  "repeater_cliQuickDiscovery": "Entdecke Nachbarn"
 }

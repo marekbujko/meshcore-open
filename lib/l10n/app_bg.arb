@@ -2059,5 +2059,9 @@
   "translation_composerEnabledHint": "Съобщенията ще бъдат преведени, преди да бъдат изпратени.",
   "translation_translateTo": "Превеждане на {language}",
   "translation_translationOptions": "Опции за превод",
-  "translation_systemLanguage": "Език на системата"
+  "translation_systemLanguage": "Език на системата",
+  "scanner_linuxPairingPinTitle": "PIN код за сдвояване на Bluetooth",
+  "scanner_linuxPairingPinPrompt": "Въведете ПИН за {deviceName} (оставете празно, ако няма).",
+  "repeater_cliQuickClockSync": "Синхронизация на часовника",
+  "repeater_cliQuickDiscovery": "Открий Съседи"
 }
