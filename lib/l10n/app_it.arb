@@ -2017,5 +2017,7 @@
   "scanner_linuxPairingShowPin": "Mostra PIN",
   "scanner_linuxPairingHidePin": "Nascondi PIN",
   "scanner_linuxPairingPinTitle": "PIN di associazione Bluetooth",
-  "scanner_linuxPairingPinPrompt": "Inserisci il PIN per {deviceName} (lascia vuoto se non ce n'è)."
+  "scanner_linuxPairingPinPrompt": "Inserisci il PIN per {deviceName} (lascia vuoto se non ce n'è).",
+  "repeater_cliQuickClockSync": "Sincronizzazione dell'orologio",
+  "repeater_cliQuickDiscovery": "Scopri i Vicini"
 }

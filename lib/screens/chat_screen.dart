@@ -290,6 +290,7 @@ class _ChatScreenState extends State<ChatScreen> {
             tooltip: context.l10n.chat_pathManagement,
             onPressed: () => _showPathHistory(context),
           ),
+          const RadioStatsIconButton(),
           Consumer<MeshCoreConnector>(
             builder: (context, connector, _) {
               return PopupMenuButton<String>(
@@ -362,7 +363,6 @@ class _ChatScreenState extends State<ChatScreen> {
               );
             },
           ),
-          const RadioStatsIconButton(),
         ],
       ),
       body: Consumer<MeshCoreConnector>(

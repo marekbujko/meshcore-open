@@ -193,6 +193,7 @@ class MeshCoreConnector extends ChangeNotifier {
   static const int _contactMsgBackoffFallbackMs = 5000;
   static const int _contactMsgBackoffMinMs = 500;
   static const int _contactMsgBackoffMaxMs = 15000;
+  int _pollingInterval = 30;
   bool _batteryRequested = false;
   bool _awaitingSelfInfo = false;
   bool _hasReceivedDeviceInfo = false;
@@ -323,8 +324,14 @@ class MeshCoreConnector extends ChangeNotifier {
 
   List<Contact> get allContacts => List.unmodifiable([
     ..._contacts,
-    ..._discoveredContacts.where((c) => !c.isActive),
+    ..._discoveredContacts.where(
+      (c) => !c.isActive && c.publicKeyHex != selfPublicKeyHex,
+    ),
   ]);
+
+  List<Contact> get allContactsUnfiltered =>
+      List.unmodifiable([..._contacts, ..._discoveredContacts]);
+
   List<Contact> get discoveredContacts {
     return List.unmodifiable(_discoveredContacts);
   }
@@ -2242,9 +2249,18 @@ class MeshCoreConnector extends ChangeNotifier {
     _batteryPollTimer = null;
   }
 
+  void setPollingInterval(int i) {
+    _pollingInterval = i.clamp(1, 60);
+    if (isConnected) {
+      _startRadioStatsPolling();
+    }
+  }
+
   void _startRadioStatsPolling() {
     _radioStatsPollTimer?.cancel();
-    _radioStatsPollTimer = Timer.periodic(const Duration(seconds: 1), (_) {
+    _radioStatsPollTimer = Timer.periodic(Duration(seconds: _pollingInterval), (
+      _,
+    ) {
       if (!isConnected) {
         _stopRadioStatsPolling();
         return;
@@ -2367,6 +2383,18 @@ class MeshCoreConnector extends ChangeNotifier {
       }
       unawaited(sendFrame(buildAppStartFrame()));
     });
+  }
+
+  Contact getFromDiscovered(Contact contact) {
+    final tmp = _discoveredContacts.firstWhere(
+      (c) => c.publicKeyHex == contact.publicKeyHex,
+      orElse: () => contact,
+    );
+    return contact.copyWith(
+      rawPacket: tmp.rawPacket,
+      latitude: tmp.latitude,
+      longitude: tmp.longitude,
+    );
   }
 
   Future<void> getContacts({int? since, bool preserveExisting = false}) async {
@@ -3735,8 +3763,17 @@ class MeshCoreConnector extends ChangeNotifier {
   }
 
   void _handleContact(Uint8List frame, {bool isContact = true}) {
-    final contact = Contact.fromFrame(frame);
-    if (contact != null) {
+    final contactTmp = Contact.fromFrame(frame);
+    if (contactTmp != null) {
+      if (listEquals(contactTmp.publicKey, _selfPublicKey)) {
+        appLogger.info(
+          'Ignoring contact with self public key: ${contactTmp.name}',
+          tag: 'Connector',
+        );
+        removeContact(contactTmp);
+        return;
+      }
+      final contact = getFromDiscovered(contactTmp);
       _handleDiscovery(contact, frame, noNotify: true, addActive: true);
 
       if (contact.type == advTypeRepeater) {

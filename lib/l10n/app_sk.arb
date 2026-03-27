@@ -2017,5 +2017,7 @@
   "scanner_linuxPairingPinPrompt": "Zadajte PIN pre {deviceName} (ak nie je, nechajte prázdne).",
   "scanner_linuxPairingShowPin": "Zobraziť PIN",
   "scanner_linuxPairingHidePin": "Skryť PIN",
-  "scanner_linuxPairingPinTitle": "Bluetooth párovací PIN"
+  "scanner_linuxPairingPinTitle": "Bluetooth párovací PIN",
+  "repeater_cliQuickClockSync": "Synchronizácia hodin",
+  "repeater_cliQuickDiscovery": "Objaviť susedov"
 }

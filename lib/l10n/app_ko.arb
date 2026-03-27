@@ -2055,5 +2055,7 @@
   "scanner_linuxPairingShowPin": "PIN 표시",
   "scanner_linuxPairingPinTitle": "블루투스 페어링 PIN",
   "scanner_linuxPairingHidePin": "PIN 숨기기",
-  "scanner_linuxPairingPinPrompt": "{deviceName}에 대한 PIN을 입력하세요 (없으면 비워두세요)."
+  "scanner_linuxPairingPinPrompt": "{deviceName}에 대한 PIN을 입력하세요 (없으면 비워두세요).",
+  "repeater_cliQuickClockSync": "시계 동기화",
+  "repeater_cliQuickDiscovery": "이웃 발견하기"
 }

@@ -2017,5 +2017,7 @@
   "scanner_linuxPairingPinTitle": "PIN‑код спарювання Bluetooth",
   "scanner_linuxPairingShowPin": "Показати PIN",
   "scanner_linuxPairingPinPrompt": "Введіть PIN для {deviceName} (залиште порожнім, якщо його немає).",
-  "scanner_linuxPairingHidePin": "Приховати PIN"
+  "scanner_linuxPairingHidePin": "Приховати PIN",
+  "repeater_cliQuickClockSync": "Синхронізація годинника",
+  "repeater_cliQuickDiscovery": "Відкрити сусідів"
 }

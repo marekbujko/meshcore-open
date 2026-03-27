@@ -2410,6 +2410,12 @@ class AppLocalizationsSl extends AppLocalizations {
   String get repeater_cliQuickClock => 'Ura';
 
   @override
+  String get repeater_cliQuickClockSync => 'Usklajevanje ure';
+
+  @override
+  String get repeater_cliQuickDiscovery => 'Odkrijte sosede';
+
+  @override
   String get repeater_cliHelpAdvert => 'Pošlje paket oglasov';
 
   @override

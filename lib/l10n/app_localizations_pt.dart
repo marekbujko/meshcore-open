@@ -2424,6 +2424,12 @@ class AppLocalizationsPt extends AppLocalizations {
   String get repeater_cliQuickClock => 'Relógio';
 
   @override
+  String get repeater_cliQuickClockSync => 'Sincronização do Relógio';
+
+  @override
+  String get repeater_cliQuickDiscovery => 'Descobrir Vizinhos';
+
+  @override
   String get repeater_cliHelpAdvert => 'Envia um pacote de anúncios';
 
   @override

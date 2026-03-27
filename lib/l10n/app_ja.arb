@@ -2055,5 +2055,7 @@
   "scanner_linuxPairingShowPin": "PINを表示",
   "scanner_linuxPairingHidePin": "PINを非表示",
   "scanner_linuxPairingPinTitle": "Bluetooth ペアリング PIN",
-  "scanner_linuxPairingPinPrompt": "{deviceName}のPINを入力してください（なしの場合は空欄のまま）。"
+  "scanner_linuxPairingPinPrompt": "{deviceName}のPINを入力してください（なしの場合は空欄のまま）。",
+  "repeater_cliQuickClockSync": "クロック同期",
+  "repeater_cliQuickDiscovery": "近隣を発見する"
 }

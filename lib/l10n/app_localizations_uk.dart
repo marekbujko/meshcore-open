@@ -2428,6 +2428,12 @@ class AppLocalizationsUk extends AppLocalizations {
   String get repeater_cliQuickClock => 'Годинник';
 
   @override
+  String get repeater_cliQuickClockSync => 'Синхронізація годинника';
+
+  @override
+  String get repeater_cliQuickDiscovery => 'Відкрити сусідів';
+
+  @override
   String get repeater_cliHelpAdvert => 'Надсилає пакет оголошення';
 
   @override

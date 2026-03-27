@@ -2438,6 +2438,12 @@ class AppLocalizationsHu extends AppLocalizations {
   String get repeater_cliQuickClock => 'óra';
 
   @override
+  String get repeater_cliQuickClockSync => 'Óra szinkronizálás';
+
+  @override
+  String get repeater_cliQuickDiscovery => 'Fedezd fel a szomszédokat';
+
+  @override
   String get repeater_cliHelpAdvert => 'Elküldi egy hirdetési csomagot';
 
   @override

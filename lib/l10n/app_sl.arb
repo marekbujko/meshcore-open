@@ -2017,5 +2017,7 @@
   "scanner_linuxPairingShowPin": "Prikaži PIN",
   "scanner_linuxPairingHidePin": "Skrij PIN",
   "scanner_linuxPairingPinPrompt": "Vnesite PIN za {deviceName} (pustite prazno, če ga ni).",
-  "scanner_linuxPairingPinTitle": "Bluetooth PIN za seznanjanje"
+  "scanner_linuxPairingPinTitle": "Bluetooth PIN za seznanjanje",
+  "repeater_cliQuickDiscovery": "Odkrijte sosede",
+  "repeater_cliQuickClockSync": "Usklajevanje ure"
 }

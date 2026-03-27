@@ -2430,6 +2430,12 @@ class AppLocalizationsBg extends AppLocalizations {
   String get repeater_cliQuickClock => 'Часовник';
 
   @override
+  String get repeater_cliQuickClockSync => 'Синхронизация на часовника';
+
+  @override
+  String get repeater_cliQuickDiscovery => 'Открий Съседи';
+
+  @override
   String get repeater_cliHelpAdvert => 'Изпраща рекламен пакет';
 
   @override

@@ -2045,5 +2045,7 @@
   "scanner_linuxPairingShowPin": "PIN anzeigen",
   "scanner_linuxPairingHidePin": "PIN ausblenden",
   "scanner_linuxPairingPinTitle": "Bluetooth-Paarungs-PIN",
-  "scanner_linuxPairingPinPrompt": "Geben Sie die PIN für {deviceName} ein (leer lassen, falls keine)."
+  "scanner_linuxPairingPinPrompt": "Geben Sie die PIN für {deviceName} ein (leer lassen, falls keine).",
+  "repeater_cliQuickClockSync": "Uhr Synchronisieren",
+  "repeater_cliQuickDiscovery": "Entdecke Nachbarn"
 }

@@ -2430,6 +2430,12 @@ class AppLocalizationsDe extends AppLocalizations {
   String get repeater_cliQuickClock => 'Uhr';
 
   @override
+  String get repeater_cliQuickClockSync => 'Uhr Synchronisieren';
+
+  @override
+  String get repeater_cliQuickDiscovery => 'Entdecke Nachbarn';
+
+  @override
   String get repeater_cliHelpAdvert => 'Sendet eine Ankündigung';
 
   @override

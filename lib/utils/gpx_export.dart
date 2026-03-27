@@ -14,12 +14,13 @@ class ContactExport {
   final double lon;
   final String desc;
   final double? ele;
-
+  final String url;
   ContactExport({
     required this.name,
     required this.lat,
     required this.lon,
     required this.desc,
+    required this.url,
     this.ele,
   });
 }
@@ -40,6 +41,7 @@ class GpxExport {
     String name,
     double lat,
     double lon,
+    String url,
     String desc, [
     double? ele,
   ]) {
@@ -50,55 +52,66 @@ class GpxExport {
         lon: lon,
         desc: desc.trim(),
         ele: ele,
+        url: url,
       ),
     );
   }
 
   void addRepeaters() {
-    final contacts = _connector.contacts
-        .where((c) => c.type == advTypeRepeater || c.type == advTypeRoom)
-        .toList();
+    final contacts = _connector.allContacts.where(
+      (c) => c.type == advTypeRepeater || c.type == advTypeRoom,
+    );
     for (var contact in contacts) {
       if (contact.latitude == null || contact.longitude == null) {
         continue;
       }
+      final url = contact.rawPacket != null
+          ? "meshcore://${pubKeyToHex(contact.rawPacket!)}"
+          : "";
       _addContact(
         contact.name,
         contact.latitude!,
         contact.longitude!,
         "Type: ${contact.typeLabel}\nPublic Key: ${contact.publicKeyHex}",
+        url,
       );
     }
   }
 
   void addContacts() {
-    final contacts = _connector.contacts
-        .where((c) => c.type == advTypeChat)
-        .toList();
+    final contacts = _connector.allContacts.where((c) => c.type == advTypeChat);
     for (var contact in contacts) {
       if (contact.latitude == null || contact.longitude == null) {
         continue;
       }
+      final url = contact.rawPacket != null
+          ? "meshcore://${pubKeyToHex(contact.rawPacket!)}"
+          : "";
       _addContact(
         contact.name,
         contact.latitude!,
         contact.longitude!,
         "Type: ${contact.typeLabel}\nPublic Key: ${contact.publicKeyHex}",
+        url,
       );
     }
   }
 
   void addAll() {
-    final contacts = _connector.contacts;
-    for (var contact in contacts.toList()) {
+    final contacts = _connector.allContacts;
+    for (var contact in contacts) {
       if (contact.latitude == null || contact.longitude == null) {
         continue;
       }
+      final url = contact.rawPacket != null
+          ? "meshcore://${pubKeyToHex(contact.rawPacket!)}"
+          : "";
       _addContact(
         contact.name,
         contact.latitude ?? 0.0,
         contact.longitude ?? 0.0,
         "Type: ${contact.typeLabel}\nPublic Key: ${contact.publicKeyHex}",
+        url,
       );
     }
   }
@@ -138,6 +151,9 @@ class GpxExport {
               ele: c.ele,
               name: c.name,
               desc: c.desc,
+              extensions: {
+                "meshcore": {"url": c.url},
+              },
             ),
           )
           .toList();

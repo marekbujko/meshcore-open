@@ -2407,6 +2407,12 @@ class AppLocalizationsSk extends AppLocalizations {
   String get repeater_cliQuickClock => 'Hodiny';
 
   @override
+  String get repeater_cliQuickClockSync => 'Synchronizácia hodin';
+
+  @override
+  String get repeater_cliQuickDiscovery => 'Objaviť susedov';
+
+  @override
   String get repeater_cliHelpAdvert => 'Odosiela reklamnú balíček.';
 
   @override

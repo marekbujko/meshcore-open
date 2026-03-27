@@ -1257,5 +1257,7 @@
   "scanner_linuxPairingShowPin": "Показать PIN",
   "scanner_linuxPairingPinPrompt": "Введите PIN‑код для {deviceName} (оставьте пустым, если нет).",
   "scanner_linuxPairingHidePin": "Скрыть PIN",
-  "scanner_linuxPairingPinTitle": "PIN‑код сопряжения Bluetooth"
+  "scanner_linuxPairingPinTitle": "PIN‑код сопряжения Bluetooth",
+  "repeater_cliQuickDiscovery": "Обнаружить Соседей",
+  "repeater_cliQuickClockSync": "Синхронизация часов"
 }

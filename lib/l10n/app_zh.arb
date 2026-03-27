@@ -2022,5 +2022,7 @@
   "scanner_linuxPairingShowPin": "显示 PIN码",
   "scanner_linuxPairingPinPrompt": "输入 {deviceName} 的 PIN（如果没有，请留空）。",
   "scanner_linuxPairingPinTitle": "蓝牙配对 PIN",
-  "scanner_linuxPairingHidePin": "隐藏 PIN"
+  "scanner_linuxPairingHidePin": "隐藏 PIN",
+  "repeater_cliQuickDiscovery": "发现邻居",
+  "repeater_cliQuickClockSync": "同步时钟"
 }

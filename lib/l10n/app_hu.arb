@@ -2055,5 +2055,7 @@
   "scanner_linuxPairingHidePin": "PIN elrejtése",
   "scanner_linuxPairingShowPin": "PIN megjelenítése",
   "scanner_linuxPairingPinTitle": "Bluetooth párosítási PIN",
-  "scanner_linuxPairingPinPrompt": "Adja meg a(z) {deviceName} PIN-kódját (hagyja üresen, ha nincs)."
+  "scanner_linuxPairingPinPrompt": "Adja meg a(z) {deviceName} PIN-kódját (hagyja üresen, ha nincs).",
+  "repeater_cliQuickClockSync": "Óra szinkronizálás",
+  "repeater_cliQuickDiscovery": "Fedezd fel a szomszédokat"
 }

@@ -1240,9 +1240,7 @@ class _ContactsScreenState extends State<ContactsScreen>
             if (isRepeater) ...[
               ListTile(
                 leading: const Icon(Icons.radar, color: Colors.green),
-                title: contact.pathBytesForDisplay.isNotEmpty
-                    ? Text(context.l10n.contacts_pathTrace)
-                    : Text(context.l10n.contacts_ping),
+                title: Text(context.l10n.contacts_ping),
                 onTap: () {
                   final hw = context
                       .read<MeshCoreConnector>()
@@ -1251,11 +1249,8 @@ class _ContactsScreenState extends State<ContactsScreen>
                     context,
                     MaterialPageRoute(
                       builder: (context) => PathTraceMapScreen(
-                        title: contact.pathBytesForDisplay.isNotEmpty
-                            ? context.l10n.contacts_repeaterPathTrace
-                            : context.l10n.contacts_repeaterPing,
-                        path: contact.pathBytesForDisplay,
-                        flipPathAround: true,
+                        title: context.l10n.contacts_repeaterPing,
+                        path: Uint8List.fromList([contact.publicKey.first]),
                         targetContact: contact,
                         pathHashByteWidth: hw,
                       ),
@@ -1274,9 +1269,7 @@ class _ContactsScreenState extends State<ContactsScreen>
             ] else if (isRoom) ...[
               ListTile(
                 leading: const Icon(Icons.radar, color: Colors.green),
-                title: contact.pathLength > 0
-                    ? Text(context.l10n.contacts_pathTrace)
-                    : Text(context.l10n.contacts_ping),
+                title: Text(context.l10n.contacts_pathTrace),
                 onTap: () {
                   final hw = context
                       .read<MeshCoreConnector>()
@@ -1288,7 +1281,9 @@ class _ContactsScreenState extends State<ContactsScreen>
                         title: contact.pathBytesForDisplay.isNotEmpty
                             ? context.l10n.contacts_roomPathTrace
                             : context.l10n.contacts_roomPing,
-                        path: contact.pathBytesForDisplay,
+                        path: contact.pathBytesForDisplay.isNotEmpty
+                            ? contact.pathBytesForDisplay
+                            : Uint8List.fromList([contact.publicKey.first]),
                         flipPathAround: contact.pathBytesForDisplay.isNotEmpty,
                         targetContact: contact,
                         pathHashByteWidth: hw,

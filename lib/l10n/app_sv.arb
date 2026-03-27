@@ -2017,5 +2017,7 @@
   "scanner_linuxPairingShowPin": "Visa PIN",
   "scanner_linuxPairingPinTitle": "Bluetooth‑parnings‑PIN",
   "scanner_linuxPairingPinPrompt": "Ange PIN för {deviceName} (lämna tomt om ingen).",
-  "scanner_linuxPairingHidePin": "Dölj PIN"
+  "scanner_linuxPairingHidePin": "Dölj PIN",
+  "repeater_cliQuickDiscovery": "Upptäck grannar",
+  "repeater_cliQuickClockSync": "Synkronisera klocka"
 }

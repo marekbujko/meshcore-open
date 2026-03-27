@@ -2395,6 +2395,12 @@ class AppLocalizationsSv extends AppLocalizations {
   String get repeater_cliQuickClock => 'Klocka';
 
   @override
+  String get repeater_cliQuickClockSync => 'Synkronisera klocka';
+
+  @override
+  String get repeater_cliQuickDiscovery => 'Upptäck grannar';
+
+  @override
   String get repeater_cliHelpAdvert => 'Skickar ett annonspaket';
 
   @override

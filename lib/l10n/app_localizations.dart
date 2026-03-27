@@ -4322,6 +4322,18 @@ abstract class AppLocalizations {
   /// **'Clock'**
   String get repeater_cliQuickClock;
 
+  /// No description provided for @repeater_cliQuickClockSync.
+  ///
+  /// In en, this message translates to:
+  /// **'Clock Sync'**
+  String get repeater_cliQuickClockSync;
+
+  /// No description provided for @repeater_cliQuickDiscovery.
+  ///
+  /// In en, this message translates to:
+  /// **'Discover Neighbors'**
+  String get repeater_cliQuickDiscovery;
+
   /// No description provided for @repeater_cliHelpAdvert.
   ///
   /// In en, this message translates to:

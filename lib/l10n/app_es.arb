@@ -2045,5 +2045,7 @@
   "scanner_linuxPairingShowPin": "Mostrar PIN",
   "scanner_linuxPairingPinTitle": "PIN de emparejamiento Bluetooth",
   "scanner_linuxPairingHidePin": "Ocultar PIN",
-  "scanner_linuxPairingPinPrompt": "Introduzca el PIN para {deviceName} (déjelo en blanco si no hay ninguno)."
+  "scanner_linuxPairingPinPrompt": "Introduzca el PIN para {deviceName} (déjelo en blanco si no hay ninguno).",
+  "repeater_cliQuickDiscovery": "Descubrir Vecinos",
+  "repeater_cliQuickClockSync": "Sincronización del reloj"
 }
