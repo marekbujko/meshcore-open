@@ -1,6 +1,3 @@
-import 'package:latlong2/latlong.dart';
-
-import '../connector/meshcore_protocol.dart';
 import '../models/contact.dart';
 
 export 'contact_filter_types.dart';
@@ -45,56 +42,4 @@ String? _extractHexPrefix(String query) {
   if (cleaned.length < 2) return null;
   if (!RegExp(r'^[0-9a-f]+$').hasMatch(cleaned)) return null;
   return cleaned;
-}
-
-Contact? getRepeaterPrefixMatchNearLocation(
-  List<Contact> contacts,
-  int pubkeyFirstByte, {
-  LatLng? searchPoint,
-  bool preferFavorites = false,
-}) {
-  final candidates = contacts
-      .where(
-        (c) =>
-            c.publicKey.isNotEmpty &&
-            c.publicKey.first == pubkeyFirstByte &&
-            (c.type == advTypeRepeater || c.type == advTypeRoom),
-      )
-      .toList();
-
-  if (candidates.isEmpty) return null;
-
-  candidates.sort((a, b) {
-    if (preferFavorites) {
-      final favA = a.isFavorite ? 1 : 0;
-      final favB = b.isFavorite ? 1 : 0;
-      final favCompare = favB.compareTo(favA);
-      if (favCompare != 0) return favCompare;
-    }
-
-    final seenCompare = b.lastSeen.compareTo(a.lastSeen);
-    if (seenCompare != 0) return seenCompare;
-
-    return a.publicKeyHex.compareTo(b.publicKeyHex);
-  });
-
-  if (searchPoint == null) {
-    return candidates.first;
-  }
-
-  final distance = Distance();
-  Contact best = candidates.first;
-  var bestDistance = double.infinity;
-
-  for (final c in candidates) {
-    if (c.hasLocation && c.latitude != null && c.longitude != null) {
-      final d = distance(searchPoint, LatLng(c.latitude!, c.longitude!));
-      if (d < bestDistance) {
-        bestDistance = d;
-        best = c;
-      }
-    }
-  }
-
-  return best;
 }
