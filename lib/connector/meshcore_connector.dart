@@ -3903,7 +3903,9 @@ class MeshCoreConnector extends ChangeNotifier {
     if (mlTimeout != null) {
       if (pathLength < 0) {
         // Flood: trust ML, only enforce firmware formula as floor
-        return mlTimeout.clamp(physicsMin, mlTimeout);
+        if (mlTimeout < physicsMin) {
+          return physicsMin;
+        }
       }
       return mlTimeout.clamp(physicsMin, physicsMax);
     }
