@@ -313,7 +313,7 @@ class AppLocalizationsNl extends AppLocalizations {
   String get settings_nodeSettings => 'Node Instellingen';
 
   @override
-  String get settings_nodeName => 'Node Naam';
+  String get settings_nodeName => 'Nodenaam';
 
   @override
   String get settings_nodeNameNotSet => 'Niet ingesteld';
@@ -452,7 +452,7 @@ class AppLocalizationsNl extends AppLocalizations {
   String get settings_advertisementSent => 'Advertentie verzonden';
 
   @override
-  String get settings_syncTime => 'Synchronisatie Tijd';
+  String get settings_syncTime => 'Tijd Synchroniseren';
 
   @override
   String get settings_syncTimeSubtitle =>
@@ -472,7 +472,7 @@ class AppLocalizationsNl extends AppLocalizations {
   String get settings_rebootDevice => 'Apparaat opnieuw opstarten';
 
   @override
-  String get settings_rebootDeviceSubtitle => 'Herstart het MeshCore apparaat';
+  String get settings_rebootDeviceSubtitle => 'Herstart het MeshCore-apparaat';
 
   @override
   String get settings_rebootDeviceConfirm =>
@@ -556,7 +556,7 @@ class AppLocalizationsNl extends AppLocalizations {
   String get settings_codingRate => 'Codeertarief';
 
   @override
-  String get settings_txPower => 'TX Vermogen (dBm)';
+  String get settings_txPower => 'TX-Vermogen (dBm)';
 
   @override
   String get settings_txPowerHelper => '0 - 22';
@@ -565,11 +565,11 @@ class AppLocalizationsNl extends AppLocalizations {
   String get settings_txPowerInvalid => 'Ongeldige TX-vermogen (0-22 dBm)';
 
   @override
-  String get settings_clientRepeat => 'Herhalen: Afgekoppeld';
+  String get settings_clientRepeat => 'Off-Grid Herhalen';
 
   @override
   String get settings_clientRepeatSubtitle =>
-      'Laat dit apparaat de mesh-pakketten opnieuw verzenden voor andere apparaten.';
+      'Laat dit apparaat de berichten van andere apparaten doorsturen.';
 
   @override
   String get settings_clientRepeatFreqWarning =>
@@ -846,19 +846,19 @@ class AppLocalizationsNl extends AppLocalizations {
   String get appSettings_allTime => 'Altijd';
 
   @override
-  String get appSettings_lastHour => 'Laat uur';
+  String get appSettings_lastHour => 'Afgelopen uur';
 
   @override
-  String get appSettings_last6Hours => 'laatste 6 uur';
+  String get appSettings_last6Hours => 'Afgelopen 6 uur';
 
   @override
-  String get appSettings_last24Hours => 'De laatste 24 uur';
+  String get appSettings_last24Hours => 'Afgelopen 24 uur';
 
   @override
-  String get appSettings_lastWeek => 'Laatste week';
+  String get appSettings_lastWeek => 'Afgelopen week';
 
   @override
-  String get appSettings_offlineMapCache => 'Offline Kaarten Cache';
+  String get appSettings_offlineMapCache => 'Offline Kaartcache';
 
   @override
   String get appSettings_unitsTitle => 'Eenheden';
@@ -1185,32 +1185,32 @@ class AppLocalizationsNl extends AppLocalizations {
   String get channels_sortUnread => 'Ongelezen';
 
   @override
-  String get channels_createPrivateChannel => 'Maak een Privé Kanaal';
+  String get channels_createPrivateChannel => 'PrivéKanaal Aanmaken';
 
   @override
   String get channels_createPrivateChannelDesc =>
       'Beveiligd met een geheime sleutel.';
 
   @override
-  String get channels_joinPrivateChannel => 'Sluit een Privé Kanaal aan';
+  String get channels_joinPrivateChannel => 'PrivéKanaal Toetreden';
 
   @override
   String get channels_joinPrivateChannelDesc =>
-      'Handmatig een geheime sleutel invoeren.';
+      'Voer handmatig een geheime sleutel in.';
 
   @override
-  String get channels_joinPublicChannel => 'Sluit het Open Kanaal';
+  String get channels_joinPublicChannel => 'Publiek Kanaal Toetreden';
 
   @override
   String get channels_joinPublicChannelDesc =>
-      'Iedereen kan dit kanaal aanmelden.';
+      'Iedereen kan toetreden tot dit kanaal.';
 
   @override
-  String get channels_joinHashtagChannel => 'Sluit een Hashtag Kanaal';
+  String get channels_joinHashtagChannel => 'Hashtag-kanaal Aanmaken';
 
   @override
   String get channels_joinHashtagChannelDesc =>
-      'Iedereen kan lid worden van hashtag-kanalen.';
+      'Iedereen kan toetreden tot hashtag-kanalen.';
 
   @override
   String get channels_scanQrCode => 'Scan een QR-code';
@@ -1709,7 +1709,7 @@ class AppLocalizationsNl extends AppLocalizations {
   String get map_sharedPin => 'Gedeelde pin';
 
   @override
-  String get map_joinRoom => 'Sluit Kamer';
+  String get map_joinRoom => 'Kamer Toetreden';
 
   @override
   String get map_manageRepeater => 'Beheer Repeater';
@@ -2001,7 +2001,7 @@ class AppLocalizationsNl extends AppLocalizations {
   String get room_management => 'Beheer Server Kamer';
 
   @override
-  String get repeater_managementTools => 'Beheerinstrumenten';
+  String get repeater_managementTools => 'Beheerfuncties';
 
   @override
   String get repeater_status => 'Status';
@@ -2027,7 +2027,7 @@ class AppLocalizationsNl extends AppLocalizations {
   String get repeater_neighbors => 'Buren';
 
   @override
-  String get repeater_neighborsSubtitle => 'Bekijk nul hops buren.';
+  String get repeater_neighborsSubtitle => 'Bekijk nul-hopsburen.';
 
   @override
   String get repeater_settings => 'Instellingen';
@@ -2093,10 +2093,10 @@ class AppLocalizationsNl extends AppLocalizations {
   String get repeater_noiseFloor => 'Ruisvloer';
 
   @override
-  String get repeater_txAirtime => 'TX Airtime';
+  String get repeater_txAirtime => 'TX-zendtijd';
 
   @override
-  String get repeater_rxAirtime => 'RX Airtime';
+  String get repeater_rxAirtime => 'RX-zendtijd';
 
   @override
   String get repeater_packetStatistics => 'Pakketstatistieken';
@@ -2141,7 +2141,7 @@ class AppLocalizationsNl extends AppLocalizations {
   }
 
   @override
-  String get repeater_settingsTitle => 'Repeater Instellingen';
+  String get repeater_settingsTitle => 'Repeaterinstellingen';
 
   @override
   String get repeater_basicSettings => 'Basisinstellingen';
@@ -2150,19 +2150,19 @@ class AppLocalizationsNl extends AppLocalizations {
   String get repeater_repeaterName => 'Repeaternaam';
 
   @override
-  String get repeater_repeaterNameHelper => 'Weergave naam voor deze repeater';
+  String get repeater_repeaterNameHelper => 'Weergavenaam voor deze repeater';
 
   @override
   String get repeater_adminPassword => 'Admin wachtwoord';
 
   @override
-  String get repeater_adminPasswordHelper => 'Volledige toegangspaswoord';
+  String get repeater_adminPasswordHelper => 'Wachtwoord administratortoegang';
 
   @override
-  String get repeater_guestPassword => 'Wachtwoord Gast';
+  String get repeater_guestPassword => 'Gast wachtwoord';
 
   @override
-  String get repeater_guestPasswordHelper => 'Leesbeheer wachtwoord';
+  String get repeater_guestPasswordHelper => 'Wachtwoord gasttoegen';
 
   @override
   String get repeater_radioSettings => 'Radio Instellingen';
@@ -2189,7 +2189,7 @@ class AppLocalizationsNl extends AppLocalizations {
   String get repeater_codingRate => 'Codeertarief';
 
   @override
-  String get repeater_locationSettings => 'Locatie Instellingen';
+  String get repeater_locationSettings => 'Locatie-instellingen';
 
   @override
   String get repeater_latitude => 'Breedtegraad';
@@ -2221,14 +2221,14 @@ class AppLocalizationsNl extends AppLocalizations {
       'Toegestane leesbeheer toegang voor gasten.';
 
   @override
-  String get repeater_privacyMode => 'Privacy Modus';
+  String get repeater_privacyMode => 'Privacymodus';
 
   @override
   String get repeater_privacyModeSubtitle =>
       'Naam/locatie verbergen in advertenties';
 
   @override
-  String get repeater_advertisementSettings => 'Advertentie Instellingen';
+  String get repeater_advertisementSettings => 'Advertentie-instellingen';
 
   @override
   String get repeater_localAdvertInterval => 'Lokale Advertentie Interval';
@@ -2333,7 +2333,7 @@ class AppLocalizationsNl extends AppLocalizations {
   String get repeater_refreshGuestAccess => 'Toegang Gast Vernieuwen';
 
   @override
-  String get repeater_refreshPrivacyMode => 'Privacy Mode vernieuwen';
+  String get repeater_refreshPrivacyMode => 'Privacymode vernieuwen';
 
   @override
   String get repeater_refreshAdvertisementSettings =>
@@ -2359,10 +2359,10 @@ class AppLocalizationsNl extends AppLocalizations {
   String get repeater_commandHelp => 'Help';
 
   @override
-  String get repeater_clearHistory => 'Verwijder Geschiedenis';
+  String get repeater_clearHistory => 'Geschiedenis Verwijderen';
 
   @override
-  String get repeater_noCommandsSent => 'Geen commando\'s verzonden nog.';
+  String get repeater_noCommandsSent => 'Nog geen commando\'s verzonden.';
 
   @override
   String get repeater_typeCommandOrUseQuick =>
@@ -2389,28 +2389,28 @@ class AppLocalizationsNl extends AppLocalizations {
   }
 
   @override
-  String get repeater_cliQuickGetName => 'Haal Naam op';
+  String get repeater_cliQuickGetName => 'Naam opvragen';
 
   @override
-  String get repeater_cliQuickGetRadio => 'Radio ontvangen';
+  String get repeater_cliQuickGetRadio => 'Radio-instellingen opvragen';
 
   @override
-  String get repeater_cliQuickGetTx => 'Krijg TX';
+  String get repeater_cliQuickGetTx => 'TX opvragen';
 
   @override
-  String get repeater_cliQuickNeighbors => 'Buren';
+  String get repeater_cliQuickNeighbors => 'Buren opvragen';
 
   @override
-  String get repeater_cliQuickVersion => 'Versie';
+  String get repeater_cliQuickVersion => 'Versie opvragen';
 
   @override
-  String get repeater_cliQuickAdvertise => 'Advertenties';
+  String get repeater_cliQuickAdvertise => 'Advertenties opvragen';
 
   @override
-  String get repeater_cliQuickClock => 'Tijd';
+  String get repeater_cliQuickClock => 'Tijd opvragen';
 
   @override
-  String get repeater_cliHelpAdvert => 'Verstuurt een advertentiepakket';
+  String get repeater_cliHelpAdvert => 'Advertentie uitzenden';
 
   @override
   String get repeater_cliHelpReboot =>
@@ -2682,7 +2682,7 @@ class AppLocalizationsNl extends AppLocalizations {
   String get telemetry_voltageLabel => 'Spanning';
 
   @override
-  String get telemetry_mcuTemperatureLabel => 'MCU Temperatuur';
+  String get telemetry_mcuTemperatureLabel => 'MCU-temperatuur';
 
   @override
   String get telemetry_temperatureLabel => 'Temperatuur';
@@ -2723,7 +2723,7 @@ class AppLocalizationsNl extends AppLocalizations {
   }
 
   @override
-  String get neighbors_repeatersNeighbors => 'Herhalingen Buren';
+  String get neighbors_repeatersNeighbors => 'Repeatbburen';
 
   @override
   String get neighbors_noData => 'Geen gegevens van buren beschikbaar.';
@@ -3022,7 +3022,7 @@ class AppLocalizationsNl extends AppLocalizations {
   String get listFilter_latestMessages => 'Recente berichten';
 
   @override
-  String get listFilter_heardRecently => 'Hoor je onlangs';
+  String get listFilter_heardRecently => 'Recent gezien';
 
   @override
   String get listFilter_az => 'A-Z';
@@ -3268,7 +3268,7 @@ class AppLocalizationsNl extends AppLocalizations {
       'Contact uit klembord toevoegen';
 
   @override
-  String get contacts_ShareContact => 'Kontakt naar Klembord kopiëren';
+  String get contacts_ShareContact => 'Contact naar Klembord kopiëren';
 
   @override
   String get contacts_ShareContactZeroHop => 'Contact delen via advertentie';
