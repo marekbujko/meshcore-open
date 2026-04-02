@@ -559,10 +559,10 @@ class AppLocalizationsFr extends AppLocalizations {
   String get settings_bandwidth => 'Bande passante';
 
   @override
-  String get settings_spreadingFactor => 'Facteur de répartition';
+  String get settings_spreadingFactor => 'Facteur de répartition (SF)';
 
   @override
-  String get settings_codingRate => 'Taux de codage';
+  String get settings_codingRate => 'Taux de codage (CR)';
 
   @override
   String get settings_txPower => 'TX Puissance (dBm)';
@@ -946,7 +946,7 @@ class AppLocalizationsFr extends AppLocalizations {
 
   @override
   String contacts_searchRoomServers(int number, String str) {
-    return 'Rechercher $number$str serveurs de salle...';
+    return 'Rechercher $number$str room server...';
   }
 
   @override
@@ -1229,7 +1229,7 @@ class AppLocalizationsFr extends AppLocalizations {
       'N\'importe qui peut rejoindre les canaux #hashtag.';
 
   @override
-  String get channels_scanQrCode => 'Scanner un code QR';
+  String get channels_scanQrCode => 'Scanner un QR code';
 
   @override
   String get channels_scanQrCodeComingSoon => 'Bientôt disponible';
@@ -1489,7 +1489,7 @@ class AppLocalizationsFr extends AppLocalizations {
 
   @override
   String get chat_floodModeSubtitle =>
-      'Utiliser le commutateur de routage dans la barre d\'application';
+      'Désactive l\'apprentissage du chemin (à éviter). Utiliser le commutateur de routage dans la barre d\'application pour rebasculer en mode auto par la suite.';
 
   @override
   String get chat_floodModeEnabled =>
@@ -1614,7 +1614,7 @@ class AppLocalizationsFr extends AppLocalizations {
   String get map_repeater => 'Répéteur';
 
   @override
-  String get map_room => 'Salle';
+  String get map_room => 'Room Server';
 
   @override
   String get map_sensor => 'Capteur';
@@ -1730,7 +1730,7 @@ class AppLocalizationsFr extends AppLocalizations {
   String get map_sharedPin => 'Clé partagée';
 
   @override
-  String get map_joinRoom => 'Rejoindre la salle';
+  String get map_joinRoom => 'Rejoindre le room server';
 
   @override
   String get map_manageRepeater => 'Gérer le répéteur';
@@ -1999,7 +1999,7 @@ class AppLocalizationsFr extends AppLocalizations {
 
   @override
   String get path_noRepeatersFound =>
-      'Aucun répéteur ou serveur de salle n\'a été trouvé.';
+      'Aucun répéteur ou room server n\'a été trouvé.';
 
   @override
   String get path_customPathsRequire =>
@@ -2209,10 +2209,10 @@ class AppLocalizationsFr extends AppLocalizations {
   String get repeater_bandwidth => 'Bande passante';
 
   @override
-  String get repeater_spreadingFactor => 'Facteur de répartition';
+  String get repeater_spreadingFactor => 'Facteur de répartition (SF)';
 
   @override
-  String get repeater_codingRate => 'Taux de codage';
+  String get repeater_codingRate => 'Taux de codage (CR)';
 
   @override
   String get repeater_locationSettings => 'Paramètres de localisation';
@@ -2235,7 +2235,7 @@ class AppLocalizationsFr extends AppLocalizations {
   String get repeater_features => 'Fonctionnalités';
 
   @override
-  String get repeater_packetForwarding => 'Transfert de paquets';
+  String get repeater_packetForwarding => 'Mode répéteur';
 
   @override
   String get repeater_packetForwardingSubtitle =>
@@ -2896,11 +2896,11 @@ class AppLocalizationsFr extends AppLocalizations {
   }
 
   @override
-  String get community_scanQr => 'Scanner la communauté QR';
+  String get community_scanQr => 'Scanner un QR code de communauté';
 
   @override
   String get community_scanInstructions =>
-      'Pointez l\'appareil photo vers un code QR communautaire.';
+      'Pointez l\'appareil photo vers un QR code de communauté.';
 
   @override
   String get community_showQr => 'Afficher le QR Code';
@@ -2940,7 +2940,7 @@ class AppLocalizationsFr extends AppLocalizations {
       'Les canaux hashtag de la communauté ne sont accessibles qu\'aux membres de la communauté';
 
   @override
-  String get community_invalidQrCode => 'Code QR de communauté non valide';
+  String get community_invalidQrCode => 'QR code de communauté non valide';
 
   @override
   String get community_alreadyMember => 'Déjà membre';
@@ -2964,7 +2964,7 @@ class AppLocalizationsFr extends AppLocalizations {
 
   @override
   String get community_scanOrCreate =>
-      'Scanner un code QR ou créer une communauté pour commencer';
+      'Scanner un QR code ou créer une communauté pour commencer';
 
   @override
   String get community_manageCommunities => 'Gérer les Communautés';
@@ -2992,7 +2992,7 @@ class AppLocalizationsFr extends AppLocalizations {
 
   @override
   String community_regenerateSecretConfirm(String name) {
-    return 'Régénérer la clé secrète pour \"$name\" ? Tous les membres devront scanner le nouveau code QR pour continuer à communiquer.';
+    return 'Régénérer la clé secrète pour \"$name\" ? Tous les membres devront scanner le nouveau QR code pour continuer à communiquer.';
   }
 
   @override
@@ -3013,7 +3013,7 @@ class AppLocalizationsFr extends AppLocalizations {
 
   @override
   String community_scanToUpdateSecret(String name) {
-    return 'Scanner le nouveau code QR pour mettre à jour le mot de passe pour \"$name\"';
+    return 'Scanner le nouveau QR code pour mettre à jour le mot de passe pour \"$name\"';
   }
 
   @override
@@ -3261,11 +3261,10 @@ class AppLocalizationsFr extends AppLocalizations {
   String get contacts_repeaterPing => 'Pinguer le répéteur';
 
   @override
-  String get contacts_roomPathTrace =>
-      'Traçage du chemin vers le serveur de la salle';
+  String get contacts_roomPathTrace => 'Traçage du chemin vers le room server';
 
   @override
-  String get contacts_roomPing => 'Pinguer le serveur de la salle';
+  String get contacts_roomPing => 'Pinguer le room server';
 
   @override
   String get contacts_chatTraceRoute => 'Tracer le chemin';
@@ -3371,7 +3370,7 @@ class AppLocalizationsFr extends AppLocalizations {
 
   @override
   String get settings_gpxExportRepeaters =>
-      'Exporter les répéteurs / serveur de salle au format GPX';
+      'Exporter les répéteurs / room servers au format GPX';
 
   @override
   String get settings_gpxExportRepeatersSubtitle =>
@@ -3409,7 +3408,7 @@ class AppLocalizationsFr extends AppLocalizations {
 
   @override
   String get settings_gpxExportRepeatersRoom =>
-      'Emplacements des serveurs de répéteur et de salle';
+      'Emplacements des répéteurs et room servers';
 
   @override
   String get settings_gpxExportChat => 'Emplacements des compagnons';
@@ -3460,11 +3459,11 @@ class AppLocalizationsFr extends AppLocalizations {
 
   @override
   String get contactsSettings_autoAddRoomServersTitle =>
-      'Ajouter automatiquement les serveurs de salle';
+      'Ajouter automatiquement les room servers';
 
   @override
   String get contactsSettings_autoAddRoomServersSubtitle =>
-      'Autoriser le compagnon à ajouter automatiquement les serveurs de salles découverts';
+      'Autoriser le compagnon à ajouter automatiquement les room servers découverts';
 
   @override
   String get contactsSettings_autoAddSensorsTitle =>
