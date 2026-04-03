@@ -3553,16 +3553,111 @@ class AppLocalizationsNl extends AppLocalizations {
       'Ruimtelijke ruis, RSSI, SNR en beschikbare tijd';
 
   @override
+  String get translation_title => 'Vertaling';
+
+  @override
+  String get translation_enableTitle => 'Activeer vertaling';
+
+  @override
+  String get translation_enableSubtitle =>
+      'Vertaal inkomende berichten en maak het mogelijk om berichten vooraf te vertalen.';
+
+  @override
+  String get translation_composerTitle => 'Vertaal voor verzending';
+
+  @override
+  String get translation_composerSubtitle =>
+      'Stelt de standaardstatus van het pictogram voor de vertaling van de componist in.';
+
+  @override
+  String get translation_targetLanguage => 'Doeltaal';
+
+  @override
+  String get translation_useAppLanguage => 'Gebruik de taal van de app';
+
+  @override
+  String get translation_downloadedModelLabel => 'Gedownloade model';
+
+  @override
+  String get translation_presetModelLabel =>
+      'Voorgeprogrammeerd Hugging Face-model';
+
+  @override
+  String get translation_manualUrlLabel => 'URL van de handleiding';
+
+  @override
+  String get translation_downloadModel => 'Download het model';
+
+  @override
+  String get translation_downloading => 'Downloaden...';
+
+  @override
+  String get translation_working => 'Werken...';
+
+  @override
+  String get translation_stop => 'Stoppen';
+
+  @override
+  String get translation_mergingChunks =>
+      'Het samenvoegen van de gedownloade stukken tot één eindbestand...';
+
+  @override
+  String get translation_downloadedModels => 'Gedownloade modellen';
+
+  @override
+  String get translation_deleteModel => 'Model verwijderen';
+
+  @override
+  String get translation_modelDownloaded => 'Vertalingmodel gedownload.';
+
+  @override
+  String get translation_downloadStopped => 'Download is afgebroken.';
+
+  @override
+  String translation_downloadFailed(String error) {
+    return 'Download mislukt: $error';
+  }
+
+  @override
+  String get translation_enterUrlFirst =>
+      'Voer eerst een URL van een model in.';
+
+  @override
   String get scanner_linuxPairingShowPin => 'Toon PIN';
 
   @override
-  String get scanner_linuxPairingHidePin => 'PIN verbergen';
+  String get scanner_linuxPairingHidePin => 'Verberg PIN';
 
   @override
-  String get scanner_linuxPairingPinTitle => 'Bluetooth‑koppelings‑PIN';
+  String get scanner_linuxPairingPinTitle => 'PIN voor Bluetooth-koppeling';
 
   @override
   String scanner_linuxPairingPinPrompt(String deviceName) {
-    return 'Voer PIN in voor $deviceName (laat leeg als er geen is).';
+    return 'Voer het pincode-in voor $deviceName in (laat dit leeg als er geen is).';
   }
+
+  @override
+  String get translation_messageTranslation => 'Berichtvertaling';
+
+  @override
+  String get translation_translateBeforeSending => 'Vertaal voor verzending';
+
+  @override
+  String get translation_composerEnabledHint =>
+      'De berichten worden vertaald voordat ze verzonden worden.';
+
+  @override
+  String get translation_composerDisabledHint =>
+      'Stuur berichten in de oorspronkelijke, getypte taal.';
+
+  @override
+  String translation_translateTo(String language) {
+    return 'Vertalen naar $language';
+  }
+
+  @override
+  String get translation_translationOptions => 'Opties voor vertaling';
+
+  @override
+  String get translation_systemLanguage => 'Taal van het systeem';
 }
