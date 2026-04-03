@@ -2007,6 +2007,34 @@
   "radioStats_stripWaiting": "Radio-statistieken ophalen…",
   "radioStats_settingsTile": "Statistieken over radio",
   "radioStats_settingsSubtitle": "Ruimtelijke ruis, RSSI, SNR en beschikbare tijd",
+  "@translation_downloadFailed": {
+    "placeholders": {
+      "error": {
+        "type": "String"
+      }
+    }
+  },
+  "translation_enableSubtitle": "Vertaal inkomende berichten en maak het mogelijk om berichten vooraf te vertalen.",
+  "translation_enableTitle": "Activeer vertaling",
+  "translation_title": "Vertaling",
+  "translation_composerTitle": "Vertaal voor verzending",
+  "translation_composerSubtitle": "Stelt de standaardstatus van het pictogram voor de vertaling van de componist in.",
+  "translation_useAppLanguage": "Gebruik de taal van de app",
+  "translation_targetLanguage": "Doeltaal",
+  "translation_downloadedModelLabel": "Gedownloade model",
+  "translation_presetModelLabel": "Voorgeprogrammeerd Hugging Face-model",
+  "translation_manualUrlLabel": "URL van de handleiding",
+  "translation_downloadModel": "Download het model",
+  "translation_downloading": "Downloaden...",
+  "translation_working": "Werken...",
+  "translation_mergingChunks": "Het samenvoegen van de gedownloade stukken tot één eindbestand...",
+  "translation_stop": "Stoppen",
+  "translation_downloadedModels": "Gedownloade modellen",
+  "translation_deleteModel": "Model verwijderen",
+  "translation_modelDownloaded": "Vertalingmodel gedownload.",
+  "translation_downloadStopped": "Download is afgebroken.",
+  "translation_downloadFailed": "Download mislukt: {error}",
+  "translation_enterUrlFirst": "Voer eerst een URL van een model in.",
   "@scanner_linuxPairingPinPrompt": {
     "placeholders": {
       "deviceName": {
@@ -2014,8 +2042,22 @@
       }
     }
   },
+  "scanner_linuxPairingPinTitle": "PIN voor Bluetooth-koppeling",
+  "scanner_linuxPairingHidePin": "Verberg PIN",
+  "scanner_linuxPairingPinPrompt": "Voer het pincode-in voor {deviceName} in (laat dit leeg als er geen is).",
   "scanner_linuxPairingShowPin": "Toon PIN",
-  "scanner_linuxPairingHidePin": "PIN verbergen",
-  "scanner_linuxPairingPinPrompt": "Voer PIN in voor {deviceName} (laat leeg als er geen is).",
-  "scanner_linuxPairingPinTitle": "Bluetooth‑koppelings‑PIN"
+  "@translation_translateTo": {
+    "placeholders": {
+      "language": {
+        "type": "String"
+      }
+    }
+  },
+  "translation_composerDisabledHint": "Stuur berichten in de oorspronkelijke, getypte taal.",
+  "translation_translateBeforeSending": "Vertaal voor verzending",
+  "translation_composerEnabledHint": "De berichten worden vertaald voordat ze verzonden worden.",
+  "translation_messageTranslation": "Berichtvertaling",
+  "translation_translationOptions": "Opties voor vertaling",
+  "translation_systemLanguage": "Taal van het systeem",
+  "translation_translateTo": "Vertalen naar {language}"
 }

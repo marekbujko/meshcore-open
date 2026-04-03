@@ -3586,16 +3586,110 @@ class AppLocalizationsPl extends AppLocalizations {
       'Szum tła, RSSI, SNR oraz czas dostępny';
 
   @override
-  String get scanner_linuxPairingShowPin => 'Pokaż PIN';
+  String get translation_title => 'Tłumaczenie';
 
   @override
-  String get scanner_linuxPairingHidePin => 'Ukryj PIN';
+  String get translation_enableTitle => 'Włącz tłumaczenie';
 
   @override
-  String get scanner_linuxPairingPinTitle => 'Kod PIN parowania Bluetooth';
+  String get translation_enableSubtitle =>
+      'Tłumaczenie otrzymywanych wiadomości oraz umożliwienie tłumaczenia przed wysłaniem.';
+
+  @override
+  String get translation_composerTitle => 'Przekład przed wysłaniem';
+
+  @override
+  String get translation_composerSubtitle =>
+      'Kontroluje domyślny stan ikony tłumaczenia w edytorze.';
+
+  @override
+  String get translation_targetLanguage => 'Język docelowy';
+
+  @override
+  String get translation_useAppLanguage => 'Użyj języka aplikacji';
+
+  @override
+  String get translation_downloadedModelLabel => 'Pobudowany model';
+
+  @override
+  String get translation_presetModelLabel => 'Wspólny model Hugging Face';
+
+  @override
+  String get translation_manualUrlLabel => 'Adres URL do wersji manualnej';
+
+  @override
+  String get translation_downloadModel => 'Pobierz model';
+
+  @override
+  String get translation_downloading => 'Pobieranie...';
+
+  @override
+  String get translation_working => 'Praca...';
+
+  @override
+  String get translation_stop => 'Zatrzymaj się';
+
+  @override
+  String get translation_mergingChunks =>
+      'Scalanie pobranych fragmentów w jeden plik końcowy...';
+
+  @override
+  String get translation_downloadedModels => 'Pobrane modele';
+
+  @override
+  String get translation_deleteModel => 'Usuń model';
+
+  @override
+  String get translation_modelDownloaded => 'Model tłumaczenia został pobrany.';
+
+  @override
+  String get translation_downloadStopped => 'Pobieranie zakończone.';
+
+  @override
+  String translation_downloadFailed(String error) {
+    return 'Nie udało się pobrać: $error';
+  }
+
+  @override
+  String get translation_enterUrlFirst => 'Najpierw wprowadź adres URL modelu.';
+
+  @override
+  String get scanner_linuxPairingShowPin => 'Wyświetl kod PIN';
+
+  @override
+  String get scanner_linuxPairingHidePin => 'Ukryj kod PIN';
+
+  @override
+  String get scanner_linuxPairingPinTitle =>
+      'PIN do sparowania przez Bluetooth';
 
   @override
   String scanner_linuxPairingPinPrompt(String deviceName) {
-    return 'Wprowadź kod PIN dla $deviceName (pozostaw puste, jeśli brak).';
+    return 'Wprowadź kod PIN dla $deviceName (pust, jeśli nie jest wymagany).';
   }
+
+  @override
+  String get translation_messageTranslation => 'Tłumaczenie wiadomości';
+
+  @override
+  String get translation_translateBeforeSending => 'Przekład przed wysłaniem';
+
+  @override
+  String get translation_composerEnabledHint =>
+      'Komunikaty zostaną przetłumaczone przed wysłaniem.';
+
+  @override
+  String get translation_composerDisabledHint =>
+      'Wysyłaj wiadomości w oryginalnym, wpisanym formacie.';
+
+  @override
+  String translation_translateTo(String language) {
+    return 'Tłumacz na $language';
+  }
+
+  @override
+  String get translation_translationOptions => 'Opcje tłumaczenia';
+
+  @override
+  String get translation_systemLanguage => 'Język systemu';
 }

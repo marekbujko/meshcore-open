@@ -6148,30 +6148,6 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Noise floor, RSSI, SNR, and airtime'**
   String get radioStats_settingsSubtitle;
-
-  /// No description provided for @scanner_linuxPairingShowPin.
-  ///
-  /// In en, this message translates to:
-  /// **'Show PIN'**
-  String get scanner_linuxPairingShowPin;
-
-  /// No description provided for @scanner_linuxPairingHidePin.
-  ///
-  /// In en, this message translates to:
-  /// **'Hide PIN'**
-  String get scanner_linuxPairingHidePin;
-
-  /// No description provided for @scanner_linuxPairingPinTitle.
-  ///
-  /// In en, this message translates to:
-  /// **'Bluetooth Pairing PIN'**
-  String get scanner_linuxPairingPinTitle;
-
-  /// No description provided for @scanner_linuxPairingPinPrompt.
-  ///
-  /// In en, this message translates to:
-  /// **'Enter PIN for {deviceName} (leave blank if none).'**
-  String scanner_linuxPairingPinPrompt(String deviceName);
 }
 
 class _AppLocalizationsDelegate
