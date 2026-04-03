@@ -1162,13 +1162,6 @@ class _ChannelChatScreenState extends State<ChannelChatScreen> {
     }
     _lastChannelSendAt = now;
 
-    // Capture reply state before clearing, then clear input synchronously
-    // to prevent double-send during async translation.
-    final replyingTo = _replyingToMessage;
-    _textController.clear();
-    _cancelReply();
-    _textFieldFocusNode.requestFocus();
-
     final connector = context.read<MeshCoreConnector>();
     final settings = context.read<AppSettingsService>().settings;
     final translationService = context.read<TranslationService>();
@@ -1200,8 +1193,8 @@ class _ChannelChatScreenState extends State<ChannelChatScreen> {
         }
       }
     }
-    if (replyingTo != null) {
-      messageText = '@[${replyingTo.senderName}] $messageText';
+    if (_replyingToMessage != null) {
+      messageText = '@[${_replyingToMessage!.senderName}] $messageText';
     }
 
     final maxBytes = maxChannelMessageBytes(connector.selfName);
@@ -1212,6 +1205,9 @@ class _ChannelChatScreenState extends State<ChannelChatScreen> {
       return;
     }
 
+    _textController.clear();
+    _cancelReply();
+    _textFieldFocusNode.requestFocus();
     connector.sendChannelMessage(
       widget.channel,
       messageText,

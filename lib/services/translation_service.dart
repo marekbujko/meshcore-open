@@ -317,8 +317,12 @@ class TranslationService extends ChangeNotifier {
     final request = http.Request('GET', uri);
     request.headers['Range'] = 'bytes=$start-$end';
     final response = await client.send(request);
-    if (response.statusCode != 206 && response.statusCode != 200) {
-      throw StateError('Range download failed: HTTP ${response.statusCode}');
+    if (response.statusCode != 206) {
+      await response.stream.drain<void>();
+      throw StateError(
+        'Range download failed: HTTP ${response.statusCode}'
+        '${response.statusCode == 200 ? ' (server ignored Range header)' : ''}',
+      );
     }
     final trackedStream = _trackDownloadProgress(response.stream);
     await _fileStore.writeModelBytes(

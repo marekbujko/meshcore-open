@@ -642,10 +642,6 @@ class _ChatScreenState extends State<ChatScreen> {
     }
     _lastTextSendAt = now;
 
-    // Clear input synchronously to prevent double-send
-    _textController.clear();
-    _textFieldFocusNode.requestFocus();
-
     final settings = context.read<AppSettingsService>().settings;
     final translationService = context.read<TranslationService>();
     var outgoingText = text;
@@ -683,6 +679,8 @@ class _ChatScreenState extends State<ChatScreen> {
       return;
     }
 
+    _textController.clear();
+    _textFieldFocusNode.requestFocus();
     connector.sendMessage(
       _resolveContact(connector),
       outgoingText,
