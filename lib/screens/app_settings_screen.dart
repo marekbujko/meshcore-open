@@ -1387,7 +1387,7 @@ class _TranslationLanguageDialogContent extends StatefulWidget {
   });
 
   final String? currentLanguageCode;
-  final ValueChanged<String> onLanguageSelected;
+  final ValueChanged<String?> onLanguageSelected;
 
   @override
   State<_TranslationLanguageDialogContent> createState() =>
@@ -1438,17 +1438,20 @@ class _TranslationLanguageDialogContentState
             ),
             const SizedBox(height: 12),
             Flexible(
-              child: RadioGroup<String>(
+              child: RadioGroup<String?>(
                 groupValue: widget.currentLanguageCode,
                 onChanged: (value) {
-                  if (value == null) return;
                   widget.onLanguageSelected(value);
                 },
                 child: ListView(
                   shrinkWrap: true,
                   children: [
+                    RadioListTile<String?>(
+                      value: null,
+                      title: Text(context.l10n.translation_useAppLanguage),
+                    ),
                     for (final option in _filtered)
-                      RadioListTile<String>(
+                      RadioListTile<String?>(
                         value: option.code,
                         title: Text(option.label),
                         subtitle: Text(option.code.toUpperCase()),

@@ -36,7 +36,7 @@ Future<void> showMessageTranslationSheet({
   required bool enabled,
   required String? selectedLanguageCode,
   required ValueChanged<bool> onEnabledChanged,
-  required ValueChanged<String> onLanguageSelected,
+  required ValueChanged<String?> onLanguageSelected,
 }) {
   return showModalBottomSheet<void>(
     context: context,
@@ -54,7 +54,7 @@ class _MessageTranslationSheet extends StatefulWidget {
   final bool enabled;
   final String? selectedLanguageCode;
   final ValueChanged<bool> onEnabledChanged;
-  final ValueChanged<String> onLanguageSelected;
+  final ValueChanged<String?> onLanguageSelected;
 
   const _MessageTranslationSheet({
     required this.enabled,
@@ -145,9 +145,26 @@ class _MessageTranslationSheetState extends State<_MessageTranslationSheet> {
             Flexible(
               child: ListView.builder(
                 shrinkWrap: true,
-                itemCount: _filtered.length,
+                itemCount: _filtered.length + 1,
                 itemBuilder: (context, index) {
-                  final option = _filtered[index];
+                  if (index == 0) {
+                    final selected = _localSelectedLanguageCode == null;
+                    return ListTile(
+                      contentPadding: EdgeInsets.zero,
+                      leading: Icon(
+                        selected
+                            ? Icons.radio_button_checked
+                            : Icons.radio_button_unchecked,
+                      ),
+                      title: Text(context.l10n.translation_useAppLanguage),
+                      onTap: () {
+                        setState(() => _localSelectedLanguageCode = null);
+                        widget.onLanguageSelected(null);
+                        Navigator.pop(context);
+                      },
+                    );
+                  }
+                  final option = _filtered[index - 1];
                   final selected = option.code == _localSelectedLanguageCode;
                   return ListTile(
                     contentPadding: EdgeInsets.zero,

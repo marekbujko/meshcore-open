@@ -77,7 +77,10 @@ class TranslationService extends ChangeNotifier {
   }
 
   String? resolvedIncomingLanguageCode(String? fallbackLanguageCode) {
-    return _settings.languageOverride ?? fallbackLanguageCode ?? 'en';
+    return _settings.translationTargetLanguageCode ??
+        _settings.languageOverride ??
+        fallbackLanguageCode ??
+        'en';
   }
 
   bool shouldTranslateIncoming({
