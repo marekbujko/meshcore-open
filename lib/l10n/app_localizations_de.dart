@@ -3658,14 +3658,14 @@ class AppLocalizationsDe extends AppLocalizations {
   String get scanner_linuxPairingShowPin => 'PIN anzeigen';
 
   @override
-  String get scanner_linuxPairingHidePin => 'PIN verbergen';
+  String get scanner_linuxPairingHidePin => 'PIN ausblenden';
 
   @override
-  String get scanner_linuxPairingPinTitle => 'PIN für die Bluetooth-Verbindung';
+  String get scanner_linuxPairingPinTitle => 'Bluetooth-Paarungs-PIN';
 
   @override
   String scanner_linuxPairingPinPrompt(String deviceName) {
-    return 'Geben Sie den PIN-Code für $deviceName ein (lassen Sie das Feld leer, falls kein PIN-Code vorhanden ist).';
+    return 'Geben Sie die PIN für $deviceName ein (leer lassen, falls keine).';
   }
 
   @override

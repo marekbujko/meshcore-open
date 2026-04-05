@@ -2042,10 +2042,6 @@
       }
     }
   },
-  "scanner_linuxPairingPinTitle": "PIN за съвпадение чрез Bluetooth",
-  "scanner_linuxPairingPinPrompt": "Въведете PIN кода за {deviceName} (оставете празно, ако няма такъв).",
-  "scanner_linuxPairingHidePin": "Скриване на PIN кода",
-  "scanner_linuxPairingShowPin": "Покажи PIN",
   "@translation_translateTo": {
     "placeholders": {
       "language": {
@@ -2060,8 +2056,10 @@
   "translation_translateTo": "Превеждане на {language}",
   "translation_translationOptions": "Опции за превод",
   "translation_systemLanguage": "Език на системата",
-  "scanner_linuxPairingPinTitle": "PIN код за сдвояване на Bluetooth",
-  "scanner_linuxPairingPinPrompt": "Въведете ПИН за {deviceName} (оставете празно, ако няма).",
+  "scanner_linuxPairingPinTitle": "PIN за съвпадение чрез Bluetooth",
+  "scanner_linuxPairingPinPrompt": "Въведете PIN кода за {deviceName} (оставете празно, ако няма такъв).",
+  "scanner_linuxPairingHidePin": "Скриване на PIN кода",
+  "scanner_linuxPairingShowPin": "Покажи PIN",
   "repeater_cliQuickClockSync": "Синхронизация на часовника",
   "repeater_cliQuickDiscovery": "Открий Съседи"
 }

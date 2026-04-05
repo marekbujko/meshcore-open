@@ -2416,7 +2416,7 @@ class AppLocalizationsNl extends AppLocalizations {
   String get repeater_cliQuickDiscovery => 'Ontdek Buren';
 
   @override
-  String get repeater_cliHelpAdvert => 'Verstuurt een advertentiepakket';
+  String get repeater_cliHelpAdvert => 'Advertentie uitzenden';
 
   @override
   String get repeater_cliHelpReboot =>
@@ -3632,14 +3632,14 @@ class AppLocalizationsNl extends AppLocalizations {
   String get scanner_linuxPairingShowPin => 'Toon PIN';
 
   @override
-  String get scanner_linuxPairingHidePin => 'Verberg PIN';
+  String get scanner_linuxPairingHidePin => 'PIN verbergen';
 
   @override
-  String get scanner_linuxPairingPinTitle => 'PIN voor Bluetooth-koppeling';
+  String get scanner_linuxPairingPinTitle => 'Bluetooth‑koppelings‑PIN';
 
   @override
   String scanner_linuxPairingPinPrompt(String deviceName) {
-    return 'Voer het pincode-in voor $deviceName in (laat dit leeg als er geen is).';
+    return 'Voer PIN in voor $deviceName (laat leeg als er geen is).';
   }
 
   @override

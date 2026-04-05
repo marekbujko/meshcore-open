@@ -2042,10 +2042,6 @@
       }
     }
   },
-  "scanner_linuxPairingPinTitle": "PIN voor Bluetooth-koppeling",
-  "scanner_linuxPairingHidePin": "Verberg PIN",
-  "scanner_linuxPairingPinPrompt": "Voer het pincode-in voor {deviceName} in (laat dit leeg als er geen is).",
-  "scanner_linuxPairingShowPin": "Toon PIN",
   "@translation_translateTo": {
     "placeholders": {
       "language": {
@@ -2060,6 +2056,7 @@
   "translation_translationOptions": "Opties voor vertaling",
   "translation_systemLanguage": "Taal van het systeem",
   "translation_translateTo": "Vertalen naar {language}",
+  "scanner_linuxPairingShowPin": "Toon PIN",
   "scanner_linuxPairingHidePin": "PIN verbergen",
   "scanner_linuxPairingPinPrompt": "Voer PIN in voor {deviceName} (laat leeg als er geen is).",
   "scanner_linuxPairingPinTitle": "Bluetooth‑koppelings‑PIN",

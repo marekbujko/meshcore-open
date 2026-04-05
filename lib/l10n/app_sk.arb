@@ -2060,7 +2060,6 @@
   "translation_translateTo": "Preložte do {language}",
   "translation_translationOptions": "Možnosti prekladania",
   "translation_systemLanguage": "Jazyk systému",
-  "scanner_linuxPairingPinTitle": "Bluetooth párovací PIN",
   "repeater_cliQuickClockSync": "Synchronizácia hodin",
   "repeater_cliQuickDiscovery": "Objaviť susedov"
 }

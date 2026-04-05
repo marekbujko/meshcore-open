@@ -3630,15 +3630,14 @@ class AppLocalizationsSl extends AppLocalizations {
   String get scanner_linuxPairingShowPin => 'Prikaži PIN';
 
   @override
-  String get scanner_linuxPairingHidePin => 'Skrijte PIN';
+  String get scanner_linuxPairingHidePin => 'Skrij PIN';
 
   @override
-  String get scanner_linuxPairingPinTitle =>
-      'PIN za združevanje preko Bluetootha';
+  String get scanner_linuxPairingPinTitle => 'Bluetooth PIN za seznanjanje';
 
   @override
   String scanner_linuxPairingPinPrompt(String deviceName) {
-    return 'Vnesite PIN kodo za $deviceName (ostavite prazno, če nimate kode).';
+    return 'Vnesite PIN za $deviceName (pustite prazno, če ga ni).';
   }
 
   @override

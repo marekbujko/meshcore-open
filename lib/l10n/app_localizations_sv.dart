@@ -3605,17 +3605,17 @@ class AppLocalizationsSv extends AppLocalizations {
       'Ange först en URL för en specifik modell.';
 
   @override
-  String get scanner_linuxPairingShowPin => 'Visa PIN-kod';
+  String get scanner_linuxPairingShowPin => 'Visa PIN';
 
   @override
-  String get scanner_linuxPairingHidePin => 'Dölj PIN-kod';
+  String get scanner_linuxPairingHidePin => 'Dölj PIN';
 
   @override
-  String get scanner_linuxPairingPinTitle => 'PIN-kod för Bluetooth-anslutning';
+  String get scanner_linuxPairingPinTitle => 'Bluetooth‑parnings‑PIN';
 
   @override
   String scanner_linuxPairingPinPrompt(String deviceName) {
-    return 'Ange PIN-kod för $deviceName (lämna tomt om ingen finns).';
+    return 'Ange PIN för $deviceName (lämna tomt om ingen).';
   }
 
   @override

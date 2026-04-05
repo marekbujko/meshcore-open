@@ -2080,10 +2080,6 @@
       }
     }
   },
-  "scanner_linuxPairingShowPin": "Wyświetl kod PIN",
-  "scanner_linuxPairingPinPrompt": "Wprowadź kod PIN dla {deviceName} (pust, jeśli nie jest wymagany).",
-  "scanner_linuxPairingHidePin": "Ukryj kod PIN",
-  "scanner_linuxPairingPinTitle": "PIN do sparowania przez Bluetooth",
   "@translation_translateTo": {
     "placeholders": {
       "language": {

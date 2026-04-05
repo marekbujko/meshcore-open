@@ -2042,10 +2042,6 @@
       }
     }
   },
-  "scanner_linuxPairingHidePin": "Skrijte PIN",
-  "scanner_linuxPairingShowPin": "Prikaži PIN",
-  "scanner_linuxPairingPinPrompt": "Vnesite PIN kodo za {deviceName} (ostavite prazno, če nimate kode).",
-  "scanner_linuxPairingPinTitle": "PIN za združevanje preko Bluetootha",
   "@translation_translateTo": {
     "placeholders": {
       "language": {
@@ -2060,6 +2056,7 @@
   "translation_translateTo": "Prevesti v {language}",
   "translation_translationOptions": "Možnosti prevoda",
   "translation_systemLanguage": "Jezik sistema",
+  "scanner_linuxPairingShowPin": "Prikaži PIN",
   "scanner_linuxPairingHidePin": "Skrij PIN",
   "scanner_linuxPairingPinPrompt": "Vnesite PIN za {deviceName} (pustite prazno, če ga ni).",
   "scanner_linuxPairingPinTitle": "Bluetooth PIN za seznanjanje",

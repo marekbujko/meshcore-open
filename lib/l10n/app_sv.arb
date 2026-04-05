@@ -2042,10 +2042,6 @@
       }
     }
   },
-  "scanner_linuxPairingPinPrompt": "Ange PIN-kod för {deviceName} (lämna tomt om ingen finns).",
-  "scanner_linuxPairingPinTitle": "PIN-kod för Bluetooth-anslutning",
-  "scanner_linuxPairingShowPin": "Visa PIN-kod",
-  "scanner_linuxPairingHidePin": "Dölj PIN-kod",
   "@translation_translateTo": {
     "placeholders": {
       "language": {

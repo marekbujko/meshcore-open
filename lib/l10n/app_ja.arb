@@ -2080,10 +2080,6 @@
       }
     }
   },
-  "scanner_linuxPairingShowPin": "PINを表示する",
-  "scanner_linuxPairingHidePin": "PINを非表示にする",
-  "scanner_linuxPairingPinPrompt": "{deviceName} の PIN を入力してください（該当しない場合は空白で入力）。",
-  "scanner_linuxPairingPinTitle": "Bluetooth 接続のためのPIN",
   "@translation_translateTo": {
     "placeholders": {
       "language": {

@@ -2042,10 +2042,6 @@
       }
     }
   },
-  "scanner_linuxPairingPinPrompt": "Inserire il codice PIN per {deviceName} (lasciare vuoto se non presente).",
-  "scanner_linuxPairingShowPin": "Mostra PIN",
-  "scanner_linuxPairingPinTitle": "PIN per l'accoppiamento Bluetooth",
-  "scanner_linuxPairingHidePin": "Nascondi il PIN",
   "@translation_translateTo": {
     "placeholders": {
       "language": {
@@ -2060,9 +2056,10 @@
   "translation_translateTo": "Tradurre in {language}",
   "translation_translationOptions": "Opzioni di traduzione",
   "translation_systemLanguage": "Lingua del sistema",
-  "scanner_linuxPairingHidePin": "Nascondi PIN",
-  "scanner_linuxPairingPinTitle": "PIN di associazione Bluetooth",
-  "scanner_linuxPairingPinPrompt": "Inserisci il PIN per {deviceName} (lascia vuoto se non ce n'è).",
+  "scanner_linuxPairingPinPrompt": "Inserire il codice PIN per {deviceName} (lasciare vuoto se non presente).",
+  "scanner_linuxPairingShowPin": "Mostra PIN",
+  "scanner_linuxPairingPinTitle": "PIN per l'accoppiamento Bluetooth",
+  "scanner_linuxPairingHidePin": "Nascondi il PIN",
   "repeater_cliQuickClockSync": "Sincronizzazione dell'orologio",
   "repeater_cliQuickDiscovery": "Scopri i Vicini"
 }
