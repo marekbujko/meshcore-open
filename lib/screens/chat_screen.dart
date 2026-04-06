@@ -524,7 +524,7 @@ class _ChatScreenState extends State<ChatScreen> {
               child: ValueListenableBuilder<TextEditingValue>(
                 valueListenable: _textController,
                 builder: (context, value, child) {
-                  final gifId = GifHelper.parseGifId(value.text);
+                  final gifId = GifHelper.parseGif(value.text);
                   if (gifId != null) {
                     return Focus(
                       autofocus: true,
@@ -605,7 +605,7 @@ class _ChatScreenState extends State<ChatScreen> {
       isScrollControlled: true,
       builder: (context) => GifPicker(
         onGifSelected: (gifId) {
-          _textController.text = 'g:$gifId';
+          _textController.text = GifHelper.encodeGif(gifId);
         },
       ),
     );
@@ -1538,7 +1538,7 @@ class _ChatScreenState extends State<ChatScreen> {
       senderName,
       message.text,
     );
-    final reactionText = 'r:$hash:$emojiIndex';
+    final reactionText = ReactionHelper.encodeReaction(hash, emojiIndex);
     connector.sendMessage(_resolveContact(connector), reactionText);
   }
 }
@@ -1568,7 +1568,7 @@ class _MessageBubble extends StatelessWidget {
     final enableTracing = settingsService.settings.enableMessageTracing;
     final isOutgoing = message.isOutgoing;
     final colorScheme = Theme.of(context).colorScheme;
-    final gifId = GifHelper.parseGifId(message.text);
+    final gifId = GifHelper.parseGif(message.text);
     final poi = _parsePoiMessage(message.text);
     final isFailed = message.status == MessageStatus.failed;
     final bubbleColor = isFailed

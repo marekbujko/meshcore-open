@@ -9,7 +9,7 @@ class GifHelper {
   /// include a trailing slash.
   ///
   /// Returns null if text is not a valid GIF format
-  static String? parseGifId(String text) {
+  static String? parseGif(String text) {
     final trimmed = text.trim();
     final match = RegExp(r'^g:([A-Za-z0-9_-]+)$').firstMatch(trimmed);
     if (match != null) {
@@ -29,5 +29,10 @@ class GifHelper {
       r'^(?:https?:\/\/)?giphy\.com\/gifs\/(?:[^/?]*-)?([A-Za-z0-9_]+)\/?$',
     ).firstMatch(trimmed);
     return pageMatch?.group(1);
+  }
+  
+  /// Encode a GIF in a format that parseGif() can parse.
+  static String encodeGif(String gifId) {
+    return 'g:$gifId';
   }
 }
