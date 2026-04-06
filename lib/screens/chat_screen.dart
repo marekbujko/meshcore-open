@@ -601,7 +601,23 @@ class _ChatScreenState extends State<ChatScreen> {
   String? _parseGifId(String text) {
     final trimmed = text.trim();
     final match = RegExp(r'^g:([A-Za-z0-9_-]+)$').firstMatch(trimmed);
-    return match?.group(1);
+    if (match != null) {
+      return match.group(1);
+    }
+    final directUrlMatch = RegExp(
+      r'^(?:https?://)?media\.giphy\.com/media/([A-Za-z0-9_-]+)/giphy\.gif$',
+    ).firstMatch(trimmed);
+    if (directUrlMatch != null) {
+      return directUrlMatch.group(1);
+    }
+    // Giphy understands page URLs with just the ID, or any string and a
+    // dash before the ID, and redirects to a page with a dash-separated
+    // title, a dash, and the ID. IDs in this form *probably* can't
+    // contain dashes.
+    final pageMatch = RegExp(
+      r'^(?:https?://)?giphy\.com/gifs/(?:[^/?]*-)?([A-Za-z0-9_]+)/?$',
+    ).firstMatch(trimmed);
+    return pageMatch?.group(1);
   }
 
   void _showGifPicker(BuildContext context) {
