@@ -605,7 +605,7 @@ class _ChatScreenState extends State<ChatScreen> {
       return match.group(1);
     }
     final directUrlMatch = RegExp(
-      r'^(?:https?://)?media\.giphy\.com/media/([A-Za-z0-9_-]+)/giphy\.gif$',
+      r'^(?:https?:\/\/)?media\.giphy\.com\/media\/([A-Za-z0-9_-]+)\/giphy\.gif$',
     ).firstMatch(trimmed);
     if (directUrlMatch != null) {
       return directUrlMatch.group(1);
@@ -615,7 +615,7 @@ class _ChatScreenState extends State<ChatScreen> {
     // title, a dash, and the ID. IDs in this form *probably* can't
     // contain dashes.
     final pageMatch = RegExp(
-      r'^(?:https?://)?giphy\.com/gifs/(?:[^/?]*-)?([A-Za-z0-9_]+)/?$',
+      r'^(?:https?:\/\/)?giphy\.com\/gifs\/(?:[^/?]*-)?([A-Za-z0-9_]+)\/?$',
     ).firstMatch(trimmed);
     return pageMatch?.group(1);
   }
