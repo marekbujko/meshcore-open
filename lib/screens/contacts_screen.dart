@@ -394,7 +394,7 @@ class _ContactsScreenState extends State<ContactsScreen>
                     children: [
                       const Icon(Icons.person_add_rounded),
                       const SizedBox(width: 8),
-                      Text("Discovered Contacts"),
+                      Text(context.l10n.discoveredContacts_Title),
                     ],
                   ),
                   onTap: () => Navigator.push(
