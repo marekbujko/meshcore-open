@@ -1227,6 +1227,14 @@ class AppLocalizationsSk extends AppLocalizations {
   String get chat_noMessages => 'Zatiaľ žiadne správy.';
 
   @override
+  String get chat_sendMessage => 'Send message';
+
+  @override
+  String chat_sendMessageTo(String contactName) {
+    return 'Pošli správu $contactName';
+  }
+
+  @override
   String get chat_sendMessageToStart => 'Pošlite správu na začiatok';
 
   @override
@@ -1244,11 +1252,6 @@ class AppLocalizationsSk extends AppLocalizations {
 
   @override
   String get chat_location => 'Lokalita';
-
-  @override
-  String chat_sendMessageTo(String contactName) {
-    return 'Pošli správu $contactName';
-  }
 
   @override
   String get chat_typeMessage => 'Napište správu...';

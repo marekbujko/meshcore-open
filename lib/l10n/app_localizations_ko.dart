@@ -1175,6 +1175,14 @@ class AppLocalizationsKo extends AppLocalizations {
   String get chat_noMessages => '아직 메시지가 없습니다.';
 
   @override
+  String get chat_sendMessage => 'Send message';
+
+  @override
+  String chat_sendMessageTo(String contactName) {
+    return '$contactName에게 메시지를 보내';
+  }
+
+  @override
   String get chat_sendMessageToStart => '시작하려면 메시지를 보내세요.';
 
   @override
@@ -1192,11 +1200,6 @@ class AppLocalizationsKo extends AppLocalizations {
 
   @override
   String get chat_location => '위치';
-
-  @override
-  String chat_sendMessageTo(String contactName) {
-    return '$contactName에게 메시지를 보내';
-  }
 
   @override
   String get chat_typeMessage => '메시지를 입력하세요...';

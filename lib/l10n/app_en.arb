@@ -607,6 +607,15 @@
   "channels_enterHashtag": "Enter hashtag",
   "channels_hashtagHint": "e.g. #team",
   "chat_noMessages": "No messages yet",
+  "chat_sendMessage": "Send message",
+  "chat_sendMessageTo": "Send message to {name}",
+  "@chat_sendMessageTo": {
+    "placeholders": {
+      "name": {
+        "type": "String"
+      }
+    }
+  },
   "chat_sendMessageToStart": "Send a message to get started",
   "chat_originalMessageNotFound": "Original message not found",
   "chat_replyingTo": "Replying to {name}",

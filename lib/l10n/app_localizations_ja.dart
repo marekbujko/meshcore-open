@@ -1180,6 +1180,14 @@ class AppLocalizationsJa extends AppLocalizations {
   String get chat_noMessages => 'まだメッセージは届いていません';
 
   @override
+  String get chat_sendMessage => 'Send message';
+
+  @override
+  String chat_sendMessageTo(String contactName) {
+    return '$contactName へのメッセージを送信する';
+  }
+
+  @override
   String get chat_sendMessageToStart => '開始するためにメッセージを送信してください';
 
   @override
@@ -1197,11 +1205,6 @@ class AppLocalizationsJa extends AppLocalizations {
 
   @override
   String get chat_location => '場所';
-
-  @override
-  String chat_sendMessageTo(String contactName) {
-    return '$contactName へのメッセージを送信する';
-  }
 
   @override
   String get chat_typeMessage => 'メッセージを入力してください…';

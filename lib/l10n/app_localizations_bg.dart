@@ -1240,6 +1240,14 @@ class AppLocalizationsBg extends AppLocalizations {
   String get chat_noMessages => 'Няма съобщения.';
 
   @override
+  String get chat_sendMessage => 'Send message';
+
+  @override
+  String chat_sendMessageTo(String contactName) {
+    return 'Изпрати съобщение на $contactName';
+  }
+
+  @override
   String get chat_sendMessageToStart => 'Изпрати съобщение, за да започнеш.';
 
   @override
@@ -1257,11 +1265,6 @@ class AppLocalizationsBg extends AppLocalizations {
 
   @override
   String get chat_location => 'Местоположение';
-
-  @override
-  String chat_sendMessageTo(String contactName) {
-    return 'Изпрати съобщение на $contactName';
-  }
 
   @override
   String get chat_typeMessage => 'Въведете съобщение...';

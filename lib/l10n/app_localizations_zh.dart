@@ -1162,6 +1162,14 @@ class AppLocalizationsZh extends AppLocalizations {
   String get chat_noMessages => '暂无消息';
 
   @override
+  String get chat_sendMessage => 'Send message';
+
+  @override
+  String chat_sendMessageTo(String contactName) {
+    return '发送消息给 $contactName';
+  }
+
+  @override
   String get chat_sendMessageToStart => '发送消息开始对话';
 
   @override
@@ -1179,11 +1187,6 @@ class AppLocalizationsZh extends AppLocalizations {
 
   @override
   String get chat_location => '位置';
-
-  @override
-  String chat_sendMessageTo(String contactName) {
-    return '发送消息给 $contactName';
-  }
 
   @override
   String get chat_typeMessage => '输入消息...';
