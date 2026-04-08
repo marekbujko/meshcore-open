@@ -2296,6 +2296,18 @@ abstract class AppLocalizations {
   /// **'No messages yet'**
   String get chat_noMessages;
 
+  /// No description provided for @chat_sendMessage.
+  ///
+  /// In en, this message translates to:
+  /// **'Send message'**
+  String get chat_sendMessage;
+
+  /// No description provided for @chat_sendMessageTo.
+  ///
+  /// In en, this message translates to:
+  /// **'Send a message to {contactName}'**
+  String chat_sendMessageTo(String contactName);
+
   /// No description provided for @chat_sendMessageToStart.
   ///
   /// In en, this message translates to:
@@ -2325,12 +2337,6 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Location'**
   String get chat_location;
-
-  /// No description provided for @chat_sendMessageTo.
-  ///
-  /// In en, this message translates to:
-  /// **'Send a message to {contactName}'**
-  String chat_sendMessageTo(String contactName);
 
   /// No description provided for @chat_typeMessage.
   ///

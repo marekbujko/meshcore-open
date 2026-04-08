@@ -1240,6 +1240,14 @@ class AppLocalizationsIt extends AppLocalizations {
   String get chat_noMessages => 'Nessun messaggio ancora';
 
   @override
+  String get chat_sendMessage => 'Send message';
+
+  @override
+  String chat_sendMessageTo(String contactName) {
+    return 'Invia un messaggio a $contactName';
+  }
+
+  @override
   String get chat_sendMessageToStart => 'Invia un messaggio per iniziare';
 
   @override
@@ -1257,11 +1265,6 @@ class AppLocalizationsIt extends AppLocalizations {
 
   @override
   String get chat_location => 'Posizione';
-
-  @override
-  String chat_sendMessageTo(String contactName) {
-    return 'Invia un messaggio a $contactName';
-  }
 
   @override
   String get chat_typeMessage => 'Digita un messaggio...';

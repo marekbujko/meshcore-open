@@ -1121,6 +1121,7 @@ class _ChannelChatScreenState extends State<ChannelChatScreen> {
               const SizedBox(width: 8),
               IconButton(
                 icon: const Icon(Icons.send),
+                tooltip: context.l10n.chat_sendMessage,
                 onPressed: _sendMessage,
                 color: Theme.of(context).colorScheme.primary,
               ),

@@ -1225,6 +1225,14 @@ class AppLocalizationsSl extends AppLocalizations {
   String get chat_noMessages => 'Še ni sporočil.';
 
   @override
+  String get chat_sendMessage => 'Send message';
+
+  @override
+  String chat_sendMessageTo(String contactName) {
+    return 'Pošlji sporočilo $contactName';
+  }
+
+  @override
   String get chat_sendMessageToStart => 'Pošlji sporočilo za začetek.';
 
   @override
@@ -1243,11 +1251,6 @@ class AppLocalizationsSl extends AppLocalizations {
 
   @override
   String get chat_location => 'Lokacija';
-
-  @override
-  String chat_sendMessageTo(String contactName) {
-    return 'Pošlji sporočilo $contactName';
-  }
 
   @override
   String get chat_typeMessage => 'Vnesi sporočilo...';
