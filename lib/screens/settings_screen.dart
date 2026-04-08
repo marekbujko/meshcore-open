@@ -1162,7 +1162,6 @@ class _RadioSettingsDialogState extends State<_RadioSettingsDialog> {
 
     _clientRepeat = widget.connector.clientRepeat ?? false;
     _selectedPresetIndex = _findMatchingPresetIndex();
-    _lastNonRepeatSnapshot = _currentSnapshot();
     if (_clientRepeat) {
       _lastNonRepeatSnapshot =
           _sessionRememberedNonRepeatSnapshot() ??
@@ -1472,7 +1471,6 @@ class _RadioSettingsDialogState extends State<_RadioSettingsDialog> {
       }
 
       if (!mounted) return;
-      Navigator.pop(context);
       _logRadioSettingsState('Radio settings saved successfully');
       ScaffoldMessenger.of(context).showSnackBar(
         SnackBar(content: Text(l10n.settings_radioSettingsUpdated)),
@@ -1484,6 +1482,7 @@ class _RadioSettingsDialogState extends State<_RadioSettingsDialog> {
         SnackBar(content: Text(l10n.settings_error(e.toString()))),
       );
     }
+    Navigator.pop(context);
   }
 
   String _presetLabel(int? index) {
