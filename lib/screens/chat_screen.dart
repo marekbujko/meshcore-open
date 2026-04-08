@@ -590,6 +590,9 @@ class _ChatScreenState extends State<ChatScreen> {
             const SizedBox(width: 8),
             IconButton.filled(
               icon: const Icon(Icons.send),
+              tooltip: context.l10n.chat_sendMessageTo(
+                _resolveContact(connector).name,
+              ),
               onPressed: () => _sendMessage(connector),
             ),
           ],

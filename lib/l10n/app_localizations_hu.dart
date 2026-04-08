@@ -1247,6 +1247,14 @@ class AppLocalizationsHu extends AppLocalizations {
   String get chat_noMessages => 'Még nincs üzenet.';
 
   @override
+  String get chat_sendMessage => 'Send message';
+
+  @override
+  String chat_sendMessageTo(String contactName) {
+    return 'Küldj üzenetet $contactName-nek';
+  }
+
+  @override
   String get chat_sendMessageToStart => 'Küldj egy üzenetet, hogy elindulj!';
 
   @override
@@ -1264,11 +1272,6 @@ class AppLocalizationsHu extends AppLocalizations {
 
   @override
   String get chat_location => 'Helyszín';
-
-  @override
-  String chat_sendMessageTo(String contactName) {
-    return 'Küldj üzenetet $contactName-nek';
-  }
 
   @override
   String get chat_typeMessage => 'Írjon üzenetet...';
