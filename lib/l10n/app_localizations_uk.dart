@@ -3664,18 +3664,17 @@ class AppLocalizationsUk extends AppLocalizations {
   String get translation_enterUrlFirst => 'Спочатку введіть URL моделі.';
 
   @override
-  String get scanner_linuxPairingShowPin => 'Показати PIN-код';
+  String get scanner_linuxPairingShowPin => 'Показати PIN';
 
   @override
-  String get scanner_linuxPairingHidePin => 'Приховати PIN-код';
+  String get scanner_linuxPairingHidePin => 'Приховати PIN';
 
   @override
-  String get scanner_linuxPairingPinTitle =>
-      'PIN для з\'єднання через Bluetooth';
+  String get scanner_linuxPairingPinTitle => 'PIN‑код спарювання Bluetooth';
 
   @override
   String scanner_linuxPairingPinPrompt(String deviceName) {
-    return 'Введіть PIN-код для $deviceName (залиште поле порожнім, якщо немає).';
+    return 'Введіть PIN для $deviceName (залиште порожнім, якщо його немає).';
   }
 
   @override

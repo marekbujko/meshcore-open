@@ -2042,10 +2042,6 @@
       }
     }
   },
-  "scanner_linuxPairingPinTitle": "PIN для з'єднання через Bluetooth",
-  "scanner_linuxPairingShowPin": "Показати PIN-код",
-  "scanner_linuxPairingPinPrompt": "Введіть PIN-код для {deviceName} (залиште поле порожнім, якщо немає).",
-  "scanner_linuxPairingHidePin": "Приховати PIN-код",
   "@translation_translateTo": {
     "placeholders": {
       "language": {

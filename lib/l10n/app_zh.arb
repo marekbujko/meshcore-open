@@ -2065,7 +2065,6 @@
   "translation_translateTo": "翻译成 {language}",
   "translation_translationOptions": "翻译选项",
   "translation_systemLanguage": "系统语言",
-  "scanner_linuxPairingHidePin": "隐藏 PIN",
   "repeater_cliQuickDiscovery": "发现邻居",
   "repeater_cliQuickClockSync": "同步时钟"
 }

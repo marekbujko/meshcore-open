@@ -3660,18 +3660,17 @@ class AppLocalizationsRu extends AppLocalizations {
   String get translation_enterUrlFirst => 'Сначала введите URL модели.';
 
   @override
-  String get scanner_linuxPairingShowPin => 'Показать PIN-код';
+  String get scanner_linuxPairingShowPin => 'Показать PIN';
 
   @override
-  String get scanner_linuxPairingHidePin => 'Скрыть PIN-код';
+  String get scanner_linuxPairingHidePin => 'Скрыть PIN';
 
   @override
-  String get scanner_linuxPairingPinTitle =>
-      'PIN для сопряжения устройств по Bluetooth';
+  String get scanner_linuxPairingPinTitle => 'PIN‑код сопряжения Bluetooth';
 
   @override
   String scanner_linuxPairingPinPrompt(String deviceName) {
-    return 'Введите PIN-код для $deviceName (оставьте поле пустым, если PIN-код отсутствует).';
+    return 'Введите PIN‑код для $deviceName (оставьте пустым, если нет).';
   }
 
   @override

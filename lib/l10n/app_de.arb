@@ -2070,10 +2070,6 @@
       }
     }
   },
-  "scanner_linuxPairingPinPrompt": "Geben Sie den PIN-Code für {deviceName} ein (lassen Sie das Feld leer, falls kein PIN-Code vorhanden ist).",
-  "scanner_linuxPairingShowPin": "PIN anzeigen",
-  "scanner_linuxPairingPinTitle": "PIN für die Bluetooth-Verbindung",
-  "scanner_linuxPairingHidePin": "PIN verbergen",
   "@translation_translateTo": {
     "placeholders": {
       "language": {
@@ -2088,6 +2084,7 @@
   "translation_translateTo": "Übersetzen Sie auf {language}",
   "translation_translationOptions": "Übersetzungsmöglichkeiten",
   "translation_systemLanguage": "Sprache des Systems",
+  "scanner_linuxPairingShowPin": "PIN anzeigen",
   "scanner_linuxPairingHidePin": "PIN ausblenden",
   "scanner_linuxPairingPinTitle": "Bluetooth-Paarungs-PIN",
   "scanner_linuxPairingPinPrompt": "Geben Sie die PIN für {deviceName} ein (leer lassen, falls keine).",

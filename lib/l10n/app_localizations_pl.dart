@@ -3663,18 +3663,17 @@ class AppLocalizationsPl extends AppLocalizations {
   String get translation_enterUrlFirst => 'Najpierw wprowadź adres URL modelu.';
 
   @override
-  String get scanner_linuxPairingShowPin => 'Wyświetl kod PIN';
+  String get scanner_linuxPairingShowPin => 'Pokaż PIN';
 
   @override
-  String get scanner_linuxPairingHidePin => 'Ukryj kod PIN';
+  String get scanner_linuxPairingHidePin => 'Ukryj PIN';
 
   @override
-  String get scanner_linuxPairingPinTitle =>
-      'PIN do sparowania przez Bluetooth';
+  String get scanner_linuxPairingPinTitle => 'Kod PIN parowania Bluetooth';
 
   @override
   String scanner_linuxPairingPinPrompt(String deviceName) {
-    return 'Wprowadź kod PIN dla $deviceName (pust, jeśli nie jest wymagany).';
+    return 'Wprowadź kod PIN dla $deviceName (pozostaw puste, jeśli brak).';
   }
 
   @override

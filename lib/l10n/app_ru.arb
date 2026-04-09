@@ -1282,10 +1282,6 @@
       }
     }
   },
-  "scanner_linuxPairingPinPrompt": "Введите PIN-код для {deviceName} (оставьте поле пустым, если PIN-код отсутствует).",
-  "scanner_linuxPairingHidePin": "Скрыть PIN-код",
-  "scanner_linuxPairingPinTitle": "PIN для сопряжения устройств по Bluetooth",
-  "scanner_linuxPairingShowPin": "Показать PIN-код",
   "@translation_translateTo": {
     "placeholders": {
       "language": {

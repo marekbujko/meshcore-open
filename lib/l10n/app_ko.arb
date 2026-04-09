@@ -2082,7 +2082,6 @@
   },
   "scanner_linuxPairingPinTitle": "블루투스 페어링 PIN",
   "scanner_linuxPairingHidePin": "PIN 숨기기",
-<<<<<<< HEAD
   "scanner_linuxPairingShowPin": "PIN 보기",
   "scanner_linuxPairingPinPrompt": "{deviceName}의 PIN을 입력하세요 (해당하는 경우에만 입력).",
   "@translation_translateTo": {
@@ -2099,7 +2098,6 @@
   "translation_translateTo": "{language} 번역",
   "translation_translationOptions": "번역 옵션",
   "translation_systemLanguage": "시스템 언어",
-  "scanner_linuxPairingPinPrompt": "{deviceName}에 대한 PIN을 입력하세요 (없으면 비워두세요).",
   "repeater_cliQuickClockSync": "시계 동기화",
   "repeater_cliQuickDiscovery": "이웃 발견하기"
 }

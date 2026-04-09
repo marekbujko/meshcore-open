@@ -3477,17 +3477,17 @@ class AppLocalizationsJa extends AppLocalizations {
   String get translation_enterUrlFirst => 'まず、モデルのURLを入力してください。';
 
   @override
-  String get scanner_linuxPairingShowPin => 'PINを表示する';
+  String get scanner_linuxPairingShowPin => 'PINを表示';
 
   @override
-  String get scanner_linuxPairingHidePin => 'PINを非表示にする';
+  String get scanner_linuxPairingHidePin => 'PINを非表示';
 
   @override
-  String get scanner_linuxPairingPinTitle => 'Bluetooth 接続のためのPIN';
+  String get scanner_linuxPairingPinTitle => 'Bluetooth ペアリング PIN';
 
   @override
   String scanner_linuxPairingPinPrompt(String deviceName) {
-    return '$deviceName の PIN を入力してください（該当しない場合は空白で入力）。';
+    return '$deviceNameのPINを入力してください（なしの場合は空欄のまま）。';
   }
 
   @override
