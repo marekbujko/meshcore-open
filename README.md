@@ -150,7 +150,8 @@ lib/
 ├── main.dart                    # App entry point
 ├── connector/
 │   ├── meshcore_connector.dart  # BLE communication & state management
-│   └── meshcore_protocol.dart   # Protocol definitions & frame parsing
+│   ├── meshcore_protocol.dart   # Protocol definitions & frame parsing
+│   └── meshcore_uuids.dart      # Device names and IDs (add prefixes here!)
 ├── screens/
 │   ├── scanner_screen.dart      # Device scanning (home screen)
 │   ├── contacts_screen.dart     # Contact list
@@ -184,7 +185,15 @@ lib/
 
 ### Device Discovery
 
-Devices are discovered by scanning for BLE advertisements with the name prefix `MeshCore-`
+Devices are discovered by scanning for BLE advertisements with known MeshCore device name prefixes. These are currently:
+    - `MeshCore-`
+    - `Whisper-`
+    - `WisCore-`
+    - `HT-`
+    - `LowMesh_MC_`
+
+New device prefixes can be added in `lib/connector/meshcore_uuids.dart`.
+
 
 ### Message Format
 

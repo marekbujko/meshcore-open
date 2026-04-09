@@ -49,7 +49,12 @@ enum MeshCoreConnectionState {
 
 ## BLE Connection Lifecycle
 
-1. **Scan** with keyword filters `["MeshCore-", "Whisper-"]`
+1. **Scan** with known name prefixes (defined in `MeshCoreUuids.deviceNamePrefixes`):
+    - `MeshCore-`
+    - `Whisper-`
+    - `WisCore-`
+    - `HT-`
+    - `LowMesh_MC_`
 2. **Connect** with 15-second timeout
 3. **Request MTU** 185 bytes (non-web only)
 4. **Discover services** and locate NUS

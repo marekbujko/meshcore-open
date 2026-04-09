@@ -6,6 +6,7 @@ import 'package:llamadart/llamadart.dart';
 
 import '../models/app_settings.dart';
 import '../models/translation_support.dart';
+import '../helpers/gif_helper.dart';
 import '../utils/app_logger.dart';
 import 'app_settings_service.dart';
 import 'translation_file_store.dart';
@@ -509,8 +510,10 @@ class TranslationService extends ChangeNotifier {
     if (trimmed.isEmpty) {
       return false;
     }
-    return !(trimmed.startsWith('g:') ||
-        trimmed.startsWith('m:') ||
+    if (GifHelper.parseGif(trimmed) != null) {
+      return false;
+    }
+    return !(trimmed.startsWith('m:') ||
         trimmed.startsWith('V1|') ||
         trimmed.startsWith('r:'));
   }

@@ -11,6 +11,7 @@ import '../connector/meshcore_connector.dart';
 import '../utils/platform_info.dart';
 import '../helpers/chat_scroll_controller.dart';
 import '../connector/meshcore_protocol.dart';
+import '../helpers/gif_helper.dart';
 import '../helpers/reaction_helper.dart';
 import '../helpers/utf8_length_limiter.dart';
 import '../l10n/l10n.dart';
@@ -355,7 +356,7 @@ class _ChannelChatScreenState extends State<ChannelChatScreen> {
     final settingsService = context.watch<AppSettingsService>();
     final enableTracing = settingsService.settings.enableMessageTracing;
     final isOutgoing = message.isOutgoing;
-    final gifId = _parseGifId(message.text);
+    final gifId = GifHelper.parseGif(message.text);
     final poi = _parsePoiMessage(message.text);
     final translatedDisplayText =
         message.translatedText != null &&
@@ -699,7 +700,7 @@ class _ChannelChatScreenState extends State<ChannelChatScreen> {
     final colorScheme = Theme.of(context).colorScheme;
     final previewTextColor = colorScheme.onSurface.withValues(alpha: 0.7);
 
-    final gifId = _parseGifId(replyText);
+    final gifId = GifHelper.parseGif(replyText);
     final poi = _parsePoiMessage(replyText);
 
     Widget contentPreview;
@@ -811,12 +812,6 @@ class _ChannelChatScreenState extends State<ChannelChatScreen> {
     );
   }
 
-  String? _parseGifId(String text) {
-    final trimmed = text.trim();
-    final match = RegExp(r'^g:([A-Za-z0-9_-]+)$').firstMatch(trimmed);
-    return match?.group(1);
-  }
-
   _PoiInfo? _parsePoiMessage(String text) {
     final trimmed = text.trim();
     final match = RegExp(
@@ -897,7 +892,7 @@ class _ChannelChatScreenState extends State<ChannelChatScreen> {
       isScrollControlled: true,
       builder: (context) => GifPicker(
         onGifSelected: (gifId) {
-          _textController.text = 'g:$gifId';
+          _textController.text = GifHelper.encodeGif(gifId);
         },
       ),
     );
@@ -1053,7 +1048,7 @@ class _ChannelChatScreenState extends State<ChannelChatScreen> {
                 child: ValueListenableBuilder<TextEditingValue>(
                   valueListenable: _textController,
                   builder: (context, value, child) {
-                    final gifId = _parseGifId(value.text);
+                    final gifId = GifHelper.parseGif(value.text);
                     if (gifId != null) {
                       return Focus(
                         autofocus: true,
@@ -1322,7 +1317,7 @@ class _ChannelChatScreenState extends State<ChannelChatScreen> {
       message.senderName,
       message.text,
     );
-    final reactionText = 'r:$hash:$emojiIndex';
+    final reactionText = ReactionHelper.encodeReaction(hash, emojiIndex);
     connector.sendChannelMessage(widget.channel, reactionText);
   }
 

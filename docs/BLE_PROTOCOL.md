@@ -21,7 +21,12 @@ The MeshCore BLE protocol implements a binary frame-based communication system u
 
 ### Connection Flow
 
-1. **Scan** for devices with name prefix `MeshCore-`
+1. **Scan** for devices with known name prefixes (defined in `MeshCoreUuids.deviceNamePrefixes`):
+    - `MeshCore-`
+    - `Whisper-`
+    - `WisCore-`
+    - `HT-`
+    - `LowMesh_MC_`
 2. **Connect** with 15-second timeout
 3. **Request MTU** of 185 bytes (falls back to default if unsupported)
 4. **Discover services** and locate NUS characteristics

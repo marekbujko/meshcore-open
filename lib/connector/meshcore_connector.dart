@@ -3976,11 +3976,14 @@ class MeshCoreConnector extends ChangeNotifier {
           tag: 'Connector',
         );
 
-        // CRITICAL: Preserve user's path override when contact is refreshed from device
+        // Preserve user-selected path settings and previously known GPS when
+        // refreshed frames omit coordinates (lat/lon encoded as 0,0).
         _contacts[existingIndex] = contact.copyWith(
           lastMessageAt: mergedLastMessageAt,
           pathOverride: existing.pathOverride, // Preserve user's path choice
           pathOverrideBytes: existing.pathOverrideBytes,
+          latitude: contact.latitude ?? existing.latitude,
+          longitude: contact.longitude ?? existing.longitude,
         );
 
         appLogger.info(

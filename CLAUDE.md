@@ -61,7 +61,7 @@ lib/
 - **TX Characteristic**: `6e400003-b5a3-f393-e0a9-e50e24dcca9e` (Notify from device)
 
 ### Device Discovery
-- Scans for devices with name prefix `MeshCore-`
+- Scans for devices with known name prefixes
 - Filters by `platformName` or `advertisementData.advName`
 
 ### Connection States

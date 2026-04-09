@@ -3677,7 +3677,7 @@ class AppLocalizationsHu extends AppLocalizations {
 
   @override
   String scanner_linuxPairingPinPrompt(String deviceName) {
-    return 'Adja meg a PIN kódot a $deviceName számára (hagyja üresen, ha nincs).';
+    return 'Adja meg a(z) $deviceName PIN-kódját (hagyja üresen, ha nincs).';
   }
 
   @override
