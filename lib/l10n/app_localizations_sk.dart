@@ -2005,7 +2005,16 @@ class AppLocalizationsSk extends AppLocalizations {
   String get room_management => 'Správa servera miestnosti';
 
   @override
+  String get repeater_guest => 'Repeater Information';
+
+  @override
+  String get room_guest => 'Room Server Information';
+
+  @override
   String get repeater_managementTools => 'Nástroje na správu';
+
+  @override
+  String get repeater_guestTools => 'Guest Tools';
 
   @override
   String get repeater_status => 'Status';

@@ -1891,7 +1891,16 @@ class AppLocalizationsZh extends AppLocalizations {
   String get room_management => '房间服务器管理';
 
   @override
+  String get repeater_guest => 'Repeater Information';
+
+  @override
+  String get room_guest => 'Room Server Information';
+
+  @override
   String get repeater_managementTools => '管理工具';
+
+  @override
+  String get repeater_guestTools => 'Guest Tools';
 
   @override
   String get repeater_status => '状态';

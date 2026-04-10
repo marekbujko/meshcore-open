@@ -2016,7 +2016,16 @@ class AppLocalizationsPt extends AppLocalizations {
   String get room_management => 'Gerenciamento de Servidor de Sala';
 
   @override
+  String get repeater_guest => 'Repeater Information';
+
+  @override
+  String get room_guest => 'Room Server Information';
+
+  @override
   String get repeater_managementTools => 'Ferramentas de Gerenciamento';
+
+  @override
+  String get repeater_guestTools => 'Guest Tools';
 
   @override
   String get repeater_status => 'Status';

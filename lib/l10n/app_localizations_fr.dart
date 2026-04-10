@@ -2027,7 +2027,16 @@ class AppLocalizationsFr extends AppLocalizations {
   String get room_management => 'Administrattion Room Server';
 
   @override
+  String get repeater_guest => 'Repeater Information';
+
+  @override
+  String get room_guest => 'Room Server Information';
+
+  @override
   String get repeater_managementTools => 'Outils de Gestion';
+
+  @override
+  String get repeater_guestTools => 'Guest Tools';
 
   @override
   String get repeater_status => 'État';
