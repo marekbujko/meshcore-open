@@ -1963,6 +1963,13 @@ class AppLocalizationsKo extends AppLocalizations {
   String get repeater_settingsSubtitle => '리피터 파라미터 설정';
 
   @override
+  String get repeater_clockSyncAfterLogin => '로그인 후 시계 동기화';
+
+  @override
+  String get repeater_clockSyncAfterLoginSubtitle =>
+      '성공적인 로그인 후, 자동으로 \"시간 동기화\"를 전송합니다.';
+
+  @override
   String get repeater_statusTitle => '반복 장치 상태';
 
   @override

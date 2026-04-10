@@ -8,6 +8,7 @@ import '../connector/meshcore_connector.dart';
 import '../connector/meshcore_protocol.dart';
 import '../services/app_debug_log_service.dart';
 import '../services/repeater_command_service.dart';
+import '../services/storage_service.dart';
 import '../widgets/path_management_dialog.dart';
 
 class RepeaterSettingsScreen extends StatefulWidget {
@@ -25,6 +26,8 @@ class RepeaterSettingsScreen extends StatefulWidget {
 }
 
 class _RepeaterSettingsScreenState extends State<RepeaterSettingsScreen> {
+  final StorageService _storage = StorageService();
+
   bool _isLoading = false;
   bool _hasChanges = false;
   bool _refreshingBasic = false;
@@ -59,6 +62,7 @@ class _RepeaterSettingsScreenState extends State<RepeaterSettingsScreen> {
   bool _repeatEnabled = true;
   bool _allowReadOnly = true;
   bool _privacyMode = false;
+  bool _autoClockSyncAfterLogin = false;
 
   // Advertisement settings
   bool _advertEnable = true;
@@ -565,6 +569,15 @@ class _RepeaterSettingsScreenState extends State<RepeaterSettingsScreen> {
         _latController.text = widget.repeater.latitude?.toString() ?? '';
         _lonController.text = widget.repeater.longitude?.toString() ?? '';
       }
+    });
+
+    final autoClockSync = await _storage
+        .getRepeaterAutoClockSyncAfterLoginEnabled(
+          widget.repeater.publicKeyHex,
+        );
+    if (!mounted) return;
+    setState(() {
+      _autoClockSyncAfterLogin = autoClockSync;
     });
   }
 
@@ -1138,6 +1151,21 @@ class _RepeaterSettingsScreenState extends State<RepeaterSettingsScreen> {
               },
               onRefresh: _refreshAllowReadOnly,
               refreshTooltip: l10n.repeater_refreshGuestAccess,
+            ),
+            SwitchListTile(
+              title: Text(l10n.repeater_clockSyncAfterLogin),
+              subtitle: Text(l10n.repeater_clockSyncAfterLoginSubtitle),
+              value: _autoClockSyncAfterLogin,
+              onChanged: (value) async {
+                setState(() {
+                  _autoClockSyncAfterLogin = value;
+                });
+                await _storage.setRepeaterAutoClockSyncAfterLoginEnabled(
+                  widget.repeater.publicKeyHex,
+                  value,
+                );
+              },
+              contentPadding: EdgeInsets.zero,
             ),
             // Privacy mode - hidden until fully implemented
             // _buildFeatureToggleRow(

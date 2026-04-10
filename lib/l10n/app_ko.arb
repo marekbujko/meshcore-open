@@ -2099,5 +2099,13 @@
   "translation_translationOptions": "번역 옵션",
   "translation_systemLanguage": "시스템 언어",
   "repeater_cliQuickClockSync": "시계 동기화",
-  "repeater_cliQuickDiscovery": "이웃 발견하기"
+  "repeater_cliQuickDiscovery": "이웃 발견하기",
+  "@repeater_clockSyncAfterLogin": {
+    "description": "Repeater setting: auto sync device clock after successful login"
+  },
+  "@repeater_clockSyncAfterLoginSubtitle": {
+    "description": "Repeater setting subtitle: describes the clock sync after login behavior"
+  },
+  "repeater_clockSyncAfterLogin": "로그인 후 시계 동기화",
+  "repeater_clockSyncAfterLoginSubtitle": "성공적인 로그인 후, 자동으로 \"시간 동기화\"를 전송합니다."
 }

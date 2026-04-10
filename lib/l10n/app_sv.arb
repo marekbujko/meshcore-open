@@ -2061,5 +2061,13 @@
   "scanner_linuxPairingPinPrompt": "Ange PIN för {deviceName} (lämna tomt om ingen).",
   "scanner_linuxPairingHidePin": "Dölj PIN",
   "repeater_cliQuickDiscovery": "Upptäck grannar",
-  "repeater_cliQuickClockSync": "Synkronisera klocka"
+  "repeater_cliQuickClockSync": "Synkronisera klocka",
+  "@repeater_clockSyncAfterLogin": {
+    "description": "Repeater setting: auto sync device clock after successful login"
+  },
+  "@repeater_clockSyncAfterLoginSubtitle": {
+    "description": "Repeater setting subtitle: describes the clock sync after login behavior"
+  },
+  "repeater_clockSyncAfterLoginSubtitle": "Automatiskt skicka \"klocksynkronisering\" efter en lyckad inloggning.",
+  "repeater_clockSyncAfterLogin": "Synkronisera klockan efter inloggning"
 }

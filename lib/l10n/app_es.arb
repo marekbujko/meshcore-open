@@ -2089,5 +2089,13 @@
   "translation_translationOptions": "Opciones de traducción",
   "translation_systemLanguage": "Idioma del sistema",
   "repeater_cliQuickDiscovery": "Descubrir Vecinos",
-  "repeater_cliQuickClockSync": "Sincronización del reloj"
+  "repeater_cliQuickClockSync": "Sincronización del reloj",
+  "@repeater_clockSyncAfterLogin": {
+    "description": "Repeater setting: auto sync device clock after successful login"
+  },
+  "@repeater_clockSyncAfterLoginSubtitle": {
+    "description": "Repeater setting subtitle: describes the clock sync after login behavior"
+  },
+  "repeater_clockSyncAfterLoginSubtitle": "Enviar automáticamente la función de \"sincronización de reloj\" después de un inicio de sesión exitoso.",
+  "repeater_clockSyncAfterLogin": "Sincronización del reloj después de iniciar sesión"
 }

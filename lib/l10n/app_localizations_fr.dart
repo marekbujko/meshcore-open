@@ -2063,6 +2063,14 @@ class AppLocalizationsFr extends AppLocalizations {
       'Configurer les paramètres du répéteur';
 
   @override
+  String get repeater_clockSyncAfterLogin =>
+      'Synchronisation de l\'horloge après la connexion';
+
+  @override
+  String get repeater_clockSyncAfterLoginSubtitle =>
+      'Envoyer automatiquement une notification \"synchronisation de l\'heure\" après une connexion réussie.';
+
+  @override
   String get repeater_statusTitle => 'État du répéteur';
 
   @override

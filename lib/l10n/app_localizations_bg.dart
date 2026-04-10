@@ -2057,6 +2057,14 @@ class AppLocalizationsBg extends AppLocalizations {
       'Конфигурирайте параметрите на репитера';
 
   @override
+  String get repeater_clockSyncAfterLogin =>
+      'Синхронизиране на часовника след влизане';
+
+  @override
+  String get repeater_clockSyncAfterLoginSubtitle =>
+      'Автоматично изпращайте съобщение \"синхронизиране на часовника\" след успешно влизане.';
+
+  @override
   String get repeater_statusTitle => 'Статус на повтарянето';
 
   @override

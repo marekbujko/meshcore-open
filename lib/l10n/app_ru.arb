@@ -1301,5 +1301,13 @@
   "scanner_linuxPairingHidePin": "Скрыть PIN",
   "scanner_linuxPairingPinTitle": "PIN‑код сопряжения Bluetooth",
   "repeater_cliQuickDiscovery": "Обнаружить Соседей",
-  "repeater_cliQuickClockSync": "Синхронизация часов"
+  "repeater_cliQuickClockSync": "Синхронизация часов",
+  "@repeater_clockSyncAfterLogin": {
+    "description": "Repeater setting: auto sync device clock after successful login"
+  },
+  "@repeater_clockSyncAfterLoginSubtitle": {
+    "description": "Repeater setting subtitle: describes the clock sync after login behavior"
+  },
+  "repeater_clockSyncAfterLogin": "Синхронизация часов после входа в систему",
+  "repeater_clockSyncAfterLoginSubtitle": "Автоматически отправлять сообщение \"синхронизация времени\" после успешной авторизации."
 }

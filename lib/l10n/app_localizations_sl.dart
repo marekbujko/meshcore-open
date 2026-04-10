@@ -2039,6 +2039,13 @@ class AppLocalizationsSl extends AppLocalizations {
       'Konfigurirajte parametre ponovitelja';
 
   @override
+  String get repeater_clockSyncAfterLogin => 'Sinhronizacija ure po prijavi';
+
+  @override
+  String get repeater_clockSyncAfterLoginSubtitle =>
+      'Samodejno po uspešnem vstopu pošljite obvestilo o sinhronizaciji časa.';
+
+  @override
   String get repeater_statusTitle => 'Status ponovitelja';
 
   @override

@@ -187,6 +187,29 @@ class _RepeaterLoginDialogState extends State<RepeaterLoginDialog> {
         await _storage.removeRepeaterPassword(widget.repeater.publicKeyHex);
       }
 
+      final autoClockSync = await _storage
+          .getRepeaterAutoClockSyncAfterLoginEnabled(
+            widget.repeater.publicKeyHex,
+          );
+      if (autoClockSync) {
+        try {
+          final timestampSeconds =
+              DateTime.now().millisecondsSinceEpoch ~/ 1000;
+          await _connector.sendFrame(
+            buildSendCliCommandFrame(
+              repeater.publicKey,
+              'clock sync',
+              timestampSeconds: timestampSeconds,
+            ),
+          );
+        } catch (e) {
+          appLogger.warn(
+            'Auto clock sync failed for ${repeater.name}: $e',
+            tag: 'RepeaterLogin',
+          );
+        }
+      }
+
       if (mounted) {
         Navigator.pop(context, password);
         Future.microtask(() => widget.onLogin(password));

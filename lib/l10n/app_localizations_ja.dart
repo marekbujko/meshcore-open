@@ -1966,6 +1966,13 @@ class AppLocalizationsJa extends AppLocalizations {
   String get repeater_settingsSubtitle => 'リピーターのパラメータを設定する';
 
   @override
+  String get repeater_clockSyncAfterLogin => 'ログイン後、時計の時刻を同期する';
+
+  @override
+  String get repeater_clockSyncAfterLoginSubtitle =>
+      'ログインが成功した場合、自動的に「時刻同期」を送信する。';
+
+  @override
   String get repeater_statusTitle => '再送ステータス';
 
   @override

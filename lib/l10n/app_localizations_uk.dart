@@ -2051,6 +2051,13 @@ class AppLocalizationsUk extends AppLocalizations {
   String get repeater_settingsSubtitle => 'Налаштувати параметри ретранслятора';
 
   @override
+  String get repeater_clockSyncAfterLogin => 'Синхронізація годин після входу';
+
+  @override
+  String get repeater_clockSyncAfterLoginSubtitle =>
+      'Автоматично надсилати повідомлення \"синхронізація годин\" після успішного входу.';
+
+  @override
   String get repeater_statusTitle => 'Статус ретранслятора';
 
   @override
