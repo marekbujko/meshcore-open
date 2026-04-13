@@ -2061,5 +2061,13 @@
   "scanner_linuxPairingHidePin": "Скриване на PIN кода",
   "scanner_linuxPairingShowPin": "Покажи PIN",
   "repeater_cliQuickClockSync": "Синхронизация на часовника",
-  "repeater_cliQuickDiscovery": "Открий Съседи"
+  "repeater_cliQuickDiscovery": "Открий Съседи",
+  "@repeater_clockSyncAfterLogin": {
+    "description": "Repeater setting: auto sync device clock after successful login"
+  },
+  "@repeater_clockSyncAfterLoginSubtitle": {
+    "description": "Repeater setting subtitle: describes the clock sync after login behavior"
+  },
+  "repeater_clockSyncAfterLoginSubtitle": "Автоматично изпращайте съобщение \"синхронизиране на часовника\" след успешно влизане.",
+  "repeater_clockSyncAfterLogin": "Синхронизиране на часовника след влизане"
 }

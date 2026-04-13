@@ -3675,6 +3675,18 @@ abstract class AppLocalizations {
   /// **'Configure repeater parameters'**
   String get repeater_settingsSubtitle;
 
+  /// Repeater setting: auto sync device clock after successful login
+  ///
+  /// In en, this message translates to:
+  /// **'Clock sync after login'**
+  String get repeater_clockSyncAfterLogin;
+
+  /// Repeater setting subtitle: describes the clock sync after login behavior
+  ///
+  /// In en, this message translates to:
+  /// **'Automatically send \"clock sync\" after a successful login'**
+  String get repeater_clockSyncAfterLoginSubtitle;
+
   /// No description provided for @repeater_statusTitle.
   ///
   /// In en, this message translates to:

@@ -2099,5 +2099,13 @@
   "scanner_linuxPairingPinTitle": "Bluetooth ペアリング PIN",
   "scanner_linuxPairingPinPrompt": "{deviceName}のPINを入力してください（なしの場合は空欄のまま）。",
   "repeater_cliQuickClockSync": "クロック同期",
-  "repeater_cliQuickDiscovery": "近隣を発見する"
+  "repeater_cliQuickDiscovery": "近隣を発見する",
+  "@repeater_clockSyncAfterLogin": {
+    "description": "Repeater setting: auto sync device clock after successful login"
+  },
+  "@repeater_clockSyncAfterLoginSubtitle": {
+    "description": "Repeater setting subtitle: describes the clock sync after login behavior"
+  },
+  "repeater_clockSyncAfterLogin": "ログイン後、時計の時刻を同期する",
+  "repeater_clockSyncAfterLoginSubtitle": "ログインが成功した場合、自動的に「時刻同期」を送信する。"
 }

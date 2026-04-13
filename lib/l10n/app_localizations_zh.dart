@@ -1924,6 +1924,12 @@ class AppLocalizationsZh extends AppLocalizations {
   String get repeater_settingsSubtitle => '配置转发节点参数';
 
   @override
+  String get repeater_clockSyncAfterLogin => '登录后，自动同步时钟';
+
+  @override
+  String get repeater_clockSyncAfterLoginSubtitle => '在成功登录后，自动发送“时钟同步”指令。';
+
+  @override
   String get repeater_statusTitle => '转发节点状态';
 
   @override

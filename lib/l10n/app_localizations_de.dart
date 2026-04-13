@@ -2053,6 +2053,14 @@ class AppLocalizationsDe extends AppLocalizations {
   String get repeater_settingsSubtitle => 'Repeater-parameter konfigurieren';
 
   @override
+  String get repeater_clockSyncAfterLogin =>
+      'Uhrzeit-Synchronisation nach dem Anmelden';
+
+  @override
+  String get repeater_clockSyncAfterLoginSubtitle =>
+      'Automatisch \"Uhrzeit-Synchronisierung\" nach erfolgreicher Anmeldung senden.';
+
+  @override
   String get repeater_statusTitle => 'Repeaterstatus';
 
   @override

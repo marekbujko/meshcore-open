@@ -2061,5 +2061,13 @@
   "scanner_linuxPairingPinPrompt": "Voer PIN in voor {deviceName} (laat leeg als er geen is).",
   "scanner_linuxPairingPinTitle": "Bluetooth‑koppelings‑PIN",
   "repeater_cliQuickDiscovery": "Ontdek Buren",
-  "repeater_cliQuickClockSync": "Kloksynchronisatie"
+  "repeater_cliQuickClockSync": "Kloksynchronisatie",
+  "@repeater_clockSyncAfterLogin": {
+    "description": "Repeater setting: auto sync device clock after successful login"
+  },
+  "@repeater_clockSyncAfterLoginSubtitle": {
+    "description": "Repeater setting subtitle: describes the clock sync after login behavior"
+  },
+  "repeater_clockSyncAfterLoginSubtitle": "Automatisch een \"klok synchroniseren\" bericht versturen na een succesvolle inlog.",
+  "repeater_clockSyncAfterLogin": "Na het inloggen, klok synchroniseren"
 }

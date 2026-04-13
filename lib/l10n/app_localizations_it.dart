@@ -2054,6 +2054,14 @@ class AppLocalizationsIt extends AppLocalizations {
       'Configura i parametri del ripetitore';
 
   @override
+  String get repeater_clockSyncAfterLogin =>
+      'Sincronizzazione dell\'orologio dopo il login';
+
+  @override
+  String get repeater_clockSyncAfterLoginSubtitle =>
+      'Invia automaticamente il comando \"sincronizzazione dell\'orologio\" dopo un login riuscito.';
+
+  @override
   String get repeater_statusTitle => 'Stato del Ripetitore';
 
   @override

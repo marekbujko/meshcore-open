@@ -2067,6 +2067,14 @@ class AppLocalizationsPl extends AppLocalizations {
   String get repeater_settingsSubtitle => 'Skonfiguruj parametry przekaźnika';
 
   @override
+  String get repeater_clockSyncAfterLogin =>
+      'Synchronizacja zegara po zalogowaniu';
+
+  @override
+  String get repeater_clockSyncAfterLoginSubtitle =>
+      'Automatycznie wysyłaj powiadomienie \"synchronizacja zegara\" po pomyślnym zalogowaniu.';
+
+  @override
   String get repeater_statusTitle => 'Status przekaźnika';
 
   @override

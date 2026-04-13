@@ -2039,6 +2039,14 @@ class AppLocalizationsNl extends AppLocalizations {
   String get repeater_settingsSubtitle => 'Configureer repeaterparameters';
 
   @override
+  String get repeater_clockSyncAfterLogin =>
+      'Na het inloggen, klok synchroniseren';
+
+  @override
+  String get repeater_clockSyncAfterLoginSubtitle =>
+      'Automatisch een \"klok synchroniseren\" bericht versturen na een succesvolle inlog.';
+
+  @override
   String get repeater_statusTitle => 'Status repeater';
 
   @override

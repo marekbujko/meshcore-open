@@ -2026,6 +2026,14 @@ class AppLocalizationsSv extends AppLocalizations {
   String get repeater_settingsSubtitle => 'Konfigurera återspolarparametrar';
 
   @override
+  String get repeater_clockSyncAfterLogin =>
+      'Synkronisera klockan efter inloggning';
+
+  @override
+  String get repeater_clockSyncAfterLoginSubtitle =>
+      'Automatiskt skicka \"klocksynkronisering\" efter en lyckad inloggning.';
+
+  @override
   String get repeater_statusTitle => 'Återspelsstatus';
 
   @override

@@ -2040,6 +2040,14 @@ class AppLocalizationsSk extends AppLocalizations {
   String get repeater_settingsSubtitle => 'Konfigurujte parametre opakovača';
 
   @override
+  String get repeater_clockSyncAfterLogin =>
+      'Synchronizácia hodiniek po prihlávení';
+
+  @override
+  String get repeater_clockSyncAfterLoginSubtitle =>
+      'Automaticky posielajte notifikáciu \"synchronizácia času\" po úspešnom prihládení.';
+
+  @override
   String get repeater_statusTitle => 'Status opakého zboru';
 
   @override

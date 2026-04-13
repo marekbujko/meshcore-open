@@ -2055,6 +2055,14 @@ class AppLocalizationsRu extends AppLocalizations {
   String get repeater_settingsSubtitle => 'Настройка параметров репитера';
 
   @override
+  String get repeater_clockSyncAfterLogin =>
+      'Синхронизация часов после входа в систему';
+
+  @override
+  String get repeater_clockSyncAfterLoginSubtitle =>
+      'Автоматически отправлять сообщение \"синхронизация времени\" после успешной авторизации.';
+
+  @override
   String get repeater_statusTitle => 'Статус репитера';
 
   @override

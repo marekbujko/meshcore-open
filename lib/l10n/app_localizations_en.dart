@@ -2015,6 +2015,13 @@ class AppLocalizationsEn extends AppLocalizations {
   String get repeater_settingsSubtitle => 'Configure repeater parameters';
 
   @override
+  String get repeater_clockSyncAfterLogin => 'Clock sync after login';
+
+  @override
+  String get repeater_clockSyncAfterLoginSubtitle =>
+      'Automatically send \"clock sync\" after a successful login';
+
+  @override
   String get repeater_statusTitle => 'Repeater Status';
 
   @override

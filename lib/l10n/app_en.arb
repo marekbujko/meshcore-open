@@ -1116,6 +1116,14 @@
   "repeater_neighborsSubtitle": "View zero hop neighbors.",
   "repeater_settings": "Settings",
   "repeater_settingsSubtitle": "Configure repeater parameters",
+  "repeater_clockSyncAfterLogin": "Clock sync after login",
+  "@repeater_clockSyncAfterLogin": {
+    "description": "Repeater setting: auto sync device clock after successful login"
+  },
+  "repeater_clockSyncAfterLoginSubtitle": "Automatically send \"clock sync\" after a successful login",
+  "@repeater_clockSyncAfterLoginSubtitle": {
+    "description": "Repeater setting subtitle: describes the clock sync after login behavior"
+  },
   "repeater_statusTitle": "Repeater Status",
   "repeater_routingMode": "Routing mode",
   "repeater_autoUseSavedPath": "Auto (use saved path)",

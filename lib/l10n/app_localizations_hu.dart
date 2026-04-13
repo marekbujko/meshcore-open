@@ -2067,6 +2067,14 @@ class AppLocalizationsHu extends AppLocalizations {
   String get repeater_settingsSubtitle => 'Állítsa be a repeater paramétereket';
 
   @override
+  String get repeater_clockSyncAfterLogin =>
+      'Óra szinkronizálás bejelentkezés után';
+
+  @override
+  String get repeater_clockSyncAfterLoginSubtitle =>
+      'Automatikusan küldje el a \"óra szinkronizálás\" üzenetet a sikeres bejelentkezés után.';
+
+  @override
   String get repeater_statusTitle => 'Adatkapcsolódás állapot';
 
   @override
