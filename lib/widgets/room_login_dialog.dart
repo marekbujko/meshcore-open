@@ -10,6 +10,7 @@ import '../services/storage_service.dart';
 import '../connector/meshcore_connector.dart';
 import '../connector/meshcore_protocol.dart';
 import '../utils/app_logger.dart';
+import '../helpers/snack_bar_builder.dart';
 import 'path_management_dialog.dart';
 
 class RoomLoginDialog extends StatefulWidget {
@@ -175,11 +176,10 @@ class _RoomLoginDialogState extends State<RoomLoginDialog> {
         setState(() {
           _isLoggingIn = false;
         });
-        ScaffoldMessenger.of(context).showSnackBar(
-          SnackBar(
-            content: Text(context.l10n.login_failed(e.toString())),
-            backgroundColor: Colors.red,
-          ),
+        showDismissibleSnackBar(
+          context,
+          content: Text(context.l10n.login_failed(e.toString())),
+          backgroundColor: Colors.red,
         );
       }
     }

@@ -10,6 +10,7 @@ import '../services/app_settings_service.dart';
 import '../services/notification_service.dart';
 import '../services/translation_service.dart';
 import '../widgets/adaptive_app_bar_title.dart';
+import '../helpers/snack_bar_builder.dart';
 import 'map_cache_screen.dart';
 
 class AppSettingsScreen extends StatelessWidget {
@@ -151,13 +152,12 @@ class AppSettingsScreen extends StatelessWidget {
                     .requestPermissions();
                 if (!granted) {
                   if (context.mounted) {
-                    ScaffoldMessenger.of(context).showSnackBar(
-                      SnackBar(
-                        content: Text(
-                          context.l10n.appSettings_notificationPermissionDenied,
-                        ),
-                        duration: const Duration(seconds: 2),
+                    showDismissibleSnackBar(
+                      context,
+                      content: Text(
+                        context.l10n.appSettings_notificationPermissionDenied,
                       ),
+                      duration: const Duration(seconds: 2),
                     );
                   }
                   return;
@@ -166,15 +166,14 @@ class AppSettingsScreen extends StatelessWidget {
 
               await settingsService.setNotificationsEnabled(value);
               if (context.mounted) {
-                ScaffoldMessenger.of(context).showSnackBar(
-                  SnackBar(
-                    content: Text(
-                      value
-                          ? context.l10n.appSettings_notificationsEnabled
-                          : context.l10n.appSettings_notificationsDisabled,
-                    ),
-                    duration: const Duration(seconds: 2),
+                showDismissibleSnackBar(
+                  context,
+                  content: Text(
+                    value
+                        ? context.l10n.appSettings_notificationsEnabled
+                        : context.l10n.appSettings_notificationsDisabled,
                   ),
+                  duration: const Duration(seconds: 2),
                 );
               }
             },
@@ -301,15 +300,14 @@ class AppSettingsScreen extends StatelessWidget {
             value: settingsService.settings.clearPathOnMaxRetry,
             onChanged: (value) {
               settingsService.setClearPathOnMaxRetry(value);
-              ScaffoldMessenger.of(context).showSnackBar(
-                SnackBar(
-                  content: Text(
-                    value
-                        ? context.l10n.appSettings_pathsWillBeCleared
-                        : context.l10n.appSettings_pathsWillNotBeCleared,
-                  ),
-                  duration: const Duration(seconds: 2),
+              showDismissibleSnackBar(
+                context,
+                content: Text(
+                  value
+                      ? context.l10n.appSettings_pathsWillBeCleared
+                      : context.l10n.appSettings_pathsWillNotBeCleared,
                 ),
+                duration: const Duration(seconds: 2),
               );
             },
           ),
@@ -329,15 +327,14 @@ class AppSettingsScreen extends StatelessWidget {
             value: settingsService.settings.autoRouteRotationEnabled,
             onChanged: (value) {
               settingsService.setAutoRouteRotationEnabled(value);
-              ScaffoldMessenger.of(context).showSnackBar(
-                SnackBar(
-                  content: Text(
-                    value
-                        ? context.l10n.appSettings_autoRouteRotationEnabled
-                        : context.l10n.appSettings_autoRouteRotationDisabled,
-                  ),
-                  duration: const Duration(seconds: 2),
+              showDismissibleSnackBar(
+                context,
+                content: Text(
+                  value
+                      ? context.l10n.appSettings_autoRouteRotationEnabled
+                      : context.l10n.appSettings_autoRouteRotationDisabled,
                 ),
+                duration: const Duration(seconds: 2),
               );
             },
           ),
@@ -1164,8 +1161,9 @@ class AppSettingsScreen extends StatelessWidget {
     String? id,
   }) async {
     if (sourceUrl.isEmpty) {
-      ScaffoldMessenger.of(context).showSnackBar(
-        SnackBar(content: Text(context.l10n.translation_enterUrlFirst)),
+      showDismissibleSnackBar(
+        context,
+        content: Text(context.l10n.translation_enterUrlFirst),
       );
       return;
     }
@@ -1176,22 +1174,23 @@ class AppSettingsScreen extends StatelessWidget {
         id: id,
       );
       if (!context.mounted) return;
-      ScaffoldMessenger.of(context).showSnackBar(
-        SnackBar(content: Text(context.l10n.translation_modelDownloaded)),
+      showDismissibleSnackBar(
+        context,
+        content: Text(context.l10n.translation_modelDownloaded),
       );
       await settingsService.setTranslationEnabled(true);
     } on TranslationDownloadCancelled {
       if (!context.mounted) return;
-      ScaffoldMessenger.of(context).showSnackBar(
-        SnackBar(content: Text(context.l10n.translation_downloadStopped)),
+      showDismissibleSnackBar(
+        context,
+        content: Text(context.l10n.translation_downloadStopped),
       );
     } catch (error) {
       if (!context.mounted) return;
-      ScaffoldMessenger.of(context).showSnackBar(
-        SnackBar(
-          content: Text(
-            context.l10n.translation_downloadFailed(error.toString()),
-          ),
+      showDismissibleSnackBar(
+        context,
+        content: Text(
+          context.l10n.translation_downloadFailed(error.toString()),
         ),
       );
     }
@@ -1236,16 +1235,16 @@ class AppSettingsScreen extends StatelessWidget {
     try {
       await translationService.removeModel(model);
       if (!context.mounted) return;
-      ScaffoldMessenger.of(context).showSnackBar(
-        SnackBar(
-          // TODO: l10n
-          content: Text('Deleted ${translationModelFriendlyName(model)}.'),
-        ),
+      showDismissibleSnackBar(
+        context,
+        // TODO: l10n
+        content: Text('Deleted ${translationModelFriendlyName(model)}.'),
       );
     } catch (error) {
       if (!context.mounted) return;
-      ScaffoldMessenger.of(context).showSnackBar(
-        SnackBar(content: Text('Delete failed: $error')),
+      showDismissibleSnackBar(
+        context,
+        content: Text('Delete failed: $error'),
       ); // TODO: l10n
     }
   }
@@ -1279,15 +1278,14 @@ class AppSettingsScreen extends StatelessWidget {
             onChanged: (value) async {
               await settingsService.setAppDebugLogEnabled(value);
               if (!context.mounted) return;
-              ScaffoldMessenger.of(context).showSnackBar(
-                SnackBar(
-                  content: Text(
-                    value
-                        ? context.l10n.appSettings_appDebugLoggingEnabled
-                        : context.l10n.appSettings_appDebugLoggingDisabled,
-                  ),
-                  duration: const Duration(seconds: 2),
+              showDismissibleSnackBar(
+                context,
+                content: Text(
+                  value
+                      ? context.l10n.appSettings_appDebugLoggingEnabled
+                      : context.l10n.appSettings_appDebugLoggingDisabled,
                 ),
+                duration: const Duration(seconds: 2),
               );
             },
           ),

@@ -43,6 +43,7 @@ import '../widgets/radio_stats_entry.dart';
 import '../widgets/translated_message_content.dart';
 import '../utils/app_logger.dart';
 import '../l10n/l10n.dart';
+import '../helpers/snack_bar_builder.dart';
 import 'telemetry_screen.dart';
 
 class ChatScreen extends StatefulWidget {
@@ -633,9 +634,10 @@ class _ChatScreenState extends State<ChatScreen> {
     final now = DateTime.now();
     if (_lastTextSendAt != null &&
         now.difference(_lastTextSendAt!) < const Duration(seconds: 1)) {
-      ScaffoldMessenger.of(
+      showDismissibleSnackBar(
         context,
-      ).showSnackBar(SnackBar(content: Text(context.l10n.chat_sendCooldown)));
+        content: Text(context.l10n.chat_sendCooldown),
+      );
       return;
     }
     _lastTextSendAt = now;
@@ -671,8 +673,9 @@ class _ChatScreenState extends State<ChatScreen> {
     }
     final maxBytes = maxContactMessageBytes();
     if (utf8.encode(outgoingText).length > maxBytes) {
-      ScaffoldMessenger.of(context).showSnackBar(
-        SnackBar(content: Text(context.l10n.chat_messageTooLong(maxBytes))),
+      showDismissibleSnackBar(
+        context,
+        content: Text(context.l10n.chat_messageTooLong(maxBytes)),
       );
       return;
     }
@@ -860,15 +863,12 @@ class _ChatScreenState extends State<ChatScreen> {
                                   _showFullPathDialog(context, path.pathBytes),
                               onTap: () async {
                                 if (path.pathBytes.isEmpty) {
-                                  ScaffoldMessenger.of(context).showSnackBar(
-                                    SnackBar(
-                                      content: Text(
-                                        context
-                                            .l10n
-                                            .chat_pathDetailsNotAvailable,
-                                      ),
-                                      duration: const Duration(seconds: 2),
+                                  showDismissibleSnackBar(
+                                    context,
+                                    content: Text(
+                                      context.l10n.chat_pathDetailsNotAvailable,
                                     ),
+                                    duration: const Duration(seconds: 2),
                                   );
                                   return;
                                 }
@@ -952,11 +952,10 @@ class _ChatScreenState extends State<ChatScreen> {
                           _resolveContact(connector),
                         );
                         if (!context.mounted) return;
-                        ScaffoldMessenger.of(context).showSnackBar(
-                          SnackBar(
-                            content: Text(context.l10n.chat_pathCleared),
-                            duration: const Duration(seconds: 2),
-                          ),
+                        showDismissibleSnackBar(
+                          context,
+                          content: Text(context.l10n.chat_pathCleared),
+                          duration: const Duration(seconds: 2),
                         );
                         Navigator.pop(context);
                       },
@@ -982,11 +981,10 @@ class _ChatScreenState extends State<ChatScreen> {
                           pathLen: -1,
                         );
                         if (!context.mounted) return;
-                        ScaffoldMessenger.of(context).showSnackBar(
-                          SnackBar(
-                            content: Text(context.l10n.chat_floodModeEnabled),
-                            duration: const Duration(seconds: 2),
-                          ),
+                        showDismissibleSnackBar(
+                          context,
+                          content: Text(context.l10n.chat_floodModeEnabled),
+                          duration: const Duration(seconds: 2),
                         );
                         Navigator.pop(context);
                       },
@@ -1020,11 +1018,10 @@ class _ChatScreenState extends State<ChatScreen> {
 
   void _showFullPathDialog(BuildContext context, List<int> pathBytes) {
     if (pathBytes.isEmpty) {
-      ScaffoldMessenger.of(context).showSnackBar(
-        SnackBar(
-          content: Text(context.l10n.chat_pathDetailsNotAvailable),
-          duration: const Duration(seconds: 2),
-        ),
+      showDismissibleSnackBar(
+        context,
+        content: Text(context.l10n.chat_pathDetailsNotAvailable),
+        duration: const Duration(seconds: 2),
       );
       return;
     }
@@ -1137,11 +1134,10 @@ class _ChatScreenState extends State<ChatScreen> {
         : (verified
               ? context.l10n.chat_pathDeviceConfirmed
               : context.l10n.chat_pathDeviceNotConfirmed);
-    ScaffoldMessenger.of(context).showSnackBar(
-      SnackBar(
-        content: Text(context.l10n.chat_pathSetHops(hopCount, status)),
-        duration: const Duration(seconds: 3),
-      ),
+    showDismissibleSnackBar(
+      context,
+      content: Text(context.l10n.chat_pathSetHops(hopCount, status)),
+      duration: const Duration(seconds: 3),
     );
   }
 
@@ -1490,26 +1486,29 @@ class _ChatScreenState extends State<ChatScreen> {
 
   void _copyMessageText(String text) {
     Clipboard.setData(ClipboardData(text: text));
-    ScaffoldMessenger.of(
+    showDismissibleSnackBar(
       context,
-    ).showSnackBar(SnackBar(content: Text(context.l10n.chat_messageCopied)));
+      content: Text(context.l10n.chat_messageCopied),
+    );
   }
 
   Future<void> _deleteMessage(Message message) async {
     await context.read<MeshCoreConnector>().deleteMessage(message);
     if (!mounted) return;
-    ScaffoldMessenger.of(
+    showDismissibleSnackBar(
       context,
-    ).showSnackBar(SnackBar(content: Text(context.l10n.chat_messageDeleted)));
+      content: Text(context.l10n.chat_messageDeleted),
+    );
   }
 
   void _retryMessage(Message message) {
     final connector = Provider.of<MeshCoreConnector>(context, listen: false);
     // Retry using the contact's current path override setting
     connector.sendMessage(_resolveContact(connector), message.text);
-    ScaffoldMessenger.of(
+    showDismissibleSnackBar(
       context,
-    ).showSnackBar(SnackBar(content: Text(context.l10n.chat_retryingMessage)));
+      content: Text(context.l10n.chat_retryingMessage),
+    );
   }
 
   void _showEmojiPicker(Message message, Contact senderContact) {
