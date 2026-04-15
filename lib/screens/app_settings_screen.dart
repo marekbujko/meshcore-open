@@ -1062,25 +1062,25 @@ class AppSettingsScreen extends StatelessWidget {
             children: [
               Text(context.l10n.appSettings_showNodesDiscoveredWithin),
               const SizedBox(height: 16),
-              ListTile(
+              RadioListTile<double>(
                 title: Text(context.l10n.appSettings_allTime),
-                leading: Radio<double>(value: 0),
+                value: 0,
               ),
-              ListTile(
+              RadioListTile<double>(
                 title: Text(context.l10n.appSettings_lastHour),
-                leading: Radio<double>(value: 1),
+                value: 1,
               ),
-              ListTile(
+              RadioListTile<double>(
                 title: Text(context.l10n.appSettings_last6Hours),
-                leading: Radio<double>(value: 6),
+                value: 6,
               ),
-              ListTile(
+              RadioListTile<double>(
                 title: Text(context.l10n.appSettings_last24Hours),
-                leading: Radio<double>(value: 24),
+                value: 24,
               ),
-              ListTile(
+              RadioListTile<double>(
                 title: Text(context.l10n.appSettings_lastWeek),
-                leading: Radio<double>(value: 168),
+                value: 168,
               ),
             ],
           ),
@@ -1114,13 +1114,13 @@ class AppSettingsScreen extends StatelessWidget {
           child: Column(
             mainAxisSize: MainAxisSize.min,
             children: [
-              ListTile(
+              RadioListTile<UnitSystem>(
                 title: Text(context.l10n.appSettings_unitsMetric),
-                leading: const Radio<UnitSystem>(value: UnitSystem.metric),
+                value: UnitSystem.metric,
               ),
-              ListTile(
+              RadioListTile<UnitSystem>(
                 title: Text(context.l10n.appSettings_unitsImperial),
-                leading: const Radio<UnitSystem>(value: UnitSystem.imperial),
+                value: UnitSystem.imperial,
               ),
             ],
           ),
