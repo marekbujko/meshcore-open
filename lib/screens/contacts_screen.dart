@@ -961,13 +961,16 @@ class _ContactsScreenState extends State<ContactsScreen>
       context: context,
       builder: (context) => RepeaterLoginDialog(
         repeater: repeater,
-        onLogin: (password) {
+        onLogin: (password, isAdmin) {
           // Navigate to repeater hub screen after successful login
           Navigator.push(
             context,
             MaterialPageRoute(
-              builder: (context) =>
-                  RepeaterHubScreen(repeater: repeater, password: password),
+              builder: (context) => RepeaterHubScreen(
+                repeater: repeater,
+                password: password,
+                isAdmin: isAdmin,
+              ),
             ),
           );
         },
@@ -984,14 +987,18 @@ class _ContactsScreenState extends State<ContactsScreen>
       context: context,
       builder: (context) => RoomLoginDialog(
         room: room,
-        onLogin: (password) {
+        onLogin: (password, isAdmin) {
           context.read<MeshCoreConnector>().markContactRead(room.publicKeyHex);
           Navigator.push(
             context,
             MaterialPageRoute(
               builder: (context) =>
                   destination == RoomLoginDestination.management
-                  ? RepeaterHubScreen(repeater: room, password: password)
+                  ? RepeaterHubScreen(
+                      repeater: room,
+                      password: password,
+                      isAdmin: isAdmin,
+                    )
                   : ChatScreen(contact: room),
             ),
           );

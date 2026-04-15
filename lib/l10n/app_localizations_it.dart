@@ -2017,7 +2017,16 @@ class AppLocalizationsIt extends AppLocalizations {
   String get room_management => 'Gestione del Server di Camera';
 
   @override
+  String get repeater_guest => 'Repeater Information';
+
+  @override
+  String get room_guest => 'Room Server Information';
+
+  @override
   String get repeater_managementTools => 'Strumenti di Gestione';
+
+  @override
+  String get repeater_guestTools => 'Guest Tools';
 
   @override
   String get repeater_status => 'Stato';

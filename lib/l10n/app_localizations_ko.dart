@@ -1930,7 +1930,16 @@ class AppLocalizationsKo extends AppLocalizations {
   String get room_management => '방 서버 관리';
 
   @override
+  String get repeater_guest => 'Repeater Information';
+
+  @override
+  String get room_guest => 'Room Server Information';
+
+  @override
   String get repeater_managementTools => '관리 도구';
+
+  @override
+  String get repeater_guestTools => 'Guest Tools';
 
   @override
   String get repeater_status => '상태';

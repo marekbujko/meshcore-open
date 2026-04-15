@@ -2002,7 +2002,16 @@ class AppLocalizationsSl extends AppLocalizations {
   String get room_management => 'Upravljanje stremlišča';
 
   @override
+  String get repeater_guest => 'Repeater Information';
+
+  @override
+  String get room_guest => 'Room Server Information';
+
+  @override
   String get repeater_managementTools => 'Upravne orodje';
+
+  @override
+  String get repeater_guestTools => 'Guest Tools';
 
   @override
   String get repeater_status => 'Status';
