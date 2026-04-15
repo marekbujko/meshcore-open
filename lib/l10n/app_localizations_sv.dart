@@ -1218,6 +1218,14 @@ class AppLocalizationsSv extends AppLocalizations {
   String get chat_noMessages => 'Inga meddelanden ännu';
 
   @override
+  String get chat_sendMessage => 'Send message';
+
+  @override
+  String chat_sendMessageTo(String contactName) {
+    return 'Skicka ett meddelande till $contactName';
+  }
+
+  @override
   String get chat_sendMessageToStart =>
       'Skicka ett meddelande för att komma igång';
 
@@ -1237,11 +1245,6 @@ class AppLocalizationsSv extends AppLocalizations {
 
   @override
   String get chat_location => 'Plats';
-
-  @override
-  String chat_sendMessageTo(String contactName) {
-    return 'Skicka ett meddelande till $contactName';
-  }
 
   @override
   String get chat_typeMessage => 'Skriv ett meddelande...';
@@ -1988,7 +1991,16 @@ class AppLocalizationsSv extends AppLocalizations {
   String get room_management => 'Rumserverhantering';
 
   @override
+  String get repeater_guest => 'Repeater Information';
+
+  @override
+  String get room_guest => 'Room Server Information';
+
+  @override
   String get repeater_managementTools => 'Administrationsverktyg';
+
+  @override
+  String get repeater_guestTools => 'Guest Tools';
 
   @override
   String get repeater_status => 'Status';
@@ -2021,6 +2033,14 @@ class AppLocalizationsSv extends AppLocalizations {
 
   @override
   String get repeater_settingsSubtitle => 'Konfigurera återspolarparametrar';
+
+  @override
+  String get repeater_clockSyncAfterLogin =>
+      'Synkronisera klockan efter inloggning';
+
+  @override
+  String get repeater_clockSyncAfterLoginSubtitle =>
+      'Automatiskt skicka \"klocksynkronisering\" efter en lyckad inloggning.';
 
   @override
   String get repeater_statusTitle => 'Återspelsstatus';
@@ -2393,6 +2413,12 @@ class AppLocalizationsSv extends AppLocalizations {
 
   @override
   String get repeater_cliQuickClock => 'Klocka';
+
+  @override
+  String get repeater_cliQuickClockSync => 'Synkronisera klocka';
+
+  @override
+  String get repeater_cliQuickDiscovery => 'Upptäck grannar';
 
   @override
   String get repeater_cliHelpAdvert => 'Skickar ett annonspaket';
@@ -3599,17 +3625,17 @@ class AppLocalizationsSv extends AppLocalizations {
       'Ange först en URL för en specifik modell.';
 
   @override
-  String get scanner_linuxPairingShowPin => 'Visa PIN-kod';
+  String get scanner_linuxPairingShowPin => 'Visa PIN';
 
   @override
-  String get scanner_linuxPairingHidePin => 'Dölj PIN-kod';
+  String get scanner_linuxPairingHidePin => 'Dölj PIN';
 
   @override
-  String get scanner_linuxPairingPinTitle => 'PIN-kod för Bluetooth-anslutning';
+  String get scanner_linuxPairingPinTitle => 'Bluetooth‑parnings‑PIN';
 
   @override
   String scanner_linuxPairingPinPrompt(String deviceName) {
-    return 'Ange PIN-kod för $deviceName (lämna tomt om ingen finns).';
+    return 'Ange PIN för $deviceName (lämna tomt om ingen).';
   }
 
   @override

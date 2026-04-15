@@ -1162,6 +1162,14 @@ class AppLocalizationsZh extends AppLocalizations {
   String get chat_noMessages => '暂无消息';
 
   @override
+  String get chat_sendMessage => 'Send message';
+
+  @override
+  String chat_sendMessageTo(String contactName) {
+    return '发送消息给 $contactName';
+  }
+
+  @override
   String get chat_sendMessageToStart => '发送消息开始对话';
 
   @override
@@ -1179,11 +1187,6 @@ class AppLocalizationsZh extends AppLocalizations {
 
   @override
   String get chat_location => '位置';
-
-  @override
-  String chat_sendMessageTo(String contactName) {
-    return '发送消息给 $contactName';
-  }
 
   @override
   String get chat_typeMessage => '输入消息...';
@@ -1888,7 +1891,16 @@ class AppLocalizationsZh extends AppLocalizations {
   String get room_management => '房间服务器管理';
 
   @override
+  String get repeater_guest => 'Repeater Information';
+
+  @override
+  String get room_guest => 'Room Server Information';
+
+  @override
   String get repeater_managementTools => '管理工具';
+
+  @override
+  String get repeater_guestTools => 'Guest Tools';
 
   @override
   String get repeater_status => '状态';
@@ -1919,6 +1931,12 @@ class AppLocalizationsZh extends AppLocalizations {
 
   @override
   String get repeater_settingsSubtitle => '配置转发节点参数';
+
+  @override
+  String get repeater_clockSyncAfterLogin => '登录后，自动同步时钟';
+
+  @override
+  String get repeater_clockSyncAfterLoginSubtitle => '在成功登录后，自动发送“时钟同步”指令。';
 
   @override
   String get repeater_statusTitle => '转发节点状态';
@@ -2276,6 +2294,12 @@ class AppLocalizationsZh extends AppLocalizations {
 
   @override
   String get repeater_cliQuickClock => '时钟';
+
+  @override
+  String get repeater_cliQuickClockSync => '同步时钟';
+
+  @override
+  String get repeater_cliQuickDiscovery => '发现邻居';
 
   @override
   String get repeater_cliHelpAdvert => '发送广播包';

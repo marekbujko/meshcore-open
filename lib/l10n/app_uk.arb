@@ -2042,10 +2042,6 @@
       }
     }
   },
-  "scanner_linuxPairingPinTitle": "PIN для з'єднання через Bluetooth",
-  "scanner_linuxPairingShowPin": "Показати PIN-код",
-  "scanner_linuxPairingPinPrompt": "Введіть PIN-код для {deviceName} (залиште поле порожнім, якщо немає).",
-  "scanner_linuxPairingHidePin": "Приховати PIN-код",
   "@translation_translateTo": {
     "placeholders": {
       "language": {
@@ -2059,5 +2055,19 @@
   "translation_translateBeforeSending": "Перекладіть перед відправкою",
   "translation_translateTo": "Перекласти на {language}",
   "translation_translationOptions": "Варіанти перекладу",
-  "translation_systemLanguage": "Мова системи"
+  "translation_systemLanguage": "Мова системи",
+  "scanner_linuxPairingPinTitle": "PIN‑код спарювання Bluetooth",
+  "scanner_linuxPairingShowPin": "Показати PIN",
+  "scanner_linuxPairingPinPrompt": "Введіть PIN для {deviceName} (залиште порожнім, якщо його немає).",
+  "scanner_linuxPairingHidePin": "Приховати PIN",
+  "repeater_cliQuickClockSync": "Синхронізація годинника",
+  "repeater_cliQuickDiscovery": "Відкрити сусідів",
+  "@repeater_clockSyncAfterLogin": {
+    "description": "Repeater setting: auto sync device clock after successful login"
+  },
+  "@repeater_clockSyncAfterLoginSubtitle": {
+    "description": "Repeater setting subtitle: describes the clock sync after login behavior"
+  },
+  "repeater_clockSyncAfterLoginSubtitle": "Автоматично надсилати повідомлення \"синхронізація годин\" після успішного входу.",
+  "repeater_clockSyncAfterLogin": "Синхронізація годин після входу"
 }

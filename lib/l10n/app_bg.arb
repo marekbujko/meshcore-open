@@ -2042,10 +2042,6 @@
       }
     }
   },
-  "scanner_linuxPairingPinTitle": "PIN за съвпадение чрез Bluetooth",
-  "scanner_linuxPairingPinPrompt": "Въведете PIN кода за {deviceName} (оставете празно, ако няма такъв).",
-  "scanner_linuxPairingHidePin": "Скриване на PIN кода",
-  "scanner_linuxPairingShowPin": "Покажи PIN",
   "@translation_translateTo": {
     "placeholders": {
       "language": {
@@ -2059,5 +2055,19 @@
   "translation_composerEnabledHint": "Съобщенията ще бъдат преведени, преди да бъдат изпратени.",
   "translation_translateTo": "Превеждане на {language}",
   "translation_translationOptions": "Опции за превод",
-  "translation_systemLanguage": "Език на системата"
+  "translation_systemLanguage": "Език на системата",
+  "scanner_linuxPairingPinTitle": "PIN за съвпадение чрез Bluetooth",
+  "scanner_linuxPairingPinPrompt": "Въведете PIN кода за {deviceName} (оставете празно, ако няма такъв).",
+  "scanner_linuxPairingHidePin": "Скриване на PIN кода",
+  "scanner_linuxPairingShowPin": "Покажи PIN",
+  "repeater_cliQuickClockSync": "Синхронизация на часовника",
+  "repeater_cliQuickDiscovery": "Открий Съседи",
+  "@repeater_clockSyncAfterLogin": {
+    "description": "Repeater setting: auto sync device clock after successful login"
+  },
+  "@repeater_clockSyncAfterLoginSubtitle": {
+    "description": "Repeater setting subtitle: describes the clock sync after login behavior"
+  },
+  "repeater_clockSyncAfterLoginSubtitle": "Автоматично изпращайте съобщение \"синхронизиране на часовника\" след успешно влизане.",
+  "repeater_clockSyncAfterLogin": "Синхронизиране на часовника след влизане"
 }

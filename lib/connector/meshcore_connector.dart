@@ -104,6 +104,22 @@ class RepeaterBatterySnapshot {
   });
 }
 
+class MeshCoreRadioStateSnapshot {
+  final int freqHz;
+  final int bwHz;
+  final int sf;
+  final int cr;
+  final int txPowerDbm;
+
+  const MeshCoreRadioStateSnapshot({
+    required this.freqHz,
+    required this.bwHz,
+    required this.sf,
+    required this.cr,
+    required this.txPowerDbm,
+  });
+}
+
 class MeshCoreConnector extends ChangeNotifier {
   // Message windowing to limit memory usage
   static const int _messageWindowSize = 200;
@@ -169,6 +185,7 @@ class MeshCoreConnector extends ChangeNotifier {
   int? _currentSf;
   int? _currentCr;
   bool? _clientRepeat;
+  MeshCoreRadioStateSnapshot? _rememberedNonRepeatRadioState;
   int? _firmwareVerCode;
   int _pathHashByteWidth = 1;
   CompanionRadioStats? _latestRadioStats;
@@ -196,6 +213,7 @@ class MeshCoreConnector extends ChangeNotifier {
   static const int _contactMsgBackoffFallbackMs = 5000;
   static const int _contactMsgBackoffMinMs = 500;
   static const int _contactMsgBackoffMaxMs = 15000;
+  int _pollingInterval = 30;
   bool _batteryRequested = false;
   bool _awaitingSelfInfo = false;
   bool _hasReceivedDeviceInfo = false;
@@ -326,8 +344,14 @@ class MeshCoreConnector extends ChangeNotifier {
 
   List<Contact> get allContacts => List.unmodifiable([
     ..._contacts,
-    ..._discoveredContacts.where((c) => !c.isActive),
+    ..._discoveredContacts.where(
+      (c) => !c.isActive && c.publicKeyHex != selfPublicKeyHex,
+    ),
   ]);
+
+  List<Contact> get allContactsUnfiltered =>
+      List.unmodifiable([..._contacts, ..._discoveredContacts]);
+
   List<Contact> get discoveredContacts {
     return List.unmodifiable(_discoveredContacts);
   }
@@ -362,6 +386,8 @@ class MeshCoreConnector extends ChangeNotifier {
   int? get currentBwHz => _currentBwHz;
   int? get currentSf => _currentSf;
   int? get currentCr => _currentCr;
+  MeshCoreRadioStateSnapshot? get rememberedNonRepeatRadioState =>
+      _rememberedNonRepeatRadioState;
   bool? get autoAddUsers => _autoAddUsers;
   bool? get autoAddRepeaters => _autoAddRepeaters;
   bool? get autoAddRoomServers => _autoAddRoomServers;
@@ -373,6 +399,10 @@ class MeshCoreConnector extends ChangeNotifier {
   int get advertLocationPolicy => _advertLocPolicy;
   int get multiAcks => _multiAcks;
   bool? get clientRepeat => _clientRepeat;
+  void rememberNonRepeatRadioState(MeshCoreRadioStateSnapshot snapshot) {
+    _rememberedNonRepeatRadioState = snapshot;
+  }
+
   int? get firmwareVerCode => _firmwareVerCode;
   Map<String, String>? get currentCustomVars => _currentCustomVars;
   int? get batteryMillivolts => _batteryMillivolts;
@@ -2271,6 +2301,7 @@ class MeshCoreConnector extends ChangeNotifier {
     _selfLatitude = null;
     _selfLongitude = null;
     _clientRepeat = null;
+    _rememberedNonRepeatRadioState = null;
     _firmwareVerCode = null;
     _batteryMillivolts = null;
     _repeaterBatterySnapshots.clear();
@@ -2368,9 +2399,18 @@ class MeshCoreConnector extends ChangeNotifier {
     _batteryPollTimer = null;
   }
 
+  void setPollingInterval(int i) {
+    _pollingInterval = i.clamp(1, 60);
+    if (isConnected) {
+      _startRadioStatsPolling();
+    }
+  }
+
   void _startRadioStatsPolling() {
     _radioStatsPollTimer?.cancel();
-    _radioStatsPollTimer = Timer.periodic(const Duration(seconds: 1), (_) {
+    _radioStatsPollTimer = Timer.periodic(Duration(seconds: _pollingInterval), (
+      _,
+    ) {
       if (!isConnected) {
         _stopRadioStatsPolling();
         return;
@@ -2493,6 +2533,18 @@ class MeshCoreConnector extends ChangeNotifier {
       }
       unawaited(sendFrame(buildAppStartFrame()));
     });
+  }
+
+  Contact getFromDiscovered(Contact contact) {
+    final tmp = _discoveredContacts.firstWhere(
+      (c) => c.publicKeyHex == contact.publicKeyHex,
+      orElse: () => contact,
+    );
+    return contact.copyWith(
+      rawPacket: tmp.rawPacket,
+      latitude: tmp.latitude,
+      longitude: tmp.longitude,
+    );
   }
 
   Future<void> getContacts({int? since, bool preserveExisting = false}) async {
@@ -3875,7 +3927,9 @@ class MeshCoreConnector extends ChangeNotifier {
     if (mlTimeout != null) {
       if (pathLength < 0) {
         // Flood: trust ML, only enforce firmware formula as floor
-        return mlTimeout.clamp(physicsMin, mlTimeout);
+        if (mlTimeout < physicsMin) {
+          return physicsMin;
+        }
       }
       return mlTimeout.clamp(physicsMin, physicsMax);
     }
@@ -3885,8 +3939,17 @@ class MeshCoreConnector extends ChangeNotifier {
   }
 
   void _handleContact(Uint8List frame, {bool isContact = true}) {
-    final contact = Contact.fromFrame(frame);
-    if (contact != null) {
+    final contactTmp = Contact.fromFrame(frame);
+    if (contactTmp != null) {
+      if (listEquals(contactTmp.publicKey, _selfPublicKey)) {
+        appLogger.info(
+          'Ignoring contact with self public key: ${contactTmp.name}',
+          tag: 'Connector',
+        );
+        removeContact(contactTmp);
+        return;
+      }
+      final contact = getFromDiscovered(contactTmp);
       _handleDiscovery(contact, frame, noNotify: true, addActive: true);
 
       if (contact.type == advTypeRepeater) {

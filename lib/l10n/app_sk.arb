@@ -2059,5 +2059,15 @@
   "translation_messageTranslation": "Preklad textu",
   "translation_translateTo": "Preložte do {language}",
   "translation_translationOptions": "Možnosti prekladania",
-  "translation_systemLanguage": "Jazyk systému"
+  "translation_systemLanguage": "Jazyk systému",
+  "repeater_cliQuickClockSync": "Synchronizácia hodin",
+  "repeater_cliQuickDiscovery": "Objaviť susedov",
+  "@repeater_clockSyncAfterLogin": {
+    "description": "Repeater setting: auto sync device clock after successful login"
+  },
+  "@repeater_clockSyncAfterLoginSubtitle": {
+    "description": "Repeater setting subtitle: describes the clock sync after login behavior"
+  },
+  "repeater_clockSyncAfterLogin": "Synchronizácia hodiniek po prihlávení",
+  "repeater_clockSyncAfterLoginSubtitle": "Automaticky posielajte notifikáciu \"synchronizácia času\" po úspešnom prihládení."
 }

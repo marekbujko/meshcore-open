@@ -1,1 +1,120 @@
-{}
+{
+  "bg": [
+    "chat_sendMessage",
+    "repeater_guest",
+    "room_guest",
+    "repeater_guestTools"
+  ],
+
+  "de": [
+    "chat_sendMessage",
+    "repeater_guest",
+    "room_guest",
+    "repeater_guestTools"
+  ],
+
+  "es": [
+    "chat_sendMessage",
+    "repeater_guest",
+    "room_guest",
+    "repeater_guestTools"
+  ],
+
+  "fr": [
+    "chat_sendMessage",
+    "repeater_guest",
+    "room_guest",
+    "repeater_guestTools"
+  ],
+
+  "hu": [
+    "chat_sendMessage",
+    "repeater_guest",
+    "room_guest",
+    "repeater_guestTools"
+  ],
+
+  "it": [
+    "chat_sendMessage",
+    "repeater_guest",
+    "room_guest",
+    "repeater_guestTools"
+  ],
+
+  "ja": [
+    "chat_sendMessage",
+    "repeater_guest",
+    "room_guest",
+    "repeater_guestTools"
+  ],
+
+  "ko": [
+    "chat_sendMessage",
+    "repeater_guest",
+    "room_guest",
+    "repeater_guestTools"
+  ],
+
+  "nl": [
+    "chat_sendMessage",
+    "repeater_guest",
+    "room_guest",
+    "repeater_guestTools"
+  ],
+
+  "pl": [
+    "chat_sendMessage",
+    "repeater_guest",
+    "room_guest",
+    "repeater_guestTools"
+  ],
+
+  "pt": [
+    "chat_sendMessage",
+    "repeater_guest",
+    "room_guest",
+    "repeater_guestTools"
+  ],
+
+  "ru": [
+    "chat_sendMessage",
+    "repeater_guest",
+    "room_guest",
+    "repeater_guestTools"
+  ],
+
+  "sk": [
+    "chat_sendMessage",
+    "repeater_guest",
+    "room_guest",
+    "repeater_guestTools"
+  ],
+
+  "sl": [
+    "chat_sendMessage",
+    "repeater_guest",
+    "room_guest",
+    "repeater_guestTools"
+  ],
+
+  "sv": [
+    "chat_sendMessage",
+    "repeater_guest",
+    "room_guest",
+    "repeater_guestTools"
+  ],
+
+  "uk": [
+    "chat_sendMessage",
+    "repeater_guest",
+    "room_guest",
+    "repeater_guestTools"
+  ],
+
+  "zh": [
+    "chat_sendMessage",
+    "repeater_guest",
+    "room_guest",
+    "repeater_guestTools"
+  ]
+}

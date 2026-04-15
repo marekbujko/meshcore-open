@@ -14,7 +14,7 @@ import 'path_management_dialog.dart';
 
 class RepeaterLoginDialog extends StatefulWidget {
   final Contact repeater;
-  final Function(String password) onLogin;
+  final Function(String password, bool isAdmin) onLogin;
 
   const RepeaterLoginDialog({
     super.key,
@@ -113,12 +113,13 @@ class _RepeaterLoginDialogState extends State<RepeaterLoginDialog> {
         messageBytes: responseBytes,
       );
       final timeoutSeconds = (timeoutMs / 1000).ceil();
-      final timeout = Duration(milliseconds: timeoutMs);
+      final timeout = Duration(milliseconds: timeoutMs + 2000);
       final selectionLabel = selection.useFlood
           ? 'flood'
           : '${selection.hopCount} hops';
       appLogger.info('Login routing: $selectionLabel', tag: 'RepeaterLogin');
       bool? loginResult;
+      bool isAdmin = false;
       for (int attempt = 0; attempt < _maxAttempts; attempt++) {
         if (!mounted) return;
         setState(() {
@@ -131,7 +132,7 @@ class _RepeaterLoginDialogState extends State<RepeaterLoginDialog> {
         );
         await _connector.sendFrame(loginFrame);
 
-        loginResult = await _awaitLoginResponse(timeout);
+        (loginResult, isAdmin) = await _awaitLoginResponse(timeout);
         if (loginResult == true) {
           appLogger.info(
             'Login succeeded for ${repeater.name}',
@@ -187,9 +188,32 @@ class _RepeaterLoginDialogState extends State<RepeaterLoginDialog> {
         await _storage.removeRepeaterPassword(widget.repeater.publicKeyHex);
       }
 
+      final autoClockSync = await _storage
+          .getRepeaterAutoClockSyncAfterLoginEnabled(
+            widget.repeater.publicKeyHex,
+          );
+      if (autoClockSync) {
+        try {
+          final timestampSeconds =
+              DateTime.now().millisecondsSinceEpoch ~/ 1000;
+          await _connector.sendFrame(
+            buildSendCliCommandFrame(
+              repeater.publicKey,
+              'clock sync',
+              timestampSeconds: timestampSeconds,
+            ),
+          );
+        } catch (e) {
+          appLogger.warn(
+            'Auto clock sync failed for ${repeater.name}: $e',
+            tag: 'RepeaterLogin',
+          );
+        }
+      }
+
       if (mounted) {
         Navigator.pop(context, password);
-        Future.microtask(() => widget.onLogin(password));
+        Future.microtask(() => widget.onLogin(password, isAdmin));
       }
     } catch (e) {
       final repeater = _resolveRepeater(_connector);
@@ -206,17 +230,21 @@ class _RepeaterLoginDialogState extends State<RepeaterLoginDialog> {
     }
   }
 
-  Future<bool?> _awaitLoginResponse(Duration timeout) async {
+  // _awaitLoginResponse returns a record of bool, for success and if the client is an admin
+  Future<(bool?, bool)> _awaitLoginResponse(Duration timeout) async {
     final completer = Completer<bool?>();
     Timer? timer;
     StreamSubscription<Uint8List>? subscription;
     final targetPrefix = widget.repeater.publicKey.sublist(0, 6);
-
+    bool isAdmin = false;
     subscription = _connector.receivedFrames.listen((frame) {
       if (frame.isEmpty) return;
       final code = frame[0];
       if (code != pushCodeLoginSuccess && code != pushCodeLoginFail) return;
       if (frame.length < 8) return;
+      // NOTE: a bug in the repeater firmware only ever sends 1 or 0 back, not the
+      // expected client permissions
+      isAdmin = (frame[1] == 1);
       final prefix = frame.sublist(2, 8);
       if (!listEquals(prefix, targetPrefix)) return;
 
@@ -235,7 +263,7 @@ class _RepeaterLoginDialogState extends State<RepeaterLoginDialog> {
     final result = await completer.future;
     timer.cancel();
     await subscription.cancel();
-    return result;
+    return (result, isAdmin);
   }
 
   @override

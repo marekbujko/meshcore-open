@@ -1240,6 +1240,14 @@ class AppLocalizationsBg extends AppLocalizations {
   String get chat_noMessages => 'Няма съобщения.';
 
   @override
+  String get chat_sendMessage => 'Send message';
+
+  @override
+  String chat_sendMessageTo(String contactName) {
+    return 'Изпрати съобщение на $contactName';
+  }
+
+  @override
   String get chat_sendMessageToStart => 'Изпрати съобщение, за да започнеш.';
 
   @override
@@ -1257,11 +1265,6 @@ class AppLocalizationsBg extends AppLocalizations {
 
   @override
   String get chat_location => 'Местоположение';
-
-  @override
-  String chat_sendMessageTo(String contactName) {
-    return 'Изпрати съобщение на $contactName';
-  }
 
   @override
   String get chat_typeMessage => 'Въведете съобщение...';
@@ -2017,7 +2020,16 @@ class AppLocalizationsBg extends AppLocalizations {
   String get room_management => 'Управление на сървъра за стая';
 
   @override
+  String get repeater_guest => 'Repeater Information';
+
+  @override
+  String get room_guest => 'Room Server Information';
+
+  @override
   String get repeater_managementTools => 'Инструменти за управление';
+
+  @override
+  String get repeater_guestTools => 'Guest Tools';
 
   @override
   String get repeater_status => 'Статус';
@@ -2052,6 +2064,14 @@ class AppLocalizationsBg extends AppLocalizations {
   @override
   String get repeater_settingsSubtitle =>
       'Конфигурирайте параметрите на репитера';
+
+  @override
+  String get repeater_clockSyncAfterLogin =>
+      'Синхронизиране на часовника след влизане';
+
+  @override
+  String get repeater_clockSyncAfterLoginSubtitle =>
+      'Автоматично изпращайте съобщение \"синхронизиране на часовника\" след успешно влизане.';
 
   @override
   String get repeater_statusTitle => 'Статус на повтарянето';
@@ -2428,6 +2448,12 @@ class AppLocalizationsBg extends AppLocalizations {
 
   @override
   String get repeater_cliQuickClock => 'Часовник';
+
+  @override
+  String get repeater_cliQuickClockSync => 'Синхронизация на часовника';
+
+  @override
+  String get repeater_cliQuickDiscovery => 'Открий Съседи';
 
   @override
   String get repeater_cliHelpAdvert => 'Изпраща рекламен пакет';

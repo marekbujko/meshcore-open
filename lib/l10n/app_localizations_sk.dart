@@ -1227,6 +1227,14 @@ class AppLocalizationsSk extends AppLocalizations {
   String get chat_noMessages => 'Zatiaľ žiadne správy.';
 
   @override
+  String get chat_sendMessage => 'Send message';
+
+  @override
+  String chat_sendMessageTo(String contactName) {
+    return 'Pošli správu $contactName';
+  }
+
+  @override
   String get chat_sendMessageToStart => 'Pošlite správu na začiatok';
 
   @override
@@ -1244,11 +1252,6 @@ class AppLocalizationsSk extends AppLocalizations {
 
   @override
   String get chat_location => 'Lokalita';
-
-  @override
-  String chat_sendMessageTo(String contactName) {
-    return 'Pošli správu $contactName';
-  }
 
   @override
   String get chat_typeMessage => 'Napište správu...';
@@ -2002,7 +2005,16 @@ class AppLocalizationsSk extends AppLocalizations {
   String get room_management => 'Správa servera miestnosti';
 
   @override
+  String get repeater_guest => 'Repeater Information';
+
+  @override
+  String get room_guest => 'Room Server Information';
+
+  @override
   String get repeater_managementTools => 'Nástroje na správu';
+
+  @override
+  String get repeater_guestTools => 'Guest Tools';
 
   @override
   String get repeater_status => 'Status';
@@ -2035,6 +2047,14 @@ class AppLocalizationsSk extends AppLocalizations {
 
   @override
   String get repeater_settingsSubtitle => 'Konfigurujte parametre opakovača';
+
+  @override
+  String get repeater_clockSyncAfterLogin =>
+      'Synchronizácia hodiniek po prihlávení';
+
+  @override
+  String get repeater_clockSyncAfterLoginSubtitle =>
+      'Automaticky posielajte notifikáciu \"synchronizácia času\" po úspešnom prihládení.';
 
   @override
   String get repeater_statusTitle => 'Status opakého zboru';
@@ -2405,6 +2425,12 @@ class AppLocalizationsSk extends AppLocalizations {
 
   @override
   String get repeater_cliQuickClock => 'Hodiny';
+
+  @override
+  String get repeater_cliQuickClockSync => 'Synchronizácia hodin';
+
+  @override
+  String get repeater_cliQuickDiscovery => 'Objaviť susedov';
 
   @override
   String get repeater_cliHelpAdvert => 'Odosiela reklamnú balíček.';

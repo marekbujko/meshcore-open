@@ -2064,5 +2064,15 @@
   "translation_translateBeforeSending": "在发送前进行翻译",
   "translation_translateTo": "翻译成 {language}",
   "translation_translationOptions": "翻译选项",
-  "translation_systemLanguage": "系统语言"
+  "translation_systemLanguage": "系统语言",
+  "repeater_cliQuickDiscovery": "发现邻居",
+  "repeater_cliQuickClockSync": "同步时钟",
+  "@repeater_clockSyncAfterLogin": {
+    "description": "Repeater setting: auto sync device clock after successful login"
+  },
+  "@repeater_clockSyncAfterLoginSubtitle": {
+    "description": "Repeater setting subtitle: describes the clock sync after login behavior"
+  },
+  "repeater_clockSyncAfterLogin": "登录后，自动同步时钟",
+  "repeater_clockSyncAfterLoginSubtitle": "在成功登录后，自动发送“时钟同步”指令。"
 }

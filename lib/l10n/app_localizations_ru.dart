@@ -1239,6 +1239,14 @@ class AppLocalizationsRu extends AppLocalizations {
   String get chat_noMessages => 'Сообщений пока нет';
 
   @override
+  String get chat_sendMessage => 'Send message';
+
+  @override
+  String chat_sendMessageTo(String contactName) {
+    return 'Отправить сообщение $contactName';
+  }
+
+  @override
   String get chat_sendMessageToStart => 'Отправьте сообщение, чтобы начать';
 
   @override
@@ -1256,11 +1264,6 @@ class AppLocalizationsRu extends AppLocalizations {
 
   @override
   String get chat_location => 'Местоположение';
-
-  @override
-  String chat_sendMessageTo(String contactName) {
-    return 'Отправить сообщение $contactName';
-  }
 
   @override
   String get chat_typeMessage => 'Напишите сообщение...';
@@ -2017,7 +2020,16 @@ class AppLocalizationsRu extends AppLocalizations {
   String get room_management => 'Управление сервером комнат';
 
   @override
+  String get repeater_guest => 'Repeater Information';
+
+  @override
+  String get room_guest => 'Room Server Information';
+
+  @override
   String get repeater_managementTools => 'Инструменты управления';
+
+  @override
+  String get repeater_guestTools => 'Guest Tools';
 
   @override
   String get repeater_status => 'Статус';
@@ -2050,6 +2062,14 @@ class AppLocalizationsRu extends AppLocalizations {
 
   @override
   String get repeater_settingsSubtitle => 'Настройка параметров репитера';
+
+  @override
+  String get repeater_clockSyncAfterLogin =>
+      'Синхронизация часов после входа в систему';
+
+  @override
+  String get repeater_clockSyncAfterLoginSubtitle =>
+      'Автоматически отправлять сообщение \"синхронизация времени\" после успешной авторизации.';
 
   @override
   String get repeater_statusTitle => 'Статус репитера';
@@ -2426,6 +2446,12 @@ class AppLocalizationsRu extends AppLocalizations {
 
   @override
   String get repeater_cliQuickClock => 'Время';
+
+  @override
+  String get repeater_cliQuickClockSync => 'Синхронизация часов';
+
+  @override
+  String get repeater_cliQuickDiscovery => 'Обнаружить Соседей';
 
   @override
   String get repeater_cliHelpAdvert => 'Отправляет пакет анонсирования';
@@ -3651,18 +3677,17 @@ class AppLocalizationsRu extends AppLocalizations {
   String get translation_enterUrlFirst => 'Сначала введите URL модели.';
 
   @override
-  String get scanner_linuxPairingShowPin => 'Показать PIN-код';
+  String get scanner_linuxPairingShowPin => 'Показать PIN';
 
   @override
-  String get scanner_linuxPairingHidePin => 'Скрыть PIN-код';
+  String get scanner_linuxPairingHidePin => 'Скрыть PIN';
 
   @override
-  String get scanner_linuxPairingPinTitle =>
-      'PIN для сопряжения устройств по Bluetooth';
+  String get scanner_linuxPairingPinTitle => 'PIN‑код сопряжения Bluetooth';
 
   @override
   String scanner_linuxPairingPinPrompt(String deviceName) {
-    return 'Введите PIN-код для $deviceName (оставьте поле пустым, если PIN-код отсутствует).';
+    return 'Введите PIN‑код для $deviceName (оставьте пустым, если нет).';
   }
 
   @override

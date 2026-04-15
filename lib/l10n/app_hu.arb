@@ -2081,7 +2081,7 @@
     }
   },
   "scanner_linuxPairingShowPin": "Megjelenítse a PIN-kódot",
-  "scanner_linuxPairingPinPrompt": "Adja meg a PIN kódot a {deviceName} számára (hagyja üresen, ha nincs).",
+  "scanner_linuxPairingPinPrompt": "Adja meg a(z) {deviceName} PIN-kódját (hagyja üresen, ha nincs).",
   "scanner_linuxPairingHidePin": "Rejtse el a PIN-kódot",
   "scanner_linuxPairingPinTitle": "Bluetooth párosítási PIN",
   "@translation_translateTo": {
@@ -2097,5 +2097,15 @@
   "translation_composerDisabledHint": "Küldj üzeneteket az eredeti, nyomtatott nyelven.",
   "translation_translateTo": "Fordítás {language}-ra",
   "translation_translationOptions": "Fordítási lehetőségek",
-  "translation_systemLanguage": "Rendszer nyelvé"
+  "translation_systemLanguage": "Rendszer nyelvé",
+  "repeater_cliQuickClockSync": "Óra szinkronizálás",
+  "repeater_cliQuickDiscovery": "Fedezd fel a szomszédokat",
+  "@repeater_clockSyncAfterLogin": {
+    "description": "Repeater setting: auto sync device clock after successful login"
+  },
+  "@repeater_clockSyncAfterLoginSubtitle": {
+    "description": "Repeater setting subtitle: describes the clock sync after login behavior"
+  },
+  "repeater_clockSyncAfterLoginSubtitle": "Automatikusan küldje el a \"óra szinkronizálás\" üzenetet a sikeres bejelentkezés után.",
+  "repeater_clockSyncAfterLogin": "Óra szinkronizálás bejelentkezés után"
 }

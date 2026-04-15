@@ -1180,6 +1180,14 @@ class AppLocalizationsJa extends AppLocalizations {
   String get chat_noMessages => 'まだメッセージは届いていません';
 
   @override
+  String get chat_sendMessage => 'Send message';
+
+  @override
+  String chat_sendMessageTo(String contactName) {
+    return '$contactName へのメッセージを送信する';
+  }
+
+  @override
   String get chat_sendMessageToStart => '開始するためにメッセージを送信してください';
 
   @override
@@ -1197,11 +1205,6 @@ class AppLocalizationsJa extends AppLocalizations {
 
   @override
   String get chat_location => '場所';
-
-  @override
-  String chat_sendMessageTo(String contactName) {
-    return '$contactName へのメッセージを送信する';
-  }
 
   @override
   String get chat_typeMessage => 'メッセージを入力してください…';
@@ -1930,7 +1933,16 @@ class AppLocalizationsJa extends AppLocalizations {
   String get room_management => 'ルームサーバーの管理';
 
   @override
+  String get repeater_guest => 'Repeater Information';
+
+  @override
+  String get room_guest => 'Room Server Information';
+
+  @override
   String get repeater_managementTools => '管理ツール';
+
+  @override
+  String get repeater_guestTools => 'Guest Tools';
 
   @override
   String get repeater_status => 'ステータス';
@@ -1961,6 +1973,13 @@ class AppLocalizationsJa extends AppLocalizations {
 
   @override
   String get repeater_settingsSubtitle => 'リピーターのパラメータを設定する';
+
+  @override
+  String get repeater_clockSyncAfterLogin => 'ログイン後、時計の時刻を同期する';
+
+  @override
+  String get repeater_clockSyncAfterLoginSubtitle =>
+      'ログインが成功した場合、自動的に「時刻同期」を送信する。';
 
   @override
   String get repeater_statusTitle => '再送ステータス';
@@ -2321,6 +2340,12 @@ class AppLocalizationsJa extends AppLocalizations {
 
   @override
   String get repeater_cliQuickClock => '時計';
+
+  @override
+  String get repeater_cliQuickClockSync => 'クロック同期';
+
+  @override
+  String get repeater_cliQuickDiscovery => '近隣を発見する';
 
   @override
   String get repeater_cliHelpAdvert => '広告用資料を送る';
@@ -3468,17 +3493,17 @@ class AppLocalizationsJa extends AppLocalizations {
   String get translation_enterUrlFirst => 'まず、モデルのURLを入力してください。';
 
   @override
-  String get scanner_linuxPairingShowPin => 'PINを表示する';
+  String get scanner_linuxPairingShowPin => 'PINを表示';
 
   @override
-  String get scanner_linuxPairingHidePin => 'PINを非表示にする';
+  String get scanner_linuxPairingHidePin => 'PINを非表示';
 
   @override
-  String get scanner_linuxPairingPinTitle => 'Bluetooth 接続のためのPIN';
+  String get scanner_linuxPairingPinTitle => 'Bluetooth ペアリング PIN';
 
   @override
   String scanner_linuxPairingPinPrompt(String deviceName) {
-    return '$deviceName の PIN を入力してください（該当しない場合は空白で入力）。';
+    return '$deviceNameのPINを入力してください（なしの場合は空欄のまま）。';
   }
 
   @override

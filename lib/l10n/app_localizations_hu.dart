@@ -1247,6 +1247,14 @@ class AppLocalizationsHu extends AppLocalizations {
   String get chat_noMessages => 'Még nincs üzenet.';
 
   @override
+  String get chat_sendMessage => 'Send message';
+
+  @override
+  String chat_sendMessageTo(String contactName) {
+    return 'Küldj üzenetet $contactName-nek';
+  }
+
+  @override
   String get chat_sendMessageToStart => 'Küldj egy üzenetet, hogy elindulj!';
 
   @override
@@ -1264,11 +1272,6 @@ class AppLocalizationsHu extends AppLocalizations {
 
   @override
   String get chat_location => 'Helyszín';
-
-  @override
-  String chat_sendMessageTo(String contactName) {
-    return 'Küldj üzenetet $contactName-nek';
-  }
 
   @override
   String get chat_typeMessage => 'Írjon üzenetet...';
@@ -2028,7 +2031,16 @@ class AppLocalizationsHu extends AppLocalizations {
   String get room_management => 'Szoba-szerver kezelés';
 
   @override
+  String get repeater_guest => 'Repeater Information';
+
+  @override
+  String get room_guest => 'Room Server Information';
+
+  @override
   String get repeater_managementTools => 'Menedzsmentes eszközök';
+
+  @override
+  String get repeater_guestTools => 'Guest Tools';
 
   @override
   String get repeater_status => 'Állapot';
@@ -2062,6 +2074,14 @@ class AppLocalizationsHu extends AppLocalizations {
 
   @override
   String get repeater_settingsSubtitle => 'Állítsa be a repeater paramétereket';
+
+  @override
+  String get repeater_clockSyncAfterLogin =>
+      'Óra szinkronizálás bejelentkezés után';
+
+  @override
+  String get repeater_clockSyncAfterLoginSubtitle =>
+      'Automatikusan küldje el a \"óra szinkronizálás\" üzenetet a sikeres bejelentkezés után.';
 
   @override
   String get repeater_statusTitle => 'Adatkapcsolódás állapot';
@@ -2436,6 +2456,12 @@ class AppLocalizationsHu extends AppLocalizations {
 
   @override
   String get repeater_cliQuickClock => 'óra';
+
+  @override
+  String get repeater_cliQuickClockSync => 'Óra szinkronizálás';
+
+  @override
+  String get repeater_cliQuickDiscovery => 'Fedezd fel a szomszédokat';
 
   @override
   String get repeater_cliHelpAdvert => 'Elküldi egy hirdetési csomagot';
@@ -3668,7 +3694,7 @@ class AppLocalizationsHu extends AppLocalizations {
 
   @override
   String scanner_linuxPairingPinPrompt(String deviceName) {
-    return 'Adja meg a PIN kódot a $deviceName számára (hagyja üresen, ha nincs).';
+    return 'Adja meg a(z) $deviceName PIN-kódját (hagyja üresen, ha nincs).';
   }
 
   @override

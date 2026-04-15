@@ -202,15 +202,15 @@ const int cmdGetChannel = 31;
 const int cmdSetChannel = 32;
 const int cmdSendTracePath = 36;
 const int cmdSetOtherParams = 38;
-const int cmdSendAnonReq = 57;
 const int cmdSendTelemetryReq = 39;
 const int cmdGetCustomVar = 40;
 const int cmdSetCustomVar = 41;
 const int cmdSendBinaryReq = 50;
+const int cmdGetStats = 56;
+const int cmdSendAnonReq = 57;
 const int cmdSetAutoAddConfig = 58;
 const int cmdGetAutoAddConfig = 59;
 const int cmdSetPathHashMode = 61;
-const int cmdGetStats = 56;
 
 // Text message types
 const int txtTypePlain = 0;

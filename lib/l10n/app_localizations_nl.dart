@@ -1228,6 +1228,14 @@ class AppLocalizationsNl extends AppLocalizations {
   String get chat_noMessages => 'Nog geen berichten.';
 
   @override
+  String get chat_sendMessage => 'Send message';
+
+  @override
+  String chat_sendMessageTo(String contactName) {
+    return 'Verstuur een bericht naar $contactName';
+  }
+
+  @override
   String get chat_sendMessageToStart => 'Een bericht sturen om te beginnen';
 
   @override
@@ -1245,11 +1253,6 @@ class AppLocalizationsNl extends AppLocalizations {
 
   @override
   String get chat_location => 'Locatie';
-
-  @override
-  String chat_sendMessageTo(String contactName) {
-    return 'Verstuur een bericht naar $contactName';
-  }
 
   @override
   String get chat_typeMessage => 'Type een bericht...';
@@ -2001,7 +2004,16 @@ class AppLocalizationsNl extends AppLocalizations {
   String get room_management => 'Beheer Server Kamer';
 
   @override
+  String get repeater_guest => 'Repeater Information';
+
+  @override
+  String get room_guest => 'Room Server Information';
+
+  @override
   String get repeater_managementTools => 'Beheerfuncties';
+
+  @override
+  String get repeater_guestTools => 'Guest Tools';
 
   @override
   String get repeater_status => 'Status';
@@ -2034,6 +2046,14 @@ class AppLocalizationsNl extends AppLocalizations {
 
   @override
   String get repeater_settingsSubtitle => 'Configureer repeaterparameters';
+
+  @override
+  String get repeater_clockSyncAfterLogin =>
+      'Na het inloggen, klok synchroniseren';
+
+  @override
+  String get repeater_clockSyncAfterLoginSubtitle =>
+      'Automatisch een \"klok synchroniseren\" bericht versturen na een succesvolle inlog.';
 
   @override
   String get repeater_statusTitle => 'Status repeater';
@@ -2408,6 +2428,12 @@ class AppLocalizationsNl extends AppLocalizations {
 
   @override
   String get repeater_cliQuickClock => 'Tijd opvragen';
+
+  @override
+  String get repeater_cliQuickClockSync => 'Kloksynchronisatie';
+
+  @override
+  String get repeater_cliQuickDiscovery => 'Ontdek Buren';
 
   @override
   String get repeater_cliHelpAdvert => 'Advertentie uitzenden';
@@ -3626,14 +3652,14 @@ class AppLocalizationsNl extends AppLocalizations {
   String get scanner_linuxPairingShowPin => 'Toon PIN';
 
   @override
-  String get scanner_linuxPairingHidePin => 'Verberg PIN';
+  String get scanner_linuxPairingHidePin => 'PIN verbergen';
 
   @override
-  String get scanner_linuxPairingPinTitle => 'PIN voor Bluetooth-koppeling';
+  String get scanner_linuxPairingPinTitle => 'Bluetooth‑koppelings‑PIN';
 
   @override
   String scanner_linuxPairingPinPrompt(String deviceName) {
-    return 'Voer het pincode-in voor $deviceName in (laat dit leeg als er geen is).';
+    return 'Voer PIN in voor $deviceName (laat leeg als er geen is).';
   }
 
   @override

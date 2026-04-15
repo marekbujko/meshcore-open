@@ -1282,10 +1282,6 @@
       }
     }
   },
-  "scanner_linuxPairingPinPrompt": "Введите PIN-код для {deviceName} (оставьте поле пустым, если PIN-код отсутствует).",
-  "scanner_linuxPairingHidePin": "Скрыть PIN-код",
-  "scanner_linuxPairingPinTitle": "PIN для сопряжения устройств по Bluetooth",
-  "scanner_linuxPairingShowPin": "Показать PIN-код",
   "@translation_translateTo": {
     "placeholders": {
       "language": {
@@ -1299,5 +1295,19 @@
   "translation_composerDisabledHint": "Отправляйте сообщения на языке, в котором они были изначально набраны.",
   "translation_translateTo": "Перевести на {language}",
   "translation_translationOptions": "Варианты перевода",
-  "translation_systemLanguage": "Язык системы"
+  "translation_systemLanguage": "Язык системы",
+  "scanner_linuxPairingShowPin": "Показать PIN",
+  "scanner_linuxPairingPinPrompt": "Введите PIN‑код для {deviceName} (оставьте пустым, если нет).",
+  "scanner_linuxPairingHidePin": "Скрыть PIN",
+  "scanner_linuxPairingPinTitle": "PIN‑код сопряжения Bluetooth",
+  "repeater_cliQuickDiscovery": "Обнаружить Соседей",
+  "repeater_cliQuickClockSync": "Синхронизация часов",
+  "@repeater_clockSyncAfterLogin": {
+    "description": "Repeater setting: auto sync device clock after successful login"
+  },
+  "@repeater_clockSyncAfterLoginSubtitle": {
+    "description": "Repeater setting subtitle: describes the clock sync after login behavior"
+  },
+  "repeater_clockSyncAfterLogin": "Синхронизация часов после входа в систему",
+  "repeater_clockSyncAfterLoginSubtitle": "Автоматически отправлять сообщение \"синхронизация времени\" после успешной авторизации."
 }

@@ -2080,10 +2080,6 @@
       }
     }
   },
-  "scanner_linuxPairingShowPin": "Wyświetl kod PIN",
-  "scanner_linuxPairingPinPrompt": "Wprowadź kod PIN dla {deviceName} (pust, jeśli nie jest wymagany).",
-  "scanner_linuxPairingHidePin": "Ukryj kod PIN",
-  "scanner_linuxPairingPinTitle": "PIN do sparowania przez Bluetooth",
   "@translation_translateTo": {
     "placeholders": {
       "language": {
@@ -2097,5 +2093,19 @@
   "translation_messageTranslation": "Tłumaczenie wiadomości",
   "translation_translationOptions": "Opcje tłumaczenia",
   "translation_systemLanguage": "Język systemu",
-  "translation_translateTo": "Tłumacz na {language}"
+  "translation_translateTo": "Tłumacz na {language}",
+  "scanner_linuxPairingShowPin": "Pokaż PIN",
+  "scanner_linuxPairingHidePin": "Ukryj PIN",
+  "scanner_linuxPairingPinPrompt": "Wprowadź kod PIN dla {deviceName} (pozostaw puste, jeśli brak).",
+  "scanner_linuxPairingPinTitle": "Kod PIN parowania Bluetooth",
+  "repeater_cliQuickClockSync": "Synchronizacja zegara",
+  "repeater_cliQuickDiscovery": "Odkryj Sąsiadów",
+  "@repeater_clockSyncAfterLogin": {
+    "description": "Repeater setting: auto sync device clock after successful login"
+  },
+  "@repeater_clockSyncAfterLoginSubtitle": {
+    "description": "Repeater setting subtitle: describes the clock sync after login behavior"
+  },
+  "repeater_clockSyncAfterLogin": "Synchronizacja zegara po zalogowaniu",
+  "repeater_clockSyncAfterLoginSubtitle": "Automatycznie wysyłaj powiadomienie \"synchronizacja zegara\" po pomyślnym zalogowaniu."
 }

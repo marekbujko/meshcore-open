@@ -1239,6 +1239,14 @@ class AppLocalizationsPt extends AppLocalizations {
   String get chat_noMessages => 'Ainda não existem mensagens.';
 
   @override
+  String get chat_sendMessage => 'Send message';
+
+  @override
+  String chat_sendMessageTo(String contactName) {
+    return 'Enviar uma mensagem para $contactName';
+  }
+
+  @override
   String get chat_sendMessageToStart => 'Enviar uma mensagem para começar';
 
   @override
@@ -1256,11 +1264,6 @@ class AppLocalizationsPt extends AppLocalizations {
 
   @override
   String get chat_location => 'Localização';
-
-  @override
-  String chat_sendMessageTo(String contactName) {
-    return 'Enviar uma mensagem para $contactName';
-  }
 
   @override
   String get chat_typeMessage => 'Digite uma mensagem...';
@@ -2013,7 +2016,16 @@ class AppLocalizationsPt extends AppLocalizations {
   String get room_management => 'Gerenciamento de Servidor de Sala';
 
   @override
+  String get repeater_guest => 'Repeater Information';
+
+  @override
+  String get room_guest => 'Room Server Information';
+
+  @override
   String get repeater_managementTools => 'Ferramentas de Gerenciamento';
+
+  @override
+  String get repeater_guestTools => 'Guest Tools';
 
   @override
   String get repeater_status => 'Status';
@@ -2046,6 +2058,14 @@ class AppLocalizationsPt extends AppLocalizations {
 
   @override
   String get repeater_settingsSubtitle => 'Configurar parâmetros do repetidor';
+
+  @override
+  String get repeater_clockSyncAfterLogin =>
+      'Sincronização do relógio após o login';
+
+  @override
+  String get repeater_clockSyncAfterLoginSubtitle =>
+      'Enviar automaticamente a sincronização do \"relógio\" após um login bem-sucedido.';
 
   @override
   String get repeater_statusTitle => 'Status do Repetidor';
@@ -2422,6 +2442,12 @@ class AppLocalizationsPt extends AppLocalizations {
 
   @override
   String get repeater_cliQuickClock => 'Relógio';
+
+  @override
+  String get repeater_cliQuickClockSync => 'Sincronização do Relógio';
+
+  @override
+  String get repeater_cliQuickDiscovery => 'Descobrir Vizinhos';
 
   @override
   String get repeater_cliHelpAdvert => 'Envia um pacote de anúncios';
@@ -3640,14 +3666,14 @@ class AppLocalizationsPt extends AppLocalizations {
   String get scanner_linuxPairingShowPin => 'Mostrar PIN';
 
   @override
-  String get scanner_linuxPairingHidePin => 'Esconder o PIN';
+  String get scanner_linuxPairingHidePin => 'Ocultar PIN';
 
   @override
-  String get scanner_linuxPairingPinTitle => 'PIN de pareamento Bluetooth';
+  String get scanner_linuxPairingPinTitle => 'PIN de emparelhamento Bluetooth';
 
   @override
   String scanner_linuxPairingPinPrompt(String deviceName) {
-    return 'Insira o código PIN para $deviceName (deixe em branco se não houver).';
+    return 'Insira o PIN para $deviceName (deixe em branco se não houver).';
   }
 
   @override

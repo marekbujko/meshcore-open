@@ -12,6 +12,7 @@ import '../utils/contact_search.dart';
 import '../utils/platform_info.dart';
 import '../widgets/app_bar.dart';
 import '../widgets/list_filter_widget.dart';
+import '../helpers/snack_bar_builder.dart';
 
 enum DiscoverySortOption { lastSeen, name, type }
 
@@ -36,6 +37,13 @@ class _DiscoveryScreenState extends State<DiscoveryScreen> {
     _searchController.dispose();
     _searchDebounce?.cancel();
     super.dispose();
+  }
+
+  DateTime _resolveLastSeen(Contact contact) {
+    if (contact.type != advTypeChat) return contact.lastSeen;
+    return contact.lastMessageAt.isAfter(contact.lastSeen)
+        ? contact.lastMessageAt
+        : contact.lastSeen;
   }
 
   @override
@@ -108,11 +116,56 @@ class _DiscoveryScreenState extends State<DiscoveryScreen> {
                           maxLines: 1,
                           overflow: TextOverflow.ellipsis,
                         ),
-                        trailing: Text(
-                          _formatLastSeen(context, contact.lastSeen),
-                          style: TextStyle(
-                            fontSize: 12,
-                            color: Colors.grey[600],
+                        // Clamp text scaling in trailing section to prevent overflow while
+                        // maintaining accessibility. Primary content (title/subtitle) scales normally.
+                        trailing: MediaQuery(
+                          data: MediaQuery.of(context).copyWith(
+                            textScaler: TextScaler.linear(
+                              MediaQuery.textScalerOf(
+                                context,
+                              ).scale(1.0).clamp(1.0, 1.3),
+                            ),
+                          ),
+                          child: SizedBox(
+                            width: 120,
+                            child: Column(
+                              mainAxisAlignment: MainAxisAlignment.center,
+                              crossAxisAlignment: CrossAxisAlignment.end,
+                              children: [
+                                Text(
+                                  _formatLastSeen(
+                                    context,
+                                    _resolveLastSeen(contact),
+                                  ),
+                                  maxLines: 1,
+                                  overflow: TextOverflow.ellipsis,
+                                  textAlign: TextAlign.right,
+                                  style: TextStyle(
+                                    fontSize: 12,
+                                    color: Colors.grey[600],
+                                  ),
+                                ),
+                                Row(
+                                  mainAxisSize: MainAxisSize.min,
+                                  children: [
+                                    if (contact.hasLocation)
+                                      Icon(
+                                        Icons.location_on,
+                                        size: 14,
+                                        color: Colors.grey[400],
+                                      ),
+                                    if (contact.rawPacket != null)
+                                      const SizedBox(width: 2),
+                                    if (contact.rawPacket != null)
+                                      Icon(
+                                        Icons.cell_tower,
+                                        size: 14,
+                                        color: Colors.grey[400],
+                                      ),
+                                  ],
+                                ),
+                              ],
+                            ),
                           ),
                         ),
                         onTap: () {
@@ -182,8 +235,9 @@ class _DiscoveryScreenState extends State<DiscoveryScreen> {
         final hexString = pubKeyToHex(contact.rawPacket!);
         Clipboard.setData(ClipboardData(text: "meshcore://$hexString"));
         if (!mounted) return;
-        ScaffoldMessenger.of(context).showSnackBar(
-          SnackBar(content: Text(context.l10n.contacts_contactAdvertCopied)),
+        showDismissibleSnackBar(
+          context,
+          content: Text(context.l10n.contacts_contactAdvertCopied),
         );
         break;
       case 'delete_contact':

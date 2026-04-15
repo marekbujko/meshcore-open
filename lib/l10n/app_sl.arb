@@ -2042,10 +2042,6 @@
       }
     }
   },
-  "scanner_linuxPairingHidePin": "Skrijte PIN",
-  "scanner_linuxPairingShowPin": "Prikaži PIN",
-  "scanner_linuxPairingPinPrompt": "Vnesite PIN kodo za {deviceName} (ostavite prazno, če nimate kode).",
-  "scanner_linuxPairingPinTitle": "PIN za združevanje preko Bluetootha",
   "@translation_translateTo": {
     "placeholders": {
       "language": {
@@ -2059,5 +2055,19 @@
   "translation_messageTranslation": "Prevod sporočila",
   "translation_translateTo": "Prevesti v {language}",
   "translation_translationOptions": "Možnosti prevoda",
-  "translation_systemLanguage": "Jezik sistema"
+  "translation_systemLanguage": "Jezik sistema",
+  "scanner_linuxPairingShowPin": "Prikaži PIN",
+  "scanner_linuxPairingHidePin": "Skrij PIN",
+  "scanner_linuxPairingPinPrompt": "Vnesite PIN za {deviceName} (pustite prazno, če ga ni).",
+  "scanner_linuxPairingPinTitle": "Bluetooth PIN za seznanjanje",
+  "repeater_cliQuickDiscovery": "Odkrijte sosede",
+  "repeater_cliQuickClockSync": "Usklajevanje ure",
+  "@repeater_clockSyncAfterLogin": {
+    "description": "Repeater setting: auto sync device clock after successful login"
+  },
+  "@repeater_clockSyncAfterLoginSubtitle": {
+    "description": "Repeater setting subtitle: describes the clock sync after login behavior"
+  },
+  "repeater_clockSyncAfterLoginSubtitle": "Samodejno po uspešnem vstopu pošljite obvestilo o sinhronizaciji časa.",
+  "repeater_clockSyncAfterLogin": "Sinhronizacija ure po prijavi"
 }

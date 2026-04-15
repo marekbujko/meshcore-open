@@ -1239,6 +1239,14 @@ class AppLocalizationsDe extends AppLocalizations {
   String get chat_noMessages => 'Noch keine Nachrichten.';
 
   @override
+  String get chat_sendMessage => 'Send message';
+
+  @override
+  String chat_sendMessageTo(String contactName) {
+    return 'Sende eine Nachricht an $contactName';
+  }
+
+  @override
   String get chat_sendMessageToStart => 'Eine Nachricht senden, um anzufangen.';
 
   @override
@@ -1256,11 +1264,6 @@ class AppLocalizationsDe extends AppLocalizations {
 
   @override
   String get chat_location => 'Ort';
-
-  @override
-  String chat_sendMessageTo(String contactName) {
-    return 'Sende eine Nachricht an $contactName';
-  }
 
   @override
   String get chat_typeMessage => 'Eine Nachricht eingeben...';
@@ -2015,7 +2018,16 @@ class AppLocalizationsDe extends AppLocalizations {
   String get room_management => 'Raum-Server-Verwaltung';
 
   @override
+  String get repeater_guest => 'Repeater Information';
+
+  @override
+  String get room_guest => 'Room Server Information';
+
+  @override
   String get repeater_managementTools => 'Verwaltungs-Tools';
+
+  @override
+  String get repeater_guestTools => 'Guest Tools';
 
   @override
   String get repeater_status => 'Status';
@@ -2048,6 +2060,14 @@ class AppLocalizationsDe extends AppLocalizations {
 
   @override
   String get repeater_settingsSubtitle => 'Repeater-parameter konfigurieren';
+
+  @override
+  String get repeater_clockSyncAfterLogin =>
+      'Uhrzeit-Synchronisation nach dem Anmelden';
+
+  @override
+  String get repeater_clockSyncAfterLoginSubtitle =>
+      'Automatisch \"Uhrzeit-Synchronisierung\" nach erfolgreicher Anmeldung senden.';
 
   @override
   String get repeater_statusTitle => 'Repeaterstatus';
@@ -2428,6 +2448,12 @@ class AppLocalizationsDe extends AppLocalizations {
 
   @override
   String get repeater_cliQuickClock => 'Uhr';
+
+  @override
+  String get repeater_cliQuickClockSync => 'Uhr Synchronisieren';
+
+  @override
+  String get repeater_cliQuickDiscovery => 'Entdecke Nachbarn';
 
   @override
   String get repeater_cliHelpAdvert => 'Sendet eine Ankündigung';
@@ -3652,14 +3678,14 @@ class AppLocalizationsDe extends AppLocalizations {
   String get scanner_linuxPairingShowPin => 'PIN anzeigen';
 
   @override
-  String get scanner_linuxPairingHidePin => 'PIN verbergen';
+  String get scanner_linuxPairingHidePin => 'PIN ausblenden';
 
   @override
-  String get scanner_linuxPairingPinTitle => 'PIN für die Bluetooth-Verbindung';
+  String get scanner_linuxPairingPinTitle => 'Bluetooth-Paarungs-PIN';
 
   @override
   String scanner_linuxPairingPinPrompt(String deviceName) {
-    return 'Geben Sie den PIN-Code für $deviceName ein (lassen Sie das Feld leer, falls kein PIN-Code vorhanden ist).';
+    return 'Geben Sie die PIN für $deviceName ein (leer lassen, falls keine).';
   }
 
   @override

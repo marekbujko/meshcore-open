@@ -303,8 +303,12 @@
   "path_routeWeight": "{weight}/{max}",
   "@path_routeWeight": {
     "placeholders": {
-      "weight": { "type": "String" },
-      "max": { "type": "String" }
+      "weight": {
+        "type": "String"
+      },
+      "max": {
+        "type": "String"
+      }
     }
   },
   "appSettings_battery": "Battery",
@@ -603,6 +607,15 @@
   "channels_enterHashtag": "Enter hashtag",
   "channels_hashtagHint": "e.g. #team",
   "chat_noMessages": "No messages yet",
+  "chat_sendMessage": "Send message",
+  "chat_sendMessageTo": "Send message to {name}",
+  "@chat_sendMessageTo": {
+    "placeholders": {
+      "name": {
+        "type": "String"
+      }
+    }
+  },
   "chat_sendMessageToStart": "Send a message to get started",
   "chat_originalMessageNotFound": "Original message not found",
   "chat_replyingTo": "Replying to {name}",
@@ -1025,8 +1038,8 @@
   "login_enterPassword": "Enter password",
   "login_savePassword": "Save password",
   "login_savePasswordSubtitle": "Password will be stored securely on this device",
-  "login_repeaterDescription": "Enter the repeater password to access settings and status.",
-  "login_roomDescription": "Enter the room password to access settings and status.",
+  "login_repeaterDescription": "Enter the repeater password for guest or admin access.",
+  "login_roomDescription": "Enter the room password for guest or admin access.",
   "login_routing": "Routing",
   "login_routingMode": "Routing mode",
   "login_autoUseSavedPath": "Auto (use saved path)",
@@ -1092,7 +1105,10 @@
   "path_setPath": "Set Path",
   "repeater_management": "Repeater Management",
   "room_management": "Room Server Management",
+  "repeater_guest": "Repeater Information",
+  "room_guest": "Room Server Information",
   "repeater_managementTools": "Management Tools",
+  "repeater_guestTools": "Guest Tools",
   "repeater_status": "Status",
   "repeater_statusSubtitle": "View repeater status, stats, and neighbors",
   "repeater_telemetry": "Telemetry",
@@ -1103,6 +1119,14 @@
   "repeater_neighborsSubtitle": "View zero hop neighbors.",
   "repeater_settings": "Settings",
   "repeater_settingsSubtitle": "Configure repeater parameters",
+  "repeater_clockSyncAfterLogin": "Clock sync after login",
+  "@repeater_clockSyncAfterLogin": {
+    "description": "Repeater setting: auto sync device clock after successful login"
+  },
+  "repeater_clockSyncAfterLoginSubtitle": "Automatically send \"clock sync\" after a successful login",
+  "@repeater_clockSyncAfterLoginSubtitle": {
+    "description": "Repeater setting subtitle: describes the clock sync after login behavior"
+  },
   "repeater_statusTitle": "Repeater Status",
   "repeater_routingMode": "Routing mode",
   "repeater_autoUseSavedPath": "Auto (use saved path)",
@@ -1333,6 +1357,8 @@
   "repeater_cliQuickVersion": "Version",
   "repeater_cliQuickAdvertise": "Advertise",
   "repeater_cliQuickClock": "Clock",
+  "repeater_cliQuickClockSync": "Clock Sync",
+  "repeater_cliQuickDiscovery": "Discover Neighbors",
   "repeater_cliHelpAdvert": "Sends an advertisement packet",
   "repeater_cliHelpReboot": "Reboots the device. (note, you'll prob get 'Timeout' which is normal)",
   "repeater_cliHelpClock": "Displays current time per device's clock.",

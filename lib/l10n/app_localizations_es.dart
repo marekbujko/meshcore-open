@@ -1239,6 +1239,14 @@ class AppLocalizationsEs extends AppLocalizations {
   String get chat_noMessages => 'Aún no hay mensajes';
 
   @override
+  String get chat_sendMessage => 'Send message';
+
+  @override
+  String chat_sendMessageTo(String contactName) {
+    return 'Enviar un mensaje a $contactName';
+  }
+
+  @override
   String get chat_sendMessageToStart => 'Enviar un mensaje para comenzar';
 
   @override
@@ -1256,11 +1264,6 @@ class AppLocalizationsEs extends AppLocalizations {
 
   @override
   String get chat_location => 'Ubicación';
-
-  @override
-  String chat_sendMessageTo(String contactName) {
-    return 'Enviar un mensaje a $contactName';
-  }
 
   @override
   String get chat_typeMessage => 'Escribe un mensaje...';
@@ -2013,7 +2016,16 @@ class AppLocalizationsEs extends AppLocalizations {
   String get room_management => 'Administración del Servidor de Habitación';
 
   @override
+  String get repeater_guest => 'Repeater Information';
+
+  @override
+  String get room_guest => 'Room Server Information';
+
+  @override
   String get repeater_managementTools => 'Herramientas de Gestión';
+
+  @override
+  String get repeater_guestTools => 'Guest Tools';
 
   @override
   String get repeater_status => 'Estado';
@@ -2046,6 +2058,14 @@ class AppLocalizationsEs extends AppLocalizations {
 
   @override
   String get repeater_settingsSubtitle => 'Configurar parámetros del repetidor';
+
+  @override
+  String get repeater_clockSyncAfterLogin =>
+      'Sincronización del reloj después de iniciar sesión';
+
+  @override
+  String get repeater_clockSyncAfterLoginSubtitle =>
+      'Enviar automáticamente la función de \"sincronización de reloj\" después de un inicio de sesión exitoso.';
 
   @override
   String get repeater_statusTitle => 'Estado del Repetidor';
@@ -2422,6 +2442,12 @@ class AppLocalizationsEs extends AppLocalizations {
 
   @override
   String get repeater_cliQuickClock => 'Reloj';
+
+  @override
+  String get repeater_cliQuickClockSync => 'Sincronización del reloj';
+
+  @override
+  String get repeater_cliQuickDiscovery => 'Descubrir Vecinos';
 
   @override
   String get repeater_cliHelpAdvert => 'Envía un paquete de publicidad';

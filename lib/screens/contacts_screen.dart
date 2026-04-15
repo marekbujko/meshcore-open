@@ -27,6 +27,7 @@ import '../widgets/quick_switch_bar.dart';
 import '../widgets/repeater_login_dialog.dart';
 import '../widgets/room_login_dialog.dart';
 import '../widgets/unread_badge.dart';
+import '../helpers/snack_bar_builder.dart';
 import 'channels_screen.dart';
 import 'chat_screen.dart';
 import 'discovery_screen.dart';
@@ -150,9 +151,10 @@ class _ContactsScreenState extends State<ContactsScreen>
   }
 
   void _showGroupsUnavailableMessage(BuildContext context) {
-    ScaffoldMessenger.of(
+    showDismissibleSnackBar(
       context,
-    ).showSnackBar(SnackBar(content: Text(context.l10n.common_loading)));
+      content: Text(context.l10n.common_loading),
+    );
   }
 
   void _setupFrameListener() {
@@ -169,10 +171,9 @@ class _ContactsScreenState extends State<ContactsScreen>
           // Validate packet has expected minimum size (98+ bytes per protocol)
           if (advertPacket.length < 98) {
             if (mounted) {
-              ScaffoldMessenger.of(context).showSnackBar(
-                SnackBar(
-                  content: Text(context.l10n.contacts_invalidAdvertFormat),
-                ),
+              showDismissibleSnackBar(
+                context,
+                content: Text(context.l10n.contacts_invalidAdvertFormat),
               );
             }
             _pendingOperations.remove(ContactOperationType.export);
@@ -187,24 +188,23 @@ class _ContactsScreenState extends State<ContactsScreen>
           if (!mounted) return;
 
           if (_pendingOperations.contains(ContactOperationType.import)) {
-            ScaffoldMessenger.of(context).showSnackBar(
-              SnackBar(content: Text(context.l10n.contacts_contactImported)),
+            showDismissibleSnackBar(
+              context,
+              content: Text(context.l10n.contacts_contactImported),
             );
           }
 
           if (_pendingOperations.contains(ContactOperationType.zeroHopShare)) {
-            ScaffoldMessenger.of(context).showSnackBar(
-              SnackBar(
-                content: Text(context.l10n.contacts_zeroHopContactAdvertSent),
-              ),
+            showDismissibleSnackBar(
+              context,
+              content: Text(context.l10n.contacts_zeroHopContactAdvertSent),
             );
           }
 
           if (_pendingOperations.contains(ContactOperationType.export)) {
-            ScaffoldMessenger.of(context).showSnackBar(
-              SnackBar(
-                content: Text(context.l10n.contacts_contactAdvertCopied),
-              ),
+            showDismissibleSnackBar(
+              context,
+              content: Text(context.l10n.contacts_contactAdvertCopied),
             );
           }
 
@@ -216,25 +216,22 @@ class _ContactsScreenState extends State<ContactsScreen>
           if (!mounted) return;
 
           if (_pendingOperations.contains(ContactOperationType.import)) {
-            ScaffoldMessenger.of(context).showSnackBar(
-              SnackBar(
-                content: Text(context.l10n.contacts_contactImportFailed),
-              ),
+            showDismissibleSnackBar(
+              context,
+              content: Text(context.l10n.contacts_contactImportFailed),
             );
           }
 
           if (_pendingOperations.contains(ContactOperationType.zeroHopShare)) {
-            ScaffoldMessenger.of(context).showSnackBar(
-              SnackBar(
-                content: Text(context.l10n.contacts_zeroHopContactAdvertFailed),
-              ),
+            showDismissibleSnackBar(
+              context,
+              content: Text(context.l10n.contacts_zeroHopContactAdvertFailed),
             );
           }
           if (_pendingOperations.contains(ContactOperationType.export)) {
-            ScaffoldMessenger.of(context).showSnackBar(
-              SnackBar(
-                content: Text(context.l10n.contacts_contactAdvertCopyFailed),
-              ),
+            showDismissibleSnackBar(
+              context,
+              content: Text(context.l10n.contacts_contactAdvertCopyFailed),
             );
           }
 
@@ -271,8 +268,9 @@ class _ContactsScreenState extends State<ContactsScreen>
     final clipboardData = await Clipboard.getData('text/plain');
     if (clipboardData == null || clipboardData.text == null) {
       if (mounted) {
-        ScaffoldMessenger.of(context).showSnackBar(
-          SnackBar(content: Text(context.l10n.contacts_clipboardEmpty)),
+        showDismissibleSnackBar(
+          context,
+          content: Text(context.l10n.contacts_clipboardEmpty),
         );
       }
       return;
@@ -280,8 +278,9 @@ class _ContactsScreenState extends State<ContactsScreen>
     final text = clipboardData.text!.trim();
     if (!text.startsWith('meshcore://')) {
       if (mounted) {
-        ScaffoldMessenger.of(context).showSnackBar(
-          SnackBar(content: Text(context.l10n.contacts_invalidAdvertFormat)),
+        showDismissibleSnackBar(
+          context,
+          content: Text(context.l10n.contacts_invalidAdvertFormat),
         );
       }
       return;
@@ -294,8 +293,9 @@ class _ContactsScreenState extends State<ContactsScreen>
       connector.importContact(importContactFrame);
     } catch (e) {
       if (mounted) {
-        ScaffoldMessenger.of(context).showSnackBar(
-          SnackBar(content: Text(context.l10n.contacts_invalidAdvertFormat)),
+        showDismissibleSnackBar(
+          context,
+          content: Text(context.l10n.contacts_invalidAdvertFormat),
         );
       }
     }
@@ -330,10 +330,9 @@ class _ContactsScreenState extends State<ContactsScreen>
                   ),
                   onTap: () => {
                     connector.sendSelfAdvert(flood: false),
-                    ScaffoldMessenger.of(context).showSnackBar(
-                      SnackBar(
-                        content: Text(context.l10n.settings_advertisementSent),
-                      ),
+                    showDismissibleSnackBar(
+                      context,
+                      content: Text(context.l10n.settings_advertisementSent),
                     ),
                   },
                 ),
@@ -347,10 +346,9 @@ class _ContactsScreenState extends State<ContactsScreen>
                   ),
                   onTap: () => {
                     connector.sendSelfAdvert(flood: true),
-                    ScaffoldMessenger.of(context).showSnackBar(
-                      SnackBar(
-                        content: Text(context.l10n.settings_advertisementSent),
-                      ),
+                    showDismissibleSnackBar(
+                      context,
+                      content: Text(context.l10n.settings_advertisementSent),
                     ),
                   },
                 ),
@@ -394,7 +392,7 @@ class _ContactsScreenState extends State<ContactsScreen>
                     children: [
                       const Icon(Icons.person_add_rounded),
                       const SizedBox(width: 8),
-                      Text("Discovered Contacts"),
+                      Text(context.l10n.discoveredContacts_Title),
                     ],
                   ),
                   onTap: () => Navigator.push(
@@ -963,13 +961,16 @@ class _ContactsScreenState extends State<ContactsScreen>
       context: context,
       builder: (context) => RepeaterLoginDialog(
         repeater: repeater,
-        onLogin: (password) {
+        onLogin: (password, isAdmin) {
           // Navigate to repeater hub screen after successful login
           Navigator.push(
             context,
             MaterialPageRoute(
-              builder: (context) =>
-                  RepeaterHubScreen(repeater: repeater, password: password),
+              builder: (context) => RepeaterHubScreen(
+                repeater: repeater,
+                password: password,
+                isAdmin: isAdmin,
+              ),
             ),
           );
         },
@@ -986,14 +987,18 @@ class _ContactsScreenState extends State<ContactsScreen>
       context: context,
       builder: (context) => RoomLoginDialog(
         room: room,
-        onLogin: (password) {
+        onLogin: (password, isAdmin) {
           context.read<MeshCoreConnector>().markContactRead(room.publicKeyHex);
           Navigator.push(
             context,
             MaterialPageRoute(
               builder: (context) =>
                   destination == RoomLoginDestination.management
-                  ? RepeaterHubScreen(repeater: room, password: password)
+                  ? RepeaterHubScreen(
+                      repeater: room,
+                      password: password,
+                      isAdmin: isAdmin,
+                    )
                   : ChatScreen(contact: room),
             ),
           );
@@ -1146,19 +1151,17 @@ class _ContactsScreenState extends State<ContactsScreen>
                 onPressed: () async {
                   final name = nameController.text.trim();
                   if (name.isEmpty) {
-                    ScaffoldMessenger.of(context).showSnackBar(
-                      SnackBar(
-                        content: Text(context.l10n.contacts_groupNameRequired),
-                      ),
+                    showDismissibleSnackBar(
+                      context,
+                      content: Text(context.l10n.contacts_groupNameRequired),
                     );
                     return;
                   }
                   if (name.toLowerCase() ==
                       contactsAllGroupsValue.toLowerCase()) {
-                    ScaffoldMessenger.of(context).showSnackBar(
-                      SnackBar(
-                        content: Text(context.l10n.contacts_groupNameReserved),
-                      ),
+                    showDismissibleSnackBar(
+                      context,
+                      content: Text(context.l10n.contacts_groupNameReserved),
                     );
                     return;
                   }
@@ -1167,11 +1170,10 @@ class _ContactsScreenState extends State<ContactsScreen>
                     return g.name.toLowerCase() == name.toLowerCase();
                   });
                   if (exists) {
-                    ScaffoldMessenger.of(context).showSnackBar(
-                      SnackBar(
-                        content: Text(
-                          context.l10n.contacts_groupAlreadyExists(name),
-                        ),
+                    showDismissibleSnackBar(
+                      context,
+                      content: Text(
+                        context.l10n.contacts_groupAlreadyExists(name),
                       ),
                     );
                     return;
@@ -1240,9 +1242,7 @@ class _ContactsScreenState extends State<ContactsScreen>
             if (isRepeater) ...[
               ListTile(
                 leading: const Icon(Icons.radar, color: Colors.green),
-                title: contact.pathBytesForDisplay.isNotEmpty
-                    ? Text(context.l10n.contacts_pathTrace)
-                    : Text(context.l10n.contacts_ping),
+                title: Text(context.l10n.contacts_ping),
                 onTap: () {
                   final hw = context
                       .read<MeshCoreConnector>()
@@ -1251,11 +1251,8 @@ class _ContactsScreenState extends State<ContactsScreen>
                     context,
                     MaterialPageRoute(
                       builder: (context) => PathTraceMapScreen(
-                        title: contact.pathBytesForDisplay.isNotEmpty
-                            ? context.l10n.contacts_repeaterPathTrace
-                            : context.l10n.contacts_repeaterPing,
-                        path: contact.pathBytesForDisplay,
-                        flipPathAround: true,
+                        title: context.l10n.contacts_repeaterPing,
+                        path: Uint8List.fromList([contact.publicKey.first]),
                         targetContact: contact,
                         pathHashByteWidth: hw,
                       ),
@@ -1274,9 +1271,7 @@ class _ContactsScreenState extends State<ContactsScreen>
             ] else if (isRoom) ...[
               ListTile(
                 leading: const Icon(Icons.radar, color: Colors.green),
-                title: contact.pathLength > 0
-                    ? Text(context.l10n.contacts_pathTrace)
-                    : Text(context.l10n.contacts_ping),
+                title: Text(context.l10n.contacts_pathTrace),
                 onTap: () {
                   final hw = context
                       .read<MeshCoreConnector>()
@@ -1288,7 +1283,9 @@ class _ContactsScreenState extends State<ContactsScreen>
                         title: contact.pathBytesForDisplay.isNotEmpty
                             ? context.l10n.contacts_roomPathTrace
                             : context.l10n.contacts_roomPing,
-                        path: contact.pathBytesForDisplay,
+                        path: contact.pathBytesForDisplay.isNotEmpty
+                            ? contact.pathBytesForDisplay
+                            : Uint8List.fromList([contact.publicKey.first]),
                         flipPathAround: contact.pathBytesForDisplay.isNotEmpty,
                         targetContact: contact,
                         pathHashByteWidth: hw,

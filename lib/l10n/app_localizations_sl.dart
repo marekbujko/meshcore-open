@@ -1225,6 +1225,14 @@ class AppLocalizationsSl extends AppLocalizations {
   String get chat_noMessages => 'Še ni sporočil.';
 
   @override
+  String get chat_sendMessage => 'Send message';
+
+  @override
+  String chat_sendMessageTo(String contactName) {
+    return 'Pošlji sporočilo $contactName';
+  }
+
+  @override
   String get chat_sendMessageToStart => 'Pošlji sporočilo za začetek.';
 
   @override
@@ -1243,11 +1251,6 @@ class AppLocalizationsSl extends AppLocalizations {
 
   @override
   String get chat_location => 'Lokacija';
-
-  @override
-  String chat_sendMessageTo(String contactName) {
-    return 'Pošlji sporočilo $contactName';
-  }
 
   @override
   String get chat_typeMessage => 'Vnesi sporočilo...';
@@ -1999,7 +2002,16 @@ class AppLocalizationsSl extends AppLocalizations {
   String get room_management => 'Upravljanje stremlišča';
 
   @override
+  String get repeater_guest => 'Repeater Information';
+
+  @override
+  String get room_guest => 'Room Server Information';
+
+  @override
   String get repeater_managementTools => 'Upravne orodje';
+
+  @override
+  String get repeater_guestTools => 'Guest Tools';
 
   @override
   String get repeater_status => 'Status';
@@ -2034,6 +2046,13 @@ class AppLocalizationsSl extends AppLocalizations {
   @override
   String get repeater_settingsSubtitle =>
       'Konfigurirajte parametre ponovitelja';
+
+  @override
+  String get repeater_clockSyncAfterLogin => 'Sinhronizacija ure po prijavi';
+
+  @override
+  String get repeater_clockSyncAfterLoginSubtitle =>
+      'Samodejno po uspešnem vstopu pošljite obvestilo o sinhronizaciji časa.';
 
   @override
   String get repeater_statusTitle => 'Status ponovitelja';
@@ -2408,6 +2427,12 @@ class AppLocalizationsSl extends AppLocalizations {
 
   @override
   String get repeater_cliQuickClock => 'Ura';
+
+  @override
+  String get repeater_cliQuickClockSync => 'Usklajevanje ure';
+
+  @override
+  String get repeater_cliQuickDiscovery => 'Odkrijte sosede';
 
   @override
   String get repeater_cliHelpAdvert => 'Pošlje paket oglasov';
@@ -3624,15 +3649,14 @@ class AppLocalizationsSl extends AppLocalizations {
   String get scanner_linuxPairingShowPin => 'Prikaži PIN';
 
   @override
-  String get scanner_linuxPairingHidePin => 'Skrijte PIN';
+  String get scanner_linuxPairingHidePin => 'Skrij PIN';
 
   @override
-  String get scanner_linuxPairingPinTitle =>
-      'PIN za združevanje preko Bluetootha';
+  String get scanner_linuxPairingPinTitle => 'Bluetooth PIN za seznanjanje';
 
   @override
   String scanner_linuxPairingPinPrompt(String deviceName) {
-    return 'Vnesite PIN kodo za $deviceName (ostavite prazno, če nimate kode).';
+    return 'Vnesite PIN za $deviceName (pustite prazno, če ga ni).';
   }
 
   @override

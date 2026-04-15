@@ -1214,6 +1214,14 @@ class AppLocalizationsEn extends AppLocalizations {
   String get chat_noMessages => 'No messages yet';
 
   @override
+  String get chat_sendMessage => 'Send message';
+
+  @override
+  String chat_sendMessageTo(String contactName) {
+    return 'Send a message to $contactName';
+  }
+
+  @override
   String get chat_sendMessageToStart => 'Send a message to get started';
 
   @override
@@ -1231,11 +1239,6 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get chat_location => 'Location';
-
-  @override
-  String chat_sendMessageTo(String contactName) {
-    return 'Send a message to $contactName';
-  }
 
   @override
   String get chat_typeMessage => 'Type a message...';
@@ -1868,11 +1871,11 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get login_repeaterDescription =>
-      'Enter the repeater password to access settings and status.';
+      'Enter the repeater password for guest or admin access.';
 
   @override
   String get login_roomDescription =>
-      'Enter the room password to access settings and status.';
+      'Enter the room password for guest or admin access.';
 
   @override
   String get login_routing => 'Routing';
@@ -1977,7 +1980,16 @@ class AppLocalizationsEn extends AppLocalizations {
   String get room_management => 'Room Server Management';
 
   @override
+  String get repeater_guest => 'Repeater Information';
+
+  @override
+  String get room_guest => 'Room Server Information';
+
+  @override
   String get repeater_managementTools => 'Management Tools';
+
+  @override
+  String get repeater_guestTools => 'Guest Tools';
 
   @override
   String get repeater_status => 'Status';
@@ -2010,6 +2022,13 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get repeater_settingsSubtitle => 'Configure repeater parameters';
+
+  @override
+  String get repeater_clockSyncAfterLogin => 'Clock sync after login';
+
+  @override
+  String get repeater_clockSyncAfterLoginSubtitle =>
+      'Automatically send \"clock sync\" after a successful login';
 
   @override
   String get repeater_statusTitle => 'Repeater Status';
@@ -2378,6 +2397,12 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get repeater_cliQuickClock => 'Clock';
+
+  @override
+  String get repeater_cliQuickClockSync => 'Clock Sync';
+
+  @override
+  String get repeater_cliQuickDiscovery => 'Discover Neighbors';
 
   @override
   String get repeater_cliHelpAdvert => 'Sends an advertisement packet';

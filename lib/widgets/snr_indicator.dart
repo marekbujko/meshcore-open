@@ -1,7 +1,63 @@
 import 'package:flutter/material.dart';
+import 'package:latlong2/latlong.dart';
+
 import '../connector/meshcore_connector.dart';
+import '../connector/meshcore_protocol.dart';
 import '../l10n/l10n.dart';
+import '../models/contact.dart';
 import 'signal_ui.dart';
+
+Contact? _getRepeaterPrefixMatchNearLocation(
+  List<Contact> contacts,
+  int pubkeyFirstByte, {
+  LatLng? searchPoint,
+  bool preferFavorites = false,
+}) {
+  final candidates = contacts
+      .where(
+        (c) =>
+            c.publicKey.isNotEmpty &&
+            c.publicKey.first == pubkeyFirstByte &&
+            (c.type == advTypeRepeater || c.type == advTypeRoom),
+      )
+      .toList();
+
+  if (candidates.isEmpty) return null;
+
+  candidates.sort((a, b) {
+    if (preferFavorites) {
+      final favA = a.isFavorite ? 1 : 0;
+      final favB = b.isFavorite ? 1 : 0;
+      final favCompare = favB.compareTo(favA);
+      if (favCompare != 0) return favCompare;
+    }
+
+    final seenCompare = b.lastSeen.compareTo(a.lastSeen);
+    if (seenCompare != 0) return seenCompare;
+
+    return a.publicKeyHex.compareTo(b.publicKeyHex);
+  });
+
+  if (searchPoint == null) {
+    return candidates.first;
+  }
+
+  final distance = Distance();
+  Contact best = candidates.first;
+  var bestDistance = double.infinity;
+
+  for (final c in candidates) {
+    if (c.hasLocation && c.latitude != null && c.longitude != null) {
+      final d = distance(searchPoint, LatLng(c.latitude!, c.longitude!));
+      if (d < bestDistance) {
+        bestDistance = d;
+        best = c;
+      }
+    }
+  }
+
+  return best;
+}
 
 class SNRUi {
   final IconData icon;
@@ -64,6 +120,15 @@ class SNRIndicator extends StatefulWidget {
 }
 
 class _SNRIndicatorState extends State<SNRIndicator> {
+  bool _isValidSelfLocation(double lat, double lon) {
+    const double epsilon = 1e-6;
+    return (lat.abs() > epsilon || lon.abs() > epsilon) &&
+        lat >= -90.0 &&
+        lat <= 90.0 &&
+        lon >= -180.0 &&
+        lon <= 180.0;
+  }
+
   @override
   Widget build(BuildContext context) {
     final directRepeaters = widget.connector.directRepeaters;
@@ -158,10 +223,25 @@ class _SNRIndicatorState extends State<SNRIndicator> {
                   widget.connector.currentSf,
                 );
                 final allContacts = widget.connector.allContacts;
-                final name = allContacts
-                    .where((c) => c.publicKey.first == repeater.pubkeyFirstByte)
-                    .map((c) => c.name)
-                    .firstOrNull;
+
+                final selfLat = widget.connector.selfLatitude;
+                final selfLon = widget.connector.selfLongitude;
+
+                LatLng? selfPoint;
+                if (selfLat != null &&
+                    selfLon != null &&
+                    _isValidSelfLocation(selfLat, selfLon)) {
+                  selfPoint = LatLng(selfLat, selfLon);
+                }
+
+                final contact = _getRepeaterPrefixMatchNearLocation(
+                  allContacts,
+                  repeater.pubkeyFirstByte,
+                  searchPoint: selfPoint,
+                  preferFavorites: true,
+                );
+
+                final name = contact?.name;
 
                 return Column(
                   children: [

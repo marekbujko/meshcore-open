@@ -2042,10 +2042,6 @@
       }
     }
   },
-  "scanner_linuxPairingPinPrompt": "Ange PIN-kod för {deviceName} (lämna tomt om ingen finns).",
-  "scanner_linuxPairingPinTitle": "PIN-kod för Bluetooth-anslutning",
-  "scanner_linuxPairingShowPin": "Visa PIN-kod",
-  "scanner_linuxPairingHidePin": "Dölj PIN-kod",
   "@translation_translateTo": {
     "placeholders": {
       "language": {
@@ -2059,5 +2055,19 @@
   "translation_messageTranslation": "Meddelandets översättning",
   "translation_translateTo": "Översätt till {language}",
   "translation_translationOptions": "Översättningsalternativ",
-  "translation_systemLanguage": "Språk för systemet"
+  "translation_systemLanguage": "Språk för systemet",
+  "scanner_linuxPairingShowPin": "Visa PIN",
+  "scanner_linuxPairingPinTitle": "Bluetooth‑parnings‑PIN",
+  "scanner_linuxPairingPinPrompt": "Ange PIN för {deviceName} (lämna tomt om ingen).",
+  "scanner_linuxPairingHidePin": "Dölj PIN",
+  "repeater_cliQuickDiscovery": "Upptäck grannar",
+  "repeater_cliQuickClockSync": "Synkronisera klocka",
+  "@repeater_clockSyncAfterLogin": {
+    "description": "Repeater setting: auto sync device clock after successful login"
+  },
+  "@repeater_clockSyncAfterLoginSubtitle": {
+    "description": "Repeater setting subtitle: describes the clock sync after login behavior"
+  },
+  "repeater_clockSyncAfterLoginSubtitle": "Automatiskt skicka \"klocksynkronisering\" efter en lyckad inloggning.",
+  "repeater_clockSyncAfterLogin": "Synkronisera klockan efter inloggning"
 }

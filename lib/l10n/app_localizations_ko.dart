@@ -1175,6 +1175,14 @@ class AppLocalizationsKo extends AppLocalizations {
   String get chat_noMessages => '아직 메시지가 없습니다.';
 
   @override
+  String get chat_sendMessage => 'Send message';
+
+  @override
+  String chat_sendMessageTo(String contactName) {
+    return '$contactName에게 메시지를 보내';
+  }
+
+  @override
   String get chat_sendMessageToStart => '시작하려면 메시지를 보내세요.';
 
   @override
@@ -1192,11 +1200,6 @@ class AppLocalizationsKo extends AppLocalizations {
 
   @override
   String get chat_location => '위치';
-
-  @override
-  String chat_sendMessageTo(String contactName) {
-    return '$contactName에게 메시지를 보내';
-  }
 
   @override
   String get chat_typeMessage => '메시지를 입력하세요...';
@@ -1927,7 +1930,16 @@ class AppLocalizationsKo extends AppLocalizations {
   String get room_management => '방 서버 관리';
 
   @override
+  String get repeater_guest => 'Repeater Information';
+
+  @override
+  String get room_guest => 'Room Server Information';
+
+  @override
   String get repeater_managementTools => '관리 도구';
+
+  @override
+  String get repeater_guestTools => 'Guest Tools';
 
   @override
   String get repeater_status => '상태';
@@ -1958,6 +1970,13 @@ class AppLocalizationsKo extends AppLocalizations {
 
   @override
   String get repeater_settingsSubtitle => '리피터 파라미터 설정';
+
+  @override
+  String get repeater_clockSyncAfterLogin => '로그인 후 시계 동기화';
+
+  @override
+  String get repeater_clockSyncAfterLoginSubtitle =>
+      '성공적인 로그인 후, 자동으로 \"시간 동기화\"를 전송합니다.';
 
   @override
   String get repeater_statusTitle => '반복 장치 상태';
@@ -2318,6 +2337,12 @@ class AppLocalizationsKo extends AppLocalizations {
 
   @override
   String get repeater_cliQuickClock => '시계';
+
+  @override
+  String get repeater_cliQuickClockSync => '시계 동기화';
+
+  @override
+  String get repeater_cliQuickDiscovery => '이웃 발견하기';
 
   @override
   String get repeater_cliHelpAdvert => '광고 패킷을 발송';

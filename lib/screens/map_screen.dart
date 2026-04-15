@@ -29,6 +29,7 @@ import 'chat_screen.dart';
 import 'contacts_screen.dart';
 import '../widgets/repeater_login_dialog.dart';
 import '../widgets/room_login_dialog.dart';
+import '../helpers/snack_bar_builder.dart';
 import 'repeater_hub_screen.dart';
 import 'settings_screen.dart';
 import 'line_of_sight_map_screen.dart';
@@ -64,6 +65,7 @@ class _MapScreenState extends State<MapScreen> {
   bool _hasInitializedMap = false;
   bool _removedMarkersLoaded = false;
   final List<int> _pathTrace = [];
+  final List<Contact> _pathTraceContacts = [];
   final List<LatLng> _points = [];
   final List<Polyline> _polylines = [];
   bool _legendExpanded = false;
@@ -488,7 +490,7 @@ class _MapScreenState extends State<MapScreen> {
                               ),
                             ),
                           ),
-                        if (!_isBuildingPathTrace)
+                        if (!settings.mapShowOverlaps)
                           ..._buildGuessedMarker(
                             guessedLocations,
                             showLabels: _showNodeLabels,
@@ -788,17 +790,26 @@ class _MapScreenState extends State<MapScreen> {
     final markers = <Marker>[];
 
     for (final guess in guessed) {
+      if (guess.contact.type == advTypeChat && _isBuildingPathTrace) {
+        continue;
+      }
+
       final color = _getNodeColor(guess.contact.type);
       final marker = Marker(
         point: guess.position,
         width: 35,
         height: 35,
         child: GestureDetector(
-          onTap: () => _showNodeInfo(
-            context,
-            guess.contact,
-            guessedPosition: guess.position,
-          ),
+          onLongPress: () => _isBuildingPathTrace
+              ? _showNodeInfo(context, guess.contact)
+              : null,
+          onTap: () => _isBuildingPathTrace
+              ? _addToPath(context, guess.contact, position: guess.position)
+              : _showNodeInfo(
+                  context,
+                  guess.contact,
+                  guessedPosition: guess.position,
+                ),
           child: Container(
             padding: const EdgeInsets.all(4),
             decoration: BoxDecoration(
@@ -870,21 +881,27 @@ class _MapScreenState extends State<MapScreen> {
         addContact = true;
       }
 
-      final hasOverlap = contacts
-          .where(
-            (c) =>
-                c.publicKeyHex != contact.publicKeyHex &&
-                c.publicKey.first == contact.publicKey.first &&
-                (c.type == advTypeRepeater || c.type == advTypeRoom) &&
-                (contact.type == advTypeRepeater ||
-                    contact.type == advTypeRoom),
-          )
-          .firstOrNull;
-
-      if (hasOverlap == null &&
-          settings.mapShowOverlaps &&
-          !_isBuildingPathTrace) {
+      if (contact.type == advTypeChat && _isBuildingPathTrace) {
         addContact = false;
+      }
+
+      if (settings.mapShowOverlaps) {
+        final hasOverlap = contacts
+            .where(
+              (c) =>
+                  c.publicKeyHex != contact.publicKeyHex &&
+                  c.publicKey.first == contact.publicKey.first &&
+                  (c.type == advTypeRepeater || c.type == advTypeRoom) &&
+                  (contact.type == advTypeRepeater ||
+                      contact.type == advTypeRoom),
+            )
+            .firstOrNull;
+
+        if (hasOverlap == null &&
+            settings.mapShowOverlaps &&
+            !_isBuildingPathTrace) {
+          addContact = false;
+        }
       }
 
       if (addContact) {
@@ -1350,13 +1367,16 @@ class _MapScreenState extends State<MapScreen> {
       context: context,
       builder: (context) => RepeaterLoginDialog(
         repeater: repeater,
-        onLogin: (password) {
+        onLogin: (password, isAdmin) {
           // Navigate to repeater hub screen after successful login
           Navigator.push(
             context,
             MaterialPageRoute(
-              builder: (context) =>
-                  RepeaterHubScreen(repeater: repeater, password: password),
+              builder: (context) => RepeaterHubScreen(
+                repeater: repeater,
+                password: password,
+                isAdmin: isAdmin,
+              ),
             ),
           );
         },
@@ -1369,7 +1389,8 @@ class _MapScreenState extends State<MapScreen> {
       context: context,
       builder: (context) => RoomLoginDialog(
         room: room,
-        onLogin: (password) {
+        // onLogin(password, isAdmin) isAdmin not used for room caht screen
+        onLogin: (password, _) {
           // Navigate to chat screen after successful login
           context.read<MeshCoreConnector>().markContactRead(room.publicKeyHex);
           Navigator.push(
@@ -1643,7 +1664,10 @@ class _MapScreenState extends State<MapScreen> {
                 );
                 await connector.refreshDeviceInfo();
                 if (!mounted) return;
-                messenger.showSnackBar(SnackBar(content: Text(successMsg)));
+                showDismissibleSnackBar(
+                  messenger.context,
+                  content: Text(successMsg),
+                );
               },
             ),
             ListTile(
@@ -1665,8 +1689,9 @@ class _MapScreenState extends State<MapScreen> {
     required String flags,
   }) async {
     if (!connector.isConnected) {
-      ScaffoldMessenger.of(context).showSnackBar(
-        SnackBar(content: Text(context.l10n.map_connectToShareMarkers)),
+      showDismissibleSnackBar(
+        context,
+        content: Text(context.l10n.map_connectToShareMarkers),
       );
       return;
     }
@@ -2121,12 +2146,18 @@ class _MapScreenState extends State<MapScreen> {
     }
   }
 
-  void _addToPath(BuildContext context, Contact contact) {
+  void _addToPath(BuildContext context, Contact contact, {LatLng? position}) {
     setState(() {
       _pathTrace.add(
         contact.publicKey[0],
       ); // Add first 16 bytes of public key to path trace
-      _points.add(LatLng(contact.latitude!, contact.longitude!));
+      _pathTraceContacts.add(
+        contact.copyWith(
+          latitude: position?.latitude ?? contact.latitude,
+          longitude: position?.longitude ?? contact.longitude,
+        ),
+      ); // Add contact to path trace contacts
+      _points.add(position ?? LatLng(contact.latitude!, contact.longitude!));
     });
   }
 
@@ -2134,6 +2165,7 @@ class _MapScreenState extends State<MapScreen> {
     setState(() {
       _isBuildingPathTrace = true;
       _pathTrace.clear();
+      _pathTraceContacts.clear();
       _points.clear();
       _polylines.clear();
       _points.add(position);
@@ -2142,6 +2174,7 @@ class _MapScreenState extends State<MapScreen> {
 
   void _removePath() {
     setState(() {
+      _pathTraceContacts.removeLast();
       _pathTrace.removeLast(); // Remove last node from path trace
       _points.removeLast(); // Remove last point from points list
       _polylines.clear(); // Clear polylines
@@ -2201,6 +2234,7 @@ class _MapScreenState extends State<MapScreen> {
                               title: l10n.contacts_pathTrace,
                               path: Uint8List.fromList(_pathTrace),
                               pathHashByteWidth: hashW,
+                              pathContacts: _pathTraceContacts,
                             ),
                           ),
                         );
@@ -2246,8 +2280,9 @@ class _MapScreenState extends State<MapScreen> {
                           _points.clear();
                           _polylines.clear();
                         });
-                        ScaffoldMessenger.of(context).showSnackBar(
-                          SnackBar(content: Text(l10n.map_pathTraceCancelled)),
+                        showDismissibleSnackBar(
+                          context,
+                          content: Text(l10n.map_pathTraceCancelled),
                         );
                       },
                       tooltip: l10n.common_cancel,
